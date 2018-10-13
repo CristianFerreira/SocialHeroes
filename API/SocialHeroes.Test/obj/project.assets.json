@@ -5748,11 +5748,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\crist\\dev\\SocialHeroes\\API\\SocialHeroes.Test\\SocialHeroes.Test.csproj",
+      "projectUniqueName": "C:\\Dev\\SocialHeroes\\API\\SocialHeroes.Test\\SocialHeroes.Test.csproj",
       "projectName": "SocialHeroes.Test",
-      "projectPath": "C:\\Users\\crist\\dev\\SocialHeroes\\API\\SocialHeroes.Test\\SocialHeroes.Test.csproj",
+      "projectPath": "C:\\Dev\\SocialHeroes\\API\\SocialHeroes.Test\\SocialHeroes.Test.csproj",
       "packagesPath": "C:\\Users\\crist\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\crist\\dev\\SocialHeroes\\API\\SocialHeroes.Test\\obj\\",
+      "outputPath": "C:\\Dev\\SocialHeroes\\API\\SocialHeroes.Test\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

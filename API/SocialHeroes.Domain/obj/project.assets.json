@@ -182,11 +182,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\crist\\dev\\SocialHeroes\\API\\SocialHeroes.Domain\\SocialHeroes.Domain.csproj",
+      "projectUniqueName": "C:\\Dev\\SocialHeroes\\API\\SocialHeroes.Domain\\SocialHeroes.Domain.csproj",
       "projectName": "SocialHeroes.Domain",
-      "projectPath": "C:\\Users\\crist\\dev\\SocialHeroes\\API\\SocialHeroes.Domain\\SocialHeroes.Domain.csproj",
+      "projectPath": "C:\\Dev\\SocialHeroes\\API\\SocialHeroes.Domain\\SocialHeroes.Domain.csproj",
       "packagesPath": "C:\\Users\\crist\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\crist\\dev\\SocialHeroes\\API\\SocialHeroes.Domain\\obj\\",
+      "outputPath": "C:\\Dev\\SocialHeroes\\API\\SocialHeroes.Domain\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

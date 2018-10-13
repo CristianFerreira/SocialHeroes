@@ -16,3 +16,12 @@ C:\Users\crist\dev\SocialHeroes\API\SocialHeroes.Domain\obj\Debug\netstandard2.0
 C:\Users\crist\dev\SocialHeroes\API\SocialHeroes.Domain\obj\Debug\netstandard2.0\SocialHeroes.Domain.AssemblyInfo.cs
 C:\Users\crist\dev\SocialHeroes\API\SocialHeroes.Domain\obj\Debug\netstandard2.0\SocialHeroes.Domain.dll
 C:\Users\crist\dev\SocialHeroes\API\SocialHeroes.Domain\obj\Debug\netstandard2.0\SocialHeroes.Domain.pdb
+C:\Dev\SocialHeroes\API\SocialHeroes.Domain\bin\Debug\netstandard2.0\SocialHeroes.Domain.deps.json
+C:\Dev\SocialHeroes\API\SocialHeroes.Domain\bin\Debug\netstandard2.0\SocialHeroes.Domain.dll
+C:\Dev\SocialHeroes\API\SocialHeroes.Domain\bin\Debug\netstandard2.0\SocialHeroes.Domain.pdb
+C:\Dev\SocialHeroes\API\SocialHeroes.Domain\obj\Debug\netstandard2.0\SocialHeroes.Domain.csprojAssemblyReference.cache
+C:\Dev\SocialHeroes\API\SocialHeroes.Domain\obj\Debug\netstandard2.0\SocialHeroes.Domain.csproj.CoreCompileInputs.cache
+C:\Dev\SocialHeroes\API\SocialHeroes.Domain\obj\Debug\netstandard2.0\SocialHeroes.Domain.AssemblyInfoInputs.cache
+C:\Dev\SocialHeroes\API\SocialHeroes.Domain\obj\Debug\netstandard2.0\SocialHeroes.Domain.AssemblyInfo.cs
+C:\Dev\SocialHeroes\API\SocialHeroes.Domain\obj\Debug\netstandard2.0\SocialHeroes.Domain.dll
+C:\Dev\SocialHeroes\API\SocialHeroes.Domain\obj\Debug\netstandard2.0\SocialHeroes.Domain.pdb
