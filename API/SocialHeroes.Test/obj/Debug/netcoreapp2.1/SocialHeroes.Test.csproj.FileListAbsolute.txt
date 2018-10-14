@@ -34,7 +34,6 @@ C:\Dev\SocialHeroes\API\SocialHeroes.Test\bin\Debug\netcoreapp2.1\SocialHeroes.T
 C:\Dev\SocialHeroes\API\SocialHeroes.Test\bin\Debug\netcoreapp2.1\SocialHeroes.Test.runtimeconfig.dev.json
 C:\Dev\SocialHeroes\API\SocialHeroes.Test\bin\Debug\netcoreapp2.1\SocialHeroes.Test.dll
 C:\Dev\SocialHeroes\API\SocialHeroes.Test\bin\Debug\netcoreapp2.1\SocialHeroes.Test.pdb
-C:\Dev\SocialHeroes\API\SocialHeroes.Test\obj\Debug\netcoreapp2.1\SocialHeroes.Test.csprojAssemblyReference.cache
 C:\Dev\SocialHeroes\API\SocialHeroes.Test\obj\Debug\netcoreapp2.1\SocialHeroes.Test.csproj.CoreCompileInputs.cache
 C:\Dev\SocialHeroes\API\SocialHeroes.Test\obj\Debug\netcoreapp2.1\SocialHeroes.Test.AssemblyInfoInputs.cache
 C:\Dev\SocialHeroes\API\SocialHeroes.Test\obj\Debug\netcoreapp2.1\SocialHeroes.Test.AssemblyInfo.cs

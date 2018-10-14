@@ -24,4 +24,3 @@ C:\Dev\SocialHeroes\API\SocialHeroes.Infra\obj\Debug\netstandard2.0\SocialHeroes
 C:\Dev\SocialHeroes\API\SocialHeroes.Infra\obj\Debug\netstandard2.0\SocialHeroes.Infra.AssemblyInfo.cs
 C:\Dev\SocialHeroes\API\SocialHeroes.Infra\obj\Debug\netstandard2.0\SocialHeroes.Infra.dll
 C:\Dev\SocialHeroes\API\SocialHeroes.Infra\obj\Debug\netstandard2.0\SocialHeroes.Infra.pdb
-C:\Dev\SocialHeroes\API\SocialHeroes.Infra\obj\Debug\netstandard2.0\SocialHeroes.Infra.csprojAssemblyReference.cache

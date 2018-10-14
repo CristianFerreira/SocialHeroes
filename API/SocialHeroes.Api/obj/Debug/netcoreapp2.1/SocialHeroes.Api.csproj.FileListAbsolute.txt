@@ -31,7 +31,6 @@ C:\Dev\SocialHeroes\API\SocialHeroes.Api\bin\Debug\netcoreapp2.1\SocialHeroes.Ap
 C:\Dev\SocialHeroes\API\SocialHeroes.Api\bin\Debug\netcoreapp2.1\SocialHeroes.Api.runtimeconfig.dev.json
 C:\Dev\SocialHeroes\API\SocialHeroes.Api\bin\Debug\netcoreapp2.1\SocialHeroes.Api.dll
 C:\Dev\SocialHeroes\API\SocialHeroes.Api\bin\Debug\netcoreapp2.1\SocialHeroes.Api.pdb
-C:\Dev\SocialHeroes\API\SocialHeroes.Api\obj\Debug\netcoreapp2.1\SocialHeroes.Api.csprojAssemblyReference.cache
 C:\Dev\SocialHeroes\API\SocialHeroes.Api\obj\Debug\netcoreapp2.1\SocialHeroes.Api.csproj.CoreCompileInputs.cache
 C:\Dev\SocialHeroes\API\SocialHeroes.Api\obj\Debug\netcoreapp2.1\SocialHeroes.Api.RazorAssemblyInfo.cache
 C:\Dev\SocialHeroes\API\SocialHeroes.Api\obj\Debug\netcoreapp2.1\SocialHeroes.Api.RazorAssemblyInfo.cs
@@ -40,3 +39,4 @@ C:\Dev\SocialHeroes\API\SocialHeroes.Api\obj\Debug\netcoreapp2.1\SocialHeroes.Ap
 C:\Dev\SocialHeroes\API\SocialHeroes.Api\obj\Debug\netcoreapp2.1\SocialHeroes.Api.RazorTargetAssemblyInfo.cache
 C:\Dev\SocialHeroes\API\SocialHeroes.Api\obj\Debug\netcoreapp2.1\SocialHeroes.Api.dll
 C:\Dev\SocialHeroes\API\SocialHeroes.Api\obj\Debug\netcoreapp2.1\SocialHeroes.Api.pdb
+C:\Dev\SocialHeroes\API\SocialHeroes.Api\obj\Debug\netcoreapp2.1\SocialHeroes.Api.csprojAssemblyReference.cache

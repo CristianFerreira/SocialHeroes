@@ -182,9 +182,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Dev\\SocialHeroes\\API\\SocialHeroes.Infra\\SocialHeroes.Infra.csproj",
-      "projectName": "SocialHeroes.Infra",
-      "projectPath": "C:\\Dev\\SocialHeroes\\API\\SocialHeroes.Infra\\SocialHeroes.Infra.csproj",
+      "projectUniqueName": "C:\\Dev\\SocialHeroes\\API\\SocialHeroes.Infra\\SocialHeroes.Infra.Data.csproj",
+      "projectName": "SocialHeroes.Infra.Data",
+      "projectPath": "C:\\Dev\\SocialHeroes\\API\\SocialHeroes.Infra\\SocialHeroes.Infra.Data.csproj",
       "packagesPath": "C:\\Users\\crist\\.nuget\\packages\\",
       "outputPath": "C:\\Dev\\SocialHeroes\\API\\SocialHeroes.Infra\\obj\\",
       "projectStyle": "PackageReference",

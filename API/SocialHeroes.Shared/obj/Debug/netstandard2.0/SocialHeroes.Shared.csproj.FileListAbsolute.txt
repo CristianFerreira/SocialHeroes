@@ -19,7 +19,6 @@ C:\Users\crist\dev\SocialHeroes\API\SocialHeroes.Shared\obj\Debug\netstandard2.0
 C:\Dev\SocialHeroes\API\SocialHeroes.Shared\bin\Debug\netstandard2.0\SocialHeroes.Shared.deps.json
 C:\Dev\SocialHeroes\API\SocialHeroes.Shared\bin\Debug\netstandard2.0\SocialHeroes.Shared.dll
 C:\Dev\SocialHeroes\API\SocialHeroes.Shared\bin\Debug\netstandard2.0\SocialHeroes.Shared.pdb
-C:\Dev\SocialHeroes\API\SocialHeroes.Shared\obj\Debug\netstandard2.0\SocialHeroes.Shared.csprojAssemblyReference.cache
 C:\Dev\SocialHeroes\API\SocialHeroes.Shared\obj\Debug\netstandard2.0\SocialHeroes.Shared.csproj.CoreCompileInputs.cache
 C:\Dev\SocialHeroes\API\SocialHeroes.Shared\obj\Debug\netstandard2.0\SocialHeroes.Shared.AssemblyInfoInputs.cache
 C:\Dev\SocialHeroes\API\SocialHeroes.Shared\obj\Debug\netstandard2.0\SocialHeroes.Shared.AssemblyInfo.cs
