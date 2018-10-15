@@ -37,6 +37,16 @@
         "build": {
           "build/netstandard2.0/NETStandard.Library.targets": {}
         }
+      },
+      "SocialHeroes.Shared/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.0",
+        "compile": {
+          "bin/placeholder/SocialHeroes.Shared.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/SocialHeroes.Shared.dll": {}
+        }
       }
     }
   },
@@ -190,12 +200,18 @@
         "netstandard.library.2.0.3.nupkg.sha512",
         "netstandard.library.nuspec"
       ]
+    },
+    "SocialHeroes.Shared/1.0.0": {
+      "type": "project",
+      "path": "../SocialHeroes.Shared/SocialHeroes.Shared.csproj",
+      "msbuildProject": "../SocialHeroes.Shared/SocialHeroes.Shared.csproj"
     }
   },
   "projectFileDependencyGroups": {
     ".NETStandard,Version=v2.0": [
       "FluentValidator >= 2.0.2",
-      "NETStandard.Library >= 2.0.3"
+      "NETStandard.Library >= 2.0.3",
+      "SocialHeroes.Shared >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -227,7 +243,11 @@
       },
       "frameworks": {
         "netstandard2.0": {
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\Dev\\SocialHeroes\\API\\SocialHeroes.Shared\\SocialHeroes.Shared.csproj": {
+              "projectPath": "C:\\Dev\\SocialHeroes\\API\\SocialHeroes.Shared\\SocialHeroes.Shared.csproj"
+            }
+          }
         }
       },
       "warningProperties": {
