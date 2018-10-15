@@ -13,7 +13,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SocialHeroes.Shared", "Soci
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SocialHeroes.Test", "SocialHeroes.Test\SocialHeroes.Test.csproj", "{4F6181B5-601D-4520-944D-20745C860F6C}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SocialHeroes.Infra.CrossCutting.Identity", "SocialHeroes.CrossCutting.Identity\SocialHeroes.Infra.CrossCutting.Identity.csproj", "{8190F1B6-36AC-480E-8187-0C0392FD57F5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SocialHeroes.Infra.Shared.Identity", "SocialHeroes.Shared.Identity\SocialHeroes.Infra.Shared.Identity.csproj", "{8190F1B6-36AC-480E-8187-0C0392FD57F5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
