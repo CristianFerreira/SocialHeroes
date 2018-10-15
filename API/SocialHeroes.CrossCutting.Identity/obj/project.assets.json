@@ -182,9 +182,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Dev\\SocialHeroes\\API\\SocialHeroes.CrossCutting.Identity\\SocialHeroes.Infra.CrossCutting.Identity.csproj",
-      "projectName": "SocialHeroes.Infra.CrossCutting.Identity",
-      "projectPath": "C:\\Dev\\SocialHeroes\\API\\SocialHeroes.CrossCutting.Identity\\SocialHeroes.Infra.CrossCutting.Identity.csproj",
+      "projectUniqueName": "C:\\Dev\\SocialHeroes\\API\\SocialHeroes.CrossCutting.Identity\\SocialHeroes.Infra.Shared.Identity.csproj",
+      "projectName": "SocialHeroes.Infra.Shared.Identity",
+      "projectPath": "C:\\Dev\\SocialHeroes\\API\\SocialHeroes.CrossCutting.Identity\\SocialHeroes.Infra.Shared.Identity.csproj",
       "packagesPath": "C:\\Users\\crist\\.nuget\\packages\\",
       "outputPath": "C:\\Dev\\SocialHeroes\\API\\SocialHeroes.CrossCutting.Identity\\obj\\",
       "projectStyle": "PackageReference",
