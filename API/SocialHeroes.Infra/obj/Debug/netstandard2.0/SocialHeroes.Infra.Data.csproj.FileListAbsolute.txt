@@ -1,9 +1,0 @@
-C:\Dev\SocialHeroes\API\SocialHeroes.Infra\bin\Debug\netstandard2.0\SocialHeroes.Infra.Data.deps.json
-C:\Dev\SocialHeroes\API\SocialHeroes.Infra\bin\Debug\netstandard2.0\SocialHeroes.Infra.Data.dll
-C:\Dev\SocialHeroes\API\SocialHeroes.Infra\bin\Debug\netstandard2.0\SocialHeroes.Infra.Data.pdb
-C:\Dev\SocialHeroes\API\SocialHeroes.Infra\obj\Debug\netstandard2.0\SocialHeroes.Infra.Data.csproj.CoreCompileInputs.cache
-C:\Dev\SocialHeroes\API\SocialHeroes.Infra\obj\Debug\netstandard2.0\SocialHeroes.Infra.Data.AssemblyInfoInputs.cache
-C:\Dev\SocialHeroes\API\SocialHeroes.Infra\obj\Debug\netstandard2.0\SocialHeroes.Infra.Data.AssemblyInfo.cs
-C:\Dev\SocialHeroes\API\SocialHeroes.Infra\obj\Debug\netstandard2.0\SocialHeroes.Infra.Data.dll
-C:\Dev\SocialHeroes\API\SocialHeroes.Infra\obj\Debug\netstandard2.0\SocialHeroes.Infra.Data.pdb
-C:\Dev\SocialHeroes\API\SocialHeroes.Infra\obj\Debug\netstandard2.0\SocialHeroes.Infra.Data.csprojAssemblyReference.cache

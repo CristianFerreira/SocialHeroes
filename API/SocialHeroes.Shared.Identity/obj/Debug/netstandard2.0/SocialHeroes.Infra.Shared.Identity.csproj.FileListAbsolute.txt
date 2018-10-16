@@ -1,9 +1,0 @@
-C:\Dev\SocialHeroes\API\SocialHeroes.Shared.Identity\bin\Debug\netstandard2.0\SocialHeroes.Infra.Shared.Identity.deps.json
-C:\Dev\SocialHeroes\API\SocialHeroes.Shared.Identity\bin\Debug\netstandard2.0\SocialHeroes.Infra.Shared.Identity.dll
-C:\Dev\SocialHeroes\API\SocialHeroes.Shared.Identity\bin\Debug\netstandard2.0\SocialHeroes.Infra.Shared.Identity.pdb
-C:\Dev\SocialHeroes\API\SocialHeroes.Shared.Identity\obj\Debug\netstandard2.0\SocialHeroes.Infra.Shared.Identity.csprojAssemblyReference.cache
-C:\Dev\SocialHeroes\API\SocialHeroes.Shared.Identity\obj\Debug\netstandard2.0\SocialHeroes.Infra.Shared.Identity.csproj.CoreCompileInputs.cache
-C:\Dev\SocialHeroes\API\SocialHeroes.Shared.Identity\obj\Debug\netstandard2.0\SocialHeroes.Infra.Shared.Identity.AssemblyInfoInputs.cache
-C:\Dev\SocialHeroes\API\SocialHeroes.Shared.Identity\obj\Debug\netstandard2.0\SocialHeroes.Infra.Shared.Identity.AssemblyInfo.cs
-C:\Dev\SocialHeroes\API\SocialHeroes.Shared.Identity\obj\Debug\netstandard2.0\SocialHeroes.Infra.Shared.Identity.dll
-C:\Dev\SocialHeroes\API\SocialHeroes.Shared.Identity\obj\Debug\netstandard2.0\SocialHeroes.Infra.Shared.Identity.pdb
