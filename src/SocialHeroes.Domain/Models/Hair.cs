@@ -10,7 +10,6 @@ namespace SocialHeroes.Domain.DonatorContext.Models
             this.Color = color;
         }
 
-        public Guid Id { get; set; }
         public string Color { get; set; }
     }
 }

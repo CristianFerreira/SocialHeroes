@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SocialHeroes.Api", "src\Soc
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SocialHeroes.Domain", "src\SocialHeroes.Domain\SocialHeroes.Domain.csproj", "{BC6BE6BE-EC6C-4B5E-8316-5A8FCED17712}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SocialHeroes.Infra", "src\SocialHeroes.Infra.Data\SocialHeroes.Infra.csproj", "{1E218A96-E83D-4C5A-8190-616F1BA3EFDF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SocialHeroes.Infra", "src\SocialHeroes.Infra\SocialHeroes.Infra.csproj", "{1E218A96-E83D-4C5A-8190-616F1BA3EFDF}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SocialHeroes.Infra.Shared.Identity", "src\SocialHeroes.Infra.Shared.Identity\SocialHeroes.Infra.Shared.Identity.csproj", "{7A9DE4B4-92CC-4342-AD04-73A04B291110}"
 EndProject

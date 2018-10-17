@@ -5,18 +5,27 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="DonatorContext\**" />
+    <Compile Remove="HospitalContext\**" />
+    <Compile Remove="SharedContext\**" />
+    <EmbeddedResource Remove="DonatorContext\**" />
+    <EmbeddedResource Remove="HospitalContext\**" />
+    <EmbeddedResource Remove="SharedContext\**" />
+    <None Remove="DonatorContext\**" />
+    <None Remove="HospitalContext\**" />
+    <None Remove="SharedContext\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="FluentValidator" Version="2.0.2" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="DonatorContext\Queries\" />
-    <Folder Include="DonatorContext\ValueObjects\" />
-    <Folder Include="HospitalContext\" />
-    <Folder Include="SharedContext\" />
+    <ProjectReference Include="..\SocialHeroes.Shared\SocialHeroes.Shared.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\SocialHeroes.Shared\SocialHeroes.Shared.csproj" />
+    <Folder Include="ValueObjects\" />
   </ItemGroup>
 
 </Project>

@@ -3,7 +3,7 @@ using System;
 
 namespace SocialHeroes.Shared.Models
 {
-    public abstract class Entity : Notifiable
+    public abstract class Entity
     {
         public Entity()
         {

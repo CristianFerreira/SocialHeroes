@@ -11599,8 +11599,8 @@
     },
     "SocialHeroes.Infra/1.0.0": {
       "type": "project",
-      "path": "../SocialHeroes.Infra.Data/SocialHeroes.Infra.csproj",
-      "msbuildProject": "../SocialHeroes.Infra.Data/SocialHeroes.Infra.csproj"
+      "path": "../SocialHeroes.Infra/SocialHeroes.Infra.csproj",
+      "msbuildProject": "../SocialHeroes.Infra/SocialHeroes.Infra.csproj"
     },
     "SocialHeroes.Shared/1.0.0": {
       "type": "project",
@@ -11614,6 +11614,7 @@
       "Microsoft.AspNetCore >= 2.1.4",
       "Microsoft.AspNetCore.App >= 2.1.1",
       "Microsoft.AspNetCore.Razor.Design >= 2.1.2",
+      "Microsoft.AspNetCore.ResponseCompression >= 2.1.1",
       "Microsoft.NETCore.App >= 2.1.0",
       "SocialHeroes.Domain >= 1.0.0",
       "SocialHeroes.Infra >= 1.0.0"
@@ -11652,8 +11653,8 @@
             "C:\\Dev\\SocialHeroes\\src\\SocialHeroes.Domain\\SocialHeroes.Domain.csproj": {
               "projectPath": "C:\\Dev\\SocialHeroes\\src\\SocialHeroes.Domain\\SocialHeroes.Domain.csproj"
             },
-            "C:\\Dev\\SocialHeroes\\src\\SocialHeroes.Infra.Data\\SocialHeroes.Infra.csproj": {
-              "projectPath": "C:\\Dev\\SocialHeroes\\src\\SocialHeroes.Infra.Data\\SocialHeroes.Infra.csproj"
+            "C:\\Dev\\SocialHeroes\\src\\SocialHeroes.Infra\\SocialHeroes.Infra.csproj": {
+              "projectPath": "C:\\Dev\\SocialHeroes\\src\\SocialHeroes.Infra\\SocialHeroes.Infra.csproj"
             }
           }
         }
@@ -11685,6 +11686,10 @@
             "suppressParent": "All",
             "target": "Package",
             "version": "[2.1.2, )"
+          },
+          "Microsoft.AspNetCore.ResponseCompression": {
+            "target": "Package",
+            "version": "[2.1.1, )"
           },
           "Microsoft.NETCore.App": {
             "target": "Package",

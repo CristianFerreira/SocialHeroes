@@ -1,4 +1,5 @@
 ﻿using SocialHeroes.Domain.DonatorContext.Models;
+using SocialHeroes.Domain.DonatorContext.Queries;
 using System.Collections.Generic;
 
 namespace SocialHeroes.Domain.DonatorContext.Repositories
@@ -6,6 +7,6 @@ namespace SocialHeroes.Domain.DonatorContext.Repositories
     public interface IHairRepository
     {
         void Save(Hair hair);
-        IEnumerable<Hair> Get();
+        IEnumerable<ListHairQueryResult> Get();
     }
 }

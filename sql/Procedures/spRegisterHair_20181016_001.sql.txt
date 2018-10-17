@@ -1,0 +1,11 @@
+CREATE PROCEDURE spRegisterHair
+    @Id UNIQUEIDENTIFIER,
+    @Color VARCHAR(20)
+AS
+    INSERT INTO [Hair] (
+        [Id], 
+        [Color] 
+    ) VALUES (
+        @Id,
+        @Color
+    )

@@ -13,11 +13,12 @@
     <PackageReference Include="Microsoft.AspNetCore" Version="2.1.4" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.1.2" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.AspNetCore.ResponseCompression" Version="2.1.1" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\SocialHeroes.Domain\SocialHeroes.Domain.csproj" />
-    <ProjectReference Include="..\SocialHeroes.Infra.Data\SocialHeroes.Infra.csproj" />
+    <ProjectReference Include="..\SocialHeroes.Infra\SocialHeroes.Infra.csproj" />
   </ItemGroup>
 
 </Project>

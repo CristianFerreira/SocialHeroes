@@ -16,6 +16,8 @@ namespace SocialHeroes.Api
         {
             services.AddMvc();
 
+            services.AddResponseCompression();
+
             services.AddScoped<DataContext, DataContext>();
             services.AddTransient<IHairRepository, HairRepository>(); ;
             services.AddTransient<HairHandler, HairHandler>();
@@ -34,6 +36,7 @@ namespace SocialHeroes.Api
             }
 
             app.UseMvc();
+            app.UseResponseCompression();
         }
     }
 }
