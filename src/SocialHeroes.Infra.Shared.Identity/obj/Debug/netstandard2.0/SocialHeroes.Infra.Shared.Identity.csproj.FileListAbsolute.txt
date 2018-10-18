@@ -19,9 +19,9 @@ C:\Dev\SocialHeroes\API\src\SocialHeroes.Infra.Shared.Identity\obj\Debug\netstan
 C:\Dev\SocialHeroes\src\SocialHeroes.Infra.Shared.Identity\bin\Debug\netstandard2.0\SocialHeroes.Infra.Shared.Identity.deps.json
 C:\Dev\SocialHeroes\src\SocialHeroes.Infra.Shared.Identity\bin\Debug\netstandard2.0\SocialHeroes.Infra.Shared.Identity.dll
 C:\Dev\SocialHeroes\src\SocialHeroes.Infra.Shared.Identity\bin\Debug\netstandard2.0\SocialHeroes.Infra.Shared.Identity.pdb
+C:\Dev\SocialHeroes\src\SocialHeroes.Infra.Shared.Identity\obj\Debug\netstandard2.0\SocialHeroes.Infra.Shared.Identity.csprojAssemblyReference.cache
 C:\Dev\SocialHeroes\src\SocialHeroes.Infra.Shared.Identity\obj\Debug\netstandard2.0\SocialHeroes.Infra.Shared.Identity.csproj.CoreCompileInputs.cache
 C:\Dev\SocialHeroes\src\SocialHeroes.Infra.Shared.Identity\obj\Debug\netstandard2.0\SocialHeroes.Infra.Shared.Identity.AssemblyInfoInputs.cache
 C:\Dev\SocialHeroes\src\SocialHeroes.Infra.Shared.Identity\obj\Debug\netstandard2.0\SocialHeroes.Infra.Shared.Identity.AssemblyInfo.cs
 C:\Dev\SocialHeroes\src\SocialHeroes.Infra.Shared.Identity\obj\Debug\netstandard2.0\SocialHeroes.Infra.Shared.Identity.dll
 C:\Dev\SocialHeroes\src\SocialHeroes.Infra.Shared.Identity\obj\Debug\netstandard2.0\SocialHeroes.Infra.Shared.Identity.pdb
-C:\Dev\SocialHeroes\src\SocialHeroes.Infra.Shared.Identity\obj\Debug\netstandard2.0\SocialHeroes.Infra.Shared.Identity.csprojAssemblyReference.cache

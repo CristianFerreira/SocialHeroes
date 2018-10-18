@@ -42,4 +42,3 @@ C:\Dev\SocialHeroes\src\SocialHeroes.Shared\obj\Debug\netstandard2.0\SocialHeroe
 C:\Dev\SocialHeroes\src\SocialHeroes.Shared\obj\Debug\netstandard2.0\SocialHeroes.Shared.AssemblyInfo.cs
 C:\Dev\SocialHeroes\src\SocialHeroes.Shared\obj\Debug\netstandard2.0\SocialHeroes.Shared.dll
 C:\Dev\SocialHeroes\src\SocialHeroes.Shared\obj\Debug\netstandard2.0\SocialHeroes.Shared.pdb
-C:\Dev\SocialHeroes\src\SocialHeroes.Shared\obj\Debug\netstandard2.0\SocialHeroes.Shared.csprojAssemblyReference.cache
