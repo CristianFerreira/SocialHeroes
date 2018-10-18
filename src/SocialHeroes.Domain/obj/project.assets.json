@@ -2,18 +2,6 @@
   "version": 3,
   "targets": {
     ".NETStandard,Version=v2.0": {
-      "FluentValidator/2.0.2": {
-        "type": "package",
-        "dependencies": {
-          "NETStandard.Library": "1.6.1"
-        },
-        "compile": {
-          "lib/netstandard1.3/FluentValidator.dll": {}
-        },
-        "runtime": {
-          "lib/netstandard1.3/FluentValidator.dll": {}
-        }
-      },
       "Microsoft.NETCore.Platforms/1.1.0": {
         "type": "package",
         "compile": {
@@ -37,33 +25,10 @@
         "build": {
           "build/netstandard2.0/NETStandard.Library.targets": {}
         }
-      },
-      "SocialHeroes.Shared/1.0.0": {
-        "type": "project",
-        "framework": ".NETStandard,Version=v2.0",
-        "dependencies": {
-          "FluentValidator": "2.0.2"
-        },
-        "compile": {
-          "bin/placeholder/SocialHeroes.Shared.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/SocialHeroes.Shared.dll": {}
-        }
       }
     }
   },
   "libraries": {
-    "FluentValidator/2.0.2": {
-      "sha512": "+jPy82KgA80/SjmesLUCQsBB+GWbffGYMeGUMizLWc87hQkBPnyrysfoa/Hiq0QciGEeFD1PokPwLafnNDnQ/Q==",
-      "type": "package",
-      "path": "fluentvalidator/2.0.2",
-      "files": [
-        "fluentvalidator.2.0.2.nupkg.sha512",
-        "fluentvalidator.nuspec",
-        "lib/netstandard1.3/FluentValidator.dll"
-      ]
-    },
     "Microsoft.NETCore.Platforms/1.1.0": {
       "sha512": "kz0PEW2lhqygehI/d6XsPCQzD7ff7gUJaVGPVETX611eadGsA3A877GdSlU0LRVMCTH/+P3o2iDTak+S08V2+A==",
       "type": "package",
@@ -203,18 +168,11 @@
         "netstandard.library.2.0.3.nupkg.sha512",
         "netstandard.library.nuspec"
       ]
-    },
-    "SocialHeroes.Shared/1.0.0": {
-      "type": "project",
-      "path": "../SocialHeroes.Shared/SocialHeroes.Shared.csproj",
-      "msbuildProject": "../SocialHeroes.Shared/SocialHeroes.Shared.csproj"
     }
   },
   "projectFileDependencyGroups": {
     ".NETStandard,Version=v2.0": [
-      "FluentValidator >= 2.0.2",
-      "NETStandard.Library >= 2.0.3",
-      "SocialHeroes.Shared >= 1.0.0"
+      "NETStandard.Library >= 2.0.3"
     ]
   },
   "packageFolders": {
@@ -246,11 +204,7 @@
       },
       "frameworks": {
         "netstandard2.0": {
-          "projectReferences": {
-            "C:\\Dev\\SocialHeroes\\src\\SocialHeroes.Shared\\SocialHeroes.Shared.csproj": {
-              "projectPath": "C:\\Dev\\SocialHeroes\\src\\SocialHeroes.Shared\\SocialHeroes.Shared.csproj"
-            }
-          }
+          "projectReferences": {}
         }
       },
       "warningProperties": {
@@ -262,10 +216,6 @@
     "frameworks": {
       "netstandard2.0": {
         "dependencies": {
-          "FluentValidator": {
-            "target": "Package",
-            "version": "[2.0.2, )"
-          },
           "NETStandard.Library": {
             "suppressParent": "All",
             "target": "Package",
