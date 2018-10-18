@@ -1,8 +1,0 @@
-C:\Dev\SocialHeroes\API\SocialHeroes.CrossCutting.Identity\bin\Debug\netstandard2.0\SocialHeroes.CrossCutting.Identity.deps.json
-C:\Dev\SocialHeroes\API\SocialHeroes.CrossCutting.Identity\bin\Debug\netstandard2.0\SocialHeroes.CrossCutting.Identity.dll
-C:\Dev\SocialHeroes\API\SocialHeroes.CrossCutting.Identity\bin\Debug\netstandard2.0\SocialHeroes.CrossCutting.Identity.pdb
-C:\Dev\SocialHeroes\API\SocialHeroes.CrossCutting.Identity\obj\Debug\netstandard2.0\SocialHeroes.CrossCutting.Identity.csproj.CoreCompileInputs.cache
-C:\Dev\SocialHeroes\API\SocialHeroes.CrossCutting.Identity\obj\Debug\netstandard2.0\SocialHeroes.CrossCutting.Identity.AssemblyInfoInputs.cache
-C:\Dev\SocialHeroes\API\SocialHeroes.CrossCutting.Identity\obj\Debug\netstandard2.0\SocialHeroes.CrossCutting.Identity.AssemblyInfo.cs
-C:\Dev\SocialHeroes\API\SocialHeroes.CrossCutting.Identity\obj\Debug\netstandard2.0\SocialHeroes.CrossCutting.Identity.dll
-C:\Dev\SocialHeroes\API\SocialHeroes.CrossCutting.Identity\obj\Debug\netstandard2.0\SocialHeroes.CrossCutting.Identity.pdb
