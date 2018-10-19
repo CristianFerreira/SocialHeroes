@@ -182,11 +182,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Dev\\SocialHeroes\\src\\SocialHeroes.CrossCutting.IoC\\SocialHeroes.CrossCutting.IoC.csproj",
+      "projectUniqueName": "C:\\Dev\\CQRS_Advanced\\SocialHeroes\\SocialHeroes\\src\\SocialHeroes.CrossCutting.IoC\\SocialHeroes.CrossCutting.IoC.csproj",
       "projectName": "SocialHeroes.CrossCutting.IoC",
-      "projectPath": "C:\\Dev\\SocialHeroes\\src\\SocialHeroes.CrossCutting.IoC\\SocialHeroes.CrossCutting.IoC.csproj",
+      "projectPath": "C:\\Dev\\CQRS_Advanced\\SocialHeroes\\SocialHeroes\\src\\SocialHeroes.CrossCutting.IoC\\SocialHeroes.CrossCutting.IoC.csproj",
       "packagesPath": "C:\\Users\\crist\\.nuget\\packages\\",
-      "outputPath": "C:\\Dev\\SocialHeroes\\src\\SocialHeroes.CrossCutting.IoC\\obj\\",
+      "outputPath": "C:\\Dev\\CQRS_Advanced\\SocialHeroes\\SocialHeroes\\src\\SocialHeroes.CrossCutting.IoC\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

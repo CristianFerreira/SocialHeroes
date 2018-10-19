@@ -15,12 +15,3 @@ C:\Dev\CQRS_Advanced\SocialHeroes\SocialHeroes\src\SocialHeroes.Domain.Core\obj\
 C:\Dev\CQRS_Advanced\SocialHeroes\SocialHeroes\src\SocialHeroes.Domain.Core\obj\Debug\netstandard2.0\SocialHeroes.Domain.Core.AssemblyInfo.cs
 C:\Dev\CQRS_Advanced\SocialHeroes\SocialHeroes\src\SocialHeroes.Domain.Core\obj\Debug\netstandard2.0\SocialHeroes.Domain.Core.dll
 C:\Dev\CQRS_Advanced\SocialHeroes\SocialHeroes\src\SocialHeroes.Domain.Core\obj\Debug\netstandard2.0\SocialHeroes.Domain.Core.pdb
-C:\Dev\SocialHeroes\src\SocialHeroes.Domain.Core\bin\Debug\netstandard2.0\SocialHeroes.Domain.Core.deps.json
-C:\Dev\SocialHeroes\src\SocialHeroes.Domain.Core\bin\Debug\netstandard2.0\SocialHeroes.Domain.Core.dll
-C:\Dev\SocialHeroes\src\SocialHeroes.Domain.Core\bin\Debug\netstandard2.0\SocialHeroes.Domain.Core.pdb
-C:\Dev\SocialHeroes\src\SocialHeroes.Domain.Core\obj\Debug\netstandard2.0\SocialHeroes.Domain.Core.csprojAssemblyReference.cache
-C:\Dev\SocialHeroes\src\SocialHeroes.Domain.Core\obj\Debug\netstandard2.0\SocialHeroes.Domain.Core.csproj.CoreCompileInputs.cache
-C:\Dev\SocialHeroes\src\SocialHeroes.Domain.Core\obj\Debug\netstandard2.0\SocialHeroes.Domain.Core.AssemblyInfoInputs.cache
-C:\Dev\SocialHeroes\src\SocialHeroes.Domain.Core\obj\Debug\netstandard2.0\SocialHeroes.Domain.Core.AssemblyInfo.cs
-C:\Dev\SocialHeroes\src\SocialHeroes.Domain.Core\obj\Debug\netstandard2.0\SocialHeroes.Domain.Core.dll
-C:\Dev\SocialHeroes\src\SocialHeroes.Domain.Core\obj\Debug\netstandard2.0\SocialHeroes.Domain.Core.pdb

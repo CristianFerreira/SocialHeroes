@@ -11506,11 +11506,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Dev\\SocialHeroes\\src\\SocialHeroes.WebApi\\SocialHeroes.WebApi.csproj",
+      "projectUniqueName": "C:\\Dev\\CQRS_Advanced\\SocialHeroes\\SocialHeroes\\src\\SocialHeroes.WebApi\\SocialHeroes.WebApi.csproj",
       "projectName": "SocialHeroes.WebApi",
-      "projectPath": "C:\\Dev\\SocialHeroes\\src\\SocialHeroes.WebApi\\SocialHeroes.WebApi.csproj",
+      "projectPath": "C:\\Dev\\CQRS_Advanced\\SocialHeroes\\SocialHeroes\\src\\SocialHeroes.WebApi\\SocialHeroes.WebApi.csproj",
       "packagesPath": "C:\\Users\\crist\\.nuget\\packages\\",
-      "outputPath": "C:\\Dev\\SocialHeroes\\src\\SocialHeroes.WebApi\\obj\\",
+      "outputPath": "C:\\Dev\\CQRS_Advanced\\SocialHeroes\\SocialHeroes\\src\\SocialHeroes.WebApi\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

@@ -182,11 +182,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Dev\\SocialHeroes\\src\\SocialHeroes.CrossCutting.Bus\\SocialHeroes.CrossCutting.Bus.csproj",
+      "projectUniqueName": "C:\\Dev\\CQRS_Advanced\\SocialHeroes\\SocialHeroes\\src\\SocialHeroes.CrossCutting.Bus\\SocialHeroes.CrossCutting.Bus.csproj",
       "projectName": "SocialHeroes.CrossCutting.Bus",
-      "projectPath": "C:\\Dev\\SocialHeroes\\src\\SocialHeroes.CrossCutting.Bus\\SocialHeroes.CrossCutting.Bus.csproj",
+      "projectPath": "C:\\Dev\\CQRS_Advanced\\SocialHeroes\\SocialHeroes\\src\\SocialHeroes.CrossCutting.Bus\\SocialHeroes.CrossCutting.Bus.csproj",
       "packagesPath": "C:\\Users\\crist\\.nuget\\packages\\",
-      "outputPath": "C:\\Dev\\SocialHeroes\\src\\SocialHeroes.CrossCutting.Bus\\obj\\",
+      "outputPath": "C:\\Dev\\CQRS_Advanced\\SocialHeroes\\SocialHeroes\\src\\SocialHeroes.CrossCutting.Bus\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

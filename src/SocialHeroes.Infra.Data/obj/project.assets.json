@@ -182,11 +182,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Dev\\SocialHeroes\\src\\SocialHeroes.Infra.Data\\SocialHeroes.Infra.Data.csproj",
+      "projectUniqueName": "C:\\Dev\\CQRS_Advanced\\SocialHeroes\\SocialHeroes\\src\\SocialHeroes.Infra.Data\\SocialHeroes.Infra.Data.csproj",
       "projectName": "SocialHeroes.Infra.Data",
-      "projectPath": "C:\\Dev\\SocialHeroes\\src\\SocialHeroes.Infra.Data\\SocialHeroes.Infra.Data.csproj",
+      "projectPath": "C:\\Dev\\CQRS_Advanced\\SocialHeroes\\SocialHeroes\\src\\SocialHeroes.Infra.Data\\SocialHeroes.Infra.Data.csproj",
       "packagesPath": "C:\\Users\\crist\\.nuget\\packages\\",
-      "outputPath": "C:\\Dev\\SocialHeroes\\src\\SocialHeroes.Infra.Data\\obj\\",
+      "outputPath": "C:\\Dev\\CQRS_Advanced\\SocialHeroes\\SocialHeroes\\src\\SocialHeroes.Infra.Data\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
