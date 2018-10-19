@@ -43,11 +43,10 @@
       ]
     },
     "NETStandard.Library/2.0.3": {
-      "sha512": "R73gEjqCkI2Nw/IlN8QvcgPNklqQiPowp47JwvW0Bnp/RZnjN4UrJwEvWVJWRK1MsQ+HIfGe9i4aQlfK+ei9jA==",
+      "sha512": "st47PosZSHrjECdjeIzZQbzivYBJFv6P2nv4cj2ypdI204DO+vZ7l5raGMiX4eXMJ53RfOIg+/s4DHVZ54Nu2A==",
       "type": "package",
       "path": "netstandard.library/2.0.3",
       "files": [
-        ".signature.p7s",
         "LICENSE.TXT",
         "THIRD-PARTY-NOTICES.TXT",
         "build/netstandard2.0/NETStandard.Library.targets",
@@ -177,23 +176,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\cristian.ferreira\\.nuget\\packages\\": {},
+    "C:\\Users\\crist\\.nuget\\packages\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\projetos\\TCC\\SocialHeroes\\src\\SocialHeroes.Application\\SocialHeroes.Application.csproj",
+      "projectUniqueName": "C:\\Dev\\SocialHeroes\\src\\SocialHeroes.Application\\SocialHeroes.Application.csproj",
       "projectName": "SocialHeroes.Application",
-      "projectPath": "D:\\projetos\\TCC\\SocialHeroes\\src\\SocialHeroes.Application\\SocialHeroes.Application.csproj",
-      "packagesPath": "C:\\Users\\cristian.ferreira\\.nuget\\packages\\",
-      "outputPath": "D:\\projetos\\TCC\\SocialHeroes\\src\\SocialHeroes.Application\\obj\\",
+      "projectPath": "C:\\Dev\\SocialHeroes\\src\\SocialHeroes.Application\\SocialHeroes.Application.csproj",
+      "packagesPath": "C:\\Users\\crist\\.nuget\\packages\\",
+      "outputPath": "C:\\Dev\\SocialHeroes\\src\\SocialHeroes.Application\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\cristian.ferreira\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\crist\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -201,7 +200,6 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "http://nuget.ecs.com.br/api/nuget": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
