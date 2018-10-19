@@ -16,3 +16,17 @@ C:\Dev\CQRS_Advanced\SocialHeroes\SocialHeroes\src\SocialHeroes.Infra.Data\obj\D
 C:\Dev\CQRS_Advanced\SocialHeroes\SocialHeroes\src\SocialHeroes.Infra.Data\obj\Debug\netstandard2.0\SocialHeroes.Infra.Data.AssemblyInfo.cs
 C:\Dev\CQRS_Advanced\SocialHeroes\SocialHeroes\src\SocialHeroes.Infra.Data\obj\Debug\netstandard2.0\SocialHeroes.Infra.Data.dll
 C:\Dev\CQRS_Advanced\SocialHeroes\SocialHeroes\src\SocialHeroes.Infra.Data\obj\Debug\netstandard2.0\SocialHeroes.Infra.Data.pdb
+D:\projetos\TCC\SocialHeroes\src\SocialHeroes.Infra.Data\bin\Debug\netstandard2.0\SocialHeroes.Infra.Data.deps.json
+D:\projetos\TCC\SocialHeroes\src\SocialHeroes.Infra.Data\bin\Debug\netstandard2.0\SocialHeroes.Infra.Data.dll
+D:\projetos\TCC\SocialHeroes\src\SocialHeroes.Infra.Data\bin\Debug\netstandard2.0\SocialHeroes.Infra.Data.pdb
+D:\projetos\TCC\SocialHeroes\src\SocialHeroes.Infra.Data\obj\Debug\netstandard2.0\SocialHeroes.Infra.Data.csprojAssemblyReference.cache
+D:\projetos\TCC\SocialHeroes\src\SocialHeroes.Infra.Data\obj\Debug\netstandard2.0\SocialHeroes.Infra.Data.csproj.CoreCompileInputs.cache
+D:\projetos\TCC\SocialHeroes\src\SocialHeroes.Infra.Data\obj\Debug\netstandard2.0\SocialHeroes.Infra.Data.AssemblyInfoInputs.cache
+D:\projetos\TCC\SocialHeroes\src\SocialHeroes.Infra.Data\obj\Debug\netstandard2.0\SocialHeroes.Infra.Data.AssemblyInfo.cs
+D:\projetos\TCC\SocialHeroes\src\SocialHeroes.Infra.Data\obj\Debug\netstandard2.0\SocialHeroes.Infra.Data.dll
+D:\projetos\TCC\SocialHeroes\src\SocialHeroes.Infra.Data\obj\Debug\netstandard2.0\SocialHeroes.Infra.Data.pdb
+D:\projetos\TCC\SocialHeroes\src\SocialHeroes.Infra.Data\bin\Debug\netstandard2.0\SocialHeroes.Domain.Core.dll
+D:\projetos\TCC\SocialHeroes\src\SocialHeroes.Infra.Data\bin\Debug\netstandard2.0\SocialHeroes.Domain.dll
+D:\projetos\TCC\SocialHeroes\src\SocialHeroes.Infra.Data\bin\Debug\netstandard2.0\SocialHeroes.Domain.pdb
+D:\projetos\TCC\SocialHeroes\src\SocialHeroes.Infra.Data\bin\Debug\netstandard2.0\SocialHeroes.Domain.Core.pdb
+D:\projetos\TCC\SocialHeroes\src\SocialHeroes.Infra.Data\obj\Debug\netstandard2.0\SocialHeroes.Infra.Data.csproj.CopyComplete

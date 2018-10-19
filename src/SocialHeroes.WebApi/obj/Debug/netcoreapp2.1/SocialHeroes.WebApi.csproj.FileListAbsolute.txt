@@ -26,3 +26,17 @@ C:\Dev\CQRS_Advanced\SocialHeroes\SocialHeroes\src\SocialHeroes.WebApi\obj\Debug
 C:\Dev\CQRS_Advanced\SocialHeroes\SocialHeroes\src\SocialHeroes.WebApi\obj\Debug\netcoreapp2.1\SocialHeroes.WebApi.RazorTargetAssemblyInfo.cache
 C:\Dev\CQRS_Advanced\SocialHeroes\SocialHeroes\src\SocialHeroes.WebApi\obj\Debug\netcoreapp2.1\SocialHeroes.WebApi.dll
 C:\Dev\CQRS_Advanced\SocialHeroes\SocialHeroes\src\SocialHeroes.WebApi\obj\Debug\netcoreapp2.1\SocialHeroes.WebApi.pdb
+D:\projetos\TCC\SocialHeroes\src\SocialHeroes.WebApi\bin\Debug\netcoreapp2.1\SocialHeroes.WebApi.deps.json
+D:\projetos\TCC\SocialHeroes\src\SocialHeroes.WebApi\bin\Debug\netcoreapp2.1\SocialHeroes.WebApi.runtimeconfig.json
+D:\projetos\TCC\SocialHeroes\src\SocialHeroes.WebApi\bin\Debug\netcoreapp2.1\SocialHeroes.WebApi.runtimeconfig.dev.json
+D:\projetos\TCC\SocialHeroes\src\SocialHeroes.WebApi\bin\Debug\netcoreapp2.1\SocialHeroes.WebApi.dll
+D:\projetos\TCC\SocialHeroes\src\SocialHeroes.WebApi\bin\Debug\netcoreapp2.1\SocialHeroes.WebApi.pdb
+D:\projetos\TCC\SocialHeroes\src\SocialHeroes.WebApi\obj\Debug\netcoreapp2.1\SocialHeroes.WebApi.csprojAssemblyReference.cache
+D:\projetos\TCC\SocialHeroes\src\SocialHeroes.WebApi\obj\Debug\netcoreapp2.1\SocialHeroes.WebApi.csproj.CoreCompileInputs.cache
+D:\projetos\TCC\SocialHeroes\src\SocialHeroes.WebApi\obj\Debug\netcoreapp2.1\SocialHeroes.WebApi.RazorAssemblyInfo.cache
+D:\projetos\TCC\SocialHeroes\src\SocialHeroes.WebApi\obj\Debug\netcoreapp2.1\SocialHeroes.WebApi.RazorAssemblyInfo.cs
+D:\projetos\TCC\SocialHeroes\src\SocialHeroes.WebApi\obj\Debug\netcoreapp2.1\SocialHeroes.WebApi.AssemblyInfoInputs.cache
+D:\projetos\TCC\SocialHeroes\src\SocialHeroes.WebApi\obj\Debug\netcoreapp2.1\SocialHeroes.WebApi.AssemblyInfo.cs
+D:\projetos\TCC\SocialHeroes\src\SocialHeroes.WebApi\obj\Debug\netcoreapp2.1\SocialHeroes.WebApi.RazorTargetAssemblyInfo.cache
+D:\projetos\TCC\SocialHeroes\src\SocialHeroes.WebApi\obj\Debug\netcoreapp2.1\SocialHeroes.WebApi.dll
+D:\projetos\TCC\SocialHeroes\src\SocialHeroes.WebApi\obj\Debug\netcoreapp2.1\SocialHeroes.WebApi.pdb

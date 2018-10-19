@@ -296,11 +296,10 @@
       ]
     },
     "MediatR/4.1.0": {
-      "sha512": "IXcmulf0G7FXbiXQZNI7pZ9GXxCLuS7AAjPIf9aKUqzHD02zm6G5QLhfYyfDfsAZozN8zPSPRdjMfUbEjVBHDQ==",
+      "sha512": "xpResbmpvPjlZOApIyUgrhGksGYVTuxb3bYP0LolmlpCcXrkujuTTFm6NyCFN8MZkYDgsPpn4QWdxWLBMxoVYA==",
       "type": "package",
       "path": "mediatr/4.1.0",
       "files": [
-        ".signature.p7s",
         "lib/net45/MediatR.dll",
         "lib/netstandard1.3/MediatR.dll",
         "lib/netstandard2.0/MediatR.dll",
@@ -335,10 +334,11 @@
       ]
     },
     "NETStandard.Library/2.0.3": {
-      "sha512": "st47PosZSHrjECdjeIzZQbzivYBJFv6P2nv4cj2ypdI204DO+vZ7l5raGMiX4eXMJ53RfOIg+/s4DHVZ54Nu2A==",
+      "sha512": "R73gEjqCkI2Nw/IlN8QvcgPNklqQiPowp47JwvW0Bnp/RZnjN4UrJwEvWVJWRK1MsQ+HIfGe9i4aQlfK+ei9jA==",
       "type": "package",
       "path": "netstandard.library/2.0.3",
       "files": [
+        ".signature.p7s",
         "LICENSE.TXT",
         "THIRD-PARTY-NOTICES.TXT",
         "build/netstandard2.0/NETStandard.Library.targets",
@@ -1683,23 +1683,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\crist\\.nuget\\packages\\": {},
+    "C:\\Users\\cristian.ferreira\\.nuget\\packages\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Dev\\CQRS_Advanced\\SocialHeroes\\SocialHeroes\\src\\SocialHeroes.Domain.Core\\SocialHeroes.Domain.Core.csproj",
+      "projectUniqueName": "D:\\projetos\\TCC\\SocialHeroes\\src\\SocialHeroes.Domain.Core\\SocialHeroes.Domain.Core.csproj",
       "projectName": "SocialHeroes.Domain.Core",
-      "projectPath": "C:\\Dev\\CQRS_Advanced\\SocialHeroes\\SocialHeroes\\src\\SocialHeroes.Domain.Core\\SocialHeroes.Domain.Core.csproj",
-      "packagesPath": "C:\\Users\\crist\\.nuget\\packages\\",
-      "outputPath": "C:\\Dev\\CQRS_Advanced\\SocialHeroes\\SocialHeroes\\src\\SocialHeroes.Domain.Core\\obj\\",
+      "projectPath": "D:\\projetos\\TCC\\SocialHeroes\\src\\SocialHeroes.Domain.Core\\SocialHeroes.Domain.Core.csproj",
+      "packagesPath": "C:\\Users\\cristian.ferreira\\.nuget\\packages\\",
+      "outputPath": "D:\\projetos\\TCC\\SocialHeroes\\src\\SocialHeroes.Domain.Core\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\crist\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\cristian.ferreira\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -1707,6 +1707,7 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "http://nuget.ecs.com.br/api/nuget": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
