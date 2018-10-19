@@ -24,3 +24,12 @@ D:\projetos\TCC\SocialHeroes\src\SocialHeroes.Application\obj\Debug\netstandard2
 D:\projetos\TCC\SocialHeroes\src\SocialHeroes.Application\obj\Debug\netstandard2.0\SocialHeroes.Application.AssemblyInfo.cs
 D:\projetos\TCC\SocialHeroes\src\SocialHeroes.Application\obj\Debug\netstandard2.0\SocialHeroes.Application.dll
 D:\projetos\TCC\SocialHeroes\src\SocialHeroes.Application\obj\Debug\netstandard2.0\SocialHeroes.Application.pdb
+C:\Dev\SocialHeroes\src\SocialHeroes.Application\bin\Debug\netstandard2.0\SocialHeroes.Application.deps.json
+C:\Dev\SocialHeroes\src\SocialHeroes.Application\bin\Debug\netstandard2.0\SocialHeroes.Application.dll
+C:\Dev\SocialHeroes\src\SocialHeroes.Application\bin\Debug\netstandard2.0\SocialHeroes.Application.pdb
+C:\Dev\SocialHeroes\src\SocialHeroes.Application\obj\Debug\netstandard2.0\SocialHeroes.Application.csprojAssemblyReference.cache
+C:\Dev\SocialHeroes\src\SocialHeroes.Application\obj\Debug\netstandard2.0\SocialHeroes.Application.csproj.CoreCompileInputs.cache
+C:\Dev\SocialHeroes\src\SocialHeroes.Application\obj\Debug\netstandard2.0\SocialHeroes.Application.AssemblyInfoInputs.cache
+C:\Dev\SocialHeroes\src\SocialHeroes.Application\obj\Debug\netstandard2.0\SocialHeroes.Application.AssemblyInfo.cs
+C:\Dev\SocialHeroes\src\SocialHeroes.Application\obj\Debug\netstandard2.0\SocialHeroes.Application.dll
+C:\Dev\SocialHeroes\src\SocialHeroes.Application\obj\Debug\netstandard2.0\SocialHeroes.Application.pdb

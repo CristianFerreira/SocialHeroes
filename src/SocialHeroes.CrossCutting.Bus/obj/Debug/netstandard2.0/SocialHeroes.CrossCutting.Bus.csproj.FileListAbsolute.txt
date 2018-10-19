@@ -25,3 +25,12 @@ D:\projetos\TCC\SocialHeroes\src\SocialHeroes.CrossCutting.Bus\obj\Debug\netstan
 D:\projetos\TCC\SocialHeroes\src\SocialHeroes.CrossCutting.Bus\obj\Debug\netstandard2.0\SocialHeroes.CrossCutting.Bus.AssemblyInfo.cs
 D:\projetos\TCC\SocialHeroes\src\SocialHeroes.CrossCutting.Bus\obj\Debug\netstandard2.0\SocialHeroes.CrossCutting.Bus.dll
 D:\projetos\TCC\SocialHeroes\src\SocialHeroes.CrossCutting.Bus\obj\Debug\netstandard2.0\SocialHeroes.CrossCutting.Bus.pdb
+C:\Dev\SocialHeroes\src\SocialHeroes.CrossCutting.Bus\bin\Debug\netstandard2.0\SocialHeroes.CrossCutting.Bus.deps.json
+C:\Dev\SocialHeroes\src\SocialHeroes.CrossCutting.Bus\bin\Debug\netstandard2.0\SocialHeroes.CrossCutting.Bus.dll
+C:\Dev\SocialHeroes\src\SocialHeroes.CrossCutting.Bus\bin\Debug\netstandard2.0\SocialHeroes.CrossCutting.Bus.pdb
+C:\Dev\SocialHeroes\src\SocialHeroes.CrossCutting.Bus\obj\Debug\netstandard2.0\SocialHeroes.CrossCutting.Bus.csprojAssemblyReference.cache
+C:\Dev\SocialHeroes\src\SocialHeroes.CrossCutting.Bus\obj\Debug\netstandard2.0\SocialHeroes.CrossCutting.Bus.csproj.CoreCompileInputs.cache
+C:\Dev\SocialHeroes\src\SocialHeroes.CrossCutting.Bus\obj\Debug\netstandard2.0\SocialHeroes.CrossCutting.Bus.AssemblyInfoInputs.cache
+C:\Dev\SocialHeroes\src\SocialHeroes.CrossCutting.Bus\obj\Debug\netstandard2.0\SocialHeroes.CrossCutting.Bus.AssemblyInfo.cs
+C:\Dev\SocialHeroes\src\SocialHeroes.CrossCutting.Bus\obj\Debug\netstandard2.0\SocialHeroes.CrossCutting.Bus.dll
+C:\Dev\SocialHeroes\src\SocialHeroes.CrossCutting.Bus\obj\Debug\netstandard2.0\SocialHeroes.CrossCutting.Bus.pdb

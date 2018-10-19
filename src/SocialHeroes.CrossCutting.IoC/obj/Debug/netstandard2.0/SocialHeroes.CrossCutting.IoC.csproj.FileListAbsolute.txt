@@ -23,3 +23,12 @@ D:\projetos\TCC\SocialHeroes\src\SocialHeroes.CrossCutting.IoC\obj\Debug\netstan
 D:\projetos\TCC\SocialHeroes\src\SocialHeroes.CrossCutting.IoC\obj\Debug\netstandard2.0\SocialHeroes.CrossCutting.IoC.AssemblyInfo.cs
 D:\projetos\TCC\SocialHeroes\src\SocialHeroes.CrossCutting.IoC\obj\Debug\netstandard2.0\SocialHeroes.CrossCutting.IoC.dll
 D:\projetos\TCC\SocialHeroes\src\SocialHeroes.CrossCutting.IoC\obj\Debug\netstandard2.0\SocialHeroes.CrossCutting.IoC.pdb
+C:\Dev\SocialHeroes\src\SocialHeroes.CrossCutting.IoC\bin\Debug\netstandard2.0\SocialHeroes.CrossCutting.IoC.deps.json
+C:\Dev\SocialHeroes\src\SocialHeroes.CrossCutting.IoC\bin\Debug\netstandard2.0\SocialHeroes.CrossCutting.IoC.dll
+C:\Dev\SocialHeroes\src\SocialHeroes.CrossCutting.IoC\bin\Debug\netstandard2.0\SocialHeroes.CrossCutting.IoC.pdb
+C:\Dev\SocialHeroes\src\SocialHeroes.CrossCutting.IoC\obj\Debug\netstandard2.0\SocialHeroes.CrossCutting.IoC.csprojAssemblyReference.cache
+C:\Dev\SocialHeroes\src\SocialHeroes.CrossCutting.IoC\obj\Debug\netstandard2.0\SocialHeroes.CrossCutting.IoC.csproj.CoreCompileInputs.cache
+C:\Dev\SocialHeroes\src\SocialHeroes.CrossCutting.IoC\obj\Debug\netstandard2.0\SocialHeroes.CrossCutting.IoC.AssemblyInfoInputs.cache
+C:\Dev\SocialHeroes\src\SocialHeroes.CrossCutting.IoC\obj\Debug\netstandard2.0\SocialHeroes.CrossCutting.IoC.AssemblyInfo.cs
+C:\Dev\SocialHeroes\src\SocialHeroes.CrossCutting.IoC\obj\Debug\netstandard2.0\SocialHeroes.CrossCutting.IoC.dll
+C:\Dev\SocialHeroes\src\SocialHeroes.CrossCutting.IoC\obj\Debug\netstandard2.0\SocialHeroes.CrossCutting.IoC.pdb

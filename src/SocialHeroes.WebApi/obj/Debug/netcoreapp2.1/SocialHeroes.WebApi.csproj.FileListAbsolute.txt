@@ -40,3 +40,17 @@ D:\projetos\TCC\SocialHeroes\src\SocialHeroes.WebApi\obj\Debug\netcoreapp2.1\Soc
 D:\projetos\TCC\SocialHeroes\src\SocialHeroes.WebApi\obj\Debug\netcoreapp2.1\SocialHeroes.WebApi.RazorTargetAssemblyInfo.cache
 D:\projetos\TCC\SocialHeroes\src\SocialHeroes.WebApi\obj\Debug\netcoreapp2.1\SocialHeroes.WebApi.dll
 D:\projetos\TCC\SocialHeroes\src\SocialHeroes.WebApi\obj\Debug\netcoreapp2.1\SocialHeroes.WebApi.pdb
+C:\Dev\SocialHeroes\src\SocialHeroes.WebApi\bin\Debug\netcoreapp2.1\SocialHeroes.WebApi.deps.json
+C:\Dev\SocialHeroes\src\SocialHeroes.WebApi\bin\Debug\netcoreapp2.1\SocialHeroes.WebApi.runtimeconfig.json
+C:\Dev\SocialHeroes\src\SocialHeroes.WebApi\bin\Debug\netcoreapp2.1\SocialHeroes.WebApi.runtimeconfig.dev.json
+C:\Dev\SocialHeroes\src\SocialHeroes.WebApi\bin\Debug\netcoreapp2.1\SocialHeroes.WebApi.dll
+C:\Dev\SocialHeroes\src\SocialHeroes.WebApi\bin\Debug\netcoreapp2.1\SocialHeroes.WebApi.pdb
+C:\Dev\SocialHeroes\src\SocialHeroes.WebApi\obj\Debug\netcoreapp2.1\SocialHeroes.WebApi.csprojAssemblyReference.cache
+C:\Dev\SocialHeroes\src\SocialHeroes.WebApi\obj\Debug\netcoreapp2.1\SocialHeroes.WebApi.csproj.CoreCompileInputs.cache
+C:\Dev\SocialHeroes\src\SocialHeroes.WebApi\obj\Debug\netcoreapp2.1\SocialHeroes.WebApi.RazorAssemblyInfo.cache
+C:\Dev\SocialHeroes\src\SocialHeroes.WebApi\obj\Debug\netcoreapp2.1\SocialHeroes.WebApi.RazorAssemblyInfo.cs
+C:\Dev\SocialHeroes\src\SocialHeroes.WebApi\obj\Debug\netcoreapp2.1\SocialHeroes.WebApi.AssemblyInfoInputs.cache
+C:\Dev\SocialHeroes\src\SocialHeroes.WebApi\obj\Debug\netcoreapp2.1\SocialHeroes.WebApi.AssemblyInfo.cs
+C:\Dev\SocialHeroes\src\SocialHeroes.WebApi\obj\Debug\netcoreapp2.1\SocialHeroes.WebApi.RazorTargetAssemblyInfo.cache
+C:\Dev\SocialHeroes\src\SocialHeroes.WebApi\obj\Debug\netcoreapp2.1\SocialHeroes.WebApi.dll
+C:\Dev\SocialHeroes\src\SocialHeroes.WebApi\obj\Debug\netcoreapp2.1\SocialHeroes.WebApi.pdb
