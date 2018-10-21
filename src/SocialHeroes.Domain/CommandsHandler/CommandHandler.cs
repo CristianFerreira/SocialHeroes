@@ -18,17 +18,7 @@ namespace SocialHeroes.Domain.CommandsHandler
             _uow = uow;
             _notifications = (DomainNotificationHandler)notifications;
             _bus = bus;
-        }
-
-        protected void NotifyValidationErrors(Command message)
-        {
-            foreach (var error in message.ValidationResult.Errors)
-            {
-                _bus.RaiseEvent(new DomainNotification(message.MessageType, error.ErrorMessage));
-            }
-        }
-
-
+        }     
 
         public bool Commit()
         {

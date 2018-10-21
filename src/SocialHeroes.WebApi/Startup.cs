@@ -1,4 +1,5 @@
-﻿using MediatR;
+﻿using FluentValidation;
+using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -6,8 +7,10 @@ using Microsoft.AspNetCore.Mvc.Formatters;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using SocialHeroes.CrossCutting.IoC;
+using SocialHeroes.Domain.Validations;
 using SocialHeroes.WebApi.Configurations;
 using Swashbuckle.AspNetCore.Swagger;
+using System;
 using System.IO;
 
 namespace SocialHeroes.WebApi
@@ -47,13 +50,9 @@ namespace SocialHeroes.WebApi
                 });
             });
 
-            services.AddMediatR(typeof(Startup).Assembly);
+            AddMediatr(services);
 
-
-            //services.AddMvc();
         }
-
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             if (env.IsDevelopment())
@@ -82,6 +81,16 @@ namespace SocialHeroes.WebApi
             //{
             //    await context.Response.WriteAsync("Hello World!");
             //});
+        }
+
+        private static void AddMediatr(IServiceCollection services)
+        {
+            var assembly = AppDomain.CurrentDomain.Load("SocialHeroes.Domain"); ;
+            AssemblyScanner
+                .FindValidatorsInAssembly(assembly)
+                .ForEach(result => services.AddScoped(result.InterfaceType, result.ValidatorType));
+
+            services.AddMediatR(typeof(Startup).Assembly);
         }
 
         private static void RegisterServices(IServiceCollection services)

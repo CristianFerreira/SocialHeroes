@@ -12,6 +12,7 @@ using SocialHeroes.Domain.Core.Commands;
 using SocialHeroes.Domain.Core.Events;
 using SocialHeroes.Domain.Core.Notifications;
 using SocialHeroes.Domain.Interfaces;
+using SocialHeroes.Domain.Validations;
 using SocialHeroes.Infra.Data.Context;
 using SocialHeroes.Infra.Data.EventDataBase;
 using SocialHeroes.Infra.Data.Repository;
@@ -34,6 +35,7 @@ namespace SocialHeroes.CrossCutting.IoC
             services.AddScoped<IEventDataBase, EventDataBase>();
 
             // Domain - Commands
+            services.AddScoped(typeof(IPipelineBehavior<,>), typeof(FailFastValidator<,>));
             services.AddScoped<IRequestHandler<RegisterNewHairCommand, CommandResult>, HairCommandHandler>();
 
 

@@ -34,15 +34,7 @@ namespace SocialHeroes.Domain.CommandsHandler
 
         public Task<CommandResult> Handle(RegisterNewHairCommand request, CancellationToken cancellationToken)
         {
-            if (!request.IsValid())
-            {
-                NotifyValidationErrors(request);
-                var notifications = _notificationsCommand.GetNotifications();
-                return Task.FromResult(new CommandResult(false, null, _notificationsCommand.GetNotifications()));
-            }
-
             var hair = new Hair(Guid.NewGuid(), request.Color);
-
             _hairRepository.Add(hair);
 
             if (Commit())

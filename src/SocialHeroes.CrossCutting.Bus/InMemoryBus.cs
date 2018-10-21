@@ -17,10 +17,9 @@ namespace SocialHeroes.CrossCutting.Bus
             _mediator = mediator;
         }
 
-        public CommandResult SendCommand<T>(T command) where T : Command
+        public async Task<CommandResult> SendCommand<T>(T command) where T : Command
         {
-            var response = _mediator.Send(command);
-            return response.Result;
+           return await _mediator.Send(command).ConfigureAwait(false);
         }
 
         public Task RaiseEvent<T>(T @event) where T : Event

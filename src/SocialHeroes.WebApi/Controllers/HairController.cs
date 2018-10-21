@@ -14,7 +14,7 @@ namespace SocialHeroes.WebApi.Controllers
 
         public HairController(
             INotificationHandler<DomainNotification> notifications,
-            IMediatorHandler mediator) : base(notifications, mediator)
+            IMediatorHandler mediator)
         {
             Bus = mediator;
         }
@@ -22,9 +22,6 @@ namespace SocialHeroes.WebApi.Controllers
 
         [HttpGet]
         [Route("")]
-        // [Route("clientes")] // Listar todos os clientes
-        // [Route("clientes/2587")] // Listar o cliente 2587
-        // [Route("clientes/2587/pedidos")] // Pedidos do cliente 2587
         public object Get()
         {
             return new { version = "Version 0.0.2" };
@@ -35,7 +32,7 @@ namespace SocialHeroes.WebApi.Controllers
         public IActionResult Post([FromBody]RegisterNewHairCommand registerNewHairCommand)
         {
             var response = Bus.SendCommand(registerNewHairCommand);
-            return Response(response);
+            return Response(response.Result);
         }     
     }
 }
