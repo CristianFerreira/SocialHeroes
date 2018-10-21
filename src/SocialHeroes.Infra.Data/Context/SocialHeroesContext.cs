@@ -1,4 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿
+
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using SocialHeroes.Domain.Models;
 using SocialHeroes.Infra.Data.Mappings;
@@ -8,7 +10,7 @@ namespace SocialHeroes.Infra.Data.Context
 {
     public class SocialHeroesContext :DbContext
     {
-        public DbSet<Hair> Customers { get; set; }
+        public DbSet<Hair> Hair { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -19,13 +21,12 @@ namespace SocialHeroes.Infra.Data.Context
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
+            var config = new ConfigurationBuilder()
+               .SetBasePath(Directory.GetCurrentDirectory())
+               .AddJsonFile("appsettings.json")
+               .Build();
 
-            //var config = new ConfigurationBuilder()
-            //    .SetBasePath(Directory.GetCurrentDirectory())
-            //    .AddJsonFile("appsettings.json")
-            //    .Build();
-
-            //optionsBuilder.UseSqlServer(config.GetConnectionString("DefaultConnection"));
+            optionsBuilder.UseSqlServer(config.GetConnectionString("DefaultConnection"));
         }
     }
 }

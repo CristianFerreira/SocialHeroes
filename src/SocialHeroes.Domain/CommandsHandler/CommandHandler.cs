@@ -3,6 +3,7 @@ using SocialHeroes.Domain.Core.Bus;
 using SocialHeroes.Domain.Core.Commands;
 using SocialHeroes.Domain.Core.Notifications;
 using SocialHeroes.Domain.Interfaces;
+using System.Linq;
 
 namespace SocialHeroes.Domain.CommandsHandler
 {
@@ -26,6 +27,8 @@ namespace SocialHeroes.Domain.CommandsHandler
                 _bus.RaiseEvent(new DomainNotification(message.MessageType, error.ErrorMessage));
             }
         }
+
+
 
         public bool Commit()
         {

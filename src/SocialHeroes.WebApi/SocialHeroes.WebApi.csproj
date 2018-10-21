@@ -9,7 +9,16 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="5.1.0" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="Microsoft.AspNetCore.Http" Version="2.1.1" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="3.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SocialHeroes.CrossCutting.Bus\SocialHeroes.CrossCutting.Bus.csproj" />
+    <ProjectReference Include="..\SocialHeroes.CrossCutting.IoC\SocialHeroes.CrossCutting.IoC.csproj" />
+    <ProjectReference Include="..\SocialHeroes.Domain\SocialHeroes.Domain.csproj" />
   </ItemGroup>
 
 </Project>

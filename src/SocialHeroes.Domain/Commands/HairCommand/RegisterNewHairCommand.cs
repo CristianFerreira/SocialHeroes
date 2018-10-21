@@ -1,19 +1,20 @@
-﻿using SocialHeroes.Domain.Validations.HairValidation;
+﻿using MediatR;
+using SocialHeroes.Domain.Core.Commands;
+using SocialHeroes.Domain.Validations.HairValidation;
 
 namespace SocialHeroes.Domain.Commands.HairCommand
 {
     public class RegisterNewHairCommand : HairCommand
     {
-        //public RegisterNewHairCommand(string color)
-        //{
-        //    Color = color;
-        //}
-
-        public string Color { get; set; }
+        public RegisterNewHairCommand(string color)
+        {
+            Color = color;
+        }
 
         public override bool IsValid()
         {
-            return new RegisterNewHairCommandValidation().Validate(this).IsValid;
+            ValidationResult = new RegisterNewHairCommandValidation().Validate(this);
+            return ValidationResult.IsValid;
         }
     }
 }
