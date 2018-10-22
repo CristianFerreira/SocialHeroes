@@ -22,6 +22,11 @@ namespace SocialHeroes.CrossCutting.Bus
            return await _mediator.Send(command).ConfigureAwait(false);
         }
 
+        public Task SendMirrorCommand<T>(T command) where T : IRequest
+        {
+             return _mediator.Send(command);
+        }
+
         public Task RaiseEvent<T>(T @event) where T : Event
         {
             if (!@event.MessageType.Equals("DomainNotification"))

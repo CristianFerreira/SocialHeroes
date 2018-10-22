@@ -10,6 +10,6 @@ namespace SocialHeroes.Infra.Data.Repository
             : base(context)
         {
 
-        }    
+        }
     }
 }

@@ -26,7 +26,7 @@ namespace SocialHeroes.Domain.Validations
         public Task<TResponse> Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate<TResponse> next)
         {
             var validatorResult = _validators.Validate(request);
-
+            var x = validatorResult.IsValid;
             return !validatorResult.IsValid
                 ? NotifyValidationErrors(validatorResult, request)
                 : next();
