@@ -2,12 +2,14 @@
 using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Formatters;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using SocialHeroes.CrossCutting.IoC;
-using SocialHeroes.Domain.Validations;
+using SocialHeroes.Infra.CrossCutting.Identity.Data;
+using SocialHeroes.Infra.CrossCutting.Identity.Models;
 using SocialHeroes.WebApi.Configurations;
 using Swashbuckle.AspNetCore.Swagger;
 using System;
@@ -28,6 +30,10 @@ namespace SocialHeroes.WebApi
 
             //services.AddDbContext<SocialHeroesContext>(options =>
             //    options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+
+            services.AddIdentity<ApplicationUser, IdentityRole>()
+                .AddEntityFrameworkStores<ApplicationDbContext>()
+                .AddDefaultTokenProviders();
 
             services.AddWebApi(options =>
             {

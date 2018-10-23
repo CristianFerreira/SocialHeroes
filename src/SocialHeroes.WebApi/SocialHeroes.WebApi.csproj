@@ -17,6 +17,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\SocialHeroes.CrossCutting.Bus\SocialHeroes.CrossCutting.Bus.csproj" />
+    <ProjectReference Include="..\SocialHeroes.CrossCutting.Identity\SocialHeroes.CrossCutting.Identity.csproj" />
     <ProjectReference Include="..\SocialHeroes.CrossCutting.IoC\SocialHeroes.CrossCutting.IoC.csproj" />
     <ProjectReference Include="..\SocialHeroes.Domain\SocialHeroes.Domain.csproj" />
   </ItemGroup>

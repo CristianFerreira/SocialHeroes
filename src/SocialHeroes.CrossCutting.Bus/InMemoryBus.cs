@@ -4,7 +4,7 @@ using SocialHeroes.Domain.Core.Commands;
 using SocialHeroes.Domain.Core.Events;
 using System.Threading.Tasks;
 
-namespace SocialHeroes.CrossCutting.Bus
+namespace SocialHeroes.Infra.CrossCutting.Bus
 {
     public sealed class InMemoryBus : IMediatorHandler
     {

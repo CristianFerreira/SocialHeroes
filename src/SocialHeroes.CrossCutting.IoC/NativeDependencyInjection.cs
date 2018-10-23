@@ -3,7 +3,7 @@
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
-using SocialHeroes.CrossCutting.Bus;
+using SocialHeroes.Infra.CrossCutting.Bus;
 using SocialHeroes.Domain.Commands.HairCommand;
 using SocialHeroes.Domain.CommandsHandler;
 using SocialHeroes.Domain.Core.Bus;
