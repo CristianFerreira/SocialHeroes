@@ -9,14 +9,14 @@ using FluentValidation.Results;
 
 namespace SocialHeroes.Domain.Validations
 {
-    public class FailFastValidator<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
+    public class FailFastValidation<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
         where TRequest : Command where TResponse : CommandResult
     {
         private readonly IValidator _validators;
         private readonly IMediatorHandler _bus;
         private readonly DomainNotificationHandler _notifications;
 
-        public FailFastValidator(IValidator<TRequest> validators, IMediatorHandler bus, INotificationHandler<DomainNotification> notifications)
+        public FailFastValidation(IValidator<TRequest> validators, IMediatorHandler bus, INotificationHandler<DomainNotification> notifications)
         {
             _validators = validators;
             _bus = bus;
@@ -26,7 +26,6 @@ namespace SocialHeroes.Domain.Validations
         public Task<TResponse> Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate<TResponse> next)
         {
             var validatorResult = _validators.Validate(request);
-            var x = validatorResult.IsValid;
             return !validatorResult.IsValid
                 ? NotifyValidationErrors(validatorResult, request)
                 : next();

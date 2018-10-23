@@ -1,17 +1,14 @@
 ﻿
-using System;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
 using MediatR;
-using SocialHeroes.Domain.Commands;
 using SocialHeroes.Domain.Commands.HairCommand;
 using SocialHeroes.Domain.Core.Bus;
 using SocialHeroes.Domain.Core.Commands;
 using SocialHeroes.Domain.Core.Notifications;
-using SocialHeroes.Domain.Events;
 using SocialHeroes.Domain.Interfaces;
 using SocialHeroes.Domain.Models;
+using System;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace SocialHeroes.Domain.CommandsHandler
 {
@@ -37,13 +34,8 @@ namespace SocialHeroes.Domain.CommandsHandler
             var hair = new Hair(Guid.NewGuid(), request.Color);
             _hairRepository.Add(hair);
 
-            if (Commit())
-            {
-                Bus.RaiseEvent(new HairRegisteredEvent(hair.Id, hair.Color));
-                return Task.FromResult(new CommandResult(true, hair));
-            }
-            else
-                return Task.FromResult(new CommandResult(false, null, _notificationsCommand.GetNotifications()));      
+            return (Commit()) ?  Task.FromResult(new CommandResult(true, hair)) 
+                              :  Task.FromResult(new CommandResult(false, null, _notificationsCommand.GetNotifications()));      
             
         }
 
