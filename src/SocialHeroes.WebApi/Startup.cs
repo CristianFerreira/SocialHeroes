@@ -5,11 +5,13 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Formatters;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using SocialHeroes.CrossCutting.IoC;
 using SocialHeroes.Infra.CrossCutting.Identity.Data;
 using SocialHeroes.Infra.CrossCutting.Identity.Models;
+using SocialHeroes.Infra.Data.Context;
 using SocialHeroes.WebApi.Configurations;
 using Swashbuckle.AspNetCore.Swagger;
 using System;
@@ -28,12 +30,14 @@ namespace SocialHeroes.WebApi
                 .AddJsonFile("appsettings.json");         
             Configuration = builder.Build();
 
-            //services.AddDbContext<SocialHeroesContext>(options =>
-            //    options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
-
+            #region Identity
+            services.AddDbContext<ApplicationDbContext>(options =>
+                    options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
-                .AddDefaultTokenProviders();
+                .AddDefaultTokenProviders(); 
+            #endregion
+
 
             services.AddWebApi(options =>
             {
@@ -42,7 +46,8 @@ namespace SocialHeroes.WebApi
             });
 
             services.AddResponseCompression();
-            // .NET Native DI Abstraction
+
+            //Injector Dependency
             RegisterServices(services);
 
             services.AddSwaggerGen(s =>
@@ -82,11 +87,6 @@ namespace SocialHeroes.WebApi
             {
                 s.SwaggerEndpoint("/swagger/v1/swagger.json", "Social Heroes Project API v1.0");
             });
-
-            //app.Run(async (context) =>
-            //{
-            //    await context.Response.WriteAsync("Hello World!");
-            //});
         }
 
         private static void AddMediatr(IServiceCollection services)
@@ -98,7 +98,6 @@ namespace SocialHeroes.WebApi
 
             services.AddMediatR(typeof(Startup).Assembly);
         }
-
         private static void RegisterServices(IServiceCollection services)
         {
             NativeDependencyInjection.RegisterServices(services);

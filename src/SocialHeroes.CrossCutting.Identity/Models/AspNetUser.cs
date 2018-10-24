@@ -1,11 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using Microsoft.AspNetCore.Http;
+using System.Collections.Generic;
 using System.Security.Claims;
-using Microsoft.AspNetCore.Http;
-using SocialHeroes.Domain.Interfaces;
 
-namespace Equinox.Infra.CrossCutting.Identity.Models
+namespace SocialHeroes.CrossCutting.Identity.Models
 {
-    public class AspNetUser : IUser
+    public class AspNetUser
     {
         private readonly IHttpContextAccessor _accessor;
 
@@ -23,7 +22,7 @@ namespace Equinox.Infra.CrossCutting.Identity.Models
 
         public IEnumerable<Claim> GetClaimsIdentity()
         {
-            return  _accessor.HttpContext.User.Claims;
+            return _accessor.HttpContext.User.Claims;
         }
     }
 }

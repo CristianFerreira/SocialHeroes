@@ -8,8 +8,7 @@ namespace SocialHeroes.Infra.Data.Mappings
     {
         public void Configure(EntityTypeBuilder<Hair> builder)
         {
-            builder.Property(c => c.Id)
-                .HasColumnName("Id");
+            builder.HasKey(u => u.Id);
 
             builder.Property(c => c.Color)
                 .HasColumnType("varchar(20)")

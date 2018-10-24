@@ -22,10 +22,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\SocialHeroes.Domain\SocialHeroes.Domain.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Folder Include="Properties\" />
   </ItemGroup>
 
