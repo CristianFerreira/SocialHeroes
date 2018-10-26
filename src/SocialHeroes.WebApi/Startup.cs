@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc.Formatters;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using SocialHeroes.CrossCutting.Identity.Configurations;
 using SocialHeroes.CrossCutting.IoC;
 using SocialHeroes.Infra.CrossCutting.Identity.Data;
 using SocialHeroes.Infra.CrossCutting.Identity.Models;
@@ -30,14 +31,7 @@ namespace SocialHeroes.WebApi
                 .AddJsonFile("appsettings.json");         
             Configuration = builder.Build();
 
-            #region Identity
-            services.AddDbContext<ApplicationDbContext>(options =>
-                    options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
-            services.AddIdentity<ApplicationUser, IdentityRole>()
-                .AddEntityFrameworkStores<ApplicationDbContext>()
-                .AddDefaultTokenProviders(); 
-            #endregion
-
+            RegisterIdentity(services);
 
             services.AddWebApi(options =>
             {
@@ -101,6 +95,10 @@ namespace SocialHeroes.WebApi
         private static void RegisterServices(IServiceCollection services)
         {
             NativeDependencyInjection.RegisterServices(services);
+        }
+        private static void RegisterIdentity(IServiceCollection services)
+        {
+            IdentityConfiguration.RegisterIdentity(services);
         }
     }
 }

@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace SocialHeroes.CrossCutting.Identity.Migrations
 {
-    public partial class SocialHeroesIdentity : Migration
+    public partial class initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

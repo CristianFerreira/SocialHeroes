@@ -18,9 +18,8 @@ namespace SocialHeroes.WebApi.Controllers
 
 
         [HttpPost]
-        [AllowAnonymous]
         [Route("account/register")]
-        public async Task<IActionResult> Register(RegisterViewModel model)
+        public async Task<IActionResult> Register([FromBody]RegisterViewModel model)
         {
 
             var user = new ApplicationUser { UserName = model.Email, Email = model.Email };

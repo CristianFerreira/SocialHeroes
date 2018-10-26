@@ -22,7 +22,10 @@ namespace SocialHeroes.Infra.Data.Mappings
                 .IsRequired()
                 .HasMaxLength(256);
 
-            builder.ToTable("AspNetUsers");
+            builder.HasMany(c => c.DonatorsUsers).WithOne(c => c.User);
+            builder.HasMany(c => c.HospitalsUsers).WithOne(c => c.User);
+
+            builder.ToTable(name: "AspNetUsers");
         }
     }
 }

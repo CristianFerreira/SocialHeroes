@@ -10,8 +10,8 @@ using SocialHeroes.Infra.CrossCutting.Identity.Data;
 namespace SocialHeroes.CrossCutting.Identity.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20181024034013_SocialHeroes.Identity")]
-    partial class SocialHeroesIdentity
+    [Migration("20181026011616_initial")]
+    partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

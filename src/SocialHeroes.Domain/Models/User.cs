@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace SocialHeroes.Domain.Models
 {
@@ -32,5 +33,11 @@ namespace SocialHeroes.Domain.Models
         public virtual int AccessFailedCount { get; set; }
 
         public virtual string UserName { get; set; }
+
+        public string UserType { get; set; }
+
+        public ICollection<DonatorUser> DonatorsUsers { get; set; }
+
+        public ICollection<HospitalUser> HospitalsUsers { get; set; }
     }
 }
