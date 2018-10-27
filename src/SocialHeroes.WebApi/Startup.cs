@@ -2,17 +2,12 @@
 using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Formatters;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using SocialHeroes.CrossCutting.Identity.Configurations;
 using SocialHeroes.CrossCutting.IoC;
-using SocialHeroes.Infra.CrossCutting.Identity.Data;
-using SocialHeroes.Infra.CrossCutting.Identity.Models;
-using SocialHeroes.Infra.Data.Context;
+using SocialHeroes.Infra.Data;
 using SocialHeroes.WebApi.Configurations;
 using Swashbuckle.AspNetCore.Swagger;
 using System;
@@ -98,7 +93,7 @@ namespace SocialHeroes.WebApi
         }
         private static void RegisterIdentity(IServiceCollection services)
         {
-            IdentityConfiguration.RegisterIdentity(services);
+            IdentityConfiguration.RegisterIdentityService(services);
         }
     }
 }

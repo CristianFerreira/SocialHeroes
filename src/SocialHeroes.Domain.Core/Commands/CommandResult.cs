@@ -6,7 +6,7 @@ namespace SocialHeroes.Domain.Core.Commands
 {
     public class CommandResult
     {
-        public CommandResult(bool sucess, Entity data, List<DomainNotification> notifications = null)
+        public CommandResult(bool sucess, object data, List<DomainNotification> notifications = null)
         {
             Sucess = sucess;
             Data = data;
@@ -14,7 +14,7 @@ namespace SocialHeroes.Domain.Core.Commands
         }
 
         public bool Sucess { get; set; }
-        public Entity Data { get; set; }
+        public object Data { get; set; }
         public List<DomainNotification> Notifications { get; private set; }
     }
 }

@@ -14,6 +14,8 @@ namespace SocialHeroes.Infra.Data.Mappings
                 .HasColumnType("varchar(20)")
                 .HasMaxLength(20)
                 .IsRequired();
+
+            builder.ToTable("Hairs");
         }
     }
 }

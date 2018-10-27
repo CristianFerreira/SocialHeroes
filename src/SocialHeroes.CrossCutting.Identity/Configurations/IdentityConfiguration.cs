@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -13,19 +14,8 @@ namespace SocialHeroes.CrossCutting.Identity.Configurations
     {
         public static IConfiguration Configuration { get; set; }
 
-        public static void RegisterIdentity(IServiceCollection services)
+        public static void RegisterIdentity<T>(IServiceCollection services) where T : DbContext
         {
-
-
-            #region Identity Context
-            services.AddDbContext<ApplicationDbContext>(options =>
-                    options.UseSqlServer(GetConfiguration().GetConnectionString("DefaultConnection")));
-
-            services.AddIdentity<ApplicationUser, IdentityRole>()
-                .AddEntityFrameworkStores<ApplicationDbContext>()
-                .AddDefaultTokenProviders();
-            #endregion
-
 
             services
                 .AddIdentity<ApplicationUser, IdentityRole>(options =>
@@ -58,7 +48,7 @@ namespace SocialHeroes.CrossCutting.Identity.Configurations
                     options.User.AllowedUserNameCharacters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._@+";
                     options.User.RequireUniqueEmail = false;
                 })
-                .AddEntityFrameworkStores<ApplicationDbContext>()
+                .AddEntityFrameworkStores<T>()
                 .AddDefaultTokenProviders();
 
         }

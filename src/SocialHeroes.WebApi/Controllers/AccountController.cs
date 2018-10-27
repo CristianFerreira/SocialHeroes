@@ -1,8 +1,13 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using SocialHeroes.Infra.CrossCutting.Identity.Models;
-using SocialHeroes.Infra.CrossCutting.Identity.Models.AccountViewModels;
+using Microsoft.EntityFrameworkCore;
+using SocialHeroes.Domain.Commands.UserCommand;
+using SocialHeroes.Domain.Core.Commands;
+using SocialHeroes.Domain.Enums;
+using SocialHeroes.Domain.Interfaces;
+using SocialHeroes.Domain.Models;
+using SocialHeroes.Infra.Data.Context;
+using System;
 using System.Threading.Tasks;
 
 namespace SocialHeroes.WebApi.Controllers
@@ -10,22 +15,53 @@ namespace SocialHeroes.WebApi.Controllers
 
     public class AccountController : ApiController
     {
-        private readonly UserManager<ApplicationUser> _userManager;
-        public AccountController(UserManager<ApplicationUser> userManager)
+        private readonly UserManager<User> _userManager;
+        private readonly IUserRepository _userRepository;
+        private readonly IDonatorUserRepository _context;
+
+        public AccountController(UserManager<User> userManager, IUserRepository userRepository, IDonatorUserRepository context)
         {
             _userManager = userManager;
+            _userRepository = userRepository;
+            _context = context;
         }
+
+        [HttpGet]
+        [Route("account/{userType}")]
+        public async Task<IActionResult> GetByUserType(string userType)
+        {
+            EUserType userTypeEnum = (EUserType)Enum.Parse(typeof(EUserType), userType, true);
+            //new CommandResult(true, _userRepository.GetByUserType(userTypeEnum))
+            
+            return Response(new CommandResult(true, _context.GetAllUser()));
+        }
+
 
 
         [HttpPost]
         [Route("account/register")]
-        public async Task<IActionResult> Register([FromBody]RegisterViewModel model)
+        public async Task<IActionResult> Register([FromBody]RegisterNewUserCommand model)
         {
 
-            var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+            var user = new User {Id = Guid.NewGuid(), UserName = model.Email, Email = model.Email, UserType = EUserType.Donator };
             var result = await _userManager.CreateAsync(user, model.Password);
 
-            return Response(new Domain.Core.Commands.CommandResult(true, null));
+            var donatorUser = new DonatorUser(Guid.NewGuid(), user.Id, "cristian", EGenre.Male, new DateTime());
+            donatorUser.LastDonation = new DateTime();
+            donatorUser.CPF = "1";
+            donatorUser.CellPhone = "123";
+            _context.Add(donatorUser);
+            if(_context.SaveChanges() > 1)
+            {
+                return Response(new CommandResult(true, null));
+            }
+            else
+            {
+                
+            }
+
+
+            return Response(new CommandResult(true, null));
         }
     }
 }

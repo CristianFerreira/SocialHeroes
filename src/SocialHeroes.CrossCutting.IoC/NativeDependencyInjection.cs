@@ -37,6 +37,8 @@ namespace SocialHeroes.CrossCutting.IoC
 
             // Infra - Data
             services.AddScoped<IHairRepository, HairRepository>();
+            services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IDonatorUserRepository, DonatorUserRepository>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<SocialHeroesContext>();        
          

@@ -16,6 +16,8 @@ namespace SocialHeroes.Infra.Data.Mappings
                 .IsRequired();
 
             builder.HasOne(x => x.User).WithMany(x => x.HospitalsUsers);
+
+            builder.ToTable("HospitalUsers");
         }
     }
 }

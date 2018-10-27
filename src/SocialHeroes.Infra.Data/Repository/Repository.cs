@@ -44,7 +44,15 @@ namespace SocialHeroes.Infra.Data.Repository
 
         public int SaveChanges()
         {
-            return Db.SaveChanges();
+            try
+            {
+                return Db.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
 
         public void Dispose()

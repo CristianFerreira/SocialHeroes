@@ -25,7 +25,7 @@ namespace SocialHeroes.Infra.Data.Mappings
             builder.HasMany(c => c.DonatorsUsers).WithOne(c => c.User);
             builder.HasMany(c => c.HospitalsUsers).WithOne(c => c.User);
 
-            builder.ToTable(name: "AspNetUsers");
+            builder.ToTable("Users");
         }
     }
 }

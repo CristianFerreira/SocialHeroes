@@ -1,38 +1,33 @@
 ﻿
 
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
 using SocialHeroes.Domain.Models;
-using SocialHeroes.Infra.Data.Mappings;
-using System.IO;
+using SocialHeroes.Infra.Data.Configurations;
+using System;
 
 namespace SocialHeroes.Infra.Data.Context
 {
-    public class SocialHeroesContext :DbContext
+    public class SocialHeroesContext : IdentityDbContext<User, Role, Guid>
     {
-        public DbSet<Hair> Hair { get; set; }
-        public DbSet<DonatorUser> DonatorUser { get; set; }
-        public DbSet<HospitalUser> HospitalUser { get; set; }
+        public DbSet<Hair> Hairs { get; set; }
+        public DbSet<DonatorUser> DonatorUsers { get; set; }
+        public DbSet<HospitalUser> HospitalUsers { get; set; }
+        public DbSet<User> Users { get; set; }
 
+        public SocialHeroesContext(DbContextOptions<SocialHeroesContext> options) : base(options) {}
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.ApplyConfiguration(new HairMap());
-            modelBuilder.ApplyConfiguration(new UserMap());
-            modelBuilder.ApplyConfiguration(new DonatorUserMap());
-            modelBuilder.ApplyConfiguration(new HospitalUserMap());       
-
             base.OnModelCreating(modelBuilder);
+
+            IdentityConfiguration.ConfigurationIdentityTables(modelBuilder);
+            MappingConfiguration.RegisterMappings(modelBuilder);
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            var config = new ConfigurationBuilder()
-               .SetBasePath(Directory.GetCurrentDirectory())
-               .AddJsonFile("appsettings.json")
-               .Build();
-
-            optionsBuilder.UseSqlServer(config.GetConnectionString("DefaultConnection"));
-        }
+            => optionsBuilder.UseSqlServer(ConnectionStringConfiguration.ConnectionString());
+        
     }
 }
