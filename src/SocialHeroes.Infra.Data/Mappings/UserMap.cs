@@ -19,11 +19,13 @@ namespace SocialHeroes.Infra.Data.Mappings
                 .HasMaxLength(256);
 
             builder.Property(u => u.UserName)
-                .IsRequired()
                 .HasMaxLength(256);
 
-            builder.HasMany(c => c.DonatorsUsers).WithOne(c => c.User);
-            builder.HasMany(c => c.HospitalsUsers).WithOne(c => c.User);
+            builder.Property(u => u.UserType)
+                .IsRequired();
+
+            builder.HasMany(u => u.DonatorsUsers).WithOne(u => u.User);
+            builder.HasMany(u => u.HospitalsUsers).WithOne(u => u.User);
 
             builder.ToTable("Users");
         }

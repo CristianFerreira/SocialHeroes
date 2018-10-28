@@ -43,13 +43,10 @@ namespace SocialHeroes.WebApi.Controllers
         public async Task<IActionResult> Register([FromBody]RegisterNewUserCommand model)
         {
 
-            var user = new User {Id = Guid.NewGuid(), UserName = model.Email, Email = model.Email, UserType = EUserType.Donator };
+            var user = new User(Guid.NewGuid(), EUserType.Donator, model.Email );
             var result = await _userManager.CreateAsync(user, model.Password);
 
-            var donatorUser = new DonatorUser(Guid.NewGuid(), user.Id, "cristian", EGenre.Male, new DateTime());
-            donatorUser.LastDonation = new DateTime();
-            donatorUser.CPF = "1";
-            donatorUser.CellPhone = "123";
+            var donatorUser = new DonatorUser(Guid.NewGuid(), user, "cristian", EGenre.Male, new DateTime());
             _context.Add(donatorUser);
             if(_context.SaveChanges() > 1)
             {

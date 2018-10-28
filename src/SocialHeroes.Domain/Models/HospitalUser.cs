@@ -1,28 +1,35 @@
 ﻿using Newtonsoft.Json;
-using SocialHeroes.Domain.Core.Models;
+using SocialHeroes.Domain.Core.Interfaces;
 using System;
 
 namespace SocialHeroes.Domain.Models
 {
-    public class HospitalUser : Entity
+    public class HospitalUser : IEntity
     {
-        public HospitalUser(Guid id, Guid userId, string socialReason, string fantasyName, string CNPJ, bool actived)
+        public HospitalUser()  {}
+        public HospitalUser(Guid id, User user, string socialReason, string fantasyName, string cnpj)
         {
             Id = id;
-            UserId = userId;
+            UserId = user.Id;
+            User = user;
             SocialReason = socialReason;
             FantasyName = fantasyName;
-            CNPJ = CNPJ;
-            Actived = actived;         
+            CNPJ = cnpj;
+            Actived = false;         
         }
 
-        public string SocialReason { get; set; }
-        public string FantasyName { get; set; }
-        public string CNPJ { get; set; }
-        public bool Actived { get; set; }
+        public Guid Id { get; private set; }
+        public string SocialReason { get; private set; }
+        public string FantasyName { get; private set; }
+        public string CNPJ { get; private set; }
+        public bool Actived { get; private set; }
 
-        [JsonIgnore]
-        public User User { get; set; }
-        public Guid UserId { get; set; }
+        public User User { get; private set; }
+        public Guid UserId { get; private set; }
+
+
+        public void Activate() => Actived = true;
+        public void Disable() => Actived = false;
+
     }
 }

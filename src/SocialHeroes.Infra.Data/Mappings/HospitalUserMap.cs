@@ -8,15 +8,28 @@ namespace SocialHeroes.Infra.Data.Mappings
     {
         public void Configure(EntityTypeBuilder<HospitalUser> builder)
         {
-            builder.HasKey(u => u.Id);
+            builder.HasKey(h => h.Id);
 
-            builder.Property(c => c.CNPJ)
-                .HasColumnType("varchar")
-                .HasMaxLength(11)
+            builder.Property(h => h.CNPJ)
+                .HasColumnType("varchar(14)")
+                .HasMaxLength(14)
                 .IsRequired();
 
-            builder.HasOne(x => x.User).WithMany(x => x.HospitalsUsers);
+            builder.Property(h => h.Actived)
+                .IsRequired();
 
+            builder.Property(h => h.FantasyName)
+                .HasColumnType("varchar(256)")
+                .HasMaxLength(256)
+                .IsRequired();
+
+            builder.Property(h => h.SocialReason)
+                .HasColumnType("varchar(256)")
+                .HasMaxLength(256)
+                .IsRequired();
+
+
+            builder.HasOne(h => h.User).WithMany(h => h.HospitalsUsers);
             builder.ToTable("HospitalUsers");
         }
     }

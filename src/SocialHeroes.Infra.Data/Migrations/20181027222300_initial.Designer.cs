@@ -10,8 +10,8 @@ using SocialHeroes.Infra.Data.Context;
 namespace SocialHeroes.Infra.Data.Migrations
 {
     [DbContext(typeof(SocialHeroesContext))]
-    [Migration("20181027150355_INITIAL")]
-    partial class INITIAL
+    [Migration("20181027222300_initial")]
+    partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -110,11 +110,12 @@ namespace SocialHeroes.Infra.Data.Migrations
                         .ValueGeneratedOnAdd();
 
                     b.Property<string>("CPF")
-                        .IsRequired()
-                        .HasColumnType("varchar")
+                        .HasColumnType("varchar(11)")
                         .HasMaxLength(11);
 
-                    b.Property<string>("CellPhone");
+                    b.Property<string>("CellPhone")
+                        .HasColumnType("varchar(14)")
+                        .HasMaxLength(14);
 
                     b.Property<DateTime>("DateBirth");
 
@@ -122,7 +123,10 @@ namespace SocialHeroes.Infra.Data.Migrations
 
                     b.Property<DateTime>("LastDonation");
 
-                    b.Property<string>("Name");
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("varchar(100)")
+                        .HasMaxLength(100);
 
                     b.Property<Guid>("UserId");
 
@@ -157,12 +161,18 @@ namespace SocialHeroes.Infra.Data.Migrations
 
                     b.Property<string>("CNPJ")
                         .IsRequired()
-                        .HasColumnType("varchar")
-                        .HasMaxLength(11);
+                        .HasColumnType("varchar(14)")
+                        .HasMaxLength(14);
 
-                    b.Property<string>("FantasyName");
+                    b.Property<string>("FantasyName")
+                        .IsRequired()
+                        .HasColumnType("varchar(256)")
+                        .HasMaxLength(256);
 
-                    b.Property<string>("SocialReason");
+                    b.Property<string>("SocialReason")
+                        .IsRequired()
+                        .HasColumnType("varchar(256)")
+                        .HasMaxLength(256);
 
                     b.Property<Guid>("UserId");
 
@@ -235,7 +245,6 @@ namespace SocialHeroes.Infra.Data.Migrations
                     b.Property<bool>("TwoFactorEnabled");
 
                     b.Property<string>("UserName")
-                        .IsRequired()
                         .HasMaxLength(256);
 
                     b.Property<int>("UserType");

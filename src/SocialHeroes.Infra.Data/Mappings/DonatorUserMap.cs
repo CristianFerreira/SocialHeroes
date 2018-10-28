@@ -8,15 +8,28 @@ namespace SocialHeroes.Infra.Data.Mappings
     {
         public void Configure(EntityTypeBuilder<DonatorUser> builder)
         {
-            builder.HasKey(u => u.Id);
+            builder.HasKey(d => d.Id);
 
-            builder.Property(c => c.CPF)
-                .HasColumnType("varchar")
-                .HasMaxLength(11)
+            builder.Property(d => d.CPF)
+                .HasColumnType("varchar(11)")
+                .HasMaxLength(11);
+
+            builder.Property(d => d.CellPhone)
+                .HasColumnType("varchar(14)")
+                .HasMaxLength(14);
+
+            builder.Property(d => d.DateBirth)
                 .IsRequired();
 
-            builder.HasOne(x => x.User).WithMany(x => x.DonatorsUsers);
+            builder.Property(d => d.Genre)
+                .IsRequired();
 
+            builder.Property(d => d.Name)
+                .HasColumnType("varchar(100)")
+                .HasMaxLength(100)
+               .IsRequired();
+
+            builder.HasOne(d => d.User).WithMany(d => d.DonatorsUsers);
             builder.ToTable("DonatorUsers");
         }
     }

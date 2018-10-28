@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace SocialHeroes.Infra.Data.Migrations
 {
-    public partial class INITIAL : Migration
+    public partial class initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -12,8 +12,8 @@ namespace SocialHeroes.Infra.Data.Migrations
                 name: "Hairs",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(nullable: false),
-                    Color = table.Column<string>(type: "varchar(20)", maxLength: 20, nullable: false)
+                    Color = table.Column<string>(type: "varchar(20)", maxLength: 20, nullable: false),
+                    Id = table.Column<Guid>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -39,7 +39,7 @@ namespace SocialHeroes.Infra.Data.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(maxLength: 128, nullable: false),
-                    UserName = table.Column<string>(maxLength: 256, nullable: false),
+                    UserName = table.Column<string>(maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(maxLength: 256, nullable: true),
                     Email = table.Column<string>(maxLength: 256, nullable: false),
                     NormalizedEmail = table.Column<string>(maxLength: 256, nullable: true),
@@ -86,9 +86,9 @@ namespace SocialHeroes.Infra.Data.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(nullable: false),
-                    Name = table.Column<string>(nullable: true),
-                    CPF = table.Column<string>(type: "varchar", maxLength: 11, nullable: false),
-                    CellPhone = table.Column<string>(nullable: true),
+                    Name = table.Column<string>(type: "varchar(100)", maxLength: 100, nullable: false),
+                    CPF = table.Column<string>(type: "varchar(11)", maxLength: 11, nullable: true),
+                    CellPhone = table.Column<string>(type: "varchar(14)", maxLength: 14, nullable: true),
                     Genre = table.Column<int>(nullable: false),
                     DateBirth = table.Column<DateTime>(nullable: false),
                     LastDonation = table.Column<DateTime>(nullable: false),
@@ -110,9 +110,9 @@ namespace SocialHeroes.Infra.Data.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(nullable: false),
-                    SocialReason = table.Column<string>(nullable: true),
-                    FantasyName = table.Column<string>(nullable: true),
-                    CNPJ = table.Column<string>(type: "varchar", maxLength: 11, nullable: false),
+                    SocialReason = table.Column<string>(type: "varchar(256)", maxLength: 256, nullable: false),
+                    FantasyName = table.Column<string>(type: "varchar(256)", maxLength: 256, nullable: false),
+                    CNPJ = table.Column<string>(type: "varchar(14)", maxLength: 14, nullable: false),
                     Actived = table.Column<bool>(nullable: false),
                     UserId = table.Column<Guid>(nullable: false)
                 },

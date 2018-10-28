@@ -1,31 +1,31 @@
-﻿using Newtonsoft.Json;
-using SocialHeroes.Domain.Core.Models;
+﻿using SocialHeroes.Domain.Core.Interfaces;
 using SocialHeroes.Domain.Enums;
 using System;
 
 namespace SocialHeroes.Domain.Models
 {
-    public class DonatorUser : Entity
+    public class DonatorUser : IEntity
     {
-        public DonatorUser(Guid id, Guid userId, string name, EGenre genre, DateTime dateBirth)
+        public DonatorUser() {}
+        public DonatorUser(Guid id,  User user, string name, EGenre genre, DateTime dateBirth)
         {
             Id = id;
-            UserId = userId;
+            UserId = user.Id;
+            User = user;
             Name = name;
             Genre = genre;
             DateBirth = dateBirth;
         }
 
-        public string Name { get; set; }
-        public string CPF { get; set; }
-        public string CellPhone { get; set; }
-        public EGenre Genre { get; set; }
-        public DateTime DateBirth { get; set; }
-        public DateTime LastDonation { get; set; }
+        public Guid Id { get; private set; }
+        public string Name { get; private set; }
+        public string CPF { get; private set; }
+        public string CellPhone { get; private set; }
+        public EGenre Genre { get; private set; }
+        public DateTime DateBirth { get; private set; }
+        public DateTime LastDonation { get; private set; }
 
-       
         public User User { get; set; }
-        public Guid UserId { get; set; }
-        
+        public Guid UserId { get; private set; }
     }
 }
