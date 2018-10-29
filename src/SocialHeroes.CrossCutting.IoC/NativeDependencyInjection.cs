@@ -14,6 +14,7 @@ using SocialHeroes.Domain.Validations;
 using SocialHeroes.Infra.Data.Context;
 using SocialHeroes.Infra.Data.Repository;
 using SocialHeroes.Infra.Data.UoW;
+using SocialHeroes.Domain.Core.Configurations;
 
 namespace SocialHeroes.CrossCutting.IoC
 {
@@ -40,8 +41,10 @@ namespace SocialHeroes.CrossCutting.IoC
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IDonatorUserRepository, DonatorUserRepository>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
-            services.AddScoped<SocialHeroesContext>();        
-         
+            services.AddScoped<SocialHeroesContext>();
+
+            //TokenConfiguration
+            services.AddSingleton(new SigningConfiguration());
 
             // Infra - Identity Services
             //services.AddTransient<IEmailSender, AuthEmailMessageSender>();

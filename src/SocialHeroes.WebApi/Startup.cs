@@ -1,13 +1,20 @@
 ﻿using FluentValidation;
 using MediatR;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Formatters;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Options;
 using SocialHeroes.CrossCutting.IoC;
-using SocialHeroes.Infra.Data;
+using SocialHeroes.Domain.Core.Configurations;
+using SocialHeroes.Domain.Models;
+using SocialHeroes.Infra.Data.Configurations;
+using SocialHeroes.Infra.Data.Context;
 using SocialHeroes.WebApi.Configurations;
 using Swashbuckle.AspNetCore.Swagger;
 using System;
@@ -28,16 +35,35 @@ namespace SocialHeroes.WebApi
 
             RegisterIdentity(services);
 
+
+
+
             services.AddWebApi(options =>
             {
                 options.OutputFormatters.Remove(new XmlDataContractSerializerOutputFormatter());
                 options.UseCentralRoutePrefix(new RouteAttribute("api/v{version}"));
             });
 
+
             services.AddResponseCompression();
 
             //Injector Dependency
             RegisterServices(services);
+
+
+            #region TokenConfiguration
+            var signingConfigurations = new SigningConfiguration();
+            services.AddSingleton(signingConfigurations);
+
+            var tokenConfiguration = new TokenConfiguration();
+            new ConfigureFromConfigurationOptions<TokenConfiguration>(
+                Configuration.GetSection("TokenConfiguration"))
+                    .Configure(tokenConfiguration);
+            services.AddSingleton(tokenConfiguration);
+
+            RegisterToken(services, signingConfigurations, tokenConfiguration);
+            #endregion
+
 
             services.AddSwaggerGen(s =>
             {
@@ -51,14 +77,27 @@ namespace SocialHeroes.WebApi
             });
 
             AddMediatr(services);
+            services.AddMvc();
 
         }
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+
+        public void Configure(IApplicationBuilder app, 
+                              IHostingEnvironment env, 
+                              SocialHeroesContext context,
+                              UserManager<User> userManager,
+                              RoleManager<Role> roleManager)
         {
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            // Criação de estruturas, usuários e permissões
+            // na base do ASP.NET Identity Core (caso ainda não
+            // existam)
+            new IdentityInitializerConfiguration(context, userManager, roleManager)
+                .Initialize();
+
             app.UseMvc();
             app.UseCors(c =>
             {
@@ -68,8 +107,7 @@ namespace SocialHeroes.WebApi
             });
 
             app.UseStaticFiles();
-            //app.UseAuthentication();
-          
+            app.UseAuthentication();
             app.UseResponseCompression();
             app.UseSwagger();
             app.UseSwaggerUI(s =>
@@ -93,7 +131,11 @@ namespace SocialHeroes.WebApi
         }
         private static void RegisterIdentity(IServiceCollection services)
         {
-            IdentityConfiguration.RegisterIdentityService(services);
+            IdentityConfigurationService.RegisterIdentityService(services);
+        }
+        private void RegisterToken(IServiceCollection services, SigningConfiguration signingConfigurations, TokenConfiguration tokenConfiguration)
+        {
+            TokenConfigurationService.RegisterTokenService(services, signingConfigurations, tokenConfiguration);
         }
     }
 }

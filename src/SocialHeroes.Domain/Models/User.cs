@@ -8,14 +8,14 @@ namespace SocialHeroes.Domain.Models
 {
     public class User : IdentityUser<Guid>, IEntity
     {
-        //public User(){}
-        public User(Guid id, EUserType userType, string email)
+        public User(){}
+        public User(Guid id, EUserType userType, string email, bool emailConfirmed)
         {
             Id = id;
             UserType = userType;
             Email = email;
             UserName = email;
-            EmailConfirmed = true;
+            EmailConfirmed = emailConfirmed;
             PhoneNumberConfirmed = false;
             TwoFactorEnabled = false;
             AccessFailedCount = 0;
