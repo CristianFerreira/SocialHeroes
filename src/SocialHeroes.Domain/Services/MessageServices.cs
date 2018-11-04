@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using SocialHeroes.Domain.Cores.Interfaces;
+using System.Threading.Tasks;
 
 namespace SocialHeroes.Domain.Services
 {

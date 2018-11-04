@@ -1,7 +1,5 @@
 ﻿using FluentValidation;
 using MediatR;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
@@ -11,7 +9,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using SocialHeroes.CrossCutting.IoC;
-using SocialHeroes.Domain.Core.Configurations;
+using SocialHeroes.Domain.Configurations;
 using SocialHeroes.Domain.Models;
 using SocialHeroes.Infra.Data.Configurations;
 using SocialHeroes.Infra.Data.Context;
@@ -35,16 +33,12 @@ namespace SocialHeroes.WebApi
 
             RegisterIdentity(services);
 
-
-
-
             services.AddWebApi(options =>
             {
                 options.OutputFormatters.Remove(new XmlDataContractSerializerOutputFormatter());
                 options.UseCentralRoutePrefix(new RouteAttribute("api/v{version}"));
             });
-
-
+      
             services.AddResponseCompression();
 
             //Injector Dependency
@@ -75,9 +69,12 @@ namespace SocialHeroes.WebApi
                     Contact = new Contact { Name = "Cristian Ferreira", Email = "cristianferreira_gks@hotmail.com", Url = "https://www.linkedin.com/in/cristiansantosferreira/" },               
                 });
             });
-
             AddMediatr(services);
-            services.AddMvc();
+
+            services.AddMvc(config =>
+            {
+                config.Filters.Add(typeof(CustomExceptionFilter));
+            });
 
         }
 

@@ -3,18 +3,20 @@
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
-using SocialHeroes.Infra.CrossCutting.Bus;
+using SocialHeroes.Domain.Commands.AccountCommand;
 using SocialHeroes.Domain.Commands.HairCommand;
-using SocialHeroes.Domain.CommandsHandler;
+using SocialHeroes.Domain.Configurations;
 using SocialHeroes.Domain.Core.Bus;
 using SocialHeroes.Domain.Core.Commands;
 using SocialHeroes.Domain.Core.Notifications;
+using SocialHeroes.Domain.Handlers;
 using SocialHeroes.Domain.Interfaces;
+using SocialHeroes.Domain.Services;
 using SocialHeroes.Domain.Validations;
+using SocialHeroes.Infra.CrossCutting.Bus;
 using SocialHeroes.Infra.Data.Context;
 using SocialHeroes.Infra.Data.Repository;
 using SocialHeroes.Infra.Data.UoW;
-using SocialHeroes.Domain.Core.Configurations;
 
 namespace SocialHeroes.CrossCutting.IoC
 {
@@ -33,8 +35,13 @@ namespace SocialHeroes.CrossCutting.IoC
 
             // Domain - Commands
             services.AddScoped(typeof(IPipelineBehavior<,>), typeof(FailFastValidation<,>));
-            services.AddScoped<IRequestHandler<RegisterNewHairCommand, CommandResult>, HairCommandHandler>();
+            services.AddScoped<IRequestHandler<RegisterNewHairCommand, CommandResult>, HairHandler>();
+            //account
+            services.AddScoped<IRequestHandler<GetTokenAccountCommand, CommandResult>, AccountHandler>();
+            services.AddScoped<IRequestHandler<RegisterNewDonatorAccountCommand, CommandResult>, AccountHandler>();
+            
 
+            services.AddTransient<ITokenService, TokenService>();
 
             // Infra - Data
             services.AddScoped<IHairRepository, HairRepository>();
@@ -43,8 +50,7 @@ namespace SocialHeroes.CrossCutting.IoC
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<SocialHeroesContext>();
 
-            //TokenConfiguration
-            services.AddSingleton(new SigningConfiguration());
+
 
             // Infra - Identity Services
             //services.AddTransient<IEmailSender, AuthEmailMessageSender>();

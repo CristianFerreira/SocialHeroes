@@ -13,10 +13,8 @@ namespace SocialHeroes.Infra.Data.Repository
         {
         }
 
-        public DonatorUser GetAllUser()
-        {
-            var teste = Db.DonatorUsers.Include(x => x.User).FirstOrDefault(x => x.Id == Guid.Parse("9FF22F99-7809-4095-83A2-6E53D2E368DD"));
-            return teste;
-        }
+        public DonatorUser GetByUserId(Guid userId)
+            => DbSet.AsNoTracking().FirstOrDefault(x => x.UserId == userId);
+        
     }
 }

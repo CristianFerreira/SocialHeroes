@@ -10,33 +10,29 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace SocialHeroes.Domain.CommandsHandler
+namespace SocialHeroes.Domain.Handlers
 {
-    public class HairCommandHandler : CommandHandler,
+    public class HairHandler : Handler,
            IRequestHandler<RegisterNewHairCommand, CommandResult>
     {
         private readonly IHairRepository _hairRepository;
         private readonly IMediatorHandler Bus;
-        private readonly DomainNotificationHandler _notificationsCommand;
 
-        public HairCommandHandler(IHairRepository hairRepository,
+        public HairHandler(IHairRepository hairRepository,
                                       IUnitOfWork uow,
                                       IMediatorHandler bus,
                                       INotificationHandler<DomainNotification> notifications) : base(uow, bus, notifications)
         {
             _hairRepository = hairRepository;
             Bus = bus;
-            _notificationsCommand = (DomainNotificationHandler)notifications;
         }
 
         public Task<CommandResult> Handle(RegisterNewHairCommand request, CancellationToken cancellationToken)
         {
             var hair = new Hair(Guid.NewGuid(), request.Color);
             _hairRepository.Add(hair);
-
-            return (Commit()) ?  Task.FromResult(new CommandResult(true, hair)) 
-                              :  Task.FromResult(new CommandResult(false, null, _notificationsCommand.GetNotifications()));      
-            
+            Commit();
+            return Task.FromResult(new CommandResult(true, hair));
         }
 
         public void Dispose()

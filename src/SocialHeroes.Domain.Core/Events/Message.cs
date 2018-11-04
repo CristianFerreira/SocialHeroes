@@ -1,6 +1,5 @@
 ﻿using MediatR;
 using SocialHeroes.Domain.Core.Commands;
-using System;
 
 namespace SocialHeroes.Domain.Core.Events
 {

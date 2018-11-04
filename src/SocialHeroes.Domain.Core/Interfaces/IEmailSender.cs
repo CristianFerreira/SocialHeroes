@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-namespace SocialHeroes.Domain.Services
+namespace SocialHeroes.Domain.Cores.Interfaces
 {
     public interface IEmailSender
     {

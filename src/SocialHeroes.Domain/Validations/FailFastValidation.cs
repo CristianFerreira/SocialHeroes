@@ -38,7 +38,7 @@ namespace SocialHeroes.Domain.Validations
             {
                 _bus.RaiseEvent(new DomainNotification(request.MessageType, error.ErrorMessage));
             }
-            return Task.FromResult(new CommandResult(false, null, _notifications.GetNotifications()) as TResponse);
+            return Task.FromResult(null as TResponse);
         }
 
     }

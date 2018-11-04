@@ -1,3 +1,4 @@
+using SocialHeroes.Domain.Cores.Interfaces;
 using System.Text.Encodings.Web;
 using System.Threading.Tasks;
 

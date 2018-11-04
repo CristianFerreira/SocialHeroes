@@ -20,11 +20,6 @@ namespace SocialHeroes.Infra.CrossCutting.Bus
            return await _mediator.Send(command).ConfigureAwait(false);
         }
 
-        public Task SendMirrorCommand<T>(T command) where T : IRequest
-        {
-             return _mediator.Send(command);
-        }
-
         public Task RaiseEvent<T>(T @event) where T : Event
         {
             return _mediator.Publish(@event);

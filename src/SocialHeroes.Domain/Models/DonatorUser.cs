@@ -7,14 +7,23 @@ namespace SocialHeroes.Domain.Models
     public class DonatorUser : IEntity
     {
         public DonatorUser() {}
-        public DonatorUser(Guid id,  User user, string name, EGenre genre, DateTime dateBirth)
+        public DonatorUser(Guid id,  
+                          User user, 
+                          string name, 
+                          EGenre genre, 
+                          DateTime dateBirth,
+                          DateTime? lastDonation = null, 
+                          string cpf = null, 
+                          string cellPhone = null)
         {
             Id = id;
             UserId = user.Id;
-            User = user;
             Name = name;
             Genre = genre;
             DateBirth = dateBirth;
+            LastDonation = lastDonation;
+            CPF = cpf;
+            CellPhone = cellPhone;
         }
 
         public Guid Id { get; private set; }
@@ -23,7 +32,7 @@ namespace SocialHeroes.Domain.Models
         public string CellPhone { get; private set; }
         public EGenre Genre { get; private set; }
         public DateTime DateBirth { get; private set; }
-        public DateTime LastDonation { get; private set; }
+        public DateTime? LastDonation { get; private set; }
 
         public User User { get; set; }
         public Guid UserId { get; private set; }

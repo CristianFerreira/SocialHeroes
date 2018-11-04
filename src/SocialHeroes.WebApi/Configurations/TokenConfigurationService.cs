@@ -1,9 +1,7 @@
-﻿using Castle.Core.Configuration;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
+﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Options;
-using SocialHeroes.Domain.Core.Configurations;
+using SocialHeroes.Domain.Configurations;
 using System;
 
 namespace SocialHeroes.WebApi.Configurations

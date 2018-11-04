@@ -12,7 +12,8 @@ namespace SocialHeroes.WebApi.Controllers
     {
         private readonly IMediatorHandler Bus;
 
-        public HairController(IMediatorHandler mediator)
+        public HairController(IMediatorHandler mediator, 
+                              INotificationHandler<DomainNotification> notifications) : base(notifications)
         {
             Bus = mediator;
         }

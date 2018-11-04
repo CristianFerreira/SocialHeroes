@@ -1,9 +1,11 @@
-﻿using Microsoft.IdentityModel.Tokens;
+﻿
+using Microsoft.IdentityModel.Tokens;
+using SocialHeroes.Domain.Core.Interfaces;
 using System.Security.Cryptography;
 
-namespace SocialHeroes.Domain.Core.Configurations
+namespace SocialHeroes.Domain.Configurations
 {
-    public class SigningConfiguration
+    public class SigningConfiguration : ISigningConfiguration
     {
         public SecurityKey Key { get; }
         public SigningCredentials SigningCredentials { get; }

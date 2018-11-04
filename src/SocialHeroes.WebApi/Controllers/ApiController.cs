@@ -1,27 +1,39 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using MediatR;
+using Microsoft.AspNetCore.Mvc;
 using SocialHeroes.Domain.Core.Commands;
+using SocialHeroes.Domain.Core.Notifications;
+using System.Linq;
 
 namespace SocialHeroes.WebApi.Controllers
 {
     public abstract class ApiController : ControllerBase
     {
-        protected ApiController(){}
-
-        protected new IActionResult Response(CommandResult result = null)
+        private readonly DomainNotificationHandler _notifications;
+        protected ApiController(INotificationHandler<DomainNotification> notifications)
         {
-            if (result.Sucess)
+            _notifications = (DomainNotificationHandler)notifications;
+        }
+
+        protected bool IsValidOperation()
+        {
+            return (!_notifications.HasNotifications());
+        }
+
+        protected new IActionResult Response(CommandResult result)
+        {
+            if (IsValidOperation())
             {
                 return Ok(new
                 {
-                    success = result.Sucess,
+                    success = true,
                     data = result.Data
                 });
             }
 
             return BadRequest(new
             {
-                success = result.Sucess,
-                errors = result.Notifications
+                success = false,
+                errors = _notifications.GetNotifications().Select(n => n.Value)
             });
         }
     }

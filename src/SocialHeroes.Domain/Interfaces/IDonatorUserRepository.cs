@@ -1,9 +1,10 @@
 ﻿using SocialHeroes.Domain.Models;
+using System;
 
 namespace SocialHeroes.Domain.Interfaces
 {
     public interface IDonatorUserRepository : IRepository<DonatorUser>
     {
-        DonatorUser GetAllUser();
+        DonatorUser GetByUserId(Guid userId);
     }
 }
