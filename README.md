@@ -11,12 +11,11 @@ To know more about how to setup your enviroment visit the Microsoft .NET Downloa
 
 ## Technologies implemented:
 - ASP.NET Core 2.0 (with .NET Core)
-- ASP.NET MVC Core
 - ASP.NET WebApi Core
 - ASP.NET Identity Core
+- Entity Framework Core
 - MediatR
-- Dapper
-- FluentValidator
+- FluentValidation
 - Swagger UI
 
 ## Architecture:
