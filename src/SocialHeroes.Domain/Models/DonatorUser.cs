@@ -1,4 +1,5 @@
-﻿using SocialHeroes.Domain.Core.Interfaces;
+﻿using Newtonsoft.Json;
+using SocialHeroes.Domain.Core.Interfaces;
 using SocialHeroes.Domain.Enums;
 using System;
 
@@ -18,6 +19,7 @@ namespace SocialHeroes.Domain.Models
         {
             Id = id;
             UserId = user.Id;
+            User = user;
             Name = name;
             Genre = genre;
             DateBirth = dateBirth;
@@ -34,7 +36,9 @@ namespace SocialHeroes.Domain.Models
         public DateTime DateBirth { get; private set; }
         public DateTime? LastDonation { get; private set; }
 
+        [JsonIgnore]
         public User User { get; set; }
+
         public Guid UserId { get; private set; }
     }
 }

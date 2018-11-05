@@ -68,8 +68,6 @@ namespace SocialHeroes.Domain.Handlers
                     throw exception;
                 }
             }
-
-
         }
 
         public Task<CommandResult> Handle(GetTokenAccountCommand command, CancellationToken cancellationToken)
