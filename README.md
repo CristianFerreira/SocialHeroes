@@ -20,7 +20,7 @@ To know more about how to setup your enviroment visit the Microsoft .NET Downloa
 
 ## Architecture:
 - Full architecture with responsibility separation concerns, SOLID and Clean Code
-- Domain Driven Design (Layers and Domain Model Pattern)
+- Domain Driven Design
 - Domain Notification
 - Fail Fast Validations
 - CQRS (Imediate Consistency)
