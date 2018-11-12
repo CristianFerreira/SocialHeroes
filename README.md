@@ -11,17 +11,16 @@ To know more about how to setup your enviroment visit the Microsoft .NET Downloa
 
 ## Technologies implemented:
 - ASP.NET Core 2.0 (with .NET Core)
-- ASP.NET MVC Core
 - ASP.NET WebApi Core
 - ASP.NET Identity Core
+- Entity Framework Core
 - MediatR
-- Dapper
-- FluentValidator
+- FluentValidation
 - Swagger UI
 
 ## Architecture:
 - Full architecture with responsibility separation concerns, SOLID and Clean Code
-- Domain Driven Design (Layers and Domain Model Pattern)
+- Domain Driven Design
 - Domain Notification
 - Fail Fast Validations
 - CQRS (Imediate Consistency)
