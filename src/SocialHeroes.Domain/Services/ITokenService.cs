@@ -1,6 +1,8 @@
-﻿using SocialHeroes.Domain.Models;
+﻿using SocialHeroes.Domain.Core.Interfaces;
+using SocialHeroes.Domain.Models;
 using SocialHeroes.Domain.ResponseModels;
 using System;
+using System.Collections.Generic;
 
 namespace SocialHeroes.Domain.Services
 {
@@ -9,6 +11,6 @@ namespace SocialHeroes.Domain.Services
         DateTime InitialDate { get; }
         DateTime ExpirationDate { get; }
 
-        TokenResponse CreateToken(User user, string userName, int daysTokenExpiration);
+        TokenResponse CreateToken(User user, IList<string> roles, string userName);
     }
 }

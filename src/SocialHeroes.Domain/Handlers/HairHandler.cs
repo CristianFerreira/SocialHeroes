@@ -32,7 +32,7 @@ namespace SocialHeroes.Domain.Handlers
             var hair = new Hair(Guid.NewGuid(), request.Color);
             _hairRepository.Add(hair);
             Commit();
-            return Task.FromResult(new CommandResult(true, hair));
+            return Task.FromResult(new CommandResult(hair));
         }
 
         public void Dispose()

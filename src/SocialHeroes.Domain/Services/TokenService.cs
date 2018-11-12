@@ -3,12 +3,14 @@ using SocialHeroes.Domain.Configurations;
 using SocialHeroes.Domain.Models;
 using SocialHeroes.Domain.ResponseModels;
 using System;
+using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
+using System.Linq;
 using System.Security.Claims;
-using System.Security.Principal;
 
 namespace SocialHeroes.Domain.Services
 {
+
     public class TokenService : ITokenService
     {
         private readonly TokenConfiguration _tokenConfiguration;
@@ -16,48 +18,52 @@ namespace SocialHeroes.Domain.Services
 
         public TokenService(TokenConfiguration tokenConfiguration,
                             SigningConfiguration signingConfiguration)
-        {
-            InitialDate = DateTime.Now;
-            ExpirationDate = DateTime.Now;
+        {                 
             _tokenConfiguration = tokenConfiguration;
             _signingConfiguration = signingConfiguration;
+            InitialDate = DateTime.Now;
+            ExpirationDate = InitialDate.AddDays(_tokenConfiguration.DaysTokenExpiration);
         }
 
         public DateTime InitialDate { get; }
         public DateTime ExpirationDate { get; }
 
-        private ClaimsIdentity CreateClaimsIdentity(string name, string type)
+        private ClaimsIdentity CreateClaimsIdentity(User user, IList<string> roles)
         {
-            return
-                new ClaimsIdentity(new GenericIdentity(name, type),
-                                   new[]
+            Claim[] claims = new[]
                                    {
                                         new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString("N")),
-                                        new Claim(JwtRegisteredClaimNames.UniqueName, name)
-                                   });
+                                        new Claim(JwtRegisteredClaimNames.UniqueName, user.Id.ToString())
+                                   };
+            ClaimsIdentity claimsIdentity = new ClaimsIdentity(claims, "Token");
+            claimsIdentity.AddClaims(roles.Select(role => new Claim(ClaimTypes.Role, role)));
+            return claimsIdentity;
         }
 
-        public TokenResponse CreateToken(User user, string userName, int daysTokenExpiration)
+        public TokenResponse CreateToken(User user, IList<string> roles, string userName)
         {
-            var handler = new JwtSecurityTokenHandler();
-            var expires = ExpirationDate.AddDays(daysTokenExpiration);
-            var securityToken = handler.CreateToken(new SecurityTokenDescriptor
+
+            var handlerToken = new JwtSecurityTokenHandler();
+            var securityToken = handlerToken.CreateToken(new SecurityTokenDescriptor
             {
                 Issuer = _tokenConfiguration.Issuer,
                 Audience = _tokenConfiguration.Audience,
                 SigningCredentials = _signingConfiguration.SigningCredentials,
-                Subject = CreateClaimsIdentity(user.Id.ToString(), "LOGIN"),
+                Subject = CreateClaimsIdentity(user, roles),
                 NotBefore = InitialDate,
-                Expires = expires
+                Expires = ExpirationDate
             });
 
-            return new TokenResponse(new UserResponse(user.Id, 
-                                                      userName, 
+            return new TokenResponse(new UserResponse(user.Id,
+                                                      userName,
                                                       user.UserType),
-                                     handler.WriteToken(securityToken),
+                                     handlerToken.WriteToken(securityToken),
                                      true,
                                      InitialDate,
-                                     expires);
+                                     ExpirationDate);
         }
+
+   
+       
     }
 }

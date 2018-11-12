@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SocialHeroes.Domain.Commands.HairCommand;
 using SocialHeroes.Domain.Core.Bus;
@@ -26,6 +27,8 @@ namespace SocialHeroes.WebApi.Controllers
             return new { version = "Version 0.0.2" };
         }
 
+
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         [Route("hairs")]
         public IActionResult Post([FromBody]RegisterNewHairCommand registerNewHairCommand)

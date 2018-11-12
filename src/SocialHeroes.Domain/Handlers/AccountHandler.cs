@@ -60,7 +60,7 @@ namespace SocialHeroes.Domain.Handlers
 
 
                     Commit(transaction);
-                    return await Task.FromResult(new CommandResult(true, donatorUser));
+                    return await Task.FromResult(new CommandResult(donatorUser));
                 }
                 catch (Exception exception)
                 {
@@ -92,8 +92,9 @@ namespace SocialHeroes.Domain.Handlers
                 return Task.FromResult(null as CommandResult);
             }
 
-            return Task.FromResult(new CommandResult(true,
-                                                     _tokenService.CreateToken(user, UserName(user), 2)));
+            var roles = _userManager.GetRolesAsync(user).Result;
+
+            return Task.FromResult(new CommandResult(_tokenService.CreateToken(user, roles, UserName(user))));
         }
 
         private string UserName(User user)
@@ -105,7 +106,7 @@ namespace SocialHeroes.Domain.Handlers
                 case EUserType.Hospital:
                     return "";
                 case EUserType.Admin:
-                    return "";
+                    return user.UserName;
                 default:
                     return "";
             }

@@ -95,6 +95,7 @@ namespace SocialHeroes.WebApi
             new IdentityInitializerConfiguration(context, userManager, roleManager)
                 .Initialize();
 
+            app.UseAuthentication();
             app.UseMvc();
             app.UseCors(c =>
             {
@@ -103,8 +104,7 @@ namespace SocialHeroes.WebApi
                 c.AllowAnyOrigin();
             });
 
-            app.UseStaticFiles();
-            app.UseAuthentication();
+            app.UseStaticFiles();            
             app.UseResponseCompression();
             app.UseSwagger();
             app.UseSwaggerUI(s =>

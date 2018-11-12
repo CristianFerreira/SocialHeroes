@@ -30,19 +30,6 @@ namespace SocialHeroes.WebApi.Controllers
             _donatorUserRepository = donatorUserRepository;
             bus = mediator;
         }
-
-        //[HttpGet]
-        //[Route("account/{userType}")]
-        //[Authorize("Bearer")]
-        //public async Task<IActionResult> GetByUserType(string userType)
-        //{
-        //    EUserType userTypeEnum = (EUserType)Enum.Parse(typeof(EUserType), userType, true);
-        //    //new CommandResult(true, _userRepository.GetByUserType(userTypeEnum))
-
-        //    return Response(new CommandResult(true, _context.GetAllUser()));
-        //}
-
-
      
         [HttpPost]
         [Route("account/register/donator")]
