@@ -2,6 +2,6 @@
 {
     public interface ICommandResult
     {
-        IEntity Data { get; set; }
+        object Data { get; set; }
     }
 }

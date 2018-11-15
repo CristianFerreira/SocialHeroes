@@ -1,9 +1,8 @@
-﻿using SocialHeroes.Domain.Core.Interfaces;
-using System;
+﻿using System;
 
 namespace SocialHeroes.Domain.ResponseModels
 {
-    public class TokenResponse : IEntity
+    public class TokenResponse 
     {
         public TokenResponse(UserResponse user,
                              string accessToken,
@@ -11,14 +10,12 @@ namespace SocialHeroes.Domain.ResponseModels
                              DateTime created,
                              DateTime expiration)
         {
-            Id = Guid.NewGuid();
             User = user;
             AccessToken = accessToken;
             Authenticated = authenticated;
             Created = created;
             Expiration = expiration;
         }
-        public Guid Id { get; }
         public UserResponse User { get; }
         public string AccessToken { get; }
         public bool Authenticated { get; }

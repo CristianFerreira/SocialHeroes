@@ -30,22 +30,21 @@ namespace SocialHeroes.WebApi.Controllers
             _donatorUserRepository = donatorUserRepository;
             bus = mediator;
         }
-     
+
         [HttpPost]
         [Route("account/register/donator")]
         [AllowAnonymous]
-        public async Task<IActionResult> Register([FromBody]RegisterNewDonatorAccountCommand command)
-        {
-            return Response(bus.SendCommand(command).Result);
-        }
+        public IActionResult Register([FromBody]RegisterNewDonatorAccountCommand command) => Response(bus.SendCommand(command).Result);
 
-        
+        [HttpPost]
+        [Route("account/register/hospital")]
+        [AllowAnonymous]
+        public IActionResult Register([FromBody]RegisterNewHospitalAccountCommand command) => Response(bus.SendCommand(command).Result);
+
+
         [HttpPost]
         [Route("account/token")]
         [AllowAnonymous]
-        public async Task<IActionResult> Token([FromBody]GetTokenAccountCommand command)
-        {
-            return Response(bus.SendCommand(command).Result);
-        }
+        public IActionResult Token([FromBody]GetTokenAccountCommand command) => Response(bus.SendCommand(command).Result);
     }
 }

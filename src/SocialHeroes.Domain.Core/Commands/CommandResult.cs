@@ -4,10 +4,10 @@ namespace SocialHeroes.Domain.Core.Commands
 {
     public class CommandResult : ICommandResult
     {
-        public CommandResult(IEntity data)
+        public CommandResult(object data)
         {
             Data = data;
         }
-        public IEntity Data { get; set; }
+        public object Data { get; set; }
     }
 }

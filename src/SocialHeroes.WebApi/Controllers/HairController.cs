@@ -28,7 +28,7 @@ namespace SocialHeroes.WebApi.Controllers
         }
 
 
-        [Authorize(Roles = "Admin")]
+        //[Authorize(Roles = "Admin")]
         [HttpPost]
         [Route("hairs")]
         public IActionResult Post([FromBody]RegisterNewHairCommand registerNewHairCommand)

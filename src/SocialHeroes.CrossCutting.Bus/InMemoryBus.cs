@@ -15,14 +15,10 @@ namespace SocialHeroes.Infra.CrossCutting.Bus
             _mediator = mediator;
         }
 
-        public async Task<CommandResult> SendCommand<T>(T command) where T : Command
-        {
-           return await _mediator.Send(command).ConfigureAwait(false);
-        }
+        public async Task<CommandResult> SendCommand<T>(T command) where T : Command 
+            => await _mediator.Send(command).ConfigureAwait(false);
 
-        public Task RaiseEvent<T>(T @event) where T : Event
-        {
-            return _mediator.Publish(@event);
-        }
+        public Task RaiseEvent<T>(T @event) where T : Event 
+            => _mediator.Publish(@event);
     }
 }

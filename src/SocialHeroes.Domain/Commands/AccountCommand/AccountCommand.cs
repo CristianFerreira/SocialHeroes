@@ -1,6 +1,4 @@
 ﻿using SocialHeroes.Domain.Core.Commands;
-using SocialHeroes.Domain.Enums;
-using System;
 
 namespace SocialHeroes.Domain.Commands.AccountCommand
 {
