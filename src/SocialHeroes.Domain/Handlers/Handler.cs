@@ -1,8 +1,11 @@
 ﻿using MediatR;
 using Microsoft.EntityFrameworkCore.Storage;
 using SocialHeroes.Domain.Core.Bus;
+using SocialHeroes.Domain.Core.Commands;
+using SocialHeroes.Domain.Core.Interfaces;
 using SocialHeroes.Domain.Core.Notifications;
 using SocialHeroes.Domain.Interfaces;
+using System.Threading.Tasks;
 
 namespace SocialHeroes.Domain.Handlers
 {
@@ -40,5 +43,9 @@ namespace SocialHeroes.Domain.Handlers
 
         public void RollBack(IDbContextTransaction transaction)
             => _uow.Rollback(transaction);
+
+        protected async Task<ICommandResult> Result(IEntity data)
+            => await Task.FromResult(new CommandResult(data));
+        
     }
 }

@@ -6,11 +6,12 @@ using SocialHeroes.Domain.Core.Notifications;
 using System.Threading;
 using System.Threading.Tasks;
 using FluentValidation.Results;
+using SocialHeroes.Domain.Core.Interfaces;
 
 namespace SocialHeroes.Domain.Validations
 {
     public class FailFastValidation<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
-        where TRequest : Command where TResponse : CommandResult
+        where TRequest : Command where TResponse : ICommandResult
     {
         private readonly IValidator _validators;
         private readonly IMediatorHandler _bus;
@@ -26,19 +27,18 @@ namespace SocialHeroes.Domain.Validations
         public Task<TResponse> Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate<TResponse> next)
         {
             var validatorResult = _validators.Validate(request);
-            return !validatorResult.IsValid
-                ? NotifyValidationErrors(validatorResult, request)
-                : next();
+            if (validatorResult.IsValid)
+                return next();
+
+            NotifyValidationErrors(validatorResult, request);
+            return null;
         }
 
-
-        private Task<TResponse> NotifyValidationErrors(ValidationResult result, TRequest request)
+        private void NotifyValidationErrors(ValidationResult result, TRequest request)
         {
             foreach (var error in result.Errors)
-            {
                 _bus.RaiseEvent(new DomainNotification(request.MessageType, error.ErrorMessage));
-            }
-            return Task.FromResult(null as TResponse);
+            
         }
 
     }

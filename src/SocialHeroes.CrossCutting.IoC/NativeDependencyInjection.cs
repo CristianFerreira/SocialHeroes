@@ -8,6 +8,7 @@ using SocialHeroes.Domain.Commands.HairCommand;
 using SocialHeroes.Domain.Configurations;
 using SocialHeroes.Domain.Core.Bus;
 using SocialHeroes.Domain.Core.Commands;
+using SocialHeroes.Domain.Core.Interfaces;
 using SocialHeroes.Domain.Core.Notifications;
 using SocialHeroes.Domain.Handlers;
 using SocialHeroes.Domain.Interfaces;
@@ -35,10 +36,10 @@ namespace SocialHeroes.CrossCutting.IoC
 
             // Domain - Commands
             services.AddScoped(typeof(IPipelineBehavior<,>), typeof(FailFastValidation<,>));
-            services.AddScoped<IRequestHandler<RegisterNewHairCommand, CommandResult>, HairHandler>();
+            services.AddScoped<IRequestHandler<RegisterNewHairCommand, ICommandResult>, HairHandler>();
             //account
-            services.AddScoped<IRequestHandler<GetTokenAccountCommand, CommandResult>, AccountHandler>();
-            services.AddScoped<IRequestHandler<RegisterNewDonatorAccountCommand, CommandResult>, AccountHandler>();
+            services.AddScoped<IRequestHandler<GetTokenAccountCommand, ICommandResult>, AccountHandler>();
+            services.AddScoped<IRequestHandler<RegisterNewDonatorAccountCommand, ICommandResult>, AccountHandler>();
             
 
             services.AddTransient<ITokenService, TokenService>();

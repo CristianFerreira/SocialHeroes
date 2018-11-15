@@ -1,6 +1,7 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using SocialHeroes.Domain.Core.Commands;
+using SocialHeroes.Domain.Core.Interfaces;
 using SocialHeroes.Domain.Core.Notifications;
 using System.Linq;
 
@@ -14,12 +15,9 @@ namespace SocialHeroes.WebApi.Controllers
             _notifications = (DomainNotificationHandler)notifications;
         }
 
-        protected bool IsValidOperation()
-        {
-            return (!_notifications.HasNotifications());
-        }
+        protected bool IsValidOperation() => (!_notifications.HasNotifications());
 
-        protected new IActionResult Response(CommandResult result)
+        protected new IActionResult Response(ICommandResult result)
         {
             if (IsValidOperation())
             {

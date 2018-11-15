@@ -2,6 +2,7 @@
 using SocialHeroes.Domain.Core.Bus;
 using SocialHeroes.Domain.Core.Commands;
 using SocialHeroes.Domain.Core.Events;
+using SocialHeroes.Domain.Core.Interfaces;
 using System.Threading.Tasks;
 
 namespace SocialHeroes.Infra.CrossCutting.Bus
@@ -15,7 +16,7 @@ namespace SocialHeroes.Infra.CrossCutting.Bus
             _mediator = mediator;
         }
 
-        public async Task<CommandResult> SendCommand<T>(T command) where T : Command 
+        public async Task<ICommandResult> SendCommand<T>(T command) where T : Command 
             => await _mediator.Send(command).ConfigureAwait(false);
 
         public Task RaiseEvent<T>(T @event) where T : Event 

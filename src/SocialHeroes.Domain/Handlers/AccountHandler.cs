@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Identity;
 using SocialHeroes.Domain.Commands.AccountCommand;
 using SocialHeroes.Domain.Core.Bus;
-using SocialHeroes.Domain.Core.Commands;
+using SocialHeroes.Domain.Core.Interfaces;
 using SocialHeroes.Domain.Core.Notifications;
 using SocialHeroes.Domain.Enums;
 using SocialHeroes.Domain.Interfaces;
@@ -15,8 +15,8 @@ using System.Threading.Tasks;
 namespace SocialHeroes.Domain.Handlers
 {
     public class AccountHandler : Handler,
-        IRequestHandler<RegisterNewDonatorAccountCommand, CommandResult>,
-        IRequestHandler<GetTokenAccountCommand, CommandResult>
+        IRequestHandler<RegisterNewDonatorAccountCommand, ICommandResult>,
+        IRequestHandler<GetTokenAccountCommand, ICommandResult>
     {
         private readonly IMediatorHandler _bus;
         private readonly ITokenService _tokenService;
@@ -40,7 +40,7 @@ namespace SocialHeroes.Domain.Handlers
             _signInManager = signInManager;
         }
 
-        public async Task<CommandResult> Handle(RegisterNewDonatorAccountCommand command, CancellationToken cancellationToken)
+        public async Task<ICommandResult> Handle(RegisterNewDonatorAccountCommand command, CancellationToken cancellationToken)
         {
             using (var transaction = _uow.BeginTransaction())
             {
@@ -60,7 +60,7 @@ namespace SocialHeroes.Domain.Handlers
 
 
                     Commit(transaction);
-                    return await Task.FromResult(new CommandResult(donatorUser));
+                    return await Result(donatorUser);
                 }
                 catch (Exception exception)
                 {
@@ -70,7 +70,7 @@ namespace SocialHeroes.Domain.Handlers
             }
         }
 
-        public Task<CommandResult> Handle(GetTokenAccountCommand command, CancellationToken cancellationToken)
+        public Task<ICommandResult> Handle(GetTokenAccountCommand command, CancellationToken cancellationToken)
         {
             var user = _userManager.FindByNameAsync(command.Email).Result;
 
@@ -78,7 +78,7 @@ namespace SocialHeroes.Domain.Handlers
             {
                 _bus.RaiseEvent(new DomainNotification(command.MessageType,
                                                        "O usuário informado não está cadastrado."));
-                return Task.FromResult(null as CommandResult);
+                return Result(null);
             }
 
             var resultSignIn = _signInManager
@@ -89,12 +89,12 @@ namespace SocialHeroes.Domain.Handlers
             {
                 _bus.RaiseEvent(new DomainNotification(command.MessageType,
                                                       "Senha inválida."));
-                return Task.FromResult(null as CommandResult);
+                return Result(null);
             }
 
             var roles = _userManager.GetRolesAsync(user).Result;
 
-            return Task.FromResult(new CommandResult(_tokenService.CreateToken(user, roles, UserName(user))));
+            return Result((_tokenService.CreateToken(user, roles, UserName(user))));
         }
 
         private string UserName(User user)

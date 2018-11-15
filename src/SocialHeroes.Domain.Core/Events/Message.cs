@@ -1,9 +1,9 @@
 ﻿using MediatR;
-using SocialHeroes.Domain.Core.Commands;
+using SocialHeroes.Domain.Core.Interfaces;
 
 namespace SocialHeroes.Domain.Core.Events
 {
-    public abstract class Message : IRequest<CommandResult>
+    public abstract class Message : IRequest<ICommandResult>
     {
         public string MessageType { get; protected set; }
 
