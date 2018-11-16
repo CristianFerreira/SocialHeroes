@@ -58,9 +58,8 @@ namespace SocialHeroes.Domain.Handlers
 
                     _donatorUserRepository.Add(donatorUser);
 
-
                     Commit(transaction);
-                    return await Result(donatorUser);
+                    return await CompletedTask(donatorUser);
                 }
                 catch (Exception exception)
                 {
@@ -75,26 +74,21 @@ namespace SocialHeroes.Domain.Handlers
             var user = _userManager.FindByNameAsync(command.Email).Result;
 
             if (user == null)
-            {
-                _bus.RaiseEvent(new DomainNotification(command.MessageType,
-                                                       "O usuário informado não está cadastrado."));
-                return Result(null);
-            }
+                return CanceledTask(_bus.RaiseEvent(new DomainNotification(command.MessageType,
+                                                                           "O usuário informado não está cadastrado.")));
 
             var resultSignIn = _signInManager
                             .CheckPasswordSignInAsync(user, command.Password, false)
                             .Result.Succeeded;
 
             if (!resultSignIn)
-            {
-                _bus.RaiseEvent(new DomainNotification(command.MessageType,
-                                                      "Senha inválida."));
-                return Result(null);
-            }
+                return CanceledTask(_bus.RaiseEvent(new DomainNotification(command.MessageType,
+                                                                           "Senha inválida.")));
 
             var roles = _userManager.GetRolesAsync(user).Result;
-
-            return Result((_tokenService.CreateToken(user, roles, UserName(user))));
+            return CompletedTask((_tokenService.CreateToken(user, 
+                                                            roles, 
+                                                            UserName(user))));
         }
 
         private string UserName(User user)

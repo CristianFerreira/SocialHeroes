@@ -19,7 +19,7 @@ namespace SocialHeroes.Infra.CrossCutting.Bus
         public async Task<ICommandResult> SendCommand<T>(T command) where T : Command 
             => await _mediator.Send(command).ConfigureAwait(false);
 
-        public Task RaiseEvent<T>(T @event) where T : Event 
-            => _mediator.Publish(@event);
+        public async Task RaiseEvent<T>(T @event) where T : Event 
+            =>  await _mediator.Publish(@event);
     }
 }

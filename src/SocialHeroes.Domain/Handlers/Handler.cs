@@ -2,9 +2,11 @@
 using Microsoft.EntityFrameworkCore.Storage;
 using SocialHeroes.Domain.Core.Bus;
 using SocialHeroes.Domain.Core.Commands;
+using SocialHeroes.Domain.Core.Events;
 using SocialHeroes.Domain.Core.Interfaces;
 using SocialHeroes.Domain.Core.Notifications;
 using SocialHeroes.Domain.Interfaces;
+using System;
 using System.Threading.Tasks;
 
 namespace SocialHeroes.Domain.Handlers
@@ -22,7 +24,7 @@ namespace SocialHeroes.Domain.Handlers
             _bus = bus;
         }     
 
-        public bool Commit()
+        protected bool Commit()
         {
             if (_notifications.HasNotifications()) return false;
             if (_uow.Commit()) return true;
@@ -31,7 +33,7 @@ namespace SocialHeroes.Domain.Handlers
             return false;
         }
 
-        public bool Commit(IDbContextTransaction transaction)
+        protected bool Commit(IDbContextTransaction transaction)
         {
             if (_notifications.HasNotifications()) return false;
             if (_uow.Commit(transaction)) return true;
@@ -41,11 +43,14 @@ namespace SocialHeroes.Domain.Handlers
             return false;
         }
 
-        public void RollBack(IDbContextTransaction transaction)
+        protected void RollBack(IDbContextTransaction transaction)
             => _uow.Rollback(transaction);
 
-        protected async Task<ICommandResult> Result(IEntity data)
+        protected async Task<ICommandResult> CompletedTask(IEntity data)
             => await Task.FromResult(new CommandResult(data));
-        
+
+        protected Task<ICommandResult> CanceledTask(Task task)
+            => Task.FromResult(null as ICommandResult);
+
     }
 }

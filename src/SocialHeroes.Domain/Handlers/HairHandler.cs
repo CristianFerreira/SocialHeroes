@@ -33,7 +33,7 @@ namespace SocialHeroes.Domain.Handlers
             var hair = new Hair(Guid.NewGuid(), request.Color);
             _hairRepository.Add(hair);
             Commit();
-            return Result(hair);
+            return CompletedTask(hair);
         }
 
         public void Dispose()
