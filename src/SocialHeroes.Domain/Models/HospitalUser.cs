@@ -24,6 +24,7 @@ namespace SocialHeroes.Domain.Models
         public string CNPJ { get; private set; }
         public bool Actived { get; private set; }
 
+        [JsonIgnore]
         public User User { get; private set; }
         public Guid UserId { get; private set; }
 

@@ -11,10 +11,7 @@ namespace SocialHeroes.Infra.CrossCutting.Bus
     {
         private readonly IMediator _mediator;
 
-        public InMemoryBus(IMediator mediator)
-        {
-            _mediator = mediator;
-        }
+        public InMemoryBus(IMediator mediator) => _mediator = mediator; 
 
         public async Task<ICommandResult> SendCommand<T>(T command) where T : Command 
             => await _mediator.Send(command).ConfigureAwait(false);

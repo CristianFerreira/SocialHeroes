@@ -3,7 +3,7 @@ using SocialHeroes.Domain.Commands.AccountCommand;
 
 namespace SocialHeroes.Domain.Validations.AccountValidation
 {
-    public class AccountValidation<T> : AbstractValidator<T> where T : AccountCommand
+    public class UserAccountValidation<T> : AbstractValidator<T> where T : AccountCommand
     {
         protected void ValidateEmail()
         {

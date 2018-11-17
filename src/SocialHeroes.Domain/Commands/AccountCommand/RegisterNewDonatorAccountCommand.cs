@@ -17,7 +17,7 @@ namespace SocialHeroes.Domain.Commands.AccountCommand
             DateBirth = dateBirth;
             Genre = genre;
             LastDonation = lastDonation;
-            Email = email;
+            Email = email;          
             Password = password;
             ConfirmPassword = confirmPassword;
         }

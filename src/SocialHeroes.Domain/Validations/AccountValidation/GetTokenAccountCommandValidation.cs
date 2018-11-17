@@ -2,7 +2,7 @@
 
 namespace SocialHeroes.Domain.Validations.AccountValidation
 {
-    public class GetTokenAccountCommandValidation : AccountValidation<GetTokenAccountCommand>
+    public class GetTokenAccountCommandValidation : UserAccountValidation<GetTokenAccountCommand>
     {
         public GetTokenAccountCommandValidation()
         {

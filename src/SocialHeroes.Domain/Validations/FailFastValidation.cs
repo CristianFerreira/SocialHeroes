@@ -29,6 +29,7 @@ namespace SocialHeroes.Domain.Validations
             if (validatorResult.IsValid)
                 return next();
 
+
        
             NotifyValidationErrors(validatorResult, request);
             return Task.FromResult(null as TResponse);

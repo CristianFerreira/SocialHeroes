@@ -1,16 +1,10 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using SocialHeroes.Domain.Commands.AccountCommand;
 using SocialHeroes.Domain.Core.Bus;
-using SocialHeroes.Domain.Core.Commands;
 using SocialHeroes.Domain.Core.Notifications;
-using SocialHeroes.Domain.Enums;
 using SocialHeroes.Domain.Interfaces;
-using SocialHeroes.Domain.Models;
-using System;
-using System.Threading.Tasks;
 
 namespace SocialHeroes.WebApi.Controllers
 {
@@ -32,15 +26,14 @@ namespace SocialHeroes.WebApi.Controllers
         }
 
         [HttpPost]
-        [Route("account/register/donator")]
+        [Route("account/donator")]
         [AllowAnonymous]
         public IActionResult Register([FromBody]RegisterNewDonatorAccountCommand command) => Response(bus.SendCommand(command).Result);
 
         [HttpPost]
-        [Route("account/register/hospital")]
+        [Route("account/hospital")]
         [AllowAnonymous]
         public IActionResult Register([FromBody]RegisterNewHospitalAccountCommand command) => Response(bus.SendCommand(command).Result);
-
 
         [HttpPost]
         [Route("account/token")]

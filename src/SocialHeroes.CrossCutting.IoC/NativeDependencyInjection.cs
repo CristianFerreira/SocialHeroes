@@ -36,18 +36,24 @@ namespace SocialHeroes.CrossCutting.IoC
 
             // Domain - Commands
             services.AddScoped(typeof(IPipelineBehavior<,>), typeof(FailFastValidation<,>));
+
+            //HANDLER 
+
+            //hair
             services.AddScoped<IRequestHandler<RegisterNewHairCommand, ICommandResult>, HairHandler>();
             //account
             services.AddScoped<IRequestHandler<GetTokenAccountCommand, ICommandResult>, AccountHandler>();
             services.AddScoped<IRequestHandler<RegisterNewDonatorAccountCommand, ICommandResult>, AccountHandler>();
-            
+            services.AddScoped<IRequestHandler<RegisterNewHospitalAccountCommand, ICommandResult>, AccountHandler>();
 
+            //Token
             services.AddTransient<ITokenService, TokenService>();
 
             // Infra - Data
             services.AddScoped<IHairRepository, HairRepository>();
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IDonatorUserRepository, DonatorUserRepository>();
+            services.AddScoped<IHospitalUserRepository, HospitalUserRepository>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<SocialHeroesContext>();
 

@@ -15,12 +15,14 @@ using System.Threading.Tasks;
 namespace SocialHeroes.Domain.Handlers
 {
     public class AccountHandler : Handler,
-        IRequestHandler<RegisterNewDonatorAccountCommand, ICommandResult>,
-        IRequestHandler<GetTokenAccountCommand, ICommandResult>
+                                  IRequestHandler<RegisterNewDonatorAccountCommand, ICommandResult>,
+                                  IRequestHandler<RegisterNewHospitalAccountCommand, ICommandResult>,
+                                  IRequestHandler<GetTokenAccountCommand, ICommandResult>
     {
         private readonly IMediatorHandler _bus;
         private readonly ITokenService _tokenService;
         private readonly IDonatorUserRepository _donatorUserRepository;
+        private readonly IHospitalUserRepository _hospitalUserRepository;
         private readonly UserManager<User> _userManager;
         private readonly SignInManager<User> _signInManager;
 
@@ -29,6 +31,7 @@ namespace SocialHeroes.Domain.Handlers
                               INotificationHandler<DomainNotification> notifications,
                               ITokenService tokenService,
                               IDonatorUserRepository donatorUserRepository,
+                              IHospitalUserRepository hospitalUserRepository,
                               UserManager<User> userManager,
                               SignInManager<User> signInManager)
                               : base(uow, bus, notifications)
@@ -36,11 +39,13 @@ namespace SocialHeroes.Domain.Handlers
             _bus = bus;
             _tokenService = tokenService;
             _donatorUserRepository = donatorUserRepository;
+            _hospitalUserRepository = hospitalUserRepository;
             _userManager = userManager;
             _signInManager = signInManager;
         }
 
-        public async Task<ICommandResult> Handle(RegisterNewDonatorAccountCommand command, CancellationToken cancellationToken)
+        public async Task<ICommandResult> Handle(RegisterNewDonatorAccountCommand command, 
+                                                 CancellationToken cancellationToken)
         {
             using (var transaction = _uow.BeginTransaction())
             {
@@ -69,7 +74,35 @@ namespace SocialHeroes.Domain.Handlers
             }
         }
 
-        public Task<ICommandResult> Handle(GetTokenAccountCommand command, CancellationToken cancellationToken)
+        public async Task<ICommandResult> Handle(RegisterNewHospitalAccountCommand command, 
+                                                 CancellationToken cancellationToken)
+        {
+            using (var transaction = _uow.BeginTransaction())
+            {
+                try
+                {
+                    var user = new User(Guid.NewGuid(), EUserType.Hospital, command.Email, true);
+                    await _userManager.CreateAsync(user, command.Password);
+                    var hospitalUser = new HospitalUser(Guid.NewGuid(),
+                                                        user,
+                                                        command.SocialReason,
+                                                        command.FantasyName,
+                                                        command.CNPJ);
+
+                    _hospitalUserRepository.Add(hospitalUser);
+                    Commit(transaction);
+                    return await CompletedTask(hospitalUser);
+                }
+                catch (Exception exception)
+                {
+                    RollBack(transaction);
+                    throw exception;
+                }
+            }
+        }
+
+        public Task<ICommandResult> Handle(GetTokenAccountCommand command, 
+                                           CancellationToken cancellationToken)
         {
             var user = _userManager.FindByNameAsync(command.Email).Result;
 
@@ -110,5 +143,7 @@ namespace SocialHeroes.Domain.Handlers
         {
             _donatorUserRepository.Dispose();
         }
+
+        
     }
 }
