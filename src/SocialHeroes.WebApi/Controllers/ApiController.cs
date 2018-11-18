@@ -17,14 +17,14 @@ namespace SocialHeroes.WebApi.Controllers
 
         protected bool IsValidOperation() => (!_notifications.HasNotifications());
 
-        protected new IActionResult Response(ICommandResult result)
+        protected new IActionResult Response(object result)
         {
             if (IsValidOperation())
             {
                 return Ok(new
                 {
                     success = true,
-                    data = result.Data
+                    data = (result as ICommandResult)?.Data ?? result
                 });
             }
 

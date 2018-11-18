@@ -5,7 +5,7 @@ namespace SocialHeroes.Domain.Models
 {
     public class Hair : IEntity
     {
-        private Hair() { }
+        public Hair() { }
         public Hair(Guid id, string color, string type)
         {
             Id = id;

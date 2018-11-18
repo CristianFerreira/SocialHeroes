@@ -18,7 +18,8 @@ namespace SocialHeroes.WebApi.Controllers
         public AccountController(IUserRepository userRepository, 
                                  IDonatorUserRepository donatorUserRepository,
                                  IMediatorHandler mediator,
-                                 INotificationHandler<DomainNotification> notifications) : base(notifications)
+                                 INotificationHandler<DomainNotification> notifications) 
+                                 : base(notifications)
         {
             _userRepository = userRepository;
             _donatorUserRepository = donatorUserRepository;
