@@ -11,11 +11,16 @@ namespace SocialHeroes.Infra.Data.Mappings
             builder.HasKey(u => u.Id);
 
             builder.Property(c => c.Color)
-                .HasColumnType("varchar(20)")
-                .HasMaxLength(20)
+                .HasColumnType("Varchar(50)")
                 .IsRequired();
 
-            builder.ToTable("Hairs");
+            builder.Property(c => c.Type)
+                .HasColumnType("Varchar(25)")
+                .IsRequired();
+
+            builder.ToTable("Hairs")
+                .HasIndex(c => new { c.Color, c.Type })
+                .IsUnique();
         }
     }
 }

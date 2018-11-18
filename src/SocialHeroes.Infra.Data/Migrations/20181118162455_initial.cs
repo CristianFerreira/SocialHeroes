@@ -12,8 +12,9 @@ namespace SocialHeroes.Infra.Data.Migrations
                 name: "Hairs",
                 columns: table => new
                 {
-                    Color = table.Column<string>(type: "varchar(20)", maxLength: 20, nullable: false),
-                    Id = table.Column<Guid>(nullable: false)
+                    Id = table.Column<Guid>(nullable: false),
+                    Color = table.Column<string>(type: "Varchar(50)", nullable: false),
+                    Type = table.Column<string>(type: "Varchar(25)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -91,7 +92,7 @@ namespace SocialHeroes.Infra.Data.Migrations
                     CellPhone = table.Column<string>(type: "varchar(14)", maxLength: 14, nullable: true),
                     Genre = table.Column<int>(nullable: false),
                     DateBirth = table.Column<DateTime>(nullable: false),
-                    LastDonation = table.Column<DateTime>(nullable: false),
+                    LastDonation = table.Column<DateTime>(nullable: true),
                     UserId = table.Column<Guid>(nullable: false)
                 },
                 constraints: table =>
@@ -216,6 +217,12 @@ namespace SocialHeroes.Infra.Data.Migrations
                 name: "IX_DonatorUsers_UserId",
                 table: "DonatorUsers",
                 column: "UserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Hairs_Color_Type",
+                table: "Hairs",
+                columns: new[] { "Color", "Type" },
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_HospitalUsers_UserId",

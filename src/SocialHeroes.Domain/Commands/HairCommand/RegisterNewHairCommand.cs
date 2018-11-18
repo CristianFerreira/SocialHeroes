@@ -2,9 +2,10 @@
 {
     public class RegisterNewHairCommand : HairCommand
     {
-        public RegisterNewHairCommand(string color)
+        public RegisterNewHairCommand(string color, string type)
         {
             Color = color;
+            Type = type;
         }
     }
 }

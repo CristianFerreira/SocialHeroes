@@ -28,9 +28,9 @@ namespace SocialHeroes.Domain.Handlers
             Bus = bus;
         }
 
-        public Task<ICommandResult> Handle(RegisterNewHairCommand request, CancellationToken cancellationToken)
+        public Task<ICommandResult> Handle(RegisterNewHairCommand command, CancellationToken cancellationToken)
         {
-            var hair = new Hair(Guid.NewGuid(), request.Color);
+            var hair = new Hair(Guid.NewGuid(), command.Color, command.Type);
             _hairRepository.Add(hair);
             Commit();
             return CompletedTask(hair);

@@ -7,7 +7,7 @@ namespace SocialHeroes.Domain.Models
 {
     public class DonatorUser : IEntity
     {
-        public DonatorUser() {}
+        private DonatorUser() {}
         public DonatorUser(Guid id,  
                           User user, 
                           string name, 

@@ -10,7 +10,7 @@ using SocialHeroes.Infra.Data.Context;
 namespace SocialHeroes.Infra.Data.Migrations
 {
     [DbContext(typeof(SocialHeroesContext))]
-    [Migration("20181028214407_initial")]
+    [Migration("20181118162455_initial")]
     partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -121,7 +121,7 @@ namespace SocialHeroes.Infra.Data.Migrations
 
                     b.Property<int>("Genre");
 
-                    b.Property<DateTime>("LastDonation");
+                    b.Property<DateTime?>("LastDonation");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -144,10 +144,16 @@ namespace SocialHeroes.Infra.Data.Migrations
 
                     b.Property<string>("Color")
                         .IsRequired()
-                        .HasColumnType("varchar(20)")
-                        .HasMaxLength(20);
+                        .HasColumnType("Varchar(50)");
+
+                    b.Property<string>("Type")
+                        .IsRequired()
+                        .HasColumnType("Varchar(25)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("Color", "Type")
+                        .IsUnique();
 
                     b.ToTable("Hairs");
                 });

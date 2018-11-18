@@ -3,13 +3,12 @@ using SocialHeroes.Domain.Core.Interfaces;
 using SocialHeroes.Domain.Enums;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SocialHeroes.Domain.Models
 {
     public class User : IdentityUser<Guid>, IEntity
     {
-        public User(){}
+        private User(){}
         public User(Guid id, EUserType userType, string email, bool emailConfirmed)
         {
             Id = id;

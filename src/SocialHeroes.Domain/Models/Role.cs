@@ -5,7 +5,7 @@ namespace SocialHeroes.Domain.Models
 {
     public class Role : IdentityRole<Guid>
     {
-        public Role(){}
+        private Role(){}
         public Role(string role)
         {
             Name = role;
