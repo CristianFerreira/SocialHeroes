@@ -24,8 +24,9 @@ namespace SocialHeroes.Infra.Data.Mappings
             builder.Property(u => u.UserType)
                 .IsRequired();
 
-            builder.HasMany(u => u.DonatorsUsers).WithOne(u => u.User);
-            builder.HasMany(u => u.HospitalsUsers).WithOne(u => u.User);
+            builder.HasOne(u => u.Address).WithOne(u => u.User);
+            builder.HasOne(u => u.HospitalUser).WithOne(u => u.User);
+            builder.HasOne(u => u.DonatorUser).WithOne(u => u.User);
 
             builder.ToTable("Users");
         }

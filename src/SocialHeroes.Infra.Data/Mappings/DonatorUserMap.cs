@@ -29,7 +29,19 @@ namespace SocialHeroes.Infra.Data.Mappings
                 .HasMaxLength(100)
                .IsRequired();
 
-            builder.HasOne(d => d.User).WithMany(d => d.DonatorsUsers);
+            builder.Property(d => d.ActivedBloodNotification)
+               .IsRequired();
+
+            builder.Property(d => d.ActivedHairNotification)
+               .IsRequired();
+
+            builder.Property(d => d.ActivedBreastMilkNotification)
+              .IsRequired();
+
+
+            builder.HasOne(d => d.Hair).WithMany(d => d.DonatorsUsers);
+            builder.HasOne(d => d.User).WithOne(d => d.DonatorUser);
+
             builder.ToTable("DonatorUsers");
         }
     }

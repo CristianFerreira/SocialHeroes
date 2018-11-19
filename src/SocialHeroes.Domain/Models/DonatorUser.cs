@@ -35,10 +35,18 @@ namespace SocialHeroes.Domain.Models
         public EGenre Genre { get; private set; }
         public DateTime DateBirth { get; private set; }
         public DateTime? LastDonation { get; private set; }
+        public bool ActivedBloodNotification { get; private set; }
+        public bool ActivedHairNotification { get; private set; }
+        public bool ActivedBreastMilkNotification { get; private set; }
+
 
         [JsonIgnore]
-        public User User { get; set; }
-
+        public User User { get; private set; }
         public Guid UserId { get; private set; }
+
+        [JsonIgnore]
+        public Hair Hair { get; private set; }
+        public Guid? HairId { get; private set; }
+
     }
 }

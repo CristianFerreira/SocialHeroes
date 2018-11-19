@@ -22,8 +22,10 @@ namespace SocialHeroes.Domain.Models
             LockoutEnabled = true;
         }
 
-        public EUserType UserType { get; set; }
-        public ICollection<DonatorUser> DonatorsUsers { get; set; }
-        public ICollection<HospitalUser> HospitalsUsers { get; set; }
+        public EUserType UserType { get; private set; }
+
+        public Address Address { get; private set; }
+        public DonatorUser DonatorUser { get; private set; }
+        public HospitalUser HospitalUser { get; private set; }
     }
 }

@@ -102,10 +102,71 @@ namespace SocialHeroes.Infra.Data.Migrations
                     b.ToTable("UserTokens");
                 });
 
+            modelBuilder.Entity("SocialHeroes.Domain.Models.Address", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("City")
+                        .IsRequired()
+                        .HasColumnType("varchar(100)")
+                        .HasMaxLength(100);
+
+                    b.Property<string>("Complement")
+                        .HasColumnType("varchar(100)")
+                        .HasMaxLength(100);
+
+                    b.Property<string>("Country")
+                        .IsRequired()
+                        .HasColumnType("varchar(100)")
+                        .HasMaxLength(100);
+
+                    b.Property<string>("District")
+                        .IsRequired()
+                        .HasColumnType("varchar(100)")
+                        .HasMaxLength(100);
+
+                    b.Property<decimal>("Latitude")
+                        .HasColumnType("decimal(18, 9)");
+
+                    b.Property<decimal>("Longitude")
+                        .HasColumnType("decimal(18, 9)");
+
+                    b.Property<string>("Number")
+                        .IsRequired()
+                        .HasColumnType("varchar(20)")
+                        .HasMaxLength(100);
+
+                    b.Property<string>("State")
+                        .IsRequired()
+                        .HasColumnType("varchar(100)")
+                        .HasMaxLength(100);
+
+                    b.Property<Guid>("UserId");
+
+                    b.Property<string>("ZipCode")
+                        .IsRequired()
+                        .HasColumnType("varchar(8)")
+                        .HasMaxLength(8);
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId")
+                        .IsUnique();
+
+                    b.ToTable("Adresses");
+                });
+
             modelBuilder.Entity("SocialHeroes.Domain.Models.DonatorUser", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd();
+
+                    b.Property<bool>("ActivedBloodNotification");
+
+                    b.Property<bool>("ActivedBreastMilkNotification");
+
+                    b.Property<bool>("ActivedHairNotification");
 
                     b.Property<string>("CPF")
                         .HasColumnType("varchar(11)")
@@ -119,6 +180,8 @@ namespace SocialHeroes.Infra.Data.Migrations
 
                     b.Property<int>("Genre");
 
+                    b.Property<Guid?>("HairId");
+
                     b.Property<DateTime?>("LastDonation");
 
                     b.Property<string>("Name")
@@ -130,7 +193,10 @@ namespace SocialHeroes.Infra.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("HairId");
+
+                    b.HasIndex("UserId")
+                        .IsUnique();
 
                     b.ToTable("DonatorUsers");
                 });
@@ -182,7 +248,8 @@ namespace SocialHeroes.Infra.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("UserId")
+                        .IsUnique();
 
                     b.ToTable("HospitalUsers");
                 });
@@ -311,19 +378,31 @@ namespace SocialHeroes.Infra.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("SocialHeroes.Domain.Models.DonatorUser", b =>
+            modelBuilder.Entity("SocialHeroes.Domain.Models.Address", b =>
                 {
                     b.HasOne("SocialHeroes.Domain.Models.User", "User")
+                        .WithOne("Address")
+                        .HasForeignKey("SocialHeroes.Domain.Models.Address", "UserId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("SocialHeroes.Domain.Models.DonatorUser", b =>
+                {
+                    b.HasOne("SocialHeroes.Domain.Models.Hair", "Hair")
                         .WithMany("DonatorsUsers")
-                        .HasForeignKey("UserId")
+                        .HasForeignKey("HairId");
+
+                    b.HasOne("SocialHeroes.Domain.Models.User", "User")
+                        .WithOne("DonatorUser")
+                        .HasForeignKey("SocialHeroes.Domain.Models.DonatorUser", "UserId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("SocialHeroes.Domain.Models.HospitalUser", b =>
                 {
                     b.HasOne("SocialHeroes.Domain.Models.User", "User")
-                        .WithMany("HospitalsUsers")
-                        .HasForeignKey("UserId")
+                        .WithOne("HospitalUser")
+                        .HasForeignKey("SocialHeroes.Domain.Models.HospitalUser", "UserId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618

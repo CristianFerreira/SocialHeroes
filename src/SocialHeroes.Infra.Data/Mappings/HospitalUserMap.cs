@@ -29,7 +29,7 @@ namespace SocialHeroes.Infra.Data.Mappings
                 .IsRequired();
 
 
-            builder.HasOne(h => h.User).WithMany(h => h.HospitalsUsers);
+            builder.HasOne(h => h.User).WithOne(h => h.HospitalUser);
             builder.ToTable("HospitalUsers");
         }
     }

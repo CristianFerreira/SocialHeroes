@@ -83,6 +83,33 @@ namespace SocialHeroes.Infra.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Adresses",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(nullable: false),
+                    UserId = table.Column<Guid>(nullable: false),
+                    Number = table.Column<string>(type: "varchar(20)", maxLength: 100, nullable: false),
+                    Complement = table.Column<string>(type: "varchar(100)", maxLength: 100, nullable: true),
+                    District = table.Column<string>(type: "varchar(100)", maxLength: 100, nullable: false),
+                    City = table.Column<string>(type: "varchar(100)", maxLength: 100, nullable: false),
+                    State = table.Column<string>(type: "varchar(100)", maxLength: 100, nullable: false),
+                    Country = table.Column<string>(type: "varchar(100)", maxLength: 100, nullable: false),
+                    ZipCode = table.Column<string>(type: "varchar(8)", maxLength: 8, nullable: false),
+                    Latitude = table.Column<decimal>(type: "decimal(18, 9)", nullable: false),
+                    Longitude = table.Column<decimal>(type: "decimal(18, 9)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Adresses", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Adresses_Users_UserId",
+                        column: x => x.UserId,
+                        principalTable: "Users",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "DonatorUsers",
                 columns: table => new
                 {
@@ -93,11 +120,21 @@ namespace SocialHeroes.Infra.Data.Migrations
                     Genre = table.Column<int>(nullable: false),
                     DateBirth = table.Column<DateTime>(nullable: false),
                     LastDonation = table.Column<DateTime>(nullable: true),
-                    UserId = table.Column<Guid>(nullable: false)
+                    ActivedBloodNotification = table.Column<bool>(nullable: false),
+                    ActivedHairNotification = table.Column<bool>(nullable: false),
+                    ActivedBreastMilkNotification = table.Column<bool>(nullable: false),
+                    UserId = table.Column<Guid>(nullable: false),
+                    HairId = table.Column<Guid>(nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_DonatorUsers", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_DonatorUsers_Hairs_HairId",
+                        column: x => x.HairId,
+                        principalTable: "Hairs",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_DonatorUsers_Users_UserId",
                         column: x => x.UserId,
@@ -214,9 +251,21 @@ namespace SocialHeroes.Infra.Data.Migrations
                 });
 
             migrationBuilder.CreateIndex(
+                name: "IX_Adresses_UserId",
+                table: "Adresses",
+                column: "UserId",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_DonatorUsers_HairId",
+                table: "DonatorUsers",
+                column: "HairId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_DonatorUsers_UserId",
                 table: "DonatorUsers",
-                column: "UserId");
+                column: "UserId",
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_Hairs_Color_Type",
@@ -227,7 +276,8 @@ namespace SocialHeroes.Infra.Data.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_HospitalUsers_UserId",
                 table: "HospitalUsers",
-                column: "UserId");
+                column: "UserId",
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_RoleClaims_RoleId",
@@ -272,10 +322,10 @@ namespace SocialHeroes.Infra.Data.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "DonatorUsers");
+                name: "Adresses");
 
             migrationBuilder.DropTable(
-                name: "Hairs");
+                name: "DonatorUsers");
 
             migrationBuilder.DropTable(
                 name: "HospitalUsers");
@@ -294,6 +344,9 @@ namespace SocialHeroes.Infra.Data.Migrations
 
             migrationBuilder.DropTable(
                 name: "UserTokens");
+
+            migrationBuilder.DropTable(
+                name: "Hairs");
 
             migrationBuilder.DropTable(
                 name: "Roles");

@@ -12,6 +12,7 @@ namespace SocialHeroes.Infra.Data.Context
         public DbSet<DonatorUser> DonatorUsers { get; set; }
         public DbSet<HospitalUser> HospitalUsers { get; set; }
         public DbSet<User> Users { get; set; }
+        public DbSet<Address> Addresses { get; set; }
 
         public SocialHeroesContext(DbContextOptions<SocialHeroesContext> options) : base(options) {}
 
