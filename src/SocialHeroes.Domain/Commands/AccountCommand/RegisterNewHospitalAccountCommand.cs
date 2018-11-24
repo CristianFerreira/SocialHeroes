@@ -7,7 +7,8 @@
                                                  string cnpj,
                                                  string email,
                                                  string password,
-                                                 string confirmPassword)
+                                                 string confirmPassword,
+                                                 AddressAccountCommand address)
         {
             SocialReason = socialReason;
             FantasyName = fantasyName;
@@ -15,6 +16,7 @@
             Email = email;
             Password = password;
             ConfirmPassword = confirmPassword;
+            Address = address;
         }   
     }
 }

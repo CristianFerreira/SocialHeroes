@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using SocialHeroes.Domain.Core.Interfaces;
 using SocialHeroes.Domain.Interfaces;
 using SocialHeroes.Infra.Data.Context;
 using System;

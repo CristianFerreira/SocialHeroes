@@ -42,7 +42,7 @@ namespace SocialHeroes.CrossCutting.IoC
             //hair
             services.AddScoped<IRequestHandler<RegisterNewHairCommand, ICommandResult>, HairHandler>();
             //account
-            services.AddScoped<IRequestHandler<GetTokenAccountCommand, ICommandResult>, AccountHandler>();
+            services.AddScoped<IRequestHandler<TokenAccountCommand, ICommandResult>, AccountHandler>();
             services.AddScoped<IRequestHandler<RegisterNewDonatorAccountCommand, ICommandResult>, AccountHandler>();
             services.AddScoped<IRequestHandler<RegisterNewHospitalAccountCommand, ICommandResult>, AccountHandler>();
 
@@ -54,6 +54,7 @@ namespace SocialHeroes.CrossCutting.IoC
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IDonatorUserRepository, DonatorUserRepository>();
             services.AddScoped<IHospitalUserRepository, HospitalUserRepository>();
+            services.AddScoped<IAddressRepository, AddressRepository>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<SocialHeroesContext>();
 

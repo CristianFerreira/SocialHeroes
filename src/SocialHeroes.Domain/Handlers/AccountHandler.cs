@@ -17,12 +17,13 @@ namespace SocialHeroes.Domain.Handlers
     public class AccountHandler : Handler,
                                   IRequestHandler<RegisterNewDonatorAccountCommand, ICommandResult>,
                                   IRequestHandler<RegisterNewHospitalAccountCommand, ICommandResult>,
-                                  IRequestHandler<GetTokenAccountCommand, ICommandResult>
+                                  IRequestHandler<TokenAccountCommand, ICommandResult>
     {
         private readonly IMediatorHandler _bus;
         private readonly ITokenService _tokenService;
         private readonly IDonatorUserRepository _donatorUserRepository;
         private readonly IHospitalUserRepository _hospitalUserRepository;
+        private readonly IAddressRepository _addressRepository;
         private readonly UserManager<User> _userManager;
         private readonly SignInManager<User> _signInManager;
 
@@ -32,6 +33,7 @@ namespace SocialHeroes.Domain.Handlers
                               ITokenService tokenService,
                               IDonatorUserRepository donatorUserRepository,
                               IHospitalUserRepository hospitalUserRepository,
+                              IAddressRepository addressRepository,
                               UserManager<User> userManager,
                               SignInManager<User> signInManager)
                               : base(uow, bus, notifications)
@@ -40,6 +42,7 @@ namespace SocialHeroes.Domain.Handlers
             _tokenService = tokenService;
             _donatorUserRepository = donatorUserRepository;
             _hospitalUserRepository = hospitalUserRepository;
+            _addressRepository = addressRepository;
             _userManager = userManager;
             _signInManager = signInManager;
         }
@@ -51,11 +54,11 @@ namespace SocialHeroes.Domain.Handlers
             {
                 try
                 {
-                    var user = new User(Guid.NewGuid(), EUserType.Donator, command.Email, true);
+                    var user = new User(Guid.NewGuid(), EUserType.Donator, command.Email);
                     await _userManager.CreateAsync(user, command.Password);
 
                     var donatorUser = new DonatorUser(Guid.NewGuid(),
-                                                      user,
+                                                      user.Id,
                                                       command.Name,
                                                       command.Genre,
                                                       command.DateBirth,
@@ -81,15 +84,29 @@ namespace SocialHeroes.Domain.Handlers
             {
                 try
                 {
-                    var user = new User(Guid.NewGuid(), EUserType.Hospital, command.Email, true);
+                    var user = new User(Guid.NewGuid(), EUserType.Hospital, command.Email);
                     await _userManager.CreateAsync(user, command.Password);
+
                     var hospitalUser = new HospitalUser(Guid.NewGuid(),
-                                                        user,
+                                                        user.Id,
                                                         command.SocialReason,
                                                         command.FantasyName,
                                                         command.CNPJ);
-
                     _hospitalUserRepository.Add(hospitalUser);
+
+                    var address = new Address(Guid.NewGuid(), 
+                                              user.Id, 
+                                              command.Address.Number, 
+                                              command.Address.Complement, 
+                                              command.Address.Street, 
+                                              command.Address.City, 
+                                              command.Address.State, 
+                                              command.Address.Country, 
+                                              command.Address.ZipCode, 
+                                              command.Address.Latitude, 
+                                              command.Address.Longitude);
+                    _addressRepository.Add(address);
+
                     Commit(transaction);
                     return await CompletedTask(hospitalUser);
                 }
@@ -101,7 +118,7 @@ namespace SocialHeroes.Domain.Handlers
             }
         }
 
-        public Task<ICommandResult> Handle(GetTokenAccountCommand command, 
+        public Task<ICommandResult> Handle(TokenAccountCommand command, 
                                            CancellationToken cancellationToken)
         {
             var user = _userManager.FindByNameAsync(command.Email).Result;

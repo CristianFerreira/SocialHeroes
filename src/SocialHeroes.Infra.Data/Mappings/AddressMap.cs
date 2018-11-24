@@ -24,19 +24,19 @@ namespace SocialHeroes.Infra.Data.Mappings
                 .HasMaxLength(100)
                 .IsRequired();
 
-            builder.Property(a => a.District)
+            builder.Property(a => a.Street)
                 .HasColumnType("varchar(100)")
                 .HasMaxLength(100)
                 .IsRequired();
 
             builder.Property(a => a.Number)
                 .HasColumnType("varchar(20)")
-                .HasMaxLength(100)
+                .HasMaxLength(20)
                 .IsRequired();
 
             builder.Property(a => a.ZipCode)
-                .HasColumnType("varchar(8)")
-                .HasMaxLength(8)
+                .HasColumnType("varchar(9)")
+                .HasMaxLength(9)
                 .IsRequired();
 
             builder.Property(a => a.State)

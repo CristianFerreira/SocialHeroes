@@ -121,11 +121,6 @@ namespace SocialHeroes.Infra.Data.Migrations
                         .HasColumnType("varchar(100)")
                         .HasMaxLength(100);
 
-                    b.Property<string>("District")
-                        .IsRequired()
-                        .HasColumnType("varchar(100)")
-                        .HasMaxLength(100);
-
                     b.Property<decimal>("Latitude")
                         .HasColumnType("decimal(18, 9)");
 
@@ -135,9 +130,14 @@ namespace SocialHeroes.Infra.Data.Migrations
                     b.Property<string>("Number")
                         .IsRequired()
                         .HasColumnType("varchar(20)")
-                        .HasMaxLength(100);
+                        .HasMaxLength(20);
 
                     b.Property<string>("State")
+                        .IsRequired()
+                        .HasColumnType("varchar(100)")
+                        .HasMaxLength(100);
+
+                    b.Property<string>("Street")
                         .IsRequired()
                         .HasColumnType("varchar(100)")
                         .HasMaxLength(100);
@@ -146,8 +146,8 @@ namespace SocialHeroes.Infra.Data.Migrations
 
                     b.Property<string>("ZipCode")
                         .IsRequired()
-                        .HasColumnType("varchar(8)")
-                        .HasMaxLength(8);
+                        .HasColumnType("varchar(9)")
+                        .HasMaxLength(9);
 
                     b.HasKey("Id");
 

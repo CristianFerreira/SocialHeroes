@@ -8,8 +8,8 @@ namespace SocialHeroes.Domain.Models
     public class DonatorUser : IEntity
     {
         private DonatorUser() {}
-        public DonatorUser(Guid id,  
-                          User user, 
+        public DonatorUser(Guid id,
+                          Guid userId, 
                           string name, 
                           EGenre genre, 
                           DateTime dateBirth,
@@ -18,8 +18,7 @@ namespace SocialHeroes.Domain.Models
                           string cellPhone = null)
         {
             Id = id;
-            UserId = user.Id;
-            User = user;
+            UserId = userId;
             Name = name;
             Genre = genre;
             DateBirth = dateBirth;

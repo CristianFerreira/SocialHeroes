@@ -10,7 +10,7 @@ namespace SocialHeroes.Domain.Models
                        Guid userId,
                        string number,
                        string complement,
-                       string district,
+                       string street,
                        string city,
                        string state,
                        string country,
@@ -22,7 +22,7 @@ namespace SocialHeroes.Domain.Models
             UserId = userId;
             Number = number;
             Complement = complement;
-            District = district;
+            Street = street;
             City = city;
             State = state;
             Country = country;
@@ -35,7 +35,7 @@ namespace SocialHeroes.Domain.Models
         public Guid UserId { get; set; }
         public string Number { get; set; }
         public string Complement { get; set; }
-        public string District { get; set; }
+        public string Street { get; set; }
         public string City { get; set; }
         public string State { get; set; }
         public string Country { get; set; }

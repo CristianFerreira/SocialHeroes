@@ -2,20 +2,19 @@
 using SocialHeroes.Domain.Core.Interfaces;
 using SocialHeroes.Domain.Enums;
 using System;
-using System.Collections.Generic;
 
 namespace SocialHeroes.Domain.Models
 {
     public class User : IdentityUser<Guid>, IEntity
     {
         private User(){}
-        public User(Guid id, EUserType userType, string email, bool emailConfirmed)
+        public User(Guid id, EUserType userType, string email)
         {
             Id = id;
             UserType = userType;
             Email = email;
             UserName = email;
-            EmailConfirmed = emailConfirmed;
+            EmailConfirmed = true;
             PhoneNumberConfirmed = false;
             TwoFactorEnabled = false;
             AccessFailedCount = 0;

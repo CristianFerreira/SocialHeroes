@@ -1,8 +1,8 @@
 ﻿namespace SocialHeroes.Domain.Commands.AccountCommand
 {
-    public class GetTokenAccountCommand : AccountCommand
+    public class TokenAccountCommand : AccountCommand
     {
-        public GetTokenAccountCommand(string email, string password)
+        public TokenAccountCommand(string email, string password)
         {
             Email = email;
             Password = password;

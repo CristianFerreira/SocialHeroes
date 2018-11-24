@@ -4,7 +4,7 @@ using System;
 
 namespace SocialHeroes.Domain.Validations.AccountValidation
 {
-    public class DonatorAccountValidation<T> : UserAccountValidation<T> where T : DonatorAccountCommand
+    public class DonatorAccountValidation<T> : AccountValidation<T> where T : DonatorAccountCommand
     {
         protected void ValidateName()
         {

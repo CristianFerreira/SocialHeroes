@@ -7,11 +7,10 @@ namespace SocialHeroes.Domain.Models
     public class HospitalUser : IEntity
     {
         private HospitalUser()  {}
-        public HospitalUser(Guid id, User user, string socialReason, string fantasyName, string cnpj)
+        public HospitalUser(Guid id, Guid userId, string socialReason, string fantasyName, string cnpj)
         {
             Id = id;
-            UserId = user.Id;
-            User = user;
+            UserId = userId;
             SocialReason = socialReason;
             FantasyName = fantasyName;
             CNPJ = cnpj;

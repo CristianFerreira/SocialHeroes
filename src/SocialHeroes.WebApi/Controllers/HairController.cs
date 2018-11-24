@@ -26,16 +26,19 @@ namespace SocialHeroes.WebApi.Controllers
 
         [HttpGet]
         [Route("hair/type")]
-        public IActionResult GetByTypes() => Response(_hairRepository.GetByType());
+        public IActionResult GetByTypes() 
+            => Response(_hairRepository.GetByType());
 
         [HttpGet]
         [Route("hair/color/{type}")]
-        public IActionResult GetColorByType(string type) => Response(_hairRepository.GetColorByType(type));
+        public IActionResult GetColorByType(string type) 
+            => Response(_hairRepository.GetColorByType(type));
 
         [Authorize(Roles = "Admin")]
         [HttpPost]
         [Route("hair")]
-        public IActionResult Post([FromBody]RegisterNewHairCommand registerNewHairCommand) => Response(Bus.SendCommand(registerNewHairCommand).Result);
+        public IActionResult Post([FromBody]RegisterNewHairCommand registerNewHairCommand) 
+            => Response(Bus.SendCommand(registerNewHairCommand).Result);
          
     }
 }

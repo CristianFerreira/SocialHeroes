@@ -32,7 +32,7 @@ namespace SocialHeroes.Infra.Data.Configurations
                 CreateRoles();
 
                 CreateUser(
-                    new User(Guid.NewGuid(), EUserType.Admin, "admin@admin.com.br", true),
+                    new User(Guid.NewGuid(), EUserType.Admin, "admin@admin.com.br"),
                     "admin123456",
                     RolesConfiguration.ROLE_API_ADMIN);
             }

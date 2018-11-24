@@ -1,8 +1,8 @@
 ﻿using SocialHeroes.Domain.Commands.AccountCommand;
 
-namespace SocialHeroes.Domain.Validations.AccountValidation
+namespace SocialHeroes.Domain.Validations.AccountValidation.Commands
 {
-    public class GetTokenAccountCommandValidation : UserAccountValidation<GetTokenAccountCommand>
+    public class GetTokenAccountCommandValidation : AccountValidation<TokenAccountCommand>
     {
         public GetTokenAccountCommandValidation()
         {
