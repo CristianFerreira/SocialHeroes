@@ -15,9 +15,6 @@ namespace SocialHeroes.Infra.Data.Mappings
                 .HasMaxLength(14)
                 .IsRequired();
 
-            builder.Property(h => h.Actived)
-                .IsRequired();
-
             builder.Property(h => h.FantasyName)
                 .HasColumnType("varchar(256)")
                 .HasMaxLength(256)

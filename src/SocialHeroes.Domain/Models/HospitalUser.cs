@@ -13,23 +13,20 @@ namespace SocialHeroes.Domain.Models
             UserId = userId;
             SocialReason = socialReason;
             FantasyName = fantasyName;
-            CNPJ = cnpj;
-            Actived = false;         
+            CNPJ = cnpj;        
         }
 
         public Guid Id { get; private set; }
         public string SocialReason { get; private set; }
         public string FantasyName { get; private set; }
         public string CNPJ { get; private set; }
-        public bool Actived { get; private set; }
 
         [JsonIgnore]
         public User User { get; private set; }
         public Guid UserId { get; private set; }
 
 
-        public void Activate() => Actived = true;
-        public void Disable() => Actived = false;
+        
 
     }
 }

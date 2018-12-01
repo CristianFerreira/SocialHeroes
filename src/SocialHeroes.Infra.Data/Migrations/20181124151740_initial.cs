@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace SocialHeroes.Infra.Data.Migrations
 {
-    public partial class Initial : Migration
+    public partial class initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -54,6 +54,7 @@ namespace SocialHeroes.Infra.Data.Migrations
                     LockoutEnd = table.Column<DateTimeOffset>(nullable: true),
                     LockoutEnabled = table.Column<bool>(nullable: false),
                     AccessFailedCount = table.Column<int>(nullable: false),
+                    UserStatus = table.Column<int>(nullable: false),
                     UserType = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
@@ -151,7 +152,6 @@ namespace SocialHeroes.Infra.Data.Migrations
                     SocialReason = table.Column<string>(type: "varchar(256)", maxLength: 256, nullable: false),
                     FantasyName = table.Column<string>(type: "varchar(256)", maxLength: 256, nullable: false),
                     CNPJ = table.Column<string>(type: "varchar(14)", maxLength: 14, nullable: false),
-                    Actived = table.Column<bool>(nullable: false),
                     UserId = table.Column<Guid>(nullable: false)
                 },
                 constraints: table =>

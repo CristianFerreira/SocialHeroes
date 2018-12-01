@@ -15,16 +15,23 @@ namespace SocialHeroes.Domain.Models
             Email = email;
             UserName = email;
             EmailConfirmed = true;
+            UserStatus = GetUserStatus();
             PhoneNumberConfirmed = false;
             TwoFactorEnabled = false;
             AccessFailedCount = 0;
             LockoutEnabled = true;
         }
-
+        public EUserStatus UserStatus { get; private set; }
         public EUserType UserType { get; private set; }
+
+        public void ActivateUser() => UserStatus = EUserStatus.Active;
+        public void InactivateUser() => UserStatus = EUserStatus.Inactive;
 
         public Address Address { get; private set; }
         public DonatorUser DonatorUser { get; private set; }
         public HospitalUser HospitalUser { get; private set; }
+
+        private EUserStatus GetUserStatus()
+            => UserType == EUserType.Donator ? EUserStatus.Active : EUserStatus.Pending;
     }
 }

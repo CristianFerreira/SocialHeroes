@@ -227,8 +227,6 @@ namespace SocialHeroes.Infra.Data.Migrations
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<bool>("Actived");
-
                     b.Property<string>("CNPJ")
                         .IsRequired()
                         .HasColumnType("varchar(14)")
@@ -317,6 +315,8 @@ namespace SocialHeroes.Infra.Data.Migrations
 
                     b.Property<string>("UserName")
                         .HasMaxLength(256);
+
+                    b.Property<int>("UserStatus");
 
                     b.Property<int>("UserType");
 
