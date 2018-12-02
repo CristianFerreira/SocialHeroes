@@ -5,6 +5,7 @@ using SocialHeroes.Domain.Core.Bus;
 using SocialHeroes.Domain.Core.Interfaces;
 using SocialHeroes.Domain.Core.Notifications;
 using SocialHeroes.Domain.Enums;
+using SocialHeroes.Domain.Events.AccountEvent;
 using SocialHeroes.Domain.Interfaces;
 using SocialHeroes.Domain.Models;
 using SocialHeroes.Domain.Services;
@@ -92,7 +93,10 @@ namespace SocialHeroes.Domain.Handlers
                                                         command.SocialReason,
                                                         command.FantasyName,
                                                         command.CNPJ);
+                                                         
                     _hospitalUserRepository.Add(hospitalUser);
+
+                    await _bus.RaiseEvent(new HospitalAccountRegisteredEvent());
 
                     var address = new Address(Guid.NewGuid(), 
                                               user.Id, 

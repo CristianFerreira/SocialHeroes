@@ -10,6 +10,8 @@ using SocialHeroes.Domain.Core.Bus;
 using SocialHeroes.Domain.Core.Commands;
 using SocialHeroes.Domain.Core.Interfaces;
 using SocialHeroes.Domain.Core.Notifications;
+using SocialHeroes.Domain.EventHandlers;
+using SocialHeroes.Domain.Events.AccountEvent;
 using SocialHeroes.Domain.Handlers;
 using SocialHeroes.Domain.Interfaces;
 using SocialHeroes.Domain.Services;
@@ -33,6 +35,7 @@ namespace SocialHeroes.CrossCutting.IoC
 
             // Domain - Events
             services.AddScoped<INotificationHandler<DomainNotification>, DomainNotificationHandler>();
+            services.AddScoped<INotificationHandler<HospitalAccountRegisteredEvent>, AccountEventHandler>();
 
             // Domain - Commands
             services.AddScoped(typeof(IPipelineBehavior<,>), typeof(FailFastValidation<,>));

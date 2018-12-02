@@ -25,7 +25,7 @@ namespace SocialHeroes.WebApi.Controllers
         }
 
         [HttpGet]
-        [Route("hair/type")]
+        [Route("hair/types")]
         public IActionResult GetByTypes() 
             => Response(_hairRepository.GetByType());
 

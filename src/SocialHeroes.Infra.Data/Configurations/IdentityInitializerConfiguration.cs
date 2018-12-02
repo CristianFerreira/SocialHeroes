@@ -173,7 +173,7 @@ namespace SocialHeroes.Infra.Data.Configurations
                     .CreateAsync(user, password).Result;
 
                 if (resultado.Succeeded &&
-                    !String.IsNullOrWhiteSpace(initialRole))
+                    !string.IsNullOrWhiteSpace(initialRole))
                 {
                     _userManager.AddToRoleAsync(user, initialRole).Wait();
                 }
