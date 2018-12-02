@@ -1,6 +1,7 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Identity;
 using SocialHeroes.Domain.Commands.AccountCommand;
+using SocialHeroes.Domain.Configurations;
 using SocialHeroes.Domain.Core.Bus;
 using SocialHeroes.Domain.Core.Interfaces;
 using SocialHeroes.Domain.Core.Notifications;
@@ -67,6 +68,9 @@ namespace SocialHeroes.Domain.Handlers
 
                     _donatorUserRepository.Add(donatorUser);
 
+                    await _userManager.AddToRoleAsync(user,
+                                                      RolesConfiguration.ROLE_DONATOR);
+
                     Commit(transaction);
                     return await CompletedTask(donatorUser);
                 }
@@ -96,7 +100,8 @@ namespace SocialHeroes.Domain.Handlers
                                                          
                     _hospitalUserRepository.Add(hospitalUser);
 
-                    await _bus.RaiseEvent(new HospitalAccountRegisteredEvent());
+                    await _userManager.AddToRoleAsync(user, 
+                                                      RolesConfiguration.ROLE_HOSPITAL);
 
                     var address = new Address(Guid.NewGuid(), 
                                               user.Id, 
@@ -110,8 +115,10 @@ namespace SocialHeroes.Domain.Handlers
                                               command.Address.Latitude, 
                                               command.Address.Longitude);
                     _addressRepository.Add(address);
+                    
+                    if(Commit(transaction))
+                        await _bus.RaiseEvent(new HospitalAccountRegisteredEvent());
 
-                    Commit(transaction);
                     return await CompletedTask(hospitalUser);
                 }
                 catch (Exception exception)

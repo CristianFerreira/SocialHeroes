@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using SocialHeroes.Domain.Configurations;
 using SocialHeroes.Domain.Enums;
 using SocialHeroes.Domain.Models;
 using SocialHeroes.Infra.Data.Context;
@@ -34,7 +35,7 @@ namespace SocialHeroes.Infra.Data.Configurations
                 CreateUser(
                     new User(Guid.NewGuid(), EUserType.Admin, "admin@admin.com.br"),
                     "admin123456",
-                    RolesConfiguration.ROLE_API_ADMIN);
+                    RolesConfiguration.ROLE_ADMIN);
             }
         }
 
@@ -132,36 +133,36 @@ namespace SocialHeroes.Infra.Data.Configurations
 
         private void CreateRoles()
         {
-            if (!_roleManager.RoleExistsAsync(RolesConfiguration.ROLE_API_ADMIN).Result)
+            if (!_roleManager.RoleExistsAsync(RolesConfiguration.ROLE_ADMIN).Result)
             {
                 var resultado = _roleManager.CreateAsync(
-                    new Role(RolesConfiguration.ROLE_API_ADMIN)).Result;
+                    new Role(RolesConfiguration.ROLE_ADMIN)).Result;
                 if (!resultado.Succeeded)
                 {
                     throw new Exception(
-                        $"Erro durante a criação da role {RolesConfiguration.ROLE_API_ADMIN}.");
+                        $"Erro durante a criação da role {RolesConfiguration.ROLE_ADMIN}.");
                 }
             }
 
-            if (!_roleManager.RoleExistsAsync(RolesConfiguration.ROLE_API_HOSPITAL).Result)
+            if (!_roleManager.RoleExistsAsync(RolesConfiguration.ROLE_HOSPITAL).Result)
             {
                 var resultado = _roleManager.CreateAsync(
-                    new Role(RolesConfiguration.ROLE_API_HOSPITAL)).Result;
+                    new Role(RolesConfiguration.ROLE_HOSPITAL)).Result;
                 if (!resultado.Succeeded)
                 {
                     throw new Exception(
-                        $"Erro durante a criação da role {RolesConfiguration.ROLE_API_HOSPITAL}.");
+                        $"Erro durante a criação da role {RolesConfiguration.ROLE_HOSPITAL}.");
                 }
             }
 
-            if (!_roleManager.RoleExistsAsync(RolesConfiguration.ROLE_API_DONATOR).Result)
+            if (!_roleManager.RoleExistsAsync(RolesConfiguration.ROLE_DONATOR).Result)
             {
                 var resultado = _roleManager.CreateAsync(
-                    new Role(RolesConfiguration.ROLE_API_DONATOR)).Result;
+                    new Role(RolesConfiguration.ROLE_DONATOR)).Result;
                 if (!resultado.Succeeded)
                 {
                     throw new Exception(
-                        $"Erro durante a criação da role {RolesConfiguration.ROLE_API_DONATOR}.");
+                        $"Erro durante a criação da role {RolesConfiguration.ROLE_DONATOR}.");
                 }
             }
         }
@@ -173,7 +174,7 @@ namespace SocialHeroes.Infra.Data.Configurations
                     .CreateAsync(user, password).Result;
 
                 if (resultado.Succeeded &&
-                    !string.IsNullOrWhiteSpace(initialRole))
+                    !String.IsNullOrWhiteSpace(initialRole))
                 {
                     _userManager.AddToRoleAsync(user, initialRole).Wait();
                 }

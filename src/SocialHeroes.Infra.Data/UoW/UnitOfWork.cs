@@ -25,13 +25,16 @@ namespace SocialHeroes.Infra.Data.UoW
 
         public bool Commit(IDbContextTransaction transaction)
         {
-            if (_context.SaveChanges() > 0)
+            try
             {
                 transaction.Commit();
                 return true;
             }
-            else
-                return false;
+            catch (System.Exception ex)
+            {
+                throw ex;
+            }
+            
         }
 
         public void Rollback(IDbContextTransaction transaction)

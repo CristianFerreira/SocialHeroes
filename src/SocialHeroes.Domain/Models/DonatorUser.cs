@@ -25,6 +25,9 @@ namespace SocialHeroes.Domain.Models
             LastDonation = lastDonation;
             CPF = cpf;
             CellPhone = cellPhone;
+            ActivedBloodNotification = true;
+            ActivedHairNotification = false;
+            ActivedBreastMilkNotification = true;
         }
 
         public Guid Id { get; private set; }

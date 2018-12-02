@@ -5,6 +5,7 @@ namespace SocialHeroes.Domain.Commands.AccountCommand
 {
     public class RegisterNewDonatorAccountCommand : DonatorAccountCommand
     {
+
         public RegisterNewDonatorAccountCommand(string name,
                                                 DateTime dateBirth,
                                                 EGenre genre,
@@ -17,7 +18,7 @@ namespace SocialHeroes.Domain.Commands.AccountCommand
             DateBirth = dateBirth;
             Genre = genre;
             LastDonation = lastDonation;
-            Email = email;          
+            Email = email;
             Password = password;
             ConfirmPassword = confirmPassword;
         }
