@@ -12,6 +12,7 @@ namespace SocialHeroes.Infra.Data.Configurations
             modelBuilder.ApplyConfiguration(new DonatorUserMap());
             modelBuilder.ApplyConfiguration(new HospitalUserMap());
             modelBuilder.ApplyConfiguration(new AddressMap());
+            modelBuilder.ApplyConfiguration(new BloodMap());
         }
     }
 }

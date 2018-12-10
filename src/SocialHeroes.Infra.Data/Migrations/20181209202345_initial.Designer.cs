@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SocialHeroes.Infra.Data.Context;
 
 namespace SocialHeroes.Infra.Data.Migrations
 {
     [DbContext(typeof(SocialHeroesContext))]
-    partial class SocialHeroesContextModelSnapshot : ModelSnapshot
+    [Migration("20181209202345_initial")]
+    partial class initial
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -157,23 +159,6 @@ namespace SocialHeroes.Infra.Data.Migrations
                     b.ToTable("Adresses");
                 });
 
-            modelBuilder.Entity("SocialHeroes.Domain.Models.Blood", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("Type")
-                        .IsRequired()
-                        .HasColumnType("Varchar(3)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("Type")
-                        .IsUnique();
-
-                    b.ToTable("Bloods");
-                });
-
             modelBuilder.Entity("SocialHeroes.Domain.Models.DonatorUser", b =>
                 {
                     b.Property<Guid>("Id")
@@ -184,8 +169,6 @@ namespace SocialHeroes.Infra.Data.Migrations
                     b.Property<bool>("ActivedBreastMilkNotification");
 
                     b.Property<bool>("ActivedHairNotification");
-
-                    b.Property<Guid?>("BloodId");
 
                     b.Property<string>("CPF")
                         .HasColumnType("varchar(11)")
@@ -211,8 +194,6 @@ namespace SocialHeroes.Infra.Data.Migrations
                     b.Property<Guid>("UserId");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("BloodId");
 
                     b.HasIndex("HairId");
 
@@ -409,10 +390,6 @@ namespace SocialHeroes.Infra.Data.Migrations
 
             modelBuilder.Entity("SocialHeroes.Domain.Models.DonatorUser", b =>
                 {
-                    b.HasOne("SocialHeroes.Domain.Models.Blood")
-                        .WithMany("DonatorsUsers")
-                        .HasForeignKey("BloodId");
-
                     b.HasOne("SocialHeroes.Domain.Models.Hair", "Hair")
                         .WithMany("DonatorsUsers")
                         .HasForeignKey("HairId");

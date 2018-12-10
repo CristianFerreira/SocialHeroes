@@ -11,6 +11,7 @@ using SocialHeroes.Domain.Interfaces;
 using SocialHeroes.Domain.Models;
 using SocialHeroes.Domain.Services;
 using System;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -57,7 +58,18 @@ namespace SocialHeroes.Domain.Handlers
                 try
                 {
                     var user = new User(Guid.NewGuid(), EUserType.Donator, command.Email);
-                    await _userManager.CreateAsync(user, command.Password);
+                    var result = await _userManager.CreateAsync(user, command.Password);
+
+                    if (!result.Succeeded)
+                        return await CanceledTask(_bus.RaiseEvent(new DomainNotification(command.MessageType,
+                                                                                         "E-mail já está cadastrado!")));
+
+                    result = await _userManager.AddToRoleAsync(user,
+                                                      RolesConfiguration.ROLE_DONATOR);
+
+                    if(!result.Succeeded)
+                        return await CanceledTask(_bus.RaiseEvent(new DomainNotification(command.MessageType,
+                                                                                         $"Ocorreu erro ao atribuir uma Role \n: {result.Errors.ToList()[0].Description}")));
 
                     var donatorUser = new DonatorUser(Guid.NewGuid(),
                                                       user.Id,
@@ -67,9 +79,6 @@ namespace SocialHeroes.Domain.Handlers
                                                       command.LastDonation);
 
                     _donatorUserRepository.Add(donatorUser);
-
-                    await _userManager.AddToRoleAsync(user,
-                                                      RolesConfiguration.ROLE_DONATOR);
 
                     Commit(transaction);
                     return await CompletedTask(donatorUser);
@@ -159,11 +168,9 @@ namespace SocialHeroes.Domain.Handlers
                 case EUserType.Donator:
                     return _donatorUserRepository.GetByUserId(user.Id).Name;
                 case EUserType.Hospital:
-                    return "";
-                case EUserType.Admin:
-                    return user.UserName;
+                    return _hospitalUserRepository.GetByUserId(user.Id).FantasyName;
                 default:
-                    return "";
+                    return user.UserName;
             }
         }
 

@@ -49,7 +49,10 @@ namespace SocialHeroes.Domain.Handlers
         protected async Task<ICommandResult> CompletedTask(IEntity data)
             => await Task.FromResult(new CommandResult(data));
 
-        protected Task<ICommandResult> CanceledTask(Task task)
+        protected Task<ICommandResult> CanceledTask(Task task) 
+            => Task.FromResult(null as ICommandResult);
+
+        protected Task<ICommandResult> CanceledTask()
             => Task.FromResult(null as ICommandResult);
 
     }

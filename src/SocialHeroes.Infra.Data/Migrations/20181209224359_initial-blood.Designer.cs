@@ -10,8 +10,8 @@ using SocialHeroes.Infra.Data.Context;
 namespace SocialHeroes.Infra.Data.Migrations
 {
     [DbContext(typeof(SocialHeroesContext))]
-    [Migration("20181201221851_initial")]
-    partial class initial
+    [Migration("20181209224359_initial-blood")]
+    partial class initialblood
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -159,6 +159,23 @@ namespace SocialHeroes.Infra.Data.Migrations
                     b.ToTable("Adresses");
                 });
 
+            modelBuilder.Entity("SocialHeroes.Domain.Models.Blood", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Type")
+                        .IsRequired()
+                        .HasColumnType("Varchar(3)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Type")
+                        .IsUnique();
+
+                    b.ToTable("Bloods");
+                });
+
             modelBuilder.Entity("SocialHeroes.Domain.Models.DonatorUser", b =>
                 {
                     b.Property<Guid>("Id")
@@ -169,6 +186,8 @@ namespace SocialHeroes.Infra.Data.Migrations
                     b.Property<bool>("ActivedBreastMilkNotification");
 
                     b.Property<bool>("ActivedHairNotification");
+
+                    b.Property<Guid?>("BloodId");
 
                     b.Property<string>("CPF")
                         .HasColumnType("varchar(11)")
@@ -194,6 +213,8 @@ namespace SocialHeroes.Infra.Data.Migrations
                     b.Property<Guid>("UserId");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("BloodId");
 
                     b.HasIndex("HairId");
 
@@ -390,6 +411,10 @@ namespace SocialHeroes.Infra.Data.Migrations
 
             modelBuilder.Entity("SocialHeroes.Domain.Models.DonatorUser", b =>
                 {
+                    b.HasOne("SocialHeroes.Domain.Models.Blood")
+                        .WithMany("DonatorsUsers")
+                        .HasForeignKey("BloodId");
+
                     b.HasOne("SocialHeroes.Domain.Models.Hair", "Hair")
                         .WithMany("DonatorsUsers")
                         .HasForeignKey("HairId");
