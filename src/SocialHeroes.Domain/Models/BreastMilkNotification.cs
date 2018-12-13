@@ -8,6 +8,6 @@ namespace SocialHeroes.Domain.Models
         public Guid Id { get; set; }
         public Guid NotificationId { get; set; }
         public int AmountBreastMilk { get; set; }
-
+        public bool Actived { get; set; }
     }
 }

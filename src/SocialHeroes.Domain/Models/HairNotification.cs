@@ -9,5 +9,6 @@ namespace SocialHeroes.Domain.Models
         public Guid NotificationId { get; set; }
         public Guid HairId { get; set; }
         public int AmountHair { get; set; }
+        public bool Actived { get; set; }
     }
 }
