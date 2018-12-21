@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using SocialHeroes.Domain.Core.Interfaces;
 
 namespace SocialHeroes.Domain.Models
@@ -10,5 +11,10 @@ namespace SocialHeroes.Domain.Models
         public Guid HairId { get; set; }
         public int AmountHair { get; set; }
         public bool Actived { get; set; }
+
+        public Notification Notification { get; set; }
+        public Hair Hair { get; set; }
+
+        public ICollection<DonatorUserHairNotification> DonatorUserHairNotifications { get; private set; }
     }
 }

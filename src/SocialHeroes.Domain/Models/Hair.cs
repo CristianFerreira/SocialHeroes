@@ -19,5 +19,6 @@ namespace SocialHeroes.Domain.Models
         public string Type { get; private set; }
 
         public ICollection<DonatorUser> DonatorsUsers { get; private set; }
+        public ICollection<HairNotification> HairNotifications { get; private set; }
     }
 }

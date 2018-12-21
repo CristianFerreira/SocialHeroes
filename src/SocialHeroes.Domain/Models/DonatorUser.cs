@@ -2,6 +2,7 @@
 using SocialHeroes.Domain.Core.Interfaces;
 using SocialHeroes.Domain.Enums;
 using System;
+using System.Collections.Generic;
 
 namespace SocialHeroes.Domain.Models
 {
@@ -50,5 +51,8 @@ namespace SocialHeroes.Domain.Models
         public Hair Hair { get; private set; }
         public Guid? HairId { get; private set; }
 
+        public ICollection<DonatorUserBloodNotification> DonatorUserBloodNotifications { get; private set; }
+        public ICollection<DonatorUserHairNotification> DonatorUserHairNotifications { get; private set; }
+        public ICollection<DonatorUserBreastMilkNotification> DonatorUserBreastMilkNotifications { get; private set; }
     }
 }

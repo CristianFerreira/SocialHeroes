@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using SocialHeroes.Domain.Core.Interfaces;
 using System;
+using System.Collections.Generic;
 
 namespace SocialHeroes.Domain.Models
 {
@@ -25,8 +26,10 @@ namespace SocialHeroes.Domain.Models
         public User User { get; private set; }
         public Guid UserId { get; private set; }
 
+        public Notification Notification { get; set; }
 
-        
+        public ICollection<Phone> Phones { get; private set; }
+
 
     }
 }

@@ -29,6 +29,7 @@ namespace SocialHeroes.Infra.Data.Configurations
         {
             if (_context.Database.EnsureCreated())
             {
+                CreateNotificationTypes(); 
                 CreateHairs();
                 CreateRoles();
 
@@ -37,6 +38,23 @@ namespace SocialHeroes.Infra.Data.Configurations
                     "admin123456",
                     RolesConfiguration.ROLE_ADMIN);
             }
+        }
+
+        private void CreateNotificationTypes()
+        {
+            var notificationTypes = new List<NotificationType>
+            {
+                new NotificationType(Guid.NewGuid(), "Sangue", "Notificações de sangue"),
+                new NotificationType(Guid.NewGuid(), "Cabelo", "Notificações de cabelo"),
+                new NotificationType(Guid.NewGuid(), "Leite materno", "Notificações de leite materno")
+            };
+
+            foreach (var notificationType in notificationTypes)
+            {
+                _context.NotificationType.Add(notificationType);
+            }
+
+            _context.SaveChanges();
         }
 
         private void CreateHairs()

@@ -10,5 +10,8 @@ namespace SocialHeroes.Domain.Models
         public Guid BloodNotificationId { get; set; }
         public bool Appear { get; set; }
         public DateTime? DateAppeared { get; set; }
+
+        public BloodNotification BloodNotification { get; set; }
+        public DonatorUser DonatorUser { get; set; }
     }
 }

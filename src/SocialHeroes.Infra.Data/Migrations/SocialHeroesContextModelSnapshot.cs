@@ -35,7 +35,7 @@ namespace SocialHeroes.Infra.Data.Migrations
 
                     b.HasIndex("RoleId");
 
-                    b.ToTable("RoleClaims");
+                    b.ToTable("IdentityRoleClaim<Guid>");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<System.Guid>", b =>
@@ -54,7 +54,7 @@ namespace SocialHeroes.Infra.Data.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("UserClaims");
+                    b.ToTable("IdentityUserClaim<Guid>");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<System.Guid>", b =>
@@ -71,7 +71,7 @@ namespace SocialHeroes.Infra.Data.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("UserLogins");
+                    b.ToTable("IdentityUserLogin<Guid>");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<System.Guid>", b =>
@@ -84,7 +84,7 @@ namespace SocialHeroes.Infra.Data.Migrations
 
                     b.HasIndex("RoleId");
 
-                    b.ToTable("UserRoles");
+                    b.ToTable("IdentityUserRole<Guid>");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<System.Guid>", b =>
@@ -99,7 +99,7 @@ namespace SocialHeroes.Infra.Data.Migrations
 
                     b.HasKey("UserId", "LoginProvider", "Name");
 
-                    b.ToTable("UserTokens");
+                    b.ToTable("IdentityUserToken<Guid>");
                 });
 
             modelBuilder.Entity("SocialHeroes.Domain.Models.Address", b =>
@@ -154,7 +154,7 @@ namespace SocialHeroes.Infra.Data.Migrations
                     b.HasIndex("UserId")
                         .IsUnique();
 
-                    b.ToTable("Adresses");
+                    b.ToTable("Address");
                 });
 
             modelBuilder.Entity("SocialHeroes.Domain.Models.Blood", b =>
@@ -171,7 +171,47 @@ namespace SocialHeroes.Infra.Data.Migrations
                     b.HasIndex("Type")
                         .IsUnique();
 
-                    b.ToTable("Bloods");
+                    b.ToTable("Blood");
+                });
+
+            modelBuilder.Entity("SocialHeroes.Domain.Models.BloodNotification", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<bool>("Actived");
+
+                    b.Property<int>("AmountBlood");
+
+                    b.Property<Guid>("BloodId");
+
+                    b.Property<Guid>("NotificationId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("BloodId");
+
+                    b.HasIndex("NotificationId");
+
+                    b.ToTable("BloodNotification");
+                });
+
+            modelBuilder.Entity("SocialHeroes.Domain.Models.BreastMilkNotification", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<bool>("Actived");
+
+                    b.Property<int>("AmountBreastMilk");
+
+                    b.Property<Guid>("NotificationId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("NotificationId");
+
+                    b.ToTable("BreastMilkNotification");
                 });
 
             modelBuilder.Entity("SocialHeroes.Domain.Models.DonatorUser", b =>
@@ -219,7 +259,73 @@ namespace SocialHeroes.Infra.Data.Migrations
                     b.HasIndex("UserId")
                         .IsUnique();
 
-                    b.ToTable("DonatorUsers");
+                    b.ToTable("DonatorUser");
+                });
+
+            modelBuilder.Entity("SocialHeroes.Domain.Models.DonatorUserBloodNotification", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<bool>("Appear");
+
+                    b.Property<Guid>("BloodNotificationId");
+
+                    b.Property<DateTime?>("DateAppeared");
+
+                    b.Property<Guid>("DonatorUserId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("BloodNotificationId");
+
+                    b.HasIndex("DonatorUserId");
+
+                    b.ToTable("DonatorUserBloodNotification");
+                });
+
+            modelBuilder.Entity("SocialHeroes.Domain.Models.DonatorUserBreastMilkNotification", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<bool>("Appear");
+
+                    b.Property<Guid>("BreastMilkNotificationId");
+
+                    b.Property<DateTime?>("DateAppeared");
+
+                    b.Property<Guid>("DonatorUserId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("BreastMilkNotificationId");
+
+                    b.HasIndex("DonatorUserId");
+
+                    b.ToTable("DonatorUserBreastMilkNotification");
+                });
+
+            modelBuilder.Entity("SocialHeroes.Domain.Models.DonatorUserHairNotification", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<bool>("Appear");
+
+                    b.Property<DateTime?>("DateAppeared");
+
+                    b.Property<Guid>("DonatorUserId");
+
+                    b.Property<Guid>("HairNotificationId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("DonatorUserId");
+
+                    b.HasIndex("HairNotificationId");
+
+                    b.ToTable("DonatorUserHairNotification");
                 });
 
             modelBuilder.Entity("SocialHeroes.Domain.Models.Hair", b =>
@@ -240,7 +346,29 @@ namespace SocialHeroes.Infra.Data.Migrations
                     b.HasIndex("Color", "Type")
                         .IsUnique();
 
-                    b.ToTable("Hairs");
+                    b.ToTable("Hair");
+                });
+
+            modelBuilder.Entity("SocialHeroes.Domain.Models.HairNotification", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<bool>("Actived");
+
+                    b.Property<int>("AmountHair");
+
+                    b.Property<Guid>("HairId");
+
+                    b.Property<Guid>("NotificationId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("HairId");
+
+                    b.HasIndex("NotificationId");
+
+                    b.ToTable("HairNotification");
                 });
 
             modelBuilder.Entity("SocialHeroes.Domain.Models.HospitalUser", b =>
@@ -270,7 +398,58 @@ namespace SocialHeroes.Infra.Data.Migrations
                     b.HasIndex("UserId")
                         .IsUnique();
 
-                    b.ToTable("HospitalUsers");
+                    b.ToTable("HospitalUser");
+                });
+
+            modelBuilder.Entity("SocialHeroes.Domain.Models.Notification", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<DateTime>("DateNotification");
+
+                    b.Property<Guid>("HospitalUserId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("HospitalUserId")
+                        .IsUnique();
+
+                    b.ToTable("Notification");
+                });
+
+            modelBuilder.Entity("SocialHeroes.Domain.Models.NotificationType", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasMaxLength(50);
+
+                    b.Property<string>("Name");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("NotificationType");
+                });
+
+            modelBuilder.Entity("SocialHeroes.Domain.Models.Phone", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<Guid>("HospitalUserId");
+
+                    b.Property<string>("Number")
+                        .IsRequired()
+                        .HasMaxLength(15);
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("HospitalUserId");
+
+                    b.ToTable("Phone");
                 });
 
             modelBuilder.Entity("SocialHeroes.Domain.Models.Role", b =>
@@ -294,7 +473,7 @@ namespace SocialHeroes.Infra.Data.Migrations
                         .HasName("RoleNameIndex")
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
-                    b.ToTable("Roles");
+                    b.ToTable("Role");
                 });
 
             modelBuilder.Entity("SocialHeroes.Domain.Models.User", b =>
@@ -351,7 +530,27 @@ namespace SocialHeroes.Infra.Data.Migrations
                         .HasName("UserNameIndex")
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
-                    b.ToTable("Users");
+                    b.ToTable("User");
+                });
+
+            modelBuilder.Entity("SocialHeroes.Domain.Models.UserNotificationType", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<Guid?>("NotificationTypeId");
+
+                    b.Property<Guid>("TypeId");
+
+                    b.Property<Guid>("UserId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("NotificationTypeId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("UserNotificationType");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<System.Guid>", b =>
@@ -359,7 +558,7 @@ namespace SocialHeroes.Infra.Data.Migrations
                     b.HasOne("SocialHeroes.Domain.Models.Role")
                         .WithMany()
                         .HasForeignKey("RoleId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .OnDelete(DeleteBehavior.Restrict);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<System.Guid>", b =>
@@ -367,7 +566,7 @@ namespace SocialHeroes.Infra.Data.Migrations
                     b.HasOne("SocialHeroes.Domain.Models.User")
                         .WithMany()
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .OnDelete(DeleteBehavior.Restrict);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<System.Guid>", b =>
@@ -375,7 +574,7 @@ namespace SocialHeroes.Infra.Data.Migrations
                     b.HasOne("SocialHeroes.Domain.Models.User")
                         .WithMany()
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .OnDelete(DeleteBehavior.Restrict);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<System.Guid>", b =>
@@ -383,12 +582,12 @@ namespace SocialHeroes.Infra.Data.Migrations
                     b.HasOne("SocialHeroes.Domain.Models.Role")
                         .WithMany()
                         .HasForeignKey("RoleId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .OnDelete(DeleteBehavior.Restrict);
 
                     b.HasOne("SocialHeroes.Domain.Models.User")
                         .WithMany()
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .OnDelete(DeleteBehavior.Restrict);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<System.Guid>", b =>
@@ -396,7 +595,7 @@ namespace SocialHeroes.Infra.Data.Migrations
                     b.HasOne("SocialHeroes.Domain.Models.User")
                         .WithMany()
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .OnDelete(DeleteBehavior.Restrict);
                 });
 
             modelBuilder.Entity("SocialHeroes.Domain.Models.Address", b =>
@@ -404,7 +603,28 @@ namespace SocialHeroes.Infra.Data.Migrations
                     b.HasOne("SocialHeroes.Domain.Models.User", "User")
                         .WithOne("Address")
                         .HasForeignKey("SocialHeroes.Domain.Models.Address", "UserId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .OnDelete(DeleteBehavior.Restrict);
+                });
+
+            modelBuilder.Entity("SocialHeroes.Domain.Models.BloodNotification", b =>
+                {
+                    b.HasOne("SocialHeroes.Domain.Models.Blood", "Blood")
+                        .WithMany("BloodNotifications")
+                        .HasForeignKey("BloodId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("SocialHeroes.Domain.Models.Notification", "Notification")
+                        .WithMany("BloodNotifications")
+                        .HasForeignKey("NotificationId")
+                        .OnDelete(DeleteBehavior.Restrict);
+                });
+
+            modelBuilder.Entity("SocialHeroes.Domain.Models.BreastMilkNotification", b =>
+                {
+                    b.HasOne("SocialHeroes.Domain.Models.Notification", "Notification")
+                        .WithMany("BreastMilkNotifications")
+                        .HasForeignKey("NotificationId")
+                        .OnDelete(DeleteBehavior.Restrict);
                 });
 
             modelBuilder.Entity("SocialHeroes.Domain.Models.DonatorUser", b =>
@@ -420,7 +640,59 @@ namespace SocialHeroes.Infra.Data.Migrations
                     b.HasOne("SocialHeroes.Domain.Models.User", "User")
                         .WithOne("DonatorUser")
                         .HasForeignKey("SocialHeroes.Domain.Models.DonatorUser", "UserId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .OnDelete(DeleteBehavior.Restrict);
+                });
+
+            modelBuilder.Entity("SocialHeroes.Domain.Models.DonatorUserBloodNotification", b =>
+                {
+                    b.HasOne("SocialHeroes.Domain.Models.BloodNotification", "BloodNotification")
+                        .WithMany("DonatorUserBloodNotifications")
+                        .HasForeignKey("BloodNotificationId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("SocialHeroes.Domain.Models.DonatorUser", "DonatorUser")
+                        .WithMany("DonatorUserBloodNotifications")
+                        .HasForeignKey("DonatorUserId")
+                        .OnDelete(DeleteBehavior.Restrict);
+                });
+
+            modelBuilder.Entity("SocialHeroes.Domain.Models.DonatorUserBreastMilkNotification", b =>
+                {
+                    b.HasOne("SocialHeroes.Domain.Models.BreastMilkNotification", "BreastMilkNotification")
+                        .WithMany("DonatorUserBreastMilkNotifications")
+                        .HasForeignKey("BreastMilkNotificationId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("SocialHeroes.Domain.Models.DonatorUser", "DonatorUser")
+                        .WithMany("DonatorUserBreastMilkNotifications")
+                        .HasForeignKey("DonatorUserId")
+                        .OnDelete(DeleteBehavior.Restrict);
+                });
+
+            modelBuilder.Entity("SocialHeroes.Domain.Models.DonatorUserHairNotification", b =>
+                {
+                    b.HasOne("SocialHeroes.Domain.Models.DonatorUser", "DonatorUser")
+                        .WithMany("DonatorUserHairNotifications")
+                        .HasForeignKey("DonatorUserId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("SocialHeroes.Domain.Models.HairNotification", "HairNotification")
+                        .WithMany("DonatorUserHairNotifications")
+                        .HasForeignKey("HairNotificationId")
+                        .OnDelete(DeleteBehavior.Restrict);
+                });
+
+            modelBuilder.Entity("SocialHeroes.Domain.Models.HairNotification", b =>
+                {
+                    b.HasOne("SocialHeroes.Domain.Models.Hair", "Hair")
+                        .WithMany("HairNotifications")
+                        .HasForeignKey("HairId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("SocialHeroes.Domain.Models.Notification", "Notification")
+                        .WithMany("HairNotifications")
+                        .HasForeignKey("NotificationId")
+                        .OnDelete(DeleteBehavior.Restrict);
                 });
 
             modelBuilder.Entity("SocialHeroes.Domain.Models.HospitalUser", b =>
@@ -428,7 +700,35 @@ namespace SocialHeroes.Infra.Data.Migrations
                     b.HasOne("SocialHeroes.Domain.Models.User", "User")
                         .WithOne("HospitalUser")
                         .HasForeignKey("SocialHeroes.Domain.Models.HospitalUser", "UserId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .OnDelete(DeleteBehavior.Restrict);
+                });
+
+            modelBuilder.Entity("SocialHeroes.Domain.Models.Notification", b =>
+                {
+                    b.HasOne("SocialHeroes.Domain.Models.HospitalUser", "HospitalUser")
+                        .WithOne("Notification")
+                        .HasForeignKey("SocialHeroes.Domain.Models.Notification", "HospitalUserId")
+                        .OnDelete(DeleteBehavior.Restrict);
+                });
+
+            modelBuilder.Entity("SocialHeroes.Domain.Models.Phone", b =>
+                {
+                    b.HasOne("SocialHeroes.Domain.Models.HospitalUser", "HospitalUser")
+                        .WithMany("Phones")
+                        .HasForeignKey("HospitalUserId")
+                        .OnDelete(DeleteBehavior.Restrict);
+                });
+
+            modelBuilder.Entity("SocialHeroes.Domain.Models.UserNotificationType", b =>
+                {
+                    b.HasOne("SocialHeroes.Domain.Models.NotificationType", "NotificationType")
+                        .WithMany("UserNotificationTypes")
+                        .HasForeignKey("NotificationTypeId");
+
+                    b.HasOne("SocialHeroes.Domain.Models.User", "User")
+                        .WithMany("UserNotificationTypes")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Restrict);
                 });
 #pragma warning restore 612, 618
         }
