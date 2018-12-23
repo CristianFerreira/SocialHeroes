@@ -13,6 +13,7 @@ namespace SocialHeroes.Domain.Validations.AccountValidation.Commands
             ValidateLastDonation();
             ValidatePassword();
             ValidatePasswordEqualsConfirmPassword();
+            ValidateUserNotificationType();
         }
     }
 }

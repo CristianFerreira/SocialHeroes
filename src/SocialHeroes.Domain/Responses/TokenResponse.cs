@@ -1,7 +1,7 @@
 ﻿using SocialHeroes.Domain.Core.Interfaces;
 using System;
 
-namespace SocialHeroes.Domain.ResponseModels
+namespace SocialHeroes.Domain.Responses
 {
     public class TokenResponse : IEntity
     {

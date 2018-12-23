@@ -10,7 +10,7 @@ namespace SocialHeroes.Infra.Data.Mappings
         {
             builder.HasKey(x => x.Id);
 
-            builder.Property(x => x.TypeId)
+            builder.Property(x => x.NotificationTypeId)
                 .IsRequired();
 
             builder.Property(x => x.UserId)

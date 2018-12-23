@@ -1,7 +1,7 @@
 ﻿using Microsoft.IdentityModel.Tokens;
 using SocialHeroes.Domain.Configurations;
 using SocialHeroes.Domain.Models;
-using SocialHeroes.Domain.ResponseModels;
+using SocialHeroes.Domain.Responses;
 using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;

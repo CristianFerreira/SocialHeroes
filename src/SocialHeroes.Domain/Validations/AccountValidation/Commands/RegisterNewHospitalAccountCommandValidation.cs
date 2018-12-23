@@ -20,6 +20,7 @@ namespace SocialHeroes.Domain.Validations.AccountValidation.Commands
             ValidateCountry();
             ValidateLatitude();
             ValidateLongitude();
+            ValidateUserNotificationType();
         }
     }
 }

@@ -1,10 +1,19 @@
 ﻿using FluentValidation;
+using FluentValidation.Results;
 using SocialHeroes.Domain.Commands.AccountCommand;
 
 namespace SocialHeroes.Domain.Validations.AccountValidation
 {
-    public class AccountValidation<T> : AbstractValidator<T> where T : AccountCommand
+    public class UserValidation<T> : AbstractValidator<T> where T : UserCommand
     {
+        public override ValidationResult Validate(ValidationContext<T> context)
+        {
+            if (context.InstanceToValidate == null)
+                return new ValidationResult(new[] { new ValidationFailure("Account", "Por favor informe os dados da conta do usuario!") });
+
+           return base.Validate(context);
+        }
+
         protected void ValidateEmail()
         => RuleFor(c => c.Email)
                 .NotEmpty().WithMessage("Por favor insira um valor para o e-mail")
@@ -65,5 +74,8 @@ namespace SocialHeroes.Domain.Validations.AccountValidation
         protected void ValidateLongitude()
         => RuleFor(c => c.Address.Longitude)
              .NotEmpty().WithMessage("Por favor insira a longitude");
+
+        protected void ValidateUserNotificationType()
+        => RuleForEach(c => c.UserNotificationTypes).SetValidator(new UserNotificationTypeValidation());
     }
 }

@@ -11,6 +11,7 @@ using SocialHeroes.Domain.Interfaces;
 using SocialHeroes.Domain.Models;
 using SocialHeroes.Domain.Services;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -20,13 +21,14 @@ namespace SocialHeroes.Domain.Handlers
     public class AccountHandler : Handler,
                                   IRequestHandler<RegisterNewDonatorAccountCommand, ICommandResult>,
                                   IRequestHandler<RegisterNewHospitalAccountCommand, ICommandResult>,
-                                  IRequestHandler<TokenAccountCommand, ICommandResult>
+                                  IRequestHandler<TokenUserCommand, ICommandResult>
     {
         private readonly IMediatorHandler _bus;
         private readonly ITokenService _tokenService;
         private readonly IDonatorUserRepository _donatorUserRepository;
         private readonly IHospitalUserRepository _hospitalUserRepository;
         private readonly IAddressRepository _addressRepository;
+        private readonly IUserNotificationTypeRepository _userNotificationTypeRepository;
         private readonly UserManager<User> _userManager;
         private readonly SignInManager<User> _signInManager;
 
@@ -37,6 +39,7 @@ namespace SocialHeroes.Domain.Handlers
                               IDonatorUserRepository donatorUserRepository,
                               IHospitalUserRepository hospitalUserRepository,
                               IAddressRepository addressRepository,
+                              IUserNotificationTypeRepository userNotificationTypeRepository,
                               UserManager<User> userManager,
                               SignInManager<User> signInManager)
                               : base(uow, bus, notifications)
@@ -46,6 +49,7 @@ namespace SocialHeroes.Domain.Handlers
             _donatorUserRepository = donatorUserRepository;
             _hospitalUserRepository = hospitalUserRepository;
             _addressRepository = addressRepository;
+            _userNotificationTypeRepository = userNotificationTypeRepository;
             _userManager = userManager;
             _signInManager = signInManager;
         }
@@ -57,28 +61,17 @@ namespace SocialHeroes.Domain.Handlers
             {
                 try
                 {
-                    var user = new User(Guid.NewGuid(), EUserType.Donator, command.Email);
-                    var result = await _userManager.CreateAsync(user, command.Password);
-
-                    if (!result.Succeeded)
+                    if (!RegisterUser(command.Email,command.Password, out User user, out IdentityResult resultUser))
                         return await CanceledTask(_bus.RaiseEvent(new DomainNotification(command.MessageType,
                                                                                          "E-mail já está cadastrado!")));
 
-                    result = await _userManager.AddToRoleAsync(user,
-                                                      RolesConfiguration.ROLE_DONATOR);
-
-                    if(!result.Succeeded)
+                    if(!RegisterRole(user, RolesConfiguration.ROLE_DONATOR, out IdentityResult resultRole))
                         return await CanceledTask(_bus.RaiseEvent(new DomainNotification(command.MessageType,
-                                                                                         $"Ocorreu erro ao atribuir uma Role \n: {result.Errors.ToList()[0].Description}")));
+                                                                                         $"Ocorreu erro ao atribuir uma Role \n: {resultRole.Errors.ToList()[0].Description}")));
 
-                    var donatorUser = new DonatorUser(Guid.NewGuid(),
-                                                      user.Id,
-                                                      command.Name,
-                                                      command.Genre,
-                                                      command.DateBirth,
-                                                      command.LastDonation);
+                    RegisterUserNotificationTypes(command.UserNotificationTypes, user);
 
-                    _donatorUserRepository.Add(donatorUser);
+                    RegisterDonatorUser(command, user, out DonatorUser donatorUser);
 
                     Commit(transaction);
                     return await CompletedTask(donatorUser);
@@ -138,7 +131,7 @@ namespace SocialHeroes.Domain.Handlers
             }
         }
 
-        public Task<ICommandResult> Handle(TokenAccountCommand command, 
+        public Task<ICommandResult> Handle(TokenUserCommand command, 
                                            CancellationToken cancellationToken)
         {
             var user = _userManager.FindByNameAsync(command.Email).Result;
@@ -161,6 +154,42 @@ namespace SocialHeroes.Domain.Handlers
                                                             UserName(user))));
         }
 
+        
+
+        #region private methods
+        private bool RegisterUser(string email, string password, out User user, out IdentityResult resultUser)
+        {
+            user = new User(Guid.NewGuid(), EUserType.Donator, email);
+            resultUser = _userManager.CreateAsync(user, password).Result;
+            return resultUser.Succeeded;
+        }
+
+        private bool RegisterRole(User user, string role, out IdentityResult resultRole)
+        {
+            resultRole = _userManager.AddToRoleAsync(user, role).Result;
+            return resultRole.Succeeded;
+        }
+
+        private void RegisterUserNotificationTypes(ICollection<UserNotificationTypeCommand> userNotificationTypes,
+                                                   User user)
+        {
+            foreach (var userNotificationType in userNotificationTypes)
+                _userNotificationTypeRepository.Add(new UserNotificationType(Guid.NewGuid(),
+                                                                             userNotificationType.NotificationTypeId,
+                                                                             user.Id));
+        }
+        private void RegisterDonatorUser(RegisterNewDonatorAccountCommand command, User user, out DonatorUser donatorUser)
+        {
+            donatorUser = new DonatorUser(Guid.NewGuid(),
+                                              user.Id,
+                                              command.Name,
+                                              command.Genre,
+                                              command.DateBirth,
+                                              command.LastDonation);
+
+            _donatorUserRepository.Add(donatorUser);
+        }
+
         private string UserName(User user)
         {
             switch (user.UserType)
@@ -173,6 +202,7 @@ namespace SocialHeroes.Domain.Handlers
                     return user.UserName;
             }
         }
+        #endregion
 
         public void Dispose()
         {

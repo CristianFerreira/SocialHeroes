@@ -1,5 +1,6 @@
 ﻿using SocialHeroes.Domain.Enums;
 using System;
+using System.Collections.Generic;
 
 namespace SocialHeroes.Domain.Commands.AccountCommand
 {
@@ -12,7 +13,8 @@ namespace SocialHeroes.Domain.Commands.AccountCommand
                                                 DateTime? lastDonation,
                                                 string email,
                                                 string password,
-                                                string confirmPassword)
+                                                string confirmPassword,
+                                                ICollection<UserNotificationTypeCommand> userNotificationTypes)
         {
             Name = name;
             DateBirth = dateBirth;
@@ -21,6 +23,7 @@ namespace SocialHeroes.Domain.Commands.AccountCommand
             Email = email;
             Password = password;
             ConfirmPassword = confirmPassword;
+            UserNotificationTypes = userNotificationTypes;
         }
 
     }

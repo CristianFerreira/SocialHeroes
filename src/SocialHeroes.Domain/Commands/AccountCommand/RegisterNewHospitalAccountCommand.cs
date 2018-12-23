@@ -1,4 +1,6 @@
-﻿namespace SocialHeroes.Domain.Commands.AccountCommand
+﻿using System.Collections.Generic;
+
+namespace SocialHeroes.Domain.Commands.AccountCommand
 {
     public class RegisterNewHospitalAccountCommand : HospitalAccountCommand
     {
@@ -8,7 +10,8 @@
                                                  string email,
                                                  string password,
                                                  string confirmPassword,
-                                                 AddressAccountCommand address)
+                                                 AddressAccountCommand address,
+                                                 ICollection<UserNotificationTypeCommand> userNotificationTypes)
         {
             SocialReason = socialReason;
             FantasyName = fantasyName;
@@ -17,6 +20,7 @@
             Password = password;
             ConfirmPassword = confirmPassword;
             Address = address;
+            UserNotificationTypes = userNotificationTypes;
         }   
     }
 }

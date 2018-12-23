@@ -2,7 +2,7 @@
 
 namespace SocialHeroes.Domain.Commands.AccountCommand
 {
-    public class HospitalAccountCommand : AccountCommand
+    public class HospitalAccountCommand : UserCommand
     {
         public Guid Id { get; set; }
         public string SocialReason { get; set; }

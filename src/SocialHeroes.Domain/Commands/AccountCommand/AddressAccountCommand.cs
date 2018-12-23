@@ -1,6 +1,8 @@
-﻿namespace SocialHeroes.Domain.Commands.AccountCommand
+﻿using SocialHeroes.Domain.Core.Commands;
+
+namespace SocialHeroes.Domain.Commands.AccountCommand
 {
-    public class AddressAccountCommand
+    public class AddressAccountCommand : Command
     {
         public string Number { get; set; }
         public string Complement { get; set; }

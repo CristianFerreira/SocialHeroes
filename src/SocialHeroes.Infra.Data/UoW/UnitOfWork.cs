@@ -27,7 +27,9 @@ namespace SocialHeroes.Infra.Data.UoW
         {
             try
             {
+                _context.SaveChanges();
                 transaction.Commit();
+
                 return true;
             }
             catch (System.Exception ex)

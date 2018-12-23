@@ -1,6 +1,6 @@
 ﻿using SocialHeroes.Domain.Core.Interfaces;
 using SocialHeroes.Domain.Models;
-using SocialHeroes.Domain.ResponseModels;
+using SocialHeroes.Domain.Responses;
 using System;
 using System.Collections.Generic;
 

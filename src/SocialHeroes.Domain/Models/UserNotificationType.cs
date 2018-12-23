@@ -5,11 +5,20 @@ namespace SocialHeroes.Domain.Models
 {
     public class UserNotificationType : IEntity
     {
-        public Guid Id { get; set; }
-        public Guid TypeId { get; set; }
-        public Guid UserId { get; set; }
+        public UserNotificationType(Guid id, 
+                                    Guid notificationTypeId, 
+                                    Guid userId)
+        {
+            Id = id;
+            NotificationTypeId = notificationTypeId;
+            UserId = userId;
+        }
 
-        public NotificationType NotificationType { get; set; }
-        public User User { get; set; }
+        public Guid Id { get; private set; }
+        public Guid NotificationTypeId { get; private set; }
+        public Guid UserId { get; private set; }
+
+        public NotificationType NotificationType { get; private set; }
+        public User User { get; private set; }
     }
 }
