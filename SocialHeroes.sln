@@ -29,8 +29,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4.1 - Data", "4.1 - Data", 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4.2 - CrossCutting", "4.2 - CrossCutting", "{BB3BDFC7-07F8-4737-836C-550F0F09D452}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SocialHeroes.CrossCutting.Identity", "src\SocialHeroes.CrossCutting.Identity\SocialHeroes.CrossCutting.Identity.csproj", "{47C1D9C6-61C7-44F7-92AD-379C576556B5}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -61,10 +59,6 @@ Global
 		{AC7BB3B5-64CF-48F8-A0D6-66C1FCA9281F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AC7BB3B5-64CF-48F8-A0D6-66C1FCA9281F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AC7BB3B5-64CF-48F8-A0D6-66C1FCA9281F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{47C1D9C6-61C7-44F7-92AD-379C576556B5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{47C1D9C6-61C7-44F7-92AD-379C576556B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{47C1D9C6-61C7-44F7-92AD-379C576556B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{47C1D9C6-61C7-44F7-92AD-379C576556B5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -82,7 +76,6 @@ Global
 		{3E3BEA24-E56E-4040-8244-8F485446A186} = {F851A165-98A4-4765-B481-D410AAC6871E}
 		{688ABF7C-E005-4B12-8A9B-3686D6EF7833} = {3E3BEA24-E56E-4040-8244-8F485446A186}
 		{BB3BDFC7-07F8-4737-836C-550F0F09D452} = {3E3BEA24-E56E-4040-8244-8F485446A186}
-		{47C1D9C6-61C7-44F7-92AD-379C576556B5} = {BB3BDFC7-07F8-4737-836C-550F0F09D452}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {94F0417D-EA2A-4EAA-8BDC-5E1EAF96BC6D}
