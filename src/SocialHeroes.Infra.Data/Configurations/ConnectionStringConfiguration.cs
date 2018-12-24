@@ -9,6 +9,6 @@ namespace SocialHeroes.Infra.Data.Configurations
             new ConfigurationBuilder()
                .SetBasePath(Directory.GetCurrentDirectory())
                .AddJsonFile("appsettings.json")
-               .Build().GetConnectionString("DefaultConnection");
+               .Build().GetConnectionString("DefaultConnection"); 
     }
 }

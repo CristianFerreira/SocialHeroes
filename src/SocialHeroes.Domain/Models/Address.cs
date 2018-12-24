@@ -16,7 +16,7 @@ namespace SocialHeroes.Domain.Models
                        string country,
                        string zipCode,
                        decimal latitude,
-                       decimal longitude)
+                       decimal longitude) 
         {
             Id = id;
             UserId = userId;

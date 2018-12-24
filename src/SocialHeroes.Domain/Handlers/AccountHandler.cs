@@ -36,7 +36,7 @@ namespace SocialHeroes.Domain.Handlers
                               IMediatorHandler bus,
                               INotificationHandler<DomainNotification> notifications,
                               ITokenService tokenService,
-                              IDonatorUserRepository donatorUserRepository,
+                              IDonatorUserRepository donatorUserRepository, 
                               IHospitalUserRepository hospitalUserRepository,
                               IAddressRepository addressRepository,
                               IUserNotificationTypeRepository userNotificationTypeRepository,

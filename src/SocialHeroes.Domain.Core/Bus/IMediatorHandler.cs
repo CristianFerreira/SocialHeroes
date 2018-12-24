@@ -9,6 +9,6 @@ namespace SocialHeroes.Domain.Core.Bus
     public interface IMediatorHandler
     {
         Task<ICommandResult> SendCommand<T>(T command) where T : Command;
-        Task RaiseEvent<T>(T @event) where T : Event;
+        Task RaiseEvent<T>(T @event) where T : Event; 
     }
 }
