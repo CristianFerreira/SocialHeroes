@@ -7,9 +7,10 @@ namespace SocialHeroes.Domain.Validations.AccountValidation
     {
         public UserNotificationTypeValidation()
         {
-            RuleFor(x => x.NotificationTypeId).NotNull()
-                                                .NotEmpty()
-                                                        .WithMessage("Por favor informe pelo menos um tipo de notificação!");
+            RuleFor(x => x.NotificationTypeId)
+                                .NotNull()
+                                    .NotEmpty()
+                                      .WithMessage("Por favor informe pelo menos um tipo de notificação!");
         }
     }
 }

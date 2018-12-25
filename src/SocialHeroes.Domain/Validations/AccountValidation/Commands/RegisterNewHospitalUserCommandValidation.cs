@@ -2,9 +2,9 @@
 
 namespace SocialHeroes.Domain.Validations.AccountValidation.Commands
 {
-    public class RegisterNewHospitalAccountCommandValidation : HospitalAccountValidation<RegisterNewHospitalAccountCommand>
+    public class RegisterNewHospitalUserCommandValidation : HospitalUserValidation<RegisterNewHospitalUserCommand>
     {
-        public RegisterNewHospitalAccountCommandValidation()
+        public RegisterNewHospitalUserCommandValidation()
         {
             ValidateSocialReason();
             ValidateFantasyName();
@@ -21,6 +21,7 @@ namespace SocialHeroes.Domain.Validations.AccountValidation.Commands
             ValidateLatitude();
             ValidateLongitude();
             ValidateUserNotificationType();
+            ValidatePhone();
         }
     }
 }

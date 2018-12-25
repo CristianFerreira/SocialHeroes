@@ -29,13 +29,13 @@ namespace SocialHeroes.WebApi.Controllers
         [HttpPost]
         [Route("account/donator")]
         [AllowAnonymous]
-        public IActionResult Register([FromBody]RegisterNewDonatorAccountCommand command) 
+        public IActionResult Register([FromBody]RegisterNewDonatorUserCommand command) 
             => Response(bus.SendCommand(command).Result);
 
         [HttpPost]
         [Route("account/hospital")]
         [AllowAnonymous]
-        public IActionResult Register([FromBody]RegisterNewHospitalAccountCommand command)
+        public IActionResult Register([FromBody]RegisterNewHospitalUserCommand command)
             => Response(bus.SendCommand(command).Result);
 
         [HttpPost]

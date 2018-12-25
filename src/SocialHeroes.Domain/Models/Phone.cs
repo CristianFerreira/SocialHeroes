@@ -5,10 +5,19 @@ namespace SocialHeroes.Domain.Models
 {
     public class Phone : IEntity
     {
-        public Guid Id { get; set; }
-        public Guid HospitalUserId { get; set; }
-        public string Number { get; set; }
+        public Phone(Guid id, 
+                     Guid hospitalUserId, 
+                     string number)
+        {
+            Id = id;
+            HospitalUserId = hospitalUserId;
+            Number = number;
+        }
 
-        public HospitalUser HospitalUser { get; set; }
+        public Guid Id { get; private set; }
+        public Guid HospitalUserId { get; private set; }
+        public string Number { get; private set; }
+
+        public HospitalUser HospitalUser { get; private set; }
     }
 }

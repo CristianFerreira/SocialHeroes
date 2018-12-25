@@ -4,10 +4,10 @@ using System.Collections.Generic;
 
 namespace SocialHeroes.Domain.Commands.AccountCommand
 {
-    public class RegisterNewDonatorAccountCommand : DonatorAccountCommand
+    public class RegisterNewDonatorUserCommand : DonatorUserCommand
     {
 
-        public RegisterNewDonatorAccountCommand(string name,
+        public RegisterNewDonatorUserCommand(string name,
                                                 DateTime dateBirth,
                                                 EGenre genre,
                                                 DateTime? lastDonation,
@@ -23,7 +23,7 @@ namespace SocialHeroes.Domain.Commands.AccountCommand
             Email = email;
             Password = password;
             ConfirmPassword = confirmPassword;
-            UserNotificationTypes = userNotificationTypes;
+            UserNotificationTypes = userNotificationTypes;  
         }
 
     }

@@ -3,7 +3,7 @@ using System;
 
 namespace SocialHeroes.Domain.Commands.AccountCommand
 {
-    public class DonatorAccountCommand : UserCommand
+    public class DonatorUserCommand : UserCommand
     {
         public Guid Id { get; set; }
         public string Name { get; set; }

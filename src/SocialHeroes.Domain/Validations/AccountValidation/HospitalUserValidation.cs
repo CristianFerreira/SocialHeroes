@@ -4,7 +4,7 @@ using SocialHeroes.Domain.Commands.AccountCommand;
 
 namespace SocialHeroes.Domain.Validations.AccountValidation
 {
-    public class HospitalAccountValidation<T> : UserValidation<T> where T : HospitalAccountCommand
+    public class HospitalUserValidation<T> : UserValidation<T> where T : HospitalUserCommand
     {
         protected void ValidateSocialReason()
         {

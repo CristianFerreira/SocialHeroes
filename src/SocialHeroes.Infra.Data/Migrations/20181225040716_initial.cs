@@ -287,9 +287,8 @@ namespace SocialHeroes.Infra.Data.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(nullable: false),
-                    TypeId = table.Column<Guid>(nullable: false),
-                    UserId = table.Column<Guid>(nullable: false),
-                    NotificationTypeId = table.Column<Guid>(nullable: true)
+                    NotificationTypeId = table.Column<Guid>(nullable: false),
+                    UserId = table.Column<Guid>(nullable: false)
                 },
                 constraints: table =>
                 {

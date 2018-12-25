@@ -1,17 +1,19 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace SocialHeroes.Domain.Commands.AccountCommand
 {
-    public class RegisterNewHospitalAccountCommand : HospitalAccountCommand
+    public class RegisterNewHospitalUserCommand : HospitalUserCommand
     {
-        public RegisterNewHospitalAccountCommand(string socialReason, 
+        public RegisterNewHospitalUserCommand(string socialReason, 
                                                  string fantasyName, 
                                                  string cnpj,
                                                  string email,
                                                  string password,
                                                  string confirmPassword,
-                                                 AddressAccountCommand address,
-                                                 ICollection<UserNotificationTypeCommand> userNotificationTypes)
+                                                 AddressCommand address,
+                                                 ICollection<UserNotificationTypeCommand> userNotificationTypes,
+                                                 ICollection<PhoneCommand> phones)
         {
             SocialReason = socialReason;
             FantasyName = fantasyName;
@@ -21,6 +23,7 @@ namespace SocialHeroes.Domain.Commands.AccountCommand
             ConfirmPassword = confirmPassword;
             Address = address;
             UserNotificationTypes = userNotificationTypes;
+            Phones = phones;
         }   
     }
 }

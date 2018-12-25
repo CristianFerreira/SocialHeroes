@@ -19,8 +19,8 @@ using System.Threading.Tasks;
 namespace SocialHeroes.Domain.Handlers
 {
     public class AccountHandler : Handler,
-                                  IRequestHandler<RegisterNewDonatorAccountCommand, ICommandResult>,
-                                  IRequestHandler<RegisterNewHospitalAccountCommand, ICommandResult>,
+                                  IRequestHandler<RegisterNewDonatorUserCommand, ICommandResult>,
+                                  IRequestHandler<RegisterNewHospitalUserCommand, ICommandResult>,
                                   IRequestHandler<TokenUserCommand, ICommandResult>
     {
         private readonly IMediatorHandler _bus;
@@ -29,6 +29,7 @@ namespace SocialHeroes.Domain.Handlers
         private readonly IHospitalUserRepository _hospitalUserRepository;
         private readonly IAddressRepository _addressRepository;
         private readonly IUserNotificationTypeRepository _userNotificationTypeRepository;
+        private readonly IPhoneRepository _phoneRepository;
         private readonly UserManager<User> _userManager;
         private readonly SignInManager<User> _signInManager;
 
@@ -36,10 +37,11 @@ namespace SocialHeroes.Domain.Handlers
                               IMediatorHandler bus,
                               INotificationHandler<DomainNotification> notifications,
                               ITokenService tokenService,
-                              IDonatorUserRepository donatorUserRepository, 
+                              IDonatorUserRepository donatorUserRepository,
                               IHospitalUserRepository hospitalUserRepository,
                               IAddressRepository addressRepository,
                               IUserNotificationTypeRepository userNotificationTypeRepository,
+                              IPhoneRepository phoneRepository,
                               UserManager<User> userManager,
                               SignInManager<User> signInManager)
                               : base(uow, bus, notifications)
@@ -50,18 +52,21 @@ namespace SocialHeroes.Domain.Handlers
             _hospitalUserRepository = hospitalUserRepository;
             _addressRepository = addressRepository;
             _userNotificationTypeRepository = userNotificationTypeRepository;
+            _phoneRepository = phoneRepository;
             _userManager = userManager;
             _signInManager = signInManager;
         }
 
-        public async Task<ICommandResult> Handle(RegisterNewDonatorAccountCommand command, 
+        public async Task<ICommandResult> Handle(RegisterNewDonatorUserCommand command, 
                                                  CancellationToken cancellationToken)
         {
             using (var transaction = _uow.BeginTransaction())
             {
                 try
                 {
-                    if (!RegisterUser(command.Email,command.Password, out User user, out IdentityResult resultUser))
+                    if (!RegisterUser(command.Email, 
+                                      command.Password,
+                                      EUserType.Donator, out User user, out IdentityResult resultUser))
                         return await CanceledTask(_bus.RaiseEvent(new DomainNotification(command.MessageType,
                                                                                          "E-mail já está cadastrado!")));
 
@@ -84,42 +89,31 @@ namespace SocialHeroes.Domain.Handlers
             }
         }
 
-        public async Task<ICommandResult> Handle(RegisterNewHospitalAccountCommand command, 
+        public async Task<ICommandResult> Handle(RegisterNewHospitalUserCommand command, 
                                                  CancellationToken cancellationToken)
         {
             using (var transaction = _uow.BeginTransaction())
             {
                 try
                 {
-                    var user = new User(Guid.NewGuid(), EUserType.Hospital, command.Email);
-                    await _userManager.CreateAsync(user, command.Password);
+                    if (!RegisterUser(command.Email, 
+                                      command.Password, 
+                                      EUserType.Hospital, out User user, out IdentityResult resultUser))
+                        return await CanceledTask(_bus.RaiseEvent(new DomainNotification(command.MessageType,
+                                                                                         "E-mail já está cadastrado!")));
 
-                    var hospitalUser = new HospitalUser(Guid.NewGuid(),
-                                                        user.Id,
-                                                        command.SocialReason,
-                                                        command.FantasyName,
-                                                        command.CNPJ);
-                                                         
-                    _hospitalUserRepository.Add(hospitalUser);
+                    if (!RegisterRole(user, RolesConfiguration.ROLE_HOSPITAL, out IdentityResult resultRole))
+                        return await CanceledTask(_bus.RaiseEvent(new DomainNotification(command.MessageType,
+                                                                                         $"Ocorreu erro ao atribuir uma Role \n: {resultRole.Errors.ToList()[0].Description}")));
 
-                    await _userManager.AddToRoleAsync(user, 
-                                                      RolesConfiguration.ROLE_HOSPITAL);
+                    RegisterAddress(command.Address, user);
 
-                    var address = new Address(Guid.NewGuid(), 
-                                              user.Id, 
-                                              command.Address.Number, 
-                                              command.Address.Complement, 
-                                              command.Address.Street, 
-                                              command.Address.City, 
-                                              command.Address.State, 
-                                              command.Address.Country, 
-                                              command.Address.ZipCode, 
-                                              command.Address.Latitude, 
-                                              command.Address.Longitude);
-                    _addressRepository.Add(address);
-                    
-                    if(Commit(transaction))
-                        await _bus.RaiseEvent(new HospitalAccountRegisteredEvent());
+                    RegisterHospital(command, user, out HospitalUser hospitalUser);
+
+                    RegisterPhones(command.Phones, hospitalUser);
+
+                    Commit(transaction);
+                        //await _bus.RaiseEvent(new HospitalAccountRegisteredEvent());
 
                     return await CompletedTask(hospitalUser);
                 }
@@ -129,6 +123,13 @@ namespace SocialHeroes.Domain.Handlers
                     throw exception;
                 }
             }
+        }
+
+        private void RegisterPhones(ICollection<PhoneCommand> phones, HospitalUser hospitalUser)
+        {
+            foreach (var phone in phones)
+              _phoneRepository.Add(new Phone(Guid.NewGuid(), hospitalUser.Id, phone.Number));
+            
         }
 
         public Task<ICommandResult> Handle(TokenUserCommand command, 
@@ -141,8 +142,8 @@ namespace SocialHeroes.Domain.Handlers
                                                                            "O usuário informado não está cadastrado.")));
 
             var resultSignIn = _signInManager
-                            .CheckPasswordSignInAsync(user, command.Password, false)
-                            .Result.Succeeded;
+                                .CheckPasswordSignInAsync(user, command.Password, false)
+                                     .Result.Succeeded;
 
             if (!resultSignIn)
                 return CanceledTask(_bus.RaiseEvent(new DomainNotification(command.MessageType,
@@ -154,17 +155,53 @@ namespace SocialHeroes.Domain.Handlers
                                                             UserName(user))));
         }
 
-        
+
 
         #region private methods
-        private bool RegisterUser(string email, string password, out User user, out IdentityResult resultUser)
+        private void RegisterAddress(AddressCommand command, 
+                                     User user)
         {
-            user = new User(Guid.NewGuid(), EUserType.Donator, email);
+            var address = new Address(Guid.NewGuid(),
+                                      user.Id,
+                                      command.Number,
+                                      command.Complement,
+                                      command.Street,
+                                      command.City,
+                                      command.State,
+                                      command.Country,
+                                      command.ZipCode,
+                                      command.Latitude,
+                                      command.Longitude);
+            _addressRepository.Add(address);
+        }
+
+        private void RegisterHospital(RegisterNewHospitalUserCommand command,
+                                      User user,
+                                      out HospitalUser hospitalUser)
+        {
+            hospitalUser = new HospitalUser(Guid.NewGuid(),
+                                            user.Id,
+                                            command.SocialReason,
+                                            command.FantasyName,
+                                            command.CNPJ);
+
+            _hospitalUserRepository.Add(hospitalUser);
+        }
+
+        private bool RegisterUser(string email, 
+                                  string password, 
+                                  EUserType userType, 
+                                  out User user, 
+                                  out IdentityResult resultUser)
+        {
+            user = new User(Guid.NewGuid(), userType, email);
             resultUser = _userManager.CreateAsync(user, password).Result;
             return resultUser.Succeeded;
         }
 
-        private bool RegisterRole(User user, string role, out IdentityResult resultRole)
+        private bool RegisterRole(User user,    
+                                  string role, 
+                                  out IdentityResult resultRole)
         {
             resultRole = _userManager.AddToRoleAsync(user, role).Result;
             return resultRole.Succeeded;
@@ -178,7 +215,9 @@ namespace SocialHeroes.Domain.Handlers
                                                                              userNotificationType.NotificationTypeId,
                                                                              user.Id));
         }
-        private void RegisterDonatorUser(RegisterNewDonatorAccountCommand command, User user, out DonatorUser donatorUser)
+        private void RegisterDonatorUser(RegisterNewDonatorUserCommand command, 
+                                         User user, 
+                                         out DonatorUser donatorUser)
         {
             donatorUser = new DonatorUser(Guid.NewGuid(),
                                               user.Id,

@@ -46,13 +46,14 @@ namespace SocialHeroes.CrossCutting.IoC
             services.AddScoped<IRequestHandler<RegisterNewHairCommand, ICommandResult>, HairHandler>();
             //account
             services.AddScoped<IRequestHandler<TokenUserCommand, ICommandResult>, AccountHandler>();
-            services.AddScoped<IRequestHandler<RegisterNewDonatorAccountCommand, ICommandResult>, AccountHandler>();
-            services.AddScoped<IRequestHandler<RegisterNewHospitalAccountCommand, ICommandResult>, AccountHandler>();
+            services.AddScoped<IRequestHandler<RegisterNewDonatorUserCommand, ICommandResult>, AccountHandler>();
+            services.AddScoped<IRequestHandler<RegisterNewHospitalUserCommand, ICommandResult>, AccountHandler>();
 
             //Token
             services.AddTransient<ITokenService, TokenService>();
 
             // Infra - Data
+            services.AddScoped<IPhoneRepository, PhoneRepository>();
             services.AddScoped<IHairRepository, HairRepository>();
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IUserNotificationTypeRepository, UserNotificationTypeRepository>();

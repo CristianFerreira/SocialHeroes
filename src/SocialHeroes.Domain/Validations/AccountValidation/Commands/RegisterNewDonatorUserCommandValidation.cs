@@ -2,9 +2,9 @@
 
 namespace SocialHeroes.Domain.Validations.AccountValidation.Commands
 {
-    public class RegisterNewDonatorAccountCommandValidation : DonatorAccountValidation<RegisterNewDonatorAccountCommand>
+    public class RegisterNewDonatorUserCommandValidation : DonatorUserValidation<RegisterNewDonatorUserCommand>
     {
-        public RegisterNewDonatorAccountCommandValidation()
+        public RegisterNewDonatorUserCommandValidation()
         {
             ValidateName();
             ValidateEmail();

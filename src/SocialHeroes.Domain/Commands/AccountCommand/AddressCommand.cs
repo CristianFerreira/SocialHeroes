@@ -2,7 +2,7 @@
 
 namespace SocialHeroes.Domain.Commands.AccountCommand
 {
-    public class AddressAccountCommand : Command
+    public class AddressCommand : Command
     {
         public string Number { get; set; }
         public string Complement { get; set; }

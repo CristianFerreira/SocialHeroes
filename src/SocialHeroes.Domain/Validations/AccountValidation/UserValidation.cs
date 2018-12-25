@@ -77,5 +77,8 @@ namespace SocialHeroes.Domain.Validations.AccountValidation
 
         protected void ValidateUserNotificationType()
         => RuleForEach(c => c.UserNotificationTypes).SetValidator(new UserNotificationTypeValidation());
+
+        protected void ValidatePhone()
+        => RuleForEach(c => c.Phones).SetValidator(new PhoneValidation());
     }
 }

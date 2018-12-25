@@ -2,9 +2,9 @@
 
 namespace SocialHeroes.Domain.Validations.AccountValidation.Commands
 {
-    public class GetTokenAccountCommandValidation : UserValidation<TokenUserCommand>
+    public class GetTokenUserCommandValidation : UserValidation<TokenUserCommand>
     {
-        public GetTokenAccountCommandValidation()
+        public GetTokenUserCommandValidation()
         {
             ValidateEmail();
             ValidatePassword();

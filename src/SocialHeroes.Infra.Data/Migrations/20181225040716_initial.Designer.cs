@@ -10,7 +10,7 @@ using SocialHeroes.Infra.Data.Context;
 namespace SocialHeroes.Infra.Data.Migrations
 {
     [DbContext(typeof(SocialHeroesContext))]
-    [Migration("20181221010452_initial")]
+    [Migration("20181225040716_initial")]
     partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -540,9 +540,7 @@ namespace SocialHeroes.Infra.Data.Migrations
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<Guid?>("NotificationTypeId");
-
-                    b.Property<Guid>("TypeId");
+                    b.Property<Guid>("NotificationTypeId");
 
                     b.Property<Guid>("UserId");
 
@@ -725,7 +723,8 @@ namespace SocialHeroes.Infra.Data.Migrations
                 {
                     b.HasOne("SocialHeroes.Domain.Models.NotificationType", "NotificationType")
                         .WithMany("UserNotificationTypes")
-                        .HasForeignKey("NotificationTypeId");
+                        .HasForeignKey("NotificationTypeId")
+                        .OnDelete(DeleteBehavior.Restrict);
 
                     b.HasOne("SocialHeroes.Domain.Models.User", "User")
                         .WithMany("UserNotificationTypes")
