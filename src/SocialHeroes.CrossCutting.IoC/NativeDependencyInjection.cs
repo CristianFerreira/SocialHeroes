@@ -1,25 +1,5 @@
-﻿
-
-using MediatR;
-using Microsoft.AspNetCore.Http;
-using Microsoft.Extensions.DependencyInjection;
-using SocialHeroes.Domain.Commands.AccountCommand;
-using SocialHeroes.Domain.Commands.HairCommand;
-using SocialHeroes.Domain.Configurations;
-using SocialHeroes.Domain.Core.Bus;
-using SocialHeroes.Domain.Core.Commands;
-using SocialHeroes.Domain.Core.Interfaces;
-using SocialHeroes.Domain.Core.Notifications;
-using SocialHeroes.Domain.EventHandlers;
-using SocialHeroes.Domain.Events.AccountEvent;
-using SocialHeroes.Domain.Handlers;
-using SocialHeroes.Domain.Interfaces;
-using SocialHeroes.Domain.Services;
-using SocialHeroes.Domain.Validations;
-using SocialHeroes.Infra.CrossCutting.Bus;
-using SocialHeroes.Infra.Data.Context;
-using SocialHeroes.Infra.Data.Repository;
-using SocialHeroes.Infra.Data.UoW;
+﻿using Microsoft.Extensions.DependencyInjection;
+using SocialHeroes.CrossCutting.IoC.Configurations;
 
 namespace SocialHeroes.CrossCutting.IoC
 {
@@ -27,43 +7,14 @@ namespace SocialHeroes.CrossCutting.IoC
     {
         public static void RegisterServices(IServiceCollection services)
         {
-            // ASP.NET HttpContext dependency
-            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-
-            // Domain Bus (Mediator)
-            services.AddScoped<IMediatorHandler, InMemoryBus>();
-
-            // Domain - Events
-            services.AddScoped<INotificationHandler<DomainNotification>, DomainNotificationHandler>();
-            services.AddScoped<INotificationHandler<HospitalAccountRegisteredEvent>, AccountEventHandler>();
-
-            // Domain - Commands
-            services.AddScoped(typeof(IPipelineBehavior<,>), typeof(FailFastValidation<,>));
-
-            //HANDLER 
-
-            //hair
-            services.AddScoped<IRequestHandler<RegisterNewHairCommand, ICommandResult>, HairHandler>();
-            //account
-            services.AddScoped<IRequestHandler<TokenUserCommand, ICommandResult>, AccountHandler>();
-            services.AddScoped<IRequestHandler<RegisterNewDonatorUserCommand, ICommandResult>, AccountHandler>();
-            services.AddScoped<IRequestHandler<RegisterNewHospitalUserCommand, ICommandResult>, AccountHandler>();
-
-            //Token
-            services.AddTransient<ITokenService, TokenService>();
-
-            // Infra - Data
-            services.AddScoped<IPhoneRepository, PhoneRepository>();
-            services.AddScoped<IHairRepository, HairRepository>();
-            services.AddScoped<IUserRepository, UserRepository>();
-            services.AddScoped<IUserNotificationTypeRepository, UserNotificationTypeRepository>();
-            services.AddScoped<IDonatorUserRepository, DonatorUserRepository>();
-            services.AddScoped<IHospitalUserRepository, HospitalUserRepository>();
-            services.AddScoped<IAddressRepository, AddressRepository>();
-            services.AddScoped<IUnitOfWork, UnitOfWork>();
-            services.AddScoped<SocialHeroesContext>();
-
-
+            
+            ContextConfiguration.Register(services);
+            BusConfiguration.Register(services);
+            EventConfiguration.Register(services);
+            ValidationConfiguration.Register(services);
+            HandlerConfiguration.Register(services);
+            ServiceConfiguration.Register(services);
+            RepositoryConfiguration.Register(services);
 
             // Infra - Identity Services
             //services.AddTransient<IEmailSender, AuthEmailMessageSender>();

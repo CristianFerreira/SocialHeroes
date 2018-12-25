@@ -17,7 +17,9 @@ namespace SocialHeroes.Domain.Handlers
         private readonly IMediatorHandler _bus;
         protected readonly DomainNotificationHandler _notifications;
 
-        public Handler(IUnitOfWork uow, IMediatorHandler bus, INotificationHandler<DomainNotification> notifications)
+        public Handler(IUnitOfWork uow, 
+                       IMediatorHandler bus, 
+                       INotificationHandler<DomainNotification> notifications)
         {
             _uow = uow;
             _notifications = (DomainNotificationHandler)notifications;
