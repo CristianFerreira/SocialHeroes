@@ -1,7 +1,7 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using SocialHeroes.Domain.Commands.AccountCommand;
+using SocialHeroes.Domain.Commands.Account.RequestCommand;
 using SocialHeroes.Domain.Core.Bus;
 using SocialHeroes.Domain.Core.Notifications;
 using SocialHeroes.Domain.Interfaces;

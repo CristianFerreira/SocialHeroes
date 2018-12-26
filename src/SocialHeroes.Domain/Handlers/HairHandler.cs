@@ -1,6 +1,6 @@
 ﻿
 using MediatR;
-using SocialHeroes.Domain.Commands.HairCommand;
+using SocialHeroes.Domain.Commands.Hair.RequestCommand;
 using SocialHeroes.Domain.Core.Bus;
 using SocialHeroes.Domain.Core.Interfaces;
 using SocialHeroes.Domain.Core.Notifications;

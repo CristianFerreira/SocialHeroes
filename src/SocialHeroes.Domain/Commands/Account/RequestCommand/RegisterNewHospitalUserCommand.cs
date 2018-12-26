@@ -1,7 +1,7 @@
-﻿using System;
+﻿using SocialHeroes.Domain.Commands.Account;
 using System.Collections.Generic;
 
-namespace SocialHeroes.Domain.Commands.AccountCommand
+namespace SocialHeroes.Domain.Commands.Account.RequestCommand
 {
     public class RegisterNewHospitalUserCommand : HospitalUserCommand
     {

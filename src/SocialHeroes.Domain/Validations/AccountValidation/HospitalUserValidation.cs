@@ -1,6 +1,5 @@
-﻿using System;
-using FluentValidation;
-using SocialHeroes.Domain.Commands.AccountCommand;
+﻿using FluentValidation;
+using SocialHeroes.Domain.Commands.Account;
 
 namespace SocialHeroes.Domain.Validations.AccountValidation
 {

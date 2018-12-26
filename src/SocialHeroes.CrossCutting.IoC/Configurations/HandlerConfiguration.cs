@@ -1,7 +1,7 @@
 ﻿using MediatR;
 using Microsoft.Extensions.DependencyInjection;
-using SocialHeroes.Domain.Commands.AccountCommand;
-using SocialHeroes.Domain.Commands.HairCommand;
+using SocialHeroes.Domain.Commands.Account.RequestCommand;
+using SocialHeroes.Domain.Commands.Hair.RequestCommand;
 using SocialHeroes.Domain.Core.Interfaces;
 using SocialHeroes.Domain.Handlers;
 

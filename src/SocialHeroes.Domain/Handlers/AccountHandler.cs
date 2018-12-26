@@ -1,12 +1,12 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Identity;
-using SocialHeroes.Domain.Commands.AccountCommand;
+using SocialHeroes.Domain.Commands.Account;
+using SocialHeroes.Domain.Commands.Account.RequestCommand;
 using SocialHeroes.Domain.Configurations;
 using SocialHeroes.Domain.Core.Bus;
 using SocialHeroes.Domain.Core.Interfaces;
 using SocialHeroes.Domain.Core.Notifications;
 using SocialHeroes.Domain.Enums;
-using SocialHeroes.Domain.Events.AccountEvent;
 using SocialHeroes.Domain.Interfaces;
 using SocialHeroes.Domain.Models;
 using SocialHeroes.Domain.Services;

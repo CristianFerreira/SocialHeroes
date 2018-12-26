@@ -48,8 +48,9 @@ namespace SocialHeroes.Domain.Handlers
         protected void RollBack(IDbContextTransaction transaction)
             => _uow.Rollback(transaction);
 
-        protected async Task<ICommandResult> CompletedTask(IEntity data)
+        protected async Task<ICommandResult> CompletedTask(IEntity data = null)
             => await Task.FromResult(new CommandResult(data));
+
 
         protected Task<ICommandResult> CanceledTask(Task task) 
             => Task.FromResult(null as ICommandResult);

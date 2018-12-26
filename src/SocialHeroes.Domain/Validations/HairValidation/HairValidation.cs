@@ -1,5 +1,5 @@
 ﻿using FluentValidation;
-using SocialHeroes.Domain.Commands.HairCommand;
+using SocialHeroes.Domain.Commands.Hair;
 using System;
 
 namespace SocialHeroes.Domain.Validations.HairValidation

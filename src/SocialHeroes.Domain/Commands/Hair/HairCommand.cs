@@ -1,7 +1,7 @@
 ﻿using SocialHeroes.Domain.Core.Commands;
 using System;
 
-namespace SocialHeroes.Domain.Commands.HairCommand
+namespace SocialHeroes.Domain.Commands.Hair
 {
     public abstract class HairCommand : Command
     {

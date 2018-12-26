@@ -1,4 +1,4 @@
-﻿namespace SocialHeroes.Domain.Commands.HairCommand
+﻿namespace SocialHeroes.Domain.Commands.Hair.RequestCommand
 {
     public class RegisterNewHairCommand : HairCommand
     {

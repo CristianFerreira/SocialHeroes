@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace SocialHeroes.Domain.Commands.AccountCommand
+namespace SocialHeroes.Domain.Commands.Account
 {
     public class HospitalUserCommand : UserCommand
     {

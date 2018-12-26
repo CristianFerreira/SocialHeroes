@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace SocialHeroes.Domain.Commands.AccountCommand
+namespace SocialHeroes.Domain.Commands.Account.RequestCommand
 {
     public class RegisterNewDonatorUserCommand : DonatorUserCommand
     {

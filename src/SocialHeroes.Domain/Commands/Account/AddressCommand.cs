@@ -1,6 +1,6 @@
 ﻿using SocialHeroes.Domain.Core.Commands;
 
-namespace SocialHeroes.Domain.Commands.AccountCommand
+namespace SocialHeroes.Domain.Commands.Account
 {
     public class AddressCommand : Command
     {

@@ -1,4 +1,4 @@
-﻿using SocialHeroes.Domain.Commands.AccountCommand;
+﻿using SocialHeroes.Domain.Commands.Account.RequestCommand;
 
 namespace SocialHeroes.Domain.Validations.AccountValidation.Commands
 {

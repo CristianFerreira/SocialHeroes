@@ -1,5 +1,5 @@
 ﻿using FluentValidation;
-using SocialHeroes.Domain.Commands.AccountCommand;
+using SocialHeroes.Domain.Commands.Account;
 using System.Text.RegularExpressions;
 
 namespace SocialHeroes.Domain.Validations.AccountValidation

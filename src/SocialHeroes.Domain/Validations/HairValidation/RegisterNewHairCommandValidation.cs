@@ -1,4 +1,4 @@
-﻿using SocialHeroes.Domain.Commands.HairCommand;
+﻿using SocialHeroes.Domain.Commands.Hair.RequestCommand;
 
 namespace SocialHeroes.Domain.Validations.HairValidation
 {

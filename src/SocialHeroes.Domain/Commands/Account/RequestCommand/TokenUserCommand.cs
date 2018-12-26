@@ -1,4 +1,4 @@
-﻿namespace SocialHeroes.Domain.Commands.AccountCommand
+﻿namespace SocialHeroes.Domain.Commands.Account.RequestCommand
 {
     public class TokenUserCommand : UserCommand
     {
