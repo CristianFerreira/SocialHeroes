@@ -2,6 +2,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using SocialHeroes.Domain.Commands.Account.RequestCommand;
 using SocialHeroes.Domain.Commands.Hair.RequestCommand;
+using SocialHeroes.Domain.Commands.Notification.RequestCommand;
 using SocialHeroes.Domain.Core.Interfaces;
 using SocialHeroes.Domain.Handlers;
 
@@ -18,6 +19,10 @@ namespace SocialHeroes.CrossCutting.IoC.Configurations
             services.AddScoped<IRequestHandler<TokenUserCommand, ICommandResult>, AccountHandler>();
             services.AddScoped<IRequestHandler<RegisterNewDonatorUserCommand, ICommandResult>, AccountHandler>();
             services.AddScoped<IRequestHandler<RegisterNewHospitalUserCommand, ICommandResult>, AccountHandler>();
+
+            //notification
+            services.AddScoped<IRequestHandler<NotifyDonatorUserCommand, ICommandResult>, NotificationHandler>();
+            
 
         }
     }

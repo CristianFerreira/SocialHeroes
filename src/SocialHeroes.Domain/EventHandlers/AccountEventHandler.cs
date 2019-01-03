@@ -9,7 +9,8 @@ namespace SocialHeroes.Domain.EventHandlers
     {
         public Task Handle(HospitalAccountRegisteredEvent notification, CancellationToken cancellationToken)
         {
-            throw new System.NotImplementedException();
+            //send email
+            return Task.CompletedTask;
         }
     }
 }

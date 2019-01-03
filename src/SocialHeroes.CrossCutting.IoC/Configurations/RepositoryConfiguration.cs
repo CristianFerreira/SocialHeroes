@@ -15,6 +15,14 @@ namespace SocialHeroes.CrossCutting.IoC.Configurations
             services.AddScoped<IDonatorUserRepository, DonatorUserRepository>();
             services.AddScoped<IHospitalUserRepository, HospitalUserRepository>();
             services.AddScoped<IAddressRepository, AddressRepository>();
+            services.AddScoped<INotificationRepository, NotificationRepository>();
+            services.AddScoped<IBloodNotificationRepository, BloodNotificationRepository>();
+            services.AddScoped<IHairNotificationRepository, HairNotificationRepository>();
+            services.AddScoped<IBreastMilkNotificationRepository, BreastMilkNotificationRepository>();
+            services.AddScoped<IDonatorUserBloodNotificationRepository, DonatorUserBloodNotificationRepository>();
+            services.AddScoped<IDonatorUserHairNotificationRepository, DonatorUserHairNotificationRepository>();
+            services.AddScoped<IDonatorUserBreastMilkNotificationRepository, DonatorUserBreastMilkNotificationRepository>();
+            services.AddScoped<INotificationRepository, NotificationRepository>();
         }
     }
 }

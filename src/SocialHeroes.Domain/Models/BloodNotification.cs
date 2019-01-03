@@ -6,15 +6,26 @@ namespace SocialHeroes.Domain.Models
 {
     public class BloodNotification : IEntity
     {
-        public Guid Id { get; set; }
-        public Guid NotificationId { get; set; }
-        public Guid BloodId { get; set; }
-        public int AmountBlood { get; set; }
-        public bool Actived { get; set; }
+        public BloodNotification(Guid id, 
+                                 Guid notificationId, 
+                                 Guid bloodId, 
+                                 int amountBlood)
+        {
+            Id = id;
+            NotificationId = notificationId;
+            BloodId = bloodId;
+            AmountBlood = amountBlood;
+        }
 
-        //public DonatorUserBloodNotification DonatorUserBloodNotification { get; set; }
-        public Notification Notification { get; set; }
-        public Blood Blood { get; set; }
+        public Guid Id { get; private set; }
+        public Guid NotificationId { get; private set; }
+        public Guid BloodId { get; private set; }
+        public int AmountBlood { get; private set; }
+        public bool Actived { get; private set; }
+
+
+        public Notification Notification { get; private set; }
+        public Blood Blood { get; private set; }
 
         public ICollection<DonatorUserBloodNotification> DonatorUserBloodNotifications { get; private set; }
     }

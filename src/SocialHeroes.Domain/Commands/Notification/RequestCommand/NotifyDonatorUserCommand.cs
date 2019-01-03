@@ -6,9 +6,9 @@ namespace SocialHeroes.Domain.Commands.Notification.RequestCommand
     public class NotifyDonatorUserCommand : DonatorUserNotificationCommand
     {
         public NotifyDonatorUserCommand(Guid hospitalUserId, 
-                                        BreastMilkNotificationCommand breastMilkNotification = null,
-                                        ICollection<BloodNotificationCommand> bloodNotifications = null,
-                                        ICollection<HairNotificationCommand> hairNotifications = null)
+                                        BreastMilkNotificationCommand breastMilkNotification,
+                                        ICollection<BloodNotificationCommand> bloodNotifications,
+                                        ICollection<HairNotificationCommand> hairNotifications)
         {
             HospitalUserId = hospitalUserId;
 

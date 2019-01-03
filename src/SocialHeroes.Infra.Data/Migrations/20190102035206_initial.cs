@@ -150,8 +150,8 @@ namespace SocialHeroes.Infra.Data.Migrations
                     ActivedHairNotification = table.Column<bool>(nullable: false),
                     ActivedBreastMilkNotification = table.Column<bool>(nullable: false),
                     UserId = table.Column<Guid>(nullable: false),
-                    HairId = table.Column<Guid>(nullable: true),
-                    BloodId = table.Column<Guid>(nullable: true)
+                    BloodId = table.Column<Guid>(nullable: false),
+                    HairId = table.Column<Guid>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -525,7 +525,8 @@ namespace SocialHeroes.Infra.Data.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_BreastMilkNotification_NotificationId",
                 table: "BreastMilkNotification",
-                column: "NotificationId");
+                column: "NotificationId",
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_DonatorUser_BloodId",

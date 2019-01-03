@@ -5,13 +5,22 @@ namespace SocialHeroes.Domain.Models
 {
     public class DonatorUserBloodNotification : IEntity
     {
-        public Guid Id { get; set; }
-        public Guid DonatorUserId { get; set; }
-        public Guid BloodNotificationId { get; set; }
-        public bool Appear { get; set; }
-        public DateTime? DateAppeared { get; set; }
+        public DonatorUserBloodNotification(Guid id, 
+                                            Guid donatorUserId, 
+                                            Guid bloodNotificationId)
+        {
+            Id = id;
+            DonatorUserId = donatorUserId;
+            BloodNotificationId = bloodNotificationId;
+        }
 
-        public BloodNotification BloodNotification { get; set; }
-        public DonatorUser DonatorUser { get; set; }
+        public Guid Id { get; private set; }
+        public Guid DonatorUserId { get; private set; }
+        public Guid BloodNotificationId { get; private set; }
+        public bool Appear { get; set; }
+        public DateTime? DateAppeared { get; private set; }
+
+        public BloodNotification BloodNotification { get; private set; }
+        public DonatorUser DonatorUser { get; private set; }
     }
 }

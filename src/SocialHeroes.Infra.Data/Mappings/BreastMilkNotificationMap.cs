@@ -19,7 +19,7 @@ namespace SocialHeroes.Infra.Data.Mappings
             builder.Property(a => a.NotificationId)
                 .IsRequired();
 
-            builder.HasOne(a => a.Notification).WithMany(a => a.BreastMilkNotifications);
+            builder.HasOne(a => a.Notification).WithOne(a => a.BreastMilkNotification);
             builder.ToTable("BreastMilkNotifications");
 
         }

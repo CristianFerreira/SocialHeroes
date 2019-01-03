@@ -7,8 +7,8 @@ namespace SocialHeroes.Domain.Models
     public class NotificationType : IEntity
     {
         public NotificationType(Guid id, 
-                    string name, 
-                    string description)
+                                string name, 
+                                string description)
         {
             Id = id;
             Name = name;

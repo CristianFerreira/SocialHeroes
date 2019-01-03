@@ -6,14 +6,26 @@ namespace SocialHeroes.Domain.Models
 {
     public class HairNotification : IEntity
     {
-        public Guid Id { get; set; }
-        public Guid NotificationId { get; set; }
-        public Guid HairId { get; set; }
-        public int AmountHair { get; set; }
-        public bool Actived { get; set; }
+        public HairNotification(Guid id, 
+                                Guid notificationId, 
+                                Guid hairId, 
+                                int amountHair)
+        {
+            Id = id;
+            NotificationId = notificationId;
+            HairId = hairId;
+            AmountHair = amountHair;
+            Actived = true;
+        }
 
-        public Notification Notification { get; set; }
-        public Hair Hair { get; set; }
+        public Guid Id { get; private set; }
+        public Guid NotificationId { get; private set; }
+        public Guid HairId { get; private set; }
+        public int AmountHair { get; private set; }
+        public bool Actived { get; private set; }
+
+        public Notification Notification { get; private set; }
+        public Hair Hair { get; private set; }
 
         public ICollection<DonatorUserHairNotification> DonatorUserHairNotifications { get; private set; }
     }

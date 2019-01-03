@@ -8,15 +8,15 @@ namespace SocialHeroes.Domain.Models
 {
     public class DonatorUser : IEntity
     {
-        private DonatorUser() {}
+        protected DonatorUser() {}
         public DonatorUser(Guid id,
-                          Guid userId, 
-                          string name, 
-                          EGenre genre, 
-                          DateTime dateBirth,
-                          DateTime? lastDonation = null, 
-                          string cpf = null, 
-                          string cellPhone = null)
+                           Guid userId, 
+                           string name, 
+                           EGenre genre, 
+                           DateTime dateBirth,
+                           DateTime? lastDonation = null, 
+                           string cpf = null, 
+                           string cellPhone = null)
         {
             Id = id;
             UserId = userId;
@@ -27,7 +27,7 @@ namespace SocialHeroes.Domain.Models
             CPF = cpf;
             CellPhone = cellPhone;
             ActivedBloodNotification = true;
-            ActivedHairNotification = false;
+            ActivedHairNotification = true;
             ActivedBreastMilkNotification = true;
         }
 
@@ -46,6 +46,10 @@ namespace SocialHeroes.Domain.Models
         [JsonIgnore]
         public User User { get; private set; }
         public Guid UserId { get; private set; }
+
+        [JsonIgnore]
+        public Blood Blood { get; private set; }
+        public Guid BloodId { get; private set; }
 
         [JsonIgnore]
         public Hair Hair { get; private set; }

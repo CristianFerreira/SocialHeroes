@@ -10,7 +10,7 @@ using SocialHeroes.Infra.Data.Context;
 namespace SocialHeroes.Infra.Data.Migrations
 {
     [DbContext(typeof(SocialHeroesContext))]
-    [Migration("20181225040716_initial")]
+    [Migration("20190102035206_initial")]
     partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -211,7 +211,8 @@ namespace SocialHeroes.Infra.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("NotificationId");
+                    b.HasIndex("NotificationId")
+                        .IsUnique();
 
                     b.ToTable("BreastMilkNotification");
                 });
@@ -227,7 +228,7 @@ namespace SocialHeroes.Infra.Data.Migrations
 
                     b.Property<bool>("ActivedHairNotification");
 
-                    b.Property<Guid?>("BloodId");
+                    b.Property<Guid>("BloodId");
 
                     b.Property<string>("CPF")
                         .HasColumnType("varchar(11)")
@@ -622,16 +623,17 @@ namespace SocialHeroes.Infra.Data.Migrations
             modelBuilder.Entity("SocialHeroes.Domain.Models.BreastMilkNotification", b =>
                 {
                     b.HasOne("SocialHeroes.Domain.Models.Notification", "Notification")
-                        .WithMany("BreastMilkNotifications")
-                        .HasForeignKey("NotificationId")
+                        .WithOne("BreastMilkNotification")
+                        .HasForeignKey("SocialHeroes.Domain.Models.BreastMilkNotification", "NotificationId")
                         .OnDelete(DeleteBehavior.Restrict);
                 });
 
             modelBuilder.Entity("SocialHeroes.Domain.Models.DonatorUser", b =>
                 {
-                    b.HasOne("SocialHeroes.Domain.Models.Blood")
+                    b.HasOne("SocialHeroes.Domain.Models.Blood", "Blood")
                         .WithMany("DonatorsUsers")
-                        .HasForeignKey("BloodId");
+                        .HasForeignKey("BloodId")
+                        .OnDelete(DeleteBehavior.Restrict);
 
                     b.HasOne("SocialHeroes.Domain.Models.Hair", "Hair")
                         .WithMany("DonatorsUsers")

@@ -6,12 +6,22 @@ namespace SocialHeroes.Domain.Models
 {
     public class BreastMilkNotification : IEntity
     {
-        public Guid Id { get; set; }
-        public Guid NotificationId { get; set; }
-        public int AmountBreastMilk { get; set; }
-        public bool Actived { get; set; }
+        public BreastMilkNotification(Guid id, 
+                                     Guid notificationId, 
+                                     int amountBreastMilk)
+        {
+            Id = id;
+            NotificationId = notificationId;
+            AmountBreastMilk = amountBreastMilk;
+            Actived = true;
+        }
 
-        public Notification Notification { get; set; }
+        public Guid Id { get; private set; }
+        public Guid NotificationId { get; private set; }
+        public int AmountBreastMilk { get; private set; }
+        public bool Actived { get; private set; }
+
+        public Notification Notification { get; private set; }
 
         public ICollection<DonatorUserBreastMilkNotification> DonatorUserBreastMilkNotifications { get; private set; }
     }

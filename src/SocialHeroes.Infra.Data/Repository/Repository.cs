@@ -1,5 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using SocialHeroes.Domain.Core.Interfaces;
 using SocialHeroes.Domain.Interfaces;
 using SocialHeroes.Infra.Data.Context;
 using System;
@@ -45,15 +44,7 @@ namespace SocialHeroes.Infra.Data.Repository
 
         public int SaveChanges()
         {
-            try
-            {
-                return Db.SaveChanges();
-            }
-            catch (Exception ex)
-            {
-
-                throw ex;
-            }
+            return Db.SaveChanges();
         }
 
         public void Dispose()

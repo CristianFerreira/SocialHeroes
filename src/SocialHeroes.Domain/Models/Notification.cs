@@ -6,14 +6,27 @@ namespace SocialHeroes.Domain.Models
 {
     public class Notification : IEntity
     {
-        public Guid Id { get; set; }
-        public Guid HospitalUserId { get; set; }
-        public DateTime DateNotification { get; set; }
+        public Notification(Guid id, 
+                            Guid hospitalUserId)
+        {
+            Id = id;
+            HospitalUserId = hospitalUserId;
+            DateNotification = DateTime.Now;
+            BloodNotifications = new List<BloodNotification>();
+            HairNotifications = new List<HairNotification>();
+        }
 
-        public HospitalUser HospitalUser { get; set; }
+        public Guid Id { get; private set; }
+        public Guid HospitalUserId { get; private set; }
+        public DateTime DateNotification { get; private set; }
+
+        public HospitalUser HospitalUser { get; private set; }
 
         public ICollection<BloodNotification> BloodNotifications { get; private set; }
         public ICollection<HairNotification> HairNotifications { get; private set; }
-        public ICollection<BreastMilkNotification> BreastMilkNotifications { get; private set; }
+        public BreastMilkNotification BreastMilkNotification { get; private set; }
+
+        public void SetBreastMilkNotification(BreastMilkNotification breastMilkNotification)
+            => BreastMilkNotification = breastMilkNotification;
     }
 }
