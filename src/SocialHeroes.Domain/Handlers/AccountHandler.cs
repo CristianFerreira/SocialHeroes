@@ -127,6 +127,9 @@ namespace SocialHeroes.Domain.Handlers
 
         private void RegisterPhones(ICollection<PhoneCommand> phones, HospitalUser hospitalUser)
         {
+            if (phones == null)
+                return;
+
             foreach (var phone in phones)
               _phoneRepository.Add(new Phone(Guid.NewGuid(), hospitalUser.Id, phone.Number));
             

@@ -15,5 +15,8 @@ namespace SocialHeroes.Infra.Data.Repository
 
         public HospitalUser GetByUserId(Guid userId)
         => DbSet.AsNoTracking().FirstOrDefault(x => x.UserId == userId);
+        
+        public HospitalUser Get(Guid id)
+        =>  DbSet.AsNoTracking().Include(x => x.User).ThenInclude(x => x.Address).FirstOrDefault(x => x.Id == id);
     }
 }

@@ -49,7 +49,7 @@ namespace SocialHeroes.Domain.Models
 
         [JsonIgnore]
         public Blood Blood { get; private set; }
-        public Guid BloodId { get; private set; }
+        public Guid? BloodId { get; private set; }
 
         [JsonIgnore]
         public Hair Hair { get; private set; }

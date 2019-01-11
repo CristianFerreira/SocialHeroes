@@ -5,6 +5,7 @@ namespace SocialHeroes.Domain.Interfaces
 {
     public interface IHospitalUserRepository : IRepository<HospitalUser>
     {
-        HospitalUser GetByUserId(Guid userId);
+        HospitalUser GetByUserId(Guid id);
+        HospitalUser Get(Guid userId);
     }
 }

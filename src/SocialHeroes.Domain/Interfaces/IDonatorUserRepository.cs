@@ -9,6 +9,6 @@ namespace SocialHeroes.Domain.Interfaces
         DonatorUser GetByUserId(Guid userId);
         ICollection<DonatorUser> GetToBloodNotification(Guid bloodId);
         ICollection<DonatorUser> GetToHairNotification(Guid hairId);
-        ICollection<DonatorUser> GetToBreastMilkNotification();
+        ICollection<DonatorUser> GetToBreastMilkNotification(int amount);
     }
 }

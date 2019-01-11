@@ -1,5 +1,4 @@
-﻿using SocialHeroes.Domain.Commands.Account;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace SocialHeroes.Domain.Commands.Account.RequestCommand
 {

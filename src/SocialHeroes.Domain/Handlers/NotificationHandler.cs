@@ -27,6 +27,7 @@ namespace SocialHeroes.Domain.Handlers
         private readonly IDonatorUserHairNotificationRepository _donatorUserHairNotificationRepository;
         private readonly IDonatorUserBreastMilkNotificationRepository _donatorUserBreastMilkNotificationRepository;
         private readonly IDonatorUserRepository _donatorUserRepository;
+        private readonly IHospitalUserRepository _hospitalUserRepository;
 
         public NotificationHandler(IUnitOfWork uow,
                                   IMediatorHandler bus,
@@ -38,7 +39,8 @@ namespace SocialHeroes.Domain.Handlers
                                   IDonatorUserBloodNotificationRepository donatorUserBloodNotificationRepository,
                                   IDonatorUserHairNotificationRepository donatorUserHairNotificationRepository,
                                   IDonatorUserBreastMilkNotificationRepository donatorUserBreastMilkNotificationRepository,
-                                  IDonatorUserRepository donatorUserRepository) : base(uow, bus, notifications)
+                                  IDonatorUserRepository donatorUserRepository,
+                                  IHospitalUserRepository hospitalUserRepository) : base(uow, bus, notifications)
         {
             _bus = bus;
             _notificationRepository = notificationRepository;
@@ -49,14 +51,18 @@ namespace SocialHeroes.Domain.Handlers
             _donatorUserHairNotificationRepository = donatorUserHairNotificationRepository;
             _donatorUserBreastMilkNotificationRepository = donatorUserBreastMilkNotificationRepository;
             _donatorUserRepository = donatorUserRepository;
+            _hospitalUserRepository = hospitalUserRepository;
         }
 
         public Task<ICommandResult> Handle(NotifyDonatorUserCommand command,
                                            CancellationToken cancellationToken)
         {
-            var notifyDonatorUserEvent = new NotifyDonatorUserEvent();
 
-            RegisterNotification(command.HospitalUserId, out Notification notification);
+            RegisterNotification(command.HospitalUserId,
+                                 out Notification notification);
+
+            CreateInstanceToNotifyDonatorUserEvent(command,
+                                                   out NotifyDonatorUserEvent notifyDonatorUserEvent);
 
             AddBloodNotifications(command,
                                   notification,
@@ -74,6 +80,21 @@ namespace SocialHeroes.Domain.Handlers
                 _bus.RaiseEvent(notifyDonatorUserEvent);
 
             return CompletedTask();
+        }
+
+        private NotifyDonatorUserEvent CreateInstanceToNotifyDonatorUserEvent(NotifyDonatorUserCommand command,
+                                                                              out NotifyDonatorUserEvent notifyDonatorUserEvent)
+        {
+            var hospitalUser = _hospitalUserRepository.Get(command.HospitalUserId);
+            var hospitalUserAddress = hospitalUser.User.Address;
+
+            notifyDonatorUserEvent = new NotifyDonatorUserEvent(hospitalUser.FantasyName,
+                                                                hospitalUserAddress.Street,
+                                                                hospitalUserAddress.Number,
+                                                                hospitalUserAddress.City,
+                                                                hospitalUserAddress.State,
+                                                                hospitalUserAddress.Country);
+            return notifyDonatorUserEvent;
         }
 
         #region Add Notifications
@@ -112,7 +133,7 @@ namespace SocialHeroes.Domain.Handlers
             if (HasBloodNotifications(command.BloodNotifications))
             {
                 RegisterBloodNotifications(notification,
-                                       command.BloodNotifications);
+                                           command.BloodNotifications);
 
                 RegisterDonatorUserBloodNotifications(notification.BloodNotifications,
                                                       notifyDonatorUserEvent);
@@ -159,10 +180,20 @@ namespace SocialHeroes.Domain.Handlers
         private void RegisterDonatorUserBreastMilkNotification(BreastMilkNotification breastMilkNotification,
                                                                NotifyDonatorUserEvent notifyDonatorUserEvent)
         {
-            var donatorUserBreastMilkNotification = new DonatorUserBreastMilkNotification(Guid.NewGuid(),
-                                                                                          Guid.NewGuid(),
-                                                                                          breastMilkNotification.Id);
-            _donatorUserBreastMilkNotificationRepository.Add(donatorUserBreastMilkNotification);
+            var usersToBreastMilkNotification = _donatorUserRepository.GetToBreastMilkNotification(breastMilkNotification.AmountBreastMilk);
+
+            foreach (var userDonator in usersToBreastMilkNotification)
+            {
+                var donatorUserBreastMilkNotification = new DonatorUserBreastMilkNotification(Guid.NewGuid(),
+                                                                                              userDonator.Id,
+                                                                                              breastMilkNotification.Id);
+
+                notifyDonatorUserEvent.AddDonatorUserNotificationEvent(new DonatorUserNotificationEvent(userDonator.Name,
+                                                                                                        userDonator.User.Email, 
+                                                                                                        "Leite Materno"));
+
+                _donatorUserBreastMilkNotificationRepository.Add(donatorUserBreastMilkNotification);
+            }
         }
         #endregion
 
