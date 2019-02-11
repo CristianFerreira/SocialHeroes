@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace SocialHeroes.Infra.Data.Migrations
 {
-    public partial class initial : Migration
+    public partial class InitialCreate : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -145,12 +145,17 @@ namespace SocialHeroes.Infra.Data.Migrations
                     CellPhone = table.Column<string>(type: "varchar(14)", maxLength: 14, nullable: true),
                     Genre = table.Column<int>(nullable: false),
                     DateBirth = table.Column<DateTime>(nullable: false),
-                    LastDonation = table.Column<DateTime>(nullable: true),
+                    LastDonatedBlood = table.Column<DateTime>(nullable: true),
+                    LastDonatedHair = table.Column<DateTime>(nullable: true),
+                    LastDonatedBreastMilk = table.Column<DateTime>(nullable: true),
+                    LastBloodNotification = table.Column<DateTime>(nullable: true),
+                    LastHairNotification = table.Column<DateTime>(nullable: true),
+                    LastBreastMilkNotification = table.Column<DateTime>(nullable: true),
                     ActivedBloodNotification = table.Column<bool>(nullable: false),
                     ActivedHairNotification = table.Column<bool>(nullable: false),
                     ActivedBreastMilkNotification = table.Column<bool>(nullable: false),
                     UserId = table.Column<Guid>(nullable: false),
-                    BloodId = table.Column<Guid>(nullable: false),
+                    BloodId = table.Column<Guid>(nullable: true),
                     HairId = table.Column<Guid>(nullable: true)
                 },
                 constraints: table =>

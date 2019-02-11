@@ -226,7 +226,7 @@ namespace SocialHeroes.Infra.Data.Migrations
 
                     b.Property<bool>("ActivedHairNotification");
 
-                    b.Property<Guid>("BloodId");
+                    b.Property<Guid?>("BloodId");
 
                     b.Property<string>("CPF")
                         .HasColumnType("varchar(11)")
@@ -242,7 +242,17 @@ namespace SocialHeroes.Infra.Data.Migrations
 
                     b.Property<Guid?>("HairId");
 
-                    b.Property<DateTime?>("LastDonation");
+                    b.Property<DateTime?>("LastBloodNotification");
+
+                    b.Property<DateTime?>("LastBreastMilkNotification");
+
+                    b.Property<DateTime?>("LastDonatedBlood");
+
+                    b.Property<DateTime?>("LastDonatedBreastMilk");
+
+                    b.Property<DateTime?>("LastDonatedHair");
+
+                    b.Property<DateTime?>("LastHairNotification");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -630,8 +640,7 @@ namespace SocialHeroes.Infra.Data.Migrations
                 {
                     b.HasOne("SocialHeroes.Domain.Models.Blood", "Blood")
                         .WithMany("DonatorsUsers")
-                        .HasForeignKey("BloodId")
-                        .OnDelete(DeleteBehavior.Restrict);
+                        .HasForeignKey("BloodId");
 
                     b.HasOne("SocialHeroes.Domain.Models.Hair", "Hair")
                         .WithMany("DonatorsUsers")

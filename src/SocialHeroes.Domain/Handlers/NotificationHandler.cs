@@ -147,13 +147,16 @@ namespace SocialHeroes.Domain.Handlers
         {
             foreach (var bloodNotification in bloodNotifications)
             {
-                var donatorUsers = _donatorUserRepository.GetToBloodNotification(bloodNotification.BloodId);
-                foreach (var donatorUser in donatorUsers)
+                var donatorUsersQuery = _donatorUserRepository.GetToBloodNotification(bloodNotification.BloodId);
+                foreach (var donatorUserQuery in donatorUsersQuery)
                 {
                     var donatorUserBloodNotification = new DonatorUserBloodNotification(Guid.NewGuid(),
-                                                                                        donatorUser.Id,
+                                                                                        donatorUserQuery.DonatorUserId,
                                                                                         bloodNotification.Id);
-                    var donatorUserNotificationEvent = new DonatorUserNotificationEvent(donatorUser.Name, donatorUser.User.Email, donatorUser.Blood.Type);
+
+                    var donatorUserNotificationEvent = new DonatorUserNotificationEvent(donatorUserQuery.Name, 
+                                                                                        donatorUserQuery.Email, 
+                                                                                        donatorUserQuery.BloodType);
 
                     //notifyDonatorUserEvent.AddDonatorUserNotificationEvent();
 
@@ -182,18 +185,27 @@ namespace SocialHeroes.Domain.Handlers
         {
             var usersToBreastMilkNotification = _donatorUserRepository.GetToBreastMilkNotification(breastMilkNotification.AmountBreastMilk);
 
-            foreach (var userDonator in usersToBreastMilkNotification)
+            foreach (var userDonatorToNotify in usersToBreastMilkNotification)
             {
                 var donatorUserBreastMilkNotification = new DonatorUserBreastMilkNotification(Guid.NewGuid(),
-                                                                                              userDonator.Id,
+                                                                                              userDonatorToNotify.DonatorUserId,
                                                                                               breastMilkNotification.Id);
 
-                notifyDonatorUserEvent.AddDonatorUserNotificationEvent(new DonatorUserNotificationEvent(userDonator.Name,
-                                                                                                        userDonator.User.Email, 
+                notifyDonatorUserEvent.AddDonatorUserNotificationEvent(new DonatorUserNotificationEvent(userDonatorToNotify.Name,
+                                                                                                        userDonatorToNotify.Email, 
                                                                                                         "Leite Materno"));
+
+                UpdateLastNotificationDonatorUser(userDonatorToNotify.DonatorUserId);
 
                 _donatorUserBreastMilkNotificationRepository.Add(donatorUserBreastMilkNotification);
             }
+        }
+
+        private void UpdateLastNotificationDonatorUser(Guid donatorUserId)
+        {
+            var donatorUser = _donatorUserRepository.GetById(donatorUserId);
+            donatorUser.AddLastBreastMilkNotification();
+            _donatorUserRepository.Update(donatorUser);
         }
         #endregion
 

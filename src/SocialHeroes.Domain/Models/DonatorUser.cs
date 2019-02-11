@@ -14,7 +14,9 @@ namespace SocialHeroes.Domain.Models
                            string name, 
                            EGenre genre, 
                            DateTime dateBirth,
-                           DateTime? lastDonation = null, 
+                           DateTime? lastDonatedBlood = null,
+                           DateTime? lastDonatedHair = null,
+                           DateTime? lastDonatedBreastMilk = null,
                            string cpf = null, 
                            string cellPhone = null)
         {
@@ -23,7 +25,9 @@ namespace SocialHeroes.Domain.Models
             Name = name;
             Genre = genre;
             DateBirth = dateBirth;
-            LastDonation = lastDonation;
+            LastDonatedBlood = lastDonatedBlood;
+            LastDonatedHair = lastDonatedHair;
+            LastDonatedBreastMilk = lastDonatedBreastMilk;
             CPF = cpf;
             CellPhone = cellPhone;
             ActivedBloodNotification = true;
@@ -37,10 +41,18 @@ namespace SocialHeroes.Domain.Models
         public string CellPhone { get; private set; }
         public EGenre Genre { get; private set; }
         public DateTime DateBirth { get; private set; }
-        public DateTime? LastDonation { get; private set; }
+
+        public DateTime? LastDonatedBlood { get; private set; }
+        public DateTime? LastDonatedHair { get; private set; }
+        public DateTime? LastDonatedBreastMilk { get; private set; }
+
+        public DateTime? LastBloodNotification{ get; private set; }
+        public DateTime? LastHairNotification { get; private set; }
+        public DateTime? LastBreastMilkNotification { get; private set; }
+
         public bool ActivedBloodNotification { get; private set; }
         public bool ActivedHairNotification { get; private set; }
-        public bool ActivedBreastMilkNotification { get; private set; }
+        public bool ActivedBreastMilkNotification{ get; private set; }
 
 
         [JsonIgnore]
@@ -58,5 +70,9 @@ namespace SocialHeroes.Domain.Models
         public ICollection<DonatorUserBloodNotification> DonatorUserBloodNotifications { get; private set; }
         public ICollection<DonatorUserHairNotification> DonatorUserHairNotifications { get; private set; }
         public ICollection<DonatorUserBreastMilkNotification> DonatorUserBreastMilkNotifications { get; private set; }
+
+
+        public void AddLastBreastMilkNotification()
+        => LastBreastMilkNotification = DateTime.Now;
     }
 }
