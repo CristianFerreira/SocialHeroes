@@ -10,7 +10,7 @@ namespace SocialHeroes.Infra.Data.Context
     {
         public DbSet<Hair> Hairs { get; set; }
         public DbSet<DonatorUser> DonatorUsers { get; set; }
-        public DbSet<HospitalUser> HospitalUsers { get; set; }
+        public DbSet<InstitutionUser> InstitutionUsers { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<Address> Addresses { get; set; }
         public DbSet<Blood> Bloods { get; set; }

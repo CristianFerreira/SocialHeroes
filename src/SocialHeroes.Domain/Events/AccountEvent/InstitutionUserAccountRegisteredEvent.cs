@@ -2,7 +2,7 @@
 
 namespace SocialHeroes.Domain.Events.AccountEvent
 {
-    public class HospitalAccountRegisteredEvent : Event
+    public class InstitutionUserAccountRegisteredEvent : Event
     {
     }
 }

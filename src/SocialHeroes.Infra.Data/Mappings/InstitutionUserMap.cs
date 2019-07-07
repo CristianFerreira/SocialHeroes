@@ -4,9 +4,9 @@ using SocialHeroes.Domain.Models;
 
 namespace SocialHeroes.Infra.Data.Mappings
 {
-    public class HospitalUserMap : IEntityTypeConfiguration<HospitalUser>
+    public class InstitutionUserMap : IEntityTypeConfiguration<InstitutionUser>
     {
-        public void Configure(EntityTypeBuilder<HospitalUser> builder)
+        public void Configure(EntityTypeBuilder<InstitutionUser> builder)
         {
             builder.HasKey(h => h.Id);
 
@@ -26,9 +26,9 @@ namespace SocialHeroes.Infra.Data.Mappings
                 .IsRequired();
 
 
-            builder.HasOne(h => h.User).WithOne(h => h.HospitalUser);
+            builder.HasOne(h => h.User).WithOne(h => h.InstitutionUser);
     
-            builder.ToTable("HospitalUsers");
+            builder.ToTable("InstitutionUsers");
         }
     }
 }

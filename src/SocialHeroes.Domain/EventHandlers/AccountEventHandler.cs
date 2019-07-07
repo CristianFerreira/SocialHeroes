@@ -5,9 +5,9 @@ using System.Threading.Tasks;
 
 namespace SocialHeroes.Domain.EventHandlers
 {
-    public class AccountEventHandler : INotificationHandler<HospitalAccountRegisteredEvent>
+    public class AccountEventHandler : INotificationHandler<InstitutionUserAccountRegisteredEvent>
     {
-        public Task Handle(HospitalAccountRegisteredEvent notification, CancellationToken cancellationToken)
+        public Task Handle(InstitutionUserAccountRegisteredEvent notification, CancellationToken cancellationToken)
         {
             //send email
             return Task.CompletedTask;

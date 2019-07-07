@@ -3,7 +3,7 @@ using SocialHeroes.Domain.Commands.Account;
 
 namespace SocialHeroes.Domain.Validations.AccountValidation
 {
-    public class HospitalUserValidation<T> : UserValidation<T> where T : HospitalUserCommand
+    public class InstitutionUserValidation<T> : UserValidation<T> where T : InstitutionUserCommand
     {
         protected void ValidateSocialReason()
         {

@@ -13,7 +13,7 @@ namespace SocialHeroes.CrossCutting.IoC.Configurations
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IUserNotificationTypeRepository, UserNotificationTypeRepository>();
             services.AddScoped<IDonatorUserRepository, DonatorUserRepository>();
-            services.AddScoped<IHospitalUserRepository, HospitalUserRepository>();
+            services.AddScoped<IInstitutionUserRepository, InstitutionUserRepository>();
             services.AddScoped<IAddressRepository, AddressRepository>();
             services.AddScoped<INotificationRepository, NotificationRepository>();
             services.AddScoped<IBloodNotificationRepository, BloodNotificationRepository>();

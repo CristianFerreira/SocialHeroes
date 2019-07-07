@@ -10,7 +10,7 @@ namespace SocialHeroes.Infra.Data.Configurations
             modelBuilder.ApplyConfiguration(new HairMap());
             modelBuilder.ApplyConfiguration(new UserMap());
             modelBuilder.ApplyConfiguration(new DonatorUserMap());
-            modelBuilder.ApplyConfiguration(new HospitalUserMap());
+            modelBuilder.ApplyConfiguration(new InstitutionUserMap());
             modelBuilder.ApplyConfiguration(new AddressMap());
             modelBuilder.ApplyConfiguration(new BloodMap());
             modelBuilder.ApplyConfiguration(new BloodNotificationMap());

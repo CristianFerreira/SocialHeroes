@@ -5,10 +5,10 @@ using System.Collections.Generic;
 
 namespace SocialHeroes.Domain.Models
 {
-    public class HospitalUser : IEntity
+    public class InstitutionUser : IEntity
     {
-        protected HospitalUser()  {}
-        public HospitalUser(Guid id, Guid userId, string socialReason, string fantasyName, string cnpj)
+        protected InstitutionUser()  {}
+        public InstitutionUser(Guid id, Guid userId, string socialReason, string fantasyName, string cnpj)
         {
             Id = id;
             UserId = userId;

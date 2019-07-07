@@ -30,7 +30,7 @@ namespace SocialHeroes.Domain.Models
 
         public Address Address { get; private set; }
         public DonatorUser DonatorUser { get; private set; }
-        public HospitalUser HospitalUser { get; private set; }
+        public InstitutionUser InstitutionUser { get; private set; }
 
         public ICollection<UserNotificationType> UserNotificationTypes { get; private set; }
 

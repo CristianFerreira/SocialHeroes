@@ -11,7 +11,7 @@ namespace SocialHeroes.CrossCutting.IoC.Configurations
         public static void Register(IServiceCollection services)
         {
             services.AddScoped<INotificationHandler<DomainNotification>, DomainNotificationHandler>();
-            services.AddScoped<INotificationHandler<HospitalAccountRegisteredEvent>, AccountEventHandler>();
+            services.AddScoped<INotificationHandler<InstitutionUserAccountRegisteredEvent>, AccountEventHandler>();
 
         }
     }

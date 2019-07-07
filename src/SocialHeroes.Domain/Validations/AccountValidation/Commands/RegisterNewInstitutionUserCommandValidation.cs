@@ -2,9 +2,9 @@
 
 namespace SocialHeroes.Domain.Validations.AccountValidation.Commands
 {
-    public class RegisterNewHospitalUserCommandValidation : HospitalUserValidation<RegisterNewHospitalUserCommand>
+    public class RegisterNewInstitutionUserCommandValidation : InstitutionUserValidation<RegisterNewInstitutionUserCommand>
     {
-        public RegisterNewHospitalUserCommandValidation()
+        public RegisterNewInstitutionUserCommandValidation()
         {
             ValidateSocialReason();
             ValidateFantasyName();

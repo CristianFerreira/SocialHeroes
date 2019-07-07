@@ -27,7 +27,7 @@ namespace SocialHeroes.Domain.Handlers
         private readonly IDonatorUserHairNotificationRepository _donatorUserHairNotificationRepository;
         private readonly IDonatorUserBreastMilkNotificationRepository _donatorUserBreastMilkNotificationRepository;
         private readonly IDonatorUserRepository _donatorUserRepository;
-        private readonly IHospitalUserRepository _hospitalUserRepository;
+        private readonly IInstitutionUserRepository _institutionUserRepository;
 
         public NotificationHandler(IUnitOfWork uow,
                                   IMediatorHandler bus,
@@ -40,7 +40,7 @@ namespace SocialHeroes.Domain.Handlers
                                   IDonatorUserHairNotificationRepository donatorUserHairNotificationRepository,
                                   IDonatorUserBreastMilkNotificationRepository donatorUserBreastMilkNotificationRepository,
                                   IDonatorUserRepository donatorUserRepository,
-                                  IHospitalUserRepository hospitalUserRepository) : base(uow, bus, notifications)
+                                  IInstitutionUserRepository institutionUserRepository) : base(uow, bus, notifications)
         {
             _bus = bus;
             _notificationRepository = notificationRepository;
@@ -51,14 +51,14 @@ namespace SocialHeroes.Domain.Handlers
             _donatorUserHairNotificationRepository = donatorUserHairNotificationRepository;
             _donatorUserBreastMilkNotificationRepository = donatorUserBreastMilkNotificationRepository;
             _donatorUserRepository = donatorUserRepository;
-            _hospitalUserRepository = hospitalUserRepository;
+            _institutionUserRepository = institutionUserRepository;
         }
 
         public Task<ICommandResult> Handle(NotifyDonatorUserCommand command,
                                            CancellationToken cancellationToken)
         {
 
-            RegisterNotification(command.HospitalUserId,
+            RegisterNotification(command.InstitutionUserId,
                                  out Notification notification);
 
             CreateInstanceToNotifyDonatorUserEvent(command,
@@ -85,15 +85,15 @@ namespace SocialHeroes.Domain.Handlers
         private NotifyDonatorUserEvent CreateInstanceToNotifyDonatorUserEvent(NotifyDonatorUserCommand command,
                                                                               out NotifyDonatorUserEvent notifyDonatorUserEvent)
         {
-            var hospitalUser = _hospitalUserRepository.Get(command.HospitalUserId);
-            var hospitalUserAddress = hospitalUser.User.Address;
+            var institutionUser = _institutionUserRepository.Get(command.InstitutionUserId);
+            var institutionUserAddress = institutionUser.User.Address;
 
-            notifyDonatorUserEvent = new NotifyDonatorUserEvent(hospitalUser.FantasyName,
-                                                                hospitalUserAddress.Street,
-                                                                hospitalUserAddress.Number,
-                                                                hospitalUserAddress.City,
-                                                                hospitalUserAddress.State,
-                                                                hospitalUserAddress.Country);
+            notifyDonatorUserEvent = new NotifyDonatorUserEvent(institutionUser.FantasyName,
+                                                                institutionUserAddress.Street,
+                                                                institutionUserAddress.Number,
+                                                                institutionUserAddress.City,
+                                                                institutionUserAddress.State,
+                                                                institutionUserAddress.Country);
             return notifyDonatorUserEvent;
         }
 
@@ -249,9 +249,9 @@ namespace SocialHeroes.Domain.Handlers
             }
         }
 
-        private void RegisterNotification(Guid hospitalUserId, out Notification notification)
+        private void RegisterNotification(Guid institutionUserId, out Notification notification)
         {
-            notification = new Notification(Guid.NewGuid(), hospitalUserId);
+            notification = new Notification(Guid.NewGuid(), institutionUserId);
             _notificationRepository.Add(notification);
         }
         #endregion

@@ -33,9 +33,9 @@ namespace SocialHeroes.WebApi.Controllers
             => Response(bus.SendCommand(command).Result);
 
         [HttpPost]
-        [Route("account/hospital")]
+        [Route("account/institution")]
         [AllowAnonymous]
-        public IActionResult Register([FromBody]RegisterNewHospitalUserCommand command)
+        public IActionResult Register([FromBody]RegisterNewInstitutionUserCommand command)
             => Response(bus.SendCommand(command).Result);
 
         [HttpPost]

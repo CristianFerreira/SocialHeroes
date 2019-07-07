@@ -382,7 +382,7 @@ namespace SocialHeroes.Infra.Data.Migrations
                     b.ToTable("HairNotification");
                 });
 
-            modelBuilder.Entity("SocialHeroes.Domain.Models.HospitalUser", b =>
+            modelBuilder.Entity("SocialHeroes.Domain.Models.InstitutionUser", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd();
@@ -409,7 +409,7 @@ namespace SocialHeroes.Infra.Data.Migrations
                     b.HasIndex("UserId")
                         .IsUnique();
 
-                    b.ToTable("HospitalUser");
+                    b.ToTable("InstitutionUser");
                 });
 
             modelBuilder.Entity("SocialHeroes.Domain.Models.Notification", b =>
@@ -419,11 +419,11 @@ namespace SocialHeroes.Infra.Data.Migrations
 
                     b.Property<DateTime>("DateNotification");
 
-                    b.Property<Guid>("HospitalUserId");
+                    b.Property<Guid>("InstitutionUserId");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("HospitalUserId")
+                    b.HasIndex("InstitutionUserId")
                         .IsUnique();
 
                     b.ToTable("Notification");
@@ -450,7 +450,7 @@ namespace SocialHeroes.Infra.Data.Migrations
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<Guid>("HospitalUserId");
+                    b.Property<Guid>("InstitutionUserId");
 
                     b.Property<string>("Number")
                         .IsRequired()
@@ -458,7 +458,7 @@ namespace SocialHeroes.Infra.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("HospitalUserId");
+                    b.HasIndex("InstitutionUserId");
 
                     b.ToTable("Phone");
                 });
@@ -704,27 +704,27 @@ namespace SocialHeroes.Infra.Data.Migrations
                         .OnDelete(DeleteBehavior.Restrict);
                 });
 
-            modelBuilder.Entity("SocialHeroes.Domain.Models.HospitalUser", b =>
+            modelBuilder.Entity("SocialHeroes.Domain.Models.InstitutionUser", b =>
                 {
                     b.HasOne("SocialHeroes.Domain.Models.User", "User")
-                        .WithOne("HospitalUser")
-                        .HasForeignKey("SocialHeroes.Domain.Models.HospitalUser", "UserId")
+                        .WithOne("InstitutionUser")
+                        .HasForeignKey("SocialHeroes.Domain.Models.InstitutionUser", "UserId")
                         .OnDelete(DeleteBehavior.Restrict);
                 });
 
             modelBuilder.Entity("SocialHeroes.Domain.Models.Notification", b =>
                 {
-                    b.HasOne("SocialHeroes.Domain.Models.HospitalUser", "HospitalUser")
+                    b.HasOne("SocialHeroes.Domain.Models.InstitutionUser", "InstitutionUser")
                         .WithOne("Notification")
-                        .HasForeignKey("SocialHeroes.Domain.Models.Notification", "HospitalUserId")
+                        .HasForeignKey("SocialHeroes.Domain.Models.Notification", "InstitutionUserId")
                         .OnDelete(DeleteBehavior.Restrict);
                 });
 
             modelBuilder.Entity("SocialHeroes.Domain.Models.Phone", b =>
                 {
-                    b.HasOne("SocialHeroes.Domain.Models.HospitalUser", "HospitalUser")
+                    b.HasOne("SocialHeroes.Domain.Models.InstitutionUser", "InstitutionUser")
                         .WithMany("Phones")
-                        .HasForeignKey("HospitalUserId")
+                        .HasForeignKey("InstitutionUserId")
                         .OnDelete(DeleteBehavior.Restrict);
                 });
 

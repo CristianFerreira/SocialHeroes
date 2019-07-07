@@ -7,16 +7,16 @@ using SocialHeroes.Infra.Data.Context;
 
 namespace SocialHeroes.Infra.Data.Repository
 {
-    public class HospitalUserRepository : Repository<HospitalUser>, IHospitalUserRepository
+    public class InstitutionUserRepository : Repository<InstitutionUser>, IInstitutionUserRepository
     {
-        public HospitalUserRepository(SocialHeroesContext context) : base(context)
+        public InstitutionUserRepository(SocialHeroesContext context) : base(context)
         {
         }
 
-        public HospitalUser GetByUserId(Guid userId)
+        public InstitutionUser GetByUserId(Guid userId)
         => DbSet.AsNoTracking().FirstOrDefault(x => x.UserId == userId);
         
-        public HospitalUser Get(Guid id)
+        public InstitutionUser Get(Guid id)
         =>  DbSet.AsNoTracking().Include(x => x.User).ThenInclude(x => x.Address).FirstOrDefault(x => x.Id == id);
     }
 }

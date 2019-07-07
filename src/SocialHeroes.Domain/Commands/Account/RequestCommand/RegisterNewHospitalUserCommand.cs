@@ -2,9 +2,9 @@
 
 namespace SocialHeroes.Domain.Commands.Account.RequestCommand
 {
-    public class RegisterNewHospitalUserCommand : HospitalUserCommand
+    public class RegisterNewInstitutionUserCommand : InstitutionUserCommand
     {
-        public RegisterNewHospitalUserCommand(string socialReason, 
+        public RegisterNewInstitutionUserCommand(string socialReason, 
                                                  string fantasyName, 
                                                  string cnpj,
                                                  string email,

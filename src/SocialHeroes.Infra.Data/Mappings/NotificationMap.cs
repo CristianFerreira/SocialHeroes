@@ -10,13 +10,13 @@ namespace SocialHeroes.Infra.Data.Mappings
         {
             builder.HasKey(x => x.Id);
 
-            builder.Property(x => x.HospitalUserId)
+            builder.Property(x => x.InstitutionUserId)
                 .IsRequired();
 
             builder.Property(a => a.DateNotification)
                 .IsRequired();
 
-            builder.HasOne(a => a.HospitalUser).WithOne(a => a.Notification);
+            builder.HasOne(a => a.InstitutionUser).WithOne(a => a.Notification);
 
             builder.ToTable("Notifications");
         }

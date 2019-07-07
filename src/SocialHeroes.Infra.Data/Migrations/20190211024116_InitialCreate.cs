@@ -182,7 +182,7 @@ namespace SocialHeroes.Infra.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "HospitalUser",
+                name: "InstitutionUser",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(nullable: false),
@@ -193,9 +193,9 @@ namespace SocialHeroes.Infra.Data.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_HospitalUser", x => x.Id);
+                    table.PrimaryKey("PK_InstitutionUser", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_HospitalUser_User_UserId",
+                        name: "FK_InstitutionUser_User_UserId",
                         column: x => x.UserId,
                         principalTable: "User",
                         principalColumn: "Id",
@@ -317,16 +317,16 @@ namespace SocialHeroes.Infra.Data.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(nullable: false),
-                    HospitalUserId = table.Column<Guid>(nullable: false),
+                    InstitutionUserId = table.Column<Guid>(nullable: false),
                     DateNotification = table.Column<DateTime>(nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Notification", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Notification_HospitalUser_HospitalUserId",
-                        column: x => x.HospitalUserId,
-                        principalTable: "HospitalUser",
+                        name: "FK_Notification_InstitutionUser_InstitutionUserId",
+                        column: x => x.InstitutionUserId,
+                        principalTable: "InstitutionUser",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -336,16 +336,16 @@ namespace SocialHeroes.Infra.Data.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(nullable: false),
-                    HospitalUserId = table.Column<Guid>(nullable: false),
+                    InstitutionUserId = table.Column<Guid>(nullable: false),
                     Number = table.Column<string>(maxLength: 15, nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Phone", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Phone_HospitalUser_HospitalUserId",
-                        column: x => x.HospitalUserId,
-                        principalTable: "HospitalUser",
+                        name: "FK_Phone_InstitutionUser_InstitutionUserId",
+                        column: x => x.InstitutionUserId,
+                        principalTable: "InstitutionUser",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -596,8 +596,8 @@ namespace SocialHeroes.Infra.Data.Migrations
                 column: "NotificationId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_HospitalUser_UserId",
-                table: "HospitalUser",
+                name: "IX_InstitutionUser_UserId",
+                table: "InstitutionUser",
                 column: "UserId",
                 unique: true);
 
@@ -622,15 +622,15 @@ namespace SocialHeroes.Infra.Data.Migrations
                 column: "RoleId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Notification_HospitalUserId",
+                name: "IX_Notification_InstitutionUserId",
                 table: "Notification",
-                column: "HospitalUserId",
+                column: "InstitutionUserId",
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_Phone_HospitalUserId",
+                name: "IX_Phone_InstitutionUserId",
                 table: "Phone",
-                column: "HospitalUserId");
+                column: "InstitutionUserId");
 
             migrationBuilder.CreateIndex(
                 name: "RoleNameIndex",
@@ -725,7 +725,7 @@ namespace SocialHeroes.Infra.Data.Migrations
                 name: "Notification");
 
             migrationBuilder.DropTable(
-                name: "HospitalUser");
+                name: "InstitutionUser");
 
             migrationBuilder.DropTable(
                 name: "User");

@@ -6,7 +6,7 @@ namespace SocialHeroes.Domain.Validations.NotificationValidation.Commands
     {
         public NotifyDonatorUserCommandValidation()
         {
-            ValidateHospitalId();
+            ValidateInstitutionId();
             ValidateBloodNotification();
             ValidateBreastMilkNotification();
             ValidateHairNotification();

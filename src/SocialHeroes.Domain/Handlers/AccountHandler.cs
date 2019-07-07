@@ -20,13 +20,13 @@ namespace SocialHeroes.Domain.Handlers
 {
     public class AccountHandler : Handler,
                                   IRequestHandler<RegisterNewDonatorUserCommand, ICommandResult>,
-                                  IRequestHandler<RegisterNewHospitalUserCommand, ICommandResult>,
+                                  IRequestHandler<RegisterNewInstitutionUserCommand, ICommandResult>,
                                   IRequestHandler<TokenUserCommand, ICommandResult>
     {
         private readonly IMediatorHandler _bus;
         private readonly ITokenService _tokenService;
         private readonly IDonatorUserRepository _donatorUserRepository;
-        private readonly IHospitalUserRepository _hospitalUserRepository;
+        private readonly IInstitutionUserRepository _institutionUserRepository;
         private readonly IAddressRepository _addressRepository;
         private readonly IUserNotificationTypeRepository _userNotificationTypeRepository;
         private readonly IPhoneRepository _phoneRepository;
@@ -38,7 +38,7 @@ namespace SocialHeroes.Domain.Handlers
                               INotificationHandler<DomainNotification> notifications,
                               ITokenService tokenService,
                               IDonatorUserRepository donatorUserRepository,
-                              IHospitalUserRepository hospitalUserRepository,
+                              IInstitutionUserRepository institutionUserRepository,
                               IAddressRepository addressRepository,
                               IUserNotificationTypeRepository userNotificationTypeRepository,
                               IPhoneRepository phoneRepository,
@@ -49,7 +49,7 @@ namespace SocialHeroes.Domain.Handlers
             _bus = bus;
             _tokenService = tokenService;
             _donatorUserRepository = donatorUserRepository;
-            _hospitalUserRepository = hospitalUserRepository;
+            _institutionUserRepository = institutionUserRepository;
             _addressRepository = addressRepository;
             _userNotificationTypeRepository = userNotificationTypeRepository;
             _phoneRepository = phoneRepository;
@@ -89,7 +89,7 @@ namespace SocialHeroes.Domain.Handlers
             }
         }
 
-        public async Task<ICommandResult> Handle(RegisterNewHospitalUserCommand command, 
+        public async Task<ICommandResult> Handle(RegisterNewInstitutionUserCommand command, 
                                                  CancellationToken cancellationToken)
         {
             using (var transaction = _uow.BeginTransaction())
@@ -108,14 +108,14 @@ namespace SocialHeroes.Domain.Handlers
 
                     RegisterAddress(command.Address, user);
 
-                    RegisterHospital(command, user, out HospitalUser hospitalUser);
+                    RegisterHospital(command, user, out InstitutionUser institutionUser);
 
-                    RegisterPhones(command.Phones, hospitalUser);
+                    RegisterPhones(command.Phones, institutionUser);
 
                     Commit(transaction);
                         //await _bus.RaiseEvent(new HospitalAccountRegisteredEvent());
 
-                    return await CompletedTask(hospitalUser);
+                    return await CompletedTask(institutionUser);
                 }
                 catch (Exception exception)
                 {
@@ -125,13 +125,13 @@ namespace SocialHeroes.Domain.Handlers
             }
         }
 
-        private void RegisterPhones(ICollection<PhoneCommand> phones, HospitalUser hospitalUser)
+        private void RegisterPhones(ICollection<PhoneCommand> phones, InstitutionUser institutionUser)
         {
             if (phones == null)
                 return;
 
             foreach (var phone in phones)
-              _phoneRepository.Add(new Phone(Guid.NewGuid(), hospitalUser.Id, phone.Number));
+              _phoneRepository.Add(new Phone(Guid.NewGuid(), institutionUser.Id, phone.Number));
             
         }
 
@@ -178,17 +178,17 @@ namespace SocialHeroes.Domain.Handlers
             _addressRepository.Add(address);
         }
 
-        private void RegisterHospital(RegisterNewHospitalUserCommand command,
+        private void RegisterHospital(RegisterNewInstitutionUserCommand command,
                                       User user,
-                                      out HospitalUser hospitalUser)
+                                      out InstitutionUser institutionUser)
         {
-            hospitalUser = new HospitalUser(Guid.NewGuid(),
+            institutionUser = new InstitutionUser(Guid.NewGuid(),
                                             user.Id,
                                             command.SocialReason,
                                             command.FantasyName,
                                             command.CNPJ);
 
-            _hospitalUserRepository.Add(hospitalUser);
+            _institutionUserRepository.Add(institutionUser);
         }
 
         private bool RegisterUser(string email, 
@@ -239,7 +239,7 @@ namespace SocialHeroes.Domain.Handlers
                 case EUserType.Donator:
                     return _donatorUserRepository.GetByUserId(user.Id).Name;
                 case EUserType.Hospital:
-                    return _hospitalUserRepository.GetByUserId(user.Id).FantasyName;
+                    return _institutionUserRepository.GetByUserId(user.Id).FantasyName;
                 default:
                     return user.UserName;
             }

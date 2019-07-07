@@ -14,10 +14,10 @@ namespace SocialHeroes.Infra.Data.Mappings
                 .HasMaxLength(15)
                 .IsRequired();
 
-            builder.Property(x => x.HospitalUserId)
+            builder.Property(x => x.InstitutionUserId)
                 .IsRequired();
 
-            builder.HasOne(a => a.HospitalUser).WithMany(a => a.Phones);
+            builder.HasOne(a => a.InstitutionUser).WithMany(a => a.Phones);
             builder.ToTable("Phones");
         }
     }

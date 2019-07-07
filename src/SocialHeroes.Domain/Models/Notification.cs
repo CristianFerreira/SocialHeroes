@@ -7,20 +7,20 @@ namespace SocialHeroes.Domain.Models
     public class Notification : IEntity
     {
         public Notification(Guid id, 
-                            Guid hospitalUserId)
+                            Guid institutionUserId)
         {
             Id = id;
-            HospitalUserId = hospitalUserId;
+            InstitutionUserId = institutionUserId;
             DateNotification = DateTime.Now;
             BloodNotifications = new List<BloodNotification>();
             HairNotifications = new List<HairNotification>();
         }
 
         public Guid Id { get; private set; }
-        public Guid HospitalUserId { get; private set; }
+        public Guid InstitutionUserId { get; private set; }
         public DateTime DateNotification { get; private set; }
 
-        public HospitalUser HospitalUser { get; private set; }
+        public InstitutionUser InstitutionUser { get; private set; }
 
         public ICollection<BloodNotification> BloodNotifications { get; private set; }
         public ICollection<HairNotification> HairNotifications { get; private set; }
