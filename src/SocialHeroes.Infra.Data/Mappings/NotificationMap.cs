@@ -16,7 +16,7 @@ namespace SocialHeroes.Infra.Data.Mappings
             builder.Property(a => a.DateNotification)
                 .IsRequired();
 
-            builder.HasOne(a => a.InstitutionUser).WithOne(a => a.Notification);
+            builder.HasMany(a => a.InstitutionUsers).WithOne(a => a.Notification);
 
             builder.ToTable("Notifications");
         }

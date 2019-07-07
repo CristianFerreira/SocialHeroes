@@ -10,14 +10,14 @@ using SocialHeroes.Infra.Data.Context;
 namespace SocialHeroes.Infra.Data.Migrations
 {
     [DbContext(typeof(SocialHeroesContext))]
-    [Migration("20190211024116_InitialCreate")]
+    [Migration("20190707032314_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "2.1.4-rtm-31024")
+                .HasAnnotation("ProductVersion", "2.2.4-servicing-10062")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -399,6 +399,8 @@ namespace SocialHeroes.Infra.Data.Migrations
                         .HasColumnType("varchar(256)")
                         .HasMaxLength(256);
 
+                    b.Property<Guid?>("NotificationId");
+
                     b.Property<string>("SocialReason")
                         .IsRequired()
                         .HasColumnType("varchar(256)")
@@ -407,6 +409,8 @@ namespace SocialHeroes.Infra.Data.Migrations
                     b.Property<Guid>("UserId");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("NotificationId");
 
                     b.HasIndex("UserId")
                         .IsUnique();
@@ -424,9 +428,6 @@ namespace SocialHeroes.Infra.Data.Migrations
                     b.Property<Guid>("InstitutionUserId");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("InstitutionUserId")
-                        .IsUnique();
 
                     b.ToTable("Notification");
                 });
@@ -708,17 +709,13 @@ namespace SocialHeroes.Infra.Data.Migrations
 
             modelBuilder.Entity("SocialHeroes.Domain.Models.InstitutionUser", b =>
                 {
+                    b.HasOne("SocialHeroes.Domain.Models.Notification", "Notification")
+                        .WithMany("InstitutionUsers")
+                        .HasForeignKey("NotificationId");
+
                     b.HasOne("SocialHeroes.Domain.Models.User", "User")
                         .WithOne("InstitutionUser")
                         .HasForeignKey("SocialHeroes.Domain.Models.InstitutionUser", "UserId")
-                        .OnDelete(DeleteBehavior.Restrict);
-                });
-
-            modelBuilder.Entity("SocialHeroes.Domain.Models.Notification", b =>
-                {
-                    b.HasOne("SocialHeroes.Domain.Models.InstitutionUser", "InstitutionUser")
-                        .WithOne("Notification")
-                        .HasForeignKey("SocialHeroes.Domain.Models.Notification", "InstitutionUserId")
                         .OnDelete(DeleteBehavior.Restrict);
                 });
 

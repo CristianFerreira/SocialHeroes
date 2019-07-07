@@ -34,6 +34,19 @@ namespace SocialHeroes.Infra.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Notification",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(nullable: false),
+                    InstitutionUserId = table.Column<Guid>(nullable: false),
+                    DateNotification = table.Column<DateTime>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Notification", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "NotificationType",
                 columns: table => new
                 {
@@ -85,6 +98,80 @@ namespace SocialHeroes.Infra.Data.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_User", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "BloodNotification",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(nullable: false),
+                    NotificationId = table.Column<Guid>(nullable: false),
+                    BloodId = table.Column<Guid>(nullable: false),
+                    AmountBlood = table.Column<int>(nullable: false),
+                    Actived = table.Column<bool>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_BloodNotification", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_BloodNotification_Blood_BloodId",
+                        column: x => x.BloodId,
+                        principalTable: "Blood",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_BloodNotification_Notification_NotificationId",
+                        column: x => x.NotificationId,
+                        principalTable: "Notification",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "BreastMilkNotification",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(nullable: false),
+                    NotificationId = table.Column<Guid>(nullable: false),
+                    AmountBreastMilk = table.Column<int>(nullable: false),
+                    Actived = table.Column<bool>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_BreastMilkNotification", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_BreastMilkNotification_Notification_NotificationId",
+                        column: x => x.NotificationId,
+                        principalTable: "Notification",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "HairNotification",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(nullable: false),
+                    NotificationId = table.Column<Guid>(nullable: false),
+                    HairId = table.Column<Guid>(nullable: false),
+                    AmountHair = table.Column<int>(nullable: false),
+                    Actived = table.Column<bool>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_HairNotification", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_HairNotification_Hair_HairId",
+                        column: x => x.HairId,
+                        principalTable: "Hair",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_HairNotification_Notification_NotificationId",
+                        column: x => x.NotificationId,
+                        principalTable: "Notification",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -182,27 +269,6 @@ namespace SocialHeroes.Infra.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "InstitutionUser",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(nullable: false),
-                    SocialReason = table.Column<string>(type: "varchar(256)", maxLength: 256, nullable: false),
-                    FantasyName = table.Column<string>(type: "varchar(256)", maxLength: 256, nullable: false),
-                    CNPJ = table.Column<string>(type: "varchar(14)", maxLength: 14, nullable: false),
-                    UserId = table.Column<Guid>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_InstitutionUser", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_InstitutionUser_User_UserId",
-                        column: x => x.UserId,
-                        principalTable: "User",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "IdentityUserClaim<Guid>",
                 columns: table => new
                 {
@@ -288,6 +354,34 @@ namespace SocialHeroes.Infra.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "InstitutionUser",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(nullable: false),
+                    SocialReason = table.Column<string>(type: "varchar(256)", maxLength: 256, nullable: false),
+                    FantasyName = table.Column<string>(type: "varchar(256)", maxLength: 256, nullable: false),
+                    CNPJ = table.Column<string>(type: "varchar(14)", maxLength: 14, nullable: false),
+                    UserId = table.Column<Guid>(nullable: false),
+                    NotificationId = table.Column<Guid>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_InstitutionUser", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_InstitutionUser_Notification_NotificationId",
+                        column: x => x.NotificationId,
+                        principalTable: "Notification",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_InstitutionUser_User_UserId",
+                        column: x => x.UserId,
+                        principalTable: "User",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "UserNotificationType",
                 columns: table => new
                 {
@@ -308,118 +402,6 @@ namespace SocialHeroes.Infra.Data.Migrations
                         name: "FK_UserNotificationType_User_UserId",
                         column: x => x.UserId,
                         principalTable: "User",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Notification",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(nullable: false),
-                    InstitutionUserId = table.Column<Guid>(nullable: false),
-                    DateNotification = table.Column<DateTime>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Notification", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Notification_InstitutionUser_InstitutionUserId",
-                        column: x => x.InstitutionUserId,
-                        principalTable: "InstitutionUser",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Phone",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(nullable: false),
-                    InstitutionUserId = table.Column<Guid>(nullable: false),
-                    Number = table.Column<string>(maxLength: 15, nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Phone", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Phone_InstitutionUser_InstitutionUserId",
-                        column: x => x.InstitutionUserId,
-                        principalTable: "InstitutionUser",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "BloodNotification",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(nullable: false),
-                    NotificationId = table.Column<Guid>(nullable: false),
-                    BloodId = table.Column<Guid>(nullable: false),
-                    AmountBlood = table.Column<int>(nullable: false),
-                    Actived = table.Column<bool>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_BloodNotification", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_BloodNotification_Blood_BloodId",
-                        column: x => x.BloodId,
-                        principalTable: "Blood",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_BloodNotification_Notification_NotificationId",
-                        column: x => x.NotificationId,
-                        principalTable: "Notification",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "BreastMilkNotification",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(nullable: false),
-                    NotificationId = table.Column<Guid>(nullable: false),
-                    AmountBreastMilk = table.Column<int>(nullable: false),
-                    Actived = table.Column<bool>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_BreastMilkNotification", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_BreastMilkNotification_Notification_NotificationId",
-                        column: x => x.NotificationId,
-                        principalTable: "Notification",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "HairNotification",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(nullable: false),
-                    NotificationId = table.Column<Guid>(nullable: false),
-                    HairId = table.Column<Guid>(nullable: false),
-                    AmountHair = table.Column<int>(nullable: false),
-                    Actived = table.Column<bool>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_HairNotification", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_HairNotification_Hair_HairId",
-                        column: x => x.HairId,
-                        principalTable: "Hair",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_HairNotification_Notification_NotificationId",
-                        column: x => x.NotificationId,
-                        principalTable: "Notification",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -501,6 +483,25 @@ namespace SocialHeroes.Infra.Data.Migrations
                         name: "FK_DonatorUserHairNotification_HairNotification_HairNotificationId",
                         column: x => x.HairNotificationId,
                         principalTable: "HairNotification",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Phone",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(nullable: false),
+                    InstitutionUserId = table.Column<Guid>(nullable: false),
+                    Number = table.Column<string>(maxLength: 15, nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Phone", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Phone_InstitutionUser_InstitutionUserId",
+                        column: x => x.InstitutionUserId,
+                        principalTable: "InstitutionUser",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -596,12 +597,6 @@ namespace SocialHeroes.Infra.Data.Migrations
                 column: "NotificationId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_InstitutionUser_UserId",
-                table: "InstitutionUser",
-                column: "UserId",
-                unique: true);
-
-            migrationBuilder.CreateIndex(
                 name: "IX_IdentityRoleClaim<Guid>_RoleId",
                 table: "IdentityRoleClaim<Guid>",
                 column: "RoleId");
@@ -622,9 +617,14 @@ namespace SocialHeroes.Infra.Data.Migrations
                 column: "RoleId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Notification_InstitutionUserId",
-                table: "Notification",
-                column: "InstitutionUserId",
+                name: "IX_InstitutionUser_NotificationId",
+                table: "InstitutionUser",
+                column: "NotificationId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_InstitutionUser_UserId",
+                table: "InstitutionUser",
+                column: "UserId",
                 unique: true);
 
             migrationBuilder.CreateIndex(
@@ -713,6 +713,9 @@ namespace SocialHeroes.Infra.Data.Migrations
                 name: "Role");
 
             migrationBuilder.DropTable(
+                name: "InstitutionUser");
+
+            migrationBuilder.DropTable(
                 name: "NotificationType");
 
             migrationBuilder.DropTable(
@@ -723,9 +726,6 @@ namespace SocialHeroes.Infra.Data.Migrations
 
             migrationBuilder.DropTable(
                 name: "Notification");
-
-            migrationBuilder.DropTable(
-                name: "InstitutionUser");
 
             migrationBuilder.DropTable(
                 name: "User");

@@ -20,7 +20,7 @@ namespace SocialHeroes.Domain.Models
         public Guid InstitutionUserId { get; private set; }
         public DateTime DateNotification { get; private set; }
 
-        public InstitutionUser InstitutionUser { get; private set; }
+        public ICollection<InstitutionUser> InstitutionUsers { get; private set; }
 
         public ICollection<BloodNotification> BloodNotifications { get; private set; }
         public ICollection<HairNotification> HairNotifications { get; private set; }
