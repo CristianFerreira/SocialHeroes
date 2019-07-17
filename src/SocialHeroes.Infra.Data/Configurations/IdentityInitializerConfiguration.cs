@@ -162,14 +162,14 @@ namespace SocialHeroes.Infra.Data.Configurations
                 }
             }
 
-            if (!_roleManager.RoleExistsAsync(RolesConfiguration.ROLE_HOSPITAL).Result)
+            if (!_roleManager.RoleExistsAsync(RolesConfiguration.ROLE_INSTITUTION).Result)
             {
                 var resultado = _roleManager.CreateAsync(
-                    new Role(RolesConfiguration.ROLE_HOSPITAL)).Result;
+                    new Role(RolesConfiguration.ROLE_INSTITUTION)).Result;
                 if (!resultado.Succeeded)
                 {
                     throw new Exception(
-                        $"Erro durante a criação da role {RolesConfiguration.ROLE_HOSPITAL}.");
+                        $"Erro durante a criação da role {RolesConfiguration.ROLE_INSTITUTION}.");
                 }
             }
 

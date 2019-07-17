@@ -102,7 +102,7 @@ namespace SocialHeroes.Domain.Handlers
                         return await CanceledTask(_bus.RaiseEvent(new DomainNotification(command.MessageType,
                                                                                          "E-mail já está cadastrado!")));
 
-                    if (!RegisterRole(user, RolesConfiguration.ROLE_HOSPITAL, out IdentityResult resultRole))
+                    if (!RegisterRole(user, RolesConfiguration.ROLE_INSTITUTION, out IdentityResult resultRole))
                         return await CanceledTask(_bus.RaiseEvent(new DomainNotification(command.MessageType,
                                                                                          $"Ocorreu erro ao atribuir uma Role \n: {resultRole.Errors.ToList()[0].Description}")));
 
