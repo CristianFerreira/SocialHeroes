@@ -38,7 +38,7 @@ namespace SocialHeroes.WebApi
                 options.OutputFormatters.Remove(new XmlDataContractSerializerOutputFormatter());
                 options.UseCentralRoutePrefix(new RouteAttribute("api/v{version}"));
             });
-      
+
             services.AddResponseCompression();
 
             //Injector Dependency
@@ -74,7 +74,12 @@ namespace SocialHeroes.WebApi
             services.AddMvc(config =>
             {
                 config.Filters.Add(typeof(CustomExceptionFilter));
-            });
+                
+            })
+            .AddJsonOptions(options =>
+            {
+                options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
+            }); ;
 
         }
 

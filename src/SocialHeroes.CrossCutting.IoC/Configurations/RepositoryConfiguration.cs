@@ -23,6 +23,7 @@ namespace SocialHeroes.CrossCutting.IoC.Configurations
             services.AddScoped<IDonatorUserHairNotificationRepository, DonatorUserHairNotificationRepository>();
             services.AddScoped<IDonatorUserBreastMilkNotificationRepository, DonatorUserBreastMilkNotificationRepository>();
             services.AddScoped<INotificationRepository, NotificationRepository>();
+            services.AddScoped<IBloodRepository, BloodRepository>();
         }
     }
 }

@@ -24,7 +24,7 @@ namespace SocialHeroes.WebApi.Controllers
                 return Ok(new
                 {
                     success = true,
-                    data = (result as ICommandResult)?.Data
+                    data = (result as ICommandResult)?.Data ?? result
                 });
             }
 

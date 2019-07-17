@@ -1,6 +1,7 @@
 ﻿using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using SocialHeroes.Domain.Commands.Account.RequestCommand;
+using SocialHeroes.Domain.Commands.Blood.RequestCommand;
 using SocialHeroes.Domain.Commands.Hair.RequestCommand;
 using SocialHeroes.Domain.Commands.Notification.RequestCommand;
 using SocialHeroes.Domain.Core.Interfaces;
@@ -22,7 +23,9 @@ namespace SocialHeroes.CrossCutting.IoC.Configurations
 
             //notification
             services.AddScoped<IRequestHandler<NotifyDonatorUserCommand, ICommandResult>, NotificationHandler>();
-            
+
+            //blood
+            services.AddScoped<IRequestHandler<RegisterNewBloodCommand, ICommandResult>,BloodHandler>();
 
         }
     }
