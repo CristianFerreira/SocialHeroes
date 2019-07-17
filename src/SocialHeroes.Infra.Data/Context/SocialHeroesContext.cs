@@ -31,9 +31,9 @@ namespace SocialHeroes.Infra.Data.Context
         {          
             base.OnModelCreating(modelBuilder);
 
+            ConventionsRemoveConfiguration.ConventionsRemove(modelBuilder.Model.GetEntityTypes());
             IdentityConfiguration.ConfigurationIdentityTables(modelBuilder);
             MappingConfiguration.RegisterMappings(modelBuilder);
-            ConventionsRemoveConfiguration.ConventionsRemove(modelBuilder.Model.GetEntityTypes());
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

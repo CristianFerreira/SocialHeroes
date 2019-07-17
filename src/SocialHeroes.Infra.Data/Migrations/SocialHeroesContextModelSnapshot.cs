@@ -35,7 +35,7 @@ namespace SocialHeroes.Infra.Data.Migrations
 
                     b.HasIndex("RoleId");
 
-                    b.ToTable("IdentityRoleClaim<Guid>");
+                    b.ToTable("RoleClaims");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<System.Guid>", b =>
@@ -54,7 +54,7 @@ namespace SocialHeroes.Infra.Data.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("IdentityUserClaim<Guid>");
+                    b.ToTable("UserClaims");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<System.Guid>", b =>
@@ -71,7 +71,7 @@ namespace SocialHeroes.Infra.Data.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("IdentityUserLogin<Guid>");
+                    b.ToTable("UserLogins");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<System.Guid>", b =>
@@ -84,7 +84,7 @@ namespace SocialHeroes.Infra.Data.Migrations
 
                     b.HasIndex("RoleId");
 
-                    b.ToTable("IdentityUserRole<Guid>");
+                    b.ToTable("UserRoles");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<System.Guid>", b =>
@@ -99,7 +99,7 @@ namespace SocialHeroes.Infra.Data.Migrations
 
                     b.HasKey("UserId", "LoginProvider", "Name");
 
-                    b.ToTable("IdentityUserToken<Guid>");
+                    b.ToTable("UserTokens");
                 });
 
             modelBuilder.Entity("SocialHeroes.Domain.Models.Address", b =>
@@ -154,7 +154,7 @@ namespace SocialHeroes.Infra.Data.Migrations
                     b.HasIndex("UserId")
                         .IsUnique();
 
-                    b.ToTable("Address");
+                    b.ToTable("Adresses");
                 });
 
             modelBuilder.Entity("SocialHeroes.Domain.Models.Blood", b =>
@@ -171,7 +171,7 @@ namespace SocialHeroes.Infra.Data.Migrations
                     b.HasIndex("Type")
                         .IsUnique();
 
-                    b.ToTable("Blood");
+                    b.ToTable("Bloods");
                 });
 
             modelBuilder.Entity("SocialHeroes.Domain.Models.BloodNotification", b =>
@@ -193,7 +193,7 @@ namespace SocialHeroes.Infra.Data.Migrations
 
                     b.HasIndex("NotificationId");
 
-                    b.ToTable("BloodNotification");
+                    b.ToTable("BloodNotifications");
                 });
 
             modelBuilder.Entity("SocialHeroes.Domain.Models.BreastMilkNotification", b =>
@@ -212,7 +212,7 @@ namespace SocialHeroes.Infra.Data.Migrations
                     b.HasIndex("NotificationId")
                         .IsUnique();
 
-                    b.ToTable("BreastMilkNotification");
+                    b.ToTable("BreastMilkNotifications");
                 });
 
             modelBuilder.Entity("SocialHeroes.Domain.Models.DonatorUser", b =>
@@ -270,7 +270,7 @@ namespace SocialHeroes.Infra.Data.Migrations
                     b.HasIndex("UserId")
                         .IsUnique();
 
-                    b.ToTable("DonatorUser");
+                    b.ToTable("DonatorUsers");
                 });
 
             modelBuilder.Entity("SocialHeroes.Domain.Models.DonatorUserBloodNotification", b =>
@@ -292,7 +292,7 @@ namespace SocialHeroes.Infra.Data.Migrations
 
                     b.HasIndex("DonatorUserId");
 
-                    b.ToTable("DonatorUserBloodNotification");
+                    b.ToTable("DonatorUserBloodNotifications");
                 });
 
             modelBuilder.Entity("SocialHeroes.Domain.Models.DonatorUserBreastMilkNotification", b =>
@@ -314,7 +314,7 @@ namespace SocialHeroes.Infra.Data.Migrations
 
                     b.HasIndex("DonatorUserId");
 
-                    b.ToTable("DonatorUserBreastMilkNotification");
+                    b.ToTable("DonatorUserBreastMilkNotifications");
                 });
 
             modelBuilder.Entity("SocialHeroes.Domain.Models.DonatorUserHairNotification", b =>
@@ -336,7 +336,7 @@ namespace SocialHeroes.Infra.Data.Migrations
 
                     b.HasIndex("HairNotificationId");
 
-                    b.ToTable("DonatorUserHairNotification");
+                    b.ToTable("DonatorUserHairNotifications");
                 });
 
             modelBuilder.Entity("SocialHeroes.Domain.Models.Hair", b =>
@@ -357,7 +357,7 @@ namespace SocialHeroes.Infra.Data.Migrations
                     b.HasIndex("Color", "Type")
                         .IsUnique();
 
-                    b.ToTable("Hair");
+                    b.ToTable("Hairs");
                 });
 
             modelBuilder.Entity("SocialHeroes.Domain.Models.HairNotification", b =>
@@ -379,7 +379,7 @@ namespace SocialHeroes.Infra.Data.Migrations
 
                     b.HasIndex("NotificationId");
 
-                    b.ToTable("HairNotification");
+                    b.ToTable("HairNotifications");
                 });
 
             modelBuilder.Entity("SocialHeroes.Domain.Models.InstitutionUser", b =>
@@ -413,7 +413,7 @@ namespace SocialHeroes.Infra.Data.Migrations
                     b.HasIndex("UserId")
                         .IsUnique();
 
-                    b.ToTable("InstitutionUser");
+                    b.ToTable("InstitutionUsers");
                 });
 
             modelBuilder.Entity("SocialHeroes.Domain.Models.Notification", b =>
@@ -427,7 +427,7 @@ namespace SocialHeroes.Infra.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Notification");
+                    b.ToTable("Notifications");
                 });
 
             modelBuilder.Entity("SocialHeroes.Domain.Models.NotificationType", b =>
@@ -443,7 +443,7 @@ namespace SocialHeroes.Infra.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("NotificationType");
+                    b.ToTable("NotificationTypes");
                 });
 
             modelBuilder.Entity("SocialHeroes.Domain.Models.Phone", b =>
@@ -461,7 +461,7 @@ namespace SocialHeroes.Infra.Data.Migrations
 
                     b.HasIndex("InstitutionUserId");
 
-                    b.ToTable("Phone");
+                    b.ToTable("Phones");
                 });
 
             modelBuilder.Entity("SocialHeroes.Domain.Models.Role", b =>
@@ -485,7 +485,7 @@ namespace SocialHeroes.Infra.Data.Migrations
                         .HasName("RoleNameIndex")
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
-                    b.ToTable("Role");
+                    b.ToTable("Roles");
                 });
 
             modelBuilder.Entity("SocialHeroes.Domain.Models.User", b =>
@@ -542,7 +542,7 @@ namespace SocialHeroes.Infra.Data.Migrations
                         .HasName("UserNameIndex")
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
-                    b.ToTable("User");
+                    b.ToTable("Users");
                 });
 
             modelBuilder.Entity("SocialHeroes.Domain.Models.UserNotificationType", b =>
@@ -560,7 +560,7 @@ namespace SocialHeroes.Infra.Data.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("UserNotificationType");
+                    b.ToTable("UserNotificationTypes");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<System.Guid>", b =>

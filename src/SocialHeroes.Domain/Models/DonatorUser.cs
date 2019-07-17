@@ -74,5 +74,11 @@ namespace SocialHeroes.Domain.Models
 
         public void AddLastBreastMilkNotification()
         => LastBreastMilkNotification = DateTime.Now;
+
+        public void AddLastBloodNotification()
+        => LastBloodNotification = DateTime.Now;
+
+        public void AddLastHairNotification()
+        => LastHairNotification = DateTime.Now;
     }
 }

@@ -18,12 +18,27 @@ namespace SocialHeroes.Infra.Data.Repository
         public DonatorUser GetByUserId(Guid userId)
             => DbSet.AsNoTracking().FirstOrDefault(x => x.UserId == userId);
 
-        public ICollection<DonatorUserToNotifyQuery> GetToBloodNotification(Guid bloodId) { return null; }
-        //=> DbSet.AsNoTracking()
-        //        .Where(x => x.BloodId == bloodId && x.ActivedBloodNotification == true)
-        //        .Include(x => x.Blood)
-        //        .Include(x => x.User)
-        //        .ToList();
+        public ICollection<DonatorUserBloodToNotifyQuery> GetToBloodNotification(Guid bloodId, int amount)
+             => (from d in Db.DonatorUsers
+                 join b in Db.Bloods on d.BloodId equals b.Id
+                 join u in Db.Users on d.UserId equals u.Id
+                 join un in Db.UserNotificationType on u.Id equals un.UserId
+                 join n in Db.NotificationType on un.NotificationTypeId equals n.Id
+                 where d.ActivedBloodNotification == true
+                       && (d.LastBloodNotification < DateTime.Now.AddDays(-7) || d.LastBloodNotification == null)
+                       && d.BloodId == bloodId
+                 group d.Id by new { d, u, b } into mygroup
+                 select new DonatorUserBloodToNotifyQuery
+                 {
+                     Name = mygroup.Key.d.Name,
+                     Email = mygroup.Key.u.Email,
+                     DonatorUserId = mygroup.Key.d.Id,
+                     UserId = mygroup.Key.u.Id,
+                     Type = mygroup.Key.b.Type
+                 })
+                .Take(amount)
+                .ToList();
+
 
         public ICollection<DonatorUserToNotifyQuery> GetToBreastMilkNotification(int amount)
         => (from d in Db.DonatorUsers
@@ -40,13 +55,29 @@ namespace SocialHeroes.Infra.Data.Repository
                 DonatorUserId = mygroup.Key.d.Id,
                 UserId = mygroup.Key.u.Id
             })
+            .Take(amount)
             .ToList();
 
-        public ICollection<DonatorUserToNotifyQuery> GetToHairNotification(Guid hairId) { return null; }
-        //=> DbSet.AsNoTracking()
-        //        .Where(x => x.HairId == hairId && x.ActivedHairNotification == true)
-        //        .Include(x => x.Hair)
-        //        .Include(x => x.User)
-        //        .ToList();
+        public ICollection<DonatorUserHairToNotifyQuery> GetToHairNotification(Guid hairId, int amount) 
+        => (from d in Db.DonatorUsers
+            join h in Db.Hairs on d.HairId equals h.Id
+            join u in Db.Users on d.UserId equals u.Id
+            join un in Db.UserNotificationType on u.Id equals un.UserId
+            join n in Db.NotificationType on un.NotificationTypeId equals n.Id
+            where d.ActivedHairNotification == true
+                  && (d.LastHairNotification < DateTime.Now.AddDays(-7) || d.LastHairNotification == null)
+                  && d.HairId == hairId
+            group d.Id by new { d, h, u } into mygroup
+            select new DonatorUserHairToNotifyQuery
+            {
+                Name = mygroup.Key.d.Name,
+                Email = mygroup.Key.u.Email,
+                DonatorUserId = mygroup.Key.d.Id,
+                UserId = mygroup.Key.u.Id,
+                Color = mygroup.Key.h.Color,
+                Type = mygroup.Key.h.Type
+            })
+            .Take(amount)
+            .ToList();
     }
 }

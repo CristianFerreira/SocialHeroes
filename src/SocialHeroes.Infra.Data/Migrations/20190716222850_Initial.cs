@@ -4,12 +4,12 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace SocialHeroes.Infra.Data.Migrations
 {
-    public partial class InitialCreate : Migration
+    public partial class Initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Blood",
+                name: "Bloods",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(nullable: false),
@@ -17,11 +17,11 @@ namespace SocialHeroes.Infra.Data.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Blood", x => x.Id);
+                    table.PrimaryKey("PK_Bloods", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Hair",
+                name: "Hairs",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(nullable: false),
@@ -30,11 +30,11 @@ namespace SocialHeroes.Infra.Data.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Hair", x => x.Id);
+                    table.PrimaryKey("PK_Hairs", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Notification",
+                name: "Notifications",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(nullable: false),
@@ -43,11 +43,11 @@ namespace SocialHeroes.Infra.Data.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Notification", x => x.Id);
+                    table.PrimaryKey("PK_Notifications", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
-                name: "NotificationType",
+                name: "NotificationTypes",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(nullable: false),
@@ -56,11 +56,11 @@ namespace SocialHeroes.Infra.Data.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_NotificationType", x => x.Id);
+                    table.PrimaryKey("PK_NotificationTypes", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Role",
+                name: "Roles",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(nullable: false),
@@ -70,11 +70,11 @@ namespace SocialHeroes.Infra.Data.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Role", x => x.Id);
+                    table.PrimaryKey("PK_Roles", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
-                name: "User",
+                name: "Users",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(maxLength: 128, nullable: false),
@@ -97,11 +97,11 @@ namespace SocialHeroes.Infra.Data.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_User", x => x.Id);
+                    table.PrimaryKey("PK_Users", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
-                name: "BloodNotification",
+                name: "BloodNotifications",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(nullable: false),
@@ -112,23 +112,23 @@ namespace SocialHeroes.Infra.Data.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_BloodNotification", x => x.Id);
+                    table.PrimaryKey("PK_BloodNotifications", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_BloodNotification_Blood_BloodId",
+                        name: "FK_BloodNotifications_Bloods_BloodId",
                         column: x => x.BloodId,
-                        principalTable: "Blood",
+                        principalTable: "Bloods",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_BloodNotification_Notification_NotificationId",
+                        name: "FK_BloodNotifications_Notifications_NotificationId",
                         column: x => x.NotificationId,
-                        principalTable: "Notification",
+                        principalTable: "Notifications",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
-                name: "BreastMilkNotification",
+                name: "BreastMilkNotifications",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(nullable: false),
@@ -138,17 +138,17 @@ namespace SocialHeroes.Infra.Data.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_BreastMilkNotification", x => x.Id);
+                    table.PrimaryKey("PK_BreastMilkNotifications", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_BreastMilkNotification_Notification_NotificationId",
+                        name: "FK_BreastMilkNotifications_Notifications_NotificationId",
                         column: x => x.NotificationId,
-                        principalTable: "Notification",
+                        principalTable: "Notifications",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
-                name: "HairNotification",
+                name: "HairNotifications",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(nullable: false),
@@ -159,23 +159,23 @@ namespace SocialHeroes.Infra.Data.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_HairNotification", x => x.Id);
+                    table.PrimaryKey("PK_HairNotifications", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_HairNotification_Hair_HairId",
+                        name: "FK_HairNotifications_Hairs_HairId",
                         column: x => x.HairId,
-                        principalTable: "Hair",
+                        principalTable: "Hairs",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_HairNotification_Notification_NotificationId",
+                        name: "FK_HairNotifications_Notifications_NotificationId",
                         column: x => x.NotificationId,
-                        principalTable: "Notification",
+                        principalTable: "Notifications",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
-                name: "IdentityRoleClaim<Guid>",
+                name: "RoleClaims",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
@@ -186,17 +186,17 @@ namespace SocialHeroes.Infra.Data.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_IdentityRoleClaim<Guid>", x => x.Id);
+                    table.PrimaryKey("PK_RoleClaims", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_IdentityRoleClaim<Guid>_Role_RoleId",
+                        name: "FK_RoleClaims_Roles_RoleId",
                         column: x => x.RoleId,
-                        principalTable: "Role",
+                        principalTable: "Roles",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Address",
+                name: "Adresses",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(nullable: false),
@@ -213,17 +213,17 @@ namespace SocialHeroes.Infra.Data.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Address", x => x.Id);
+                    table.PrimaryKey("PK_Adresses", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Address_User_UserId",
+                        name: "FK_Adresses_Users_UserId",
                         column: x => x.UserId,
-                        principalTable: "User",
+                        principalTable: "Users",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
-                name: "DonatorUser",
+                name: "DonatorUsers",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(nullable: false),
@@ -247,114 +247,29 @@ namespace SocialHeroes.Infra.Data.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_DonatorUser", x => x.Id);
+                    table.PrimaryKey("PK_DonatorUsers", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_DonatorUser_Blood_BloodId",
+                        name: "FK_DonatorUsers_Bloods_BloodId",
                         column: x => x.BloodId,
-                        principalTable: "Blood",
+                        principalTable: "Bloods",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_DonatorUser_Hair_HairId",
+                        name: "FK_DonatorUsers_Hairs_HairId",
                         column: x => x.HairId,
-                        principalTable: "Hair",
+                        principalTable: "Hairs",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_DonatorUser_User_UserId",
+                        name: "FK_DonatorUsers_Users_UserId",
                         column: x => x.UserId,
-                        principalTable: "User",
+                        principalTable: "Users",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
-                name: "IdentityUserClaim<Guid>",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    UserId = table.Column<Guid>(nullable: false),
-                    ClaimType = table.Column<string>(nullable: true),
-                    ClaimValue = table.Column<string>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_IdentityUserClaim<Guid>", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_IdentityUserClaim<Guid>_User_UserId",
-                        column: x => x.UserId,
-                        principalTable: "User",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "IdentityUserLogin<Guid>",
-                columns: table => new
-                {
-                    LoginProvider = table.Column<string>(nullable: false),
-                    ProviderKey = table.Column<string>(nullable: false),
-                    ProviderDisplayName = table.Column<string>(nullable: true),
-                    UserId = table.Column<Guid>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_IdentityUserLogin<Guid>", x => new { x.LoginProvider, x.ProviderKey });
-                    table.ForeignKey(
-                        name: "FK_IdentityUserLogin<Guid>_User_UserId",
-                        column: x => x.UserId,
-                        principalTable: "User",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "IdentityUserRole<Guid>",
-                columns: table => new
-                {
-                    UserId = table.Column<Guid>(nullable: false),
-                    RoleId = table.Column<Guid>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_IdentityUserRole<Guid>", x => new { x.UserId, x.RoleId });
-                    table.ForeignKey(
-                        name: "FK_IdentityUserRole<Guid>_Role_RoleId",
-                        column: x => x.RoleId,
-                        principalTable: "Role",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_IdentityUserRole<Guid>_User_UserId",
-                        column: x => x.UserId,
-                        principalTable: "User",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "IdentityUserToken<Guid>",
-                columns: table => new
-                {
-                    UserId = table.Column<Guid>(nullable: false),
-                    LoginProvider = table.Column<string>(nullable: false),
-                    Name = table.Column<string>(nullable: false),
-                    Value = table.Column<string>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_IdentityUserToken<Guid>", x => new { x.UserId, x.LoginProvider, x.Name });
-                    table.ForeignKey(
-                        name: "FK_IdentityUserToken<Guid>_User_UserId",
-                        column: x => x.UserId,
-                        principalTable: "User",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "InstitutionUser",
+                name: "InstitutionUsers",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(nullable: false),
@@ -366,23 +281,64 @@ namespace SocialHeroes.Infra.Data.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_InstitutionUser", x => x.Id);
+                    table.PrimaryKey("PK_InstitutionUsers", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_InstitutionUser_Notification_NotificationId",
+                        name: "FK_InstitutionUsers_Notifications_NotificationId",
                         column: x => x.NotificationId,
-                        principalTable: "Notification",
+                        principalTable: "Notifications",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_InstitutionUser_User_UserId",
+                        name: "FK_InstitutionUsers_Users_UserId",
                         column: x => x.UserId,
-                        principalTable: "User",
+                        principalTable: "Users",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
-                name: "UserNotificationType",
+                name: "UserClaims",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    UserId = table.Column<Guid>(nullable: false),
+                    ClaimType = table.Column<string>(nullable: true),
+                    ClaimValue = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_UserClaims", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_UserClaims_Users_UserId",
+                        column: x => x.UserId,
+                        principalTable: "Users",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "UserLogins",
+                columns: table => new
+                {
+                    LoginProvider = table.Column<string>(nullable: false),
+                    ProviderKey = table.Column<string>(nullable: false),
+                    ProviderDisplayName = table.Column<string>(nullable: true),
+                    UserId = table.Column<Guid>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_UserLogins", x => new { x.LoginProvider, x.ProviderKey });
+                    table.ForeignKey(
+                        name: "FK_UserLogins_Users_UserId",
+                        column: x => x.UserId,
+                        principalTable: "Users",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "UserNotificationTypes",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(nullable: false),
@@ -391,23 +347,67 @@ namespace SocialHeroes.Infra.Data.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_UserNotificationType", x => x.Id);
+                    table.PrimaryKey("PK_UserNotificationTypes", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_UserNotificationType_NotificationType_NotificationTypeId",
+                        name: "FK_UserNotificationTypes_NotificationTypes_NotificationTypeId",
                         column: x => x.NotificationTypeId,
-                        principalTable: "NotificationType",
+                        principalTable: "NotificationTypes",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_UserNotificationType_User_UserId",
+                        name: "FK_UserNotificationTypes_Users_UserId",
                         column: x => x.UserId,
-                        principalTable: "User",
+                        principalTable: "Users",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
-                name: "DonatorUserBloodNotification",
+                name: "UserRoles",
+                columns: table => new
+                {
+                    UserId = table.Column<Guid>(nullable: false),
+                    RoleId = table.Column<Guid>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_UserRoles", x => new { x.UserId, x.RoleId });
+                    table.ForeignKey(
+                        name: "FK_UserRoles_Roles_RoleId",
+                        column: x => x.RoleId,
+                        principalTable: "Roles",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_UserRoles_Users_UserId",
+                        column: x => x.UserId,
+                        principalTable: "Users",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "UserTokens",
+                columns: table => new
+                {
+                    UserId = table.Column<Guid>(nullable: false),
+                    LoginProvider = table.Column<string>(nullable: false),
+                    Name = table.Column<string>(nullable: false),
+                    Value = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_UserTokens", x => new { x.UserId, x.LoginProvider, x.Name });
+                    table.ForeignKey(
+                        name: "FK_UserTokens_Users_UserId",
+                        column: x => x.UserId,
+                        principalTable: "Users",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "DonatorUserBloodNotifications",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(nullable: false),
@@ -418,23 +418,23 @@ namespace SocialHeroes.Infra.Data.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_DonatorUserBloodNotification", x => x.Id);
+                    table.PrimaryKey("PK_DonatorUserBloodNotifications", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_DonatorUserBloodNotification_BloodNotification_BloodNotificationId",
+                        name: "FK_DonatorUserBloodNotifications_BloodNotifications_BloodNotificationId",
                         column: x => x.BloodNotificationId,
-                        principalTable: "BloodNotification",
+                        principalTable: "BloodNotifications",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_DonatorUserBloodNotification_DonatorUser_DonatorUserId",
+                        name: "FK_DonatorUserBloodNotifications_DonatorUsers_DonatorUserId",
                         column: x => x.DonatorUserId,
-                        principalTable: "DonatorUser",
+                        principalTable: "DonatorUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
-                name: "DonatorUserBreastMilkNotification",
+                name: "DonatorUserBreastMilkNotifications",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(nullable: false),
@@ -445,23 +445,23 @@ namespace SocialHeroes.Infra.Data.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_DonatorUserBreastMilkNotification", x => x.Id);
+                    table.PrimaryKey("PK_DonatorUserBreastMilkNotifications", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_DonatorUserBreastMilkNotification_BreastMilkNotification_BreastMilkNotificationId",
+                        name: "FK_DonatorUserBreastMilkNotifications_BreastMilkNotifications_BreastMilkNotificationId",
                         column: x => x.BreastMilkNotificationId,
-                        principalTable: "BreastMilkNotification",
+                        principalTable: "BreastMilkNotifications",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_DonatorUserBreastMilkNotification_DonatorUser_DonatorUserId",
+                        name: "FK_DonatorUserBreastMilkNotifications_DonatorUsers_DonatorUserId",
                         column: x => x.DonatorUserId,
-                        principalTable: "DonatorUser",
+                        principalTable: "DonatorUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
-                name: "DonatorUserHairNotification",
+                name: "DonatorUserHairNotifications",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(nullable: false),
@@ -472,23 +472,23 @@ namespace SocialHeroes.Infra.Data.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_DonatorUserHairNotification", x => x.Id);
+                    table.PrimaryKey("PK_DonatorUserHairNotifications", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_DonatorUserHairNotification_DonatorUser_DonatorUserId",
+                        name: "FK_DonatorUserHairNotifications_DonatorUsers_DonatorUserId",
                         column: x => x.DonatorUserId,
-                        principalTable: "DonatorUser",
+                        principalTable: "DonatorUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_DonatorUserHairNotification_HairNotification_HairNotificationId",
+                        name: "FK_DonatorUserHairNotifications_HairNotifications_HairNotificationId",
                         column: x => x.HairNotificationId,
-                        principalTable: "HairNotification",
+                        principalTable: "HairNotifications",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Phone",
+                name: "Phones",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(nullable: false),
@@ -497,238 +497,238 @@ namespace SocialHeroes.Infra.Data.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Phone", x => x.Id);
+                    table.PrimaryKey("PK_Phones", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Phone_InstitutionUser_InstitutionUserId",
+                        name: "FK_Phones_InstitutionUsers_InstitutionUserId",
                         column: x => x.InstitutionUserId,
-                        principalTable: "InstitutionUser",
+                        principalTable: "InstitutionUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Address_UserId",
-                table: "Address",
+                name: "IX_Adresses_UserId",
+                table: "Adresses",
                 column: "UserId",
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_Blood_Type",
-                table: "Blood",
+                name: "IX_BloodNotifications_BloodId",
+                table: "BloodNotifications",
+                column: "BloodId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_BloodNotifications_NotificationId",
+                table: "BloodNotifications",
+                column: "NotificationId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Bloods_Type",
+                table: "Bloods",
                 column: "Type",
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_BloodNotification_BloodId",
-                table: "BloodNotification",
-                column: "BloodId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_BloodNotification_NotificationId",
-                table: "BloodNotification",
-                column: "NotificationId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_BreastMilkNotification_NotificationId",
-                table: "BreastMilkNotification",
+                name: "IX_BreastMilkNotifications_NotificationId",
+                table: "BreastMilkNotifications",
                 column: "NotificationId",
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_DonatorUser_BloodId",
-                table: "DonatorUser",
+                name: "IX_DonatorUserBloodNotifications_BloodNotificationId",
+                table: "DonatorUserBloodNotifications",
+                column: "BloodNotificationId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_DonatorUserBloodNotifications_DonatorUserId",
+                table: "DonatorUserBloodNotifications",
+                column: "DonatorUserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_DonatorUserBreastMilkNotifications_BreastMilkNotificationId",
+                table: "DonatorUserBreastMilkNotifications",
+                column: "BreastMilkNotificationId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_DonatorUserBreastMilkNotifications_DonatorUserId",
+                table: "DonatorUserBreastMilkNotifications",
+                column: "DonatorUserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_DonatorUserHairNotifications_DonatorUserId",
+                table: "DonatorUserHairNotifications",
+                column: "DonatorUserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_DonatorUserHairNotifications_HairNotificationId",
+                table: "DonatorUserHairNotifications",
+                column: "HairNotificationId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_DonatorUsers_BloodId",
+                table: "DonatorUsers",
                 column: "BloodId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_DonatorUser_HairId",
-                table: "DonatorUser",
+                name: "IX_DonatorUsers_HairId",
+                table: "DonatorUsers",
                 column: "HairId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_DonatorUser_UserId",
-                table: "DonatorUser",
+                name: "IX_DonatorUsers_UserId",
+                table: "DonatorUsers",
                 column: "UserId",
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_DonatorUserBloodNotification_BloodNotificationId",
-                table: "DonatorUserBloodNotification",
-                column: "BloodNotificationId");
+                name: "IX_HairNotifications_HairId",
+                table: "HairNotifications",
+                column: "HairId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_DonatorUserBloodNotification_DonatorUserId",
-                table: "DonatorUserBloodNotification",
-                column: "DonatorUserId");
+                name: "IX_HairNotifications_NotificationId",
+                table: "HairNotifications",
+                column: "NotificationId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_DonatorUserBreastMilkNotification_BreastMilkNotificationId",
-                table: "DonatorUserBreastMilkNotification",
-                column: "BreastMilkNotificationId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_DonatorUserBreastMilkNotification_DonatorUserId",
-                table: "DonatorUserBreastMilkNotification",
-                column: "DonatorUserId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_DonatorUserHairNotification_DonatorUserId",
-                table: "DonatorUserHairNotification",
-                column: "DonatorUserId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_DonatorUserHairNotification_HairNotificationId",
-                table: "DonatorUserHairNotification",
-                column: "HairNotificationId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Hair_Color_Type",
-                table: "Hair",
+                name: "IX_Hairs_Color_Type",
+                table: "Hairs",
                 columns: new[] { "Color", "Type" },
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_HairNotification_HairId",
-                table: "HairNotification",
-                column: "HairId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_HairNotification_NotificationId",
-                table: "HairNotification",
+                name: "IX_InstitutionUsers_NotificationId",
+                table: "InstitutionUsers",
                 column: "NotificationId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_IdentityRoleClaim<Guid>_RoleId",
-                table: "IdentityRoleClaim<Guid>",
-                column: "RoleId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_IdentityUserClaim<Guid>_UserId",
-                table: "IdentityUserClaim<Guid>",
-                column: "UserId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_IdentityUserLogin<Guid>_UserId",
-                table: "IdentityUserLogin<Guid>",
-                column: "UserId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_IdentityUserRole<Guid>_RoleId",
-                table: "IdentityUserRole<Guid>",
-                column: "RoleId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_InstitutionUser_NotificationId",
-                table: "InstitutionUser",
-                column: "NotificationId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_InstitutionUser_UserId",
-                table: "InstitutionUser",
+                name: "IX_InstitutionUsers_UserId",
+                table: "InstitutionUsers",
                 column: "UserId",
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_Phone_InstitutionUserId",
-                table: "Phone",
+                name: "IX_Phones_InstitutionUserId",
+                table: "Phones",
                 column: "InstitutionUserId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_RoleClaims_RoleId",
+                table: "RoleClaims",
+                column: "RoleId");
+
+            migrationBuilder.CreateIndex(
                 name: "RoleNameIndex",
-                table: "Role",
+                table: "Roles",
                 column: "NormalizedName",
                 unique: true,
                 filter: "[NormalizedName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
+                name: "IX_UserClaims_UserId",
+                table: "UserClaims",
+                column: "UserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_UserLogins_UserId",
+                table: "UserLogins",
+                column: "UserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_UserNotificationTypes_NotificationTypeId",
+                table: "UserNotificationTypes",
+                column: "NotificationTypeId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_UserNotificationTypes_UserId",
+                table: "UserNotificationTypes",
+                column: "UserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_UserRoles_RoleId",
+                table: "UserRoles",
+                column: "RoleId");
+
+            migrationBuilder.CreateIndex(
                 name: "EmailIndex",
-                table: "User",
+                table: "Users",
                 column: "NormalizedEmail");
 
             migrationBuilder.CreateIndex(
                 name: "UserNameIndex",
-                table: "User",
+                table: "Users",
                 column: "NormalizedUserName",
                 unique: true,
                 filter: "[NormalizedUserName] IS NOT NULL");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_UserNotificationType_NotificationTypeId",
-                table: "UserNotificationType",
-                column: "NotificationTypeId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_UserNotificationType_UserId",
-                table: "UserNotificationType",
-                column: "UserId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Address");
+                name: "Adresses");
 
             migrationBuilder.DropTable(
-                name: "DonatorUserBloodNotification");
+                name: "DonatorUserBloodNotifications");
 
             migrationBuilder.DropTable(
-                name: "DonatorUserBreastMilkNotification");
+                name: "DonatorUserBreastMilkNotifications");
 
             migrationBuilder.DropTable(
-                name: "DonatorUserHairNotification");
+                name: "DonatorUserHairNotifications");
 
             migrationBuilder.DropTable(
-                name: "IdentityRoleClaim<Guid>");
+                name: "Phones");
 
             migrationBuilder.DropTable(
-                name: "IdentityUserClaim<Guid>");
+                name: "RoleClaims");
 
             migrationBuilder.DropTable(
-                name: "IdentityUserLogin<Guid>");
+                name: "UserClaims");
 
             migrationBuilder.DropTable(
-                name: "IdentityUserRole<Guid>");
+                name: "UserLogins");
 
             migrationBuilder.DropTable(
-                name: "IdentityUserToken<Guid>");
+                name: "UserNotificationTypes");
 
             migrationBuilder.DropTable(
-                name: "Phone");
+                name: "UserRoles");
 
             migrationBuilder.DropTable(
-                name: "UserNotificationType");
+                name: "UserTokens");
 
             migrationBuilder.DropTable(
-                name: "BloodNotification");
+                name: "BloodNotifications");
 
             migrationBuilder.DropTable(
-                name: "BreastMilkNotification");
+                name: "BreastMilkNotifications");
 
             migrationBuilder.DropTable(
-                name: "DonatorUser");
+                name: "DonatorUsers");
 
             migrationBuilder.DropTable(
-                name: "HairNotification");
+                name: "HairNotifications");
 
             migrationBuilder.DropTable(
-                name: "Role");
+                name: "InstitutionUsers");
 
             migrationBuilder.DropTable(
-                name: "InstitutionUser");
+                name: "NotificationTypes");
 
             migrationBuilder.DropTable(
-                name: "NotificationType");
+                name: "Roles");
 
             migrationBuilder.DropTable(
-                name: "Blood");
+                name: "Bloods");
 
             migrationBuilder.DropTable(
-                name: "Hair");
+                name: "Hairs");
 
             migrationBuilder.DropTable(
-                name: "Notification");
+                name: "Notifications");
 
             migrationBuilder.DropTable(
-                name: "User");
+                name: "Users");
         }
     }
 }

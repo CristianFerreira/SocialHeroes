@@ -1,6 +1,7 @@
 ﻿using MediatR;
 using SocialHeroes.Domain.Commands.Notification;
 using SocialHeroes.Domain.Commands.Notification.RequestCommand;
+using SocialHeroes.Domain.Configurations;
 using SocialHeroes.Domain.Core.Bus;
 using SocialHeroes.Domain.Core.Interfaces;
 using SocialHeroes.Domain.Core.Notifications;
@@ -142,46 +143,82 @@ namespace SocialHeroes.Domain.Handlers
         #endregion
 
         #region Register Donator User Notifications
+
+        #region Blood
         private void RegisterDonatorUserBloodNotifications(ICollection<BloodNotification> bloodNotifications,
-                                                           NotifyDonatorUserEvent notifyDonatorUserEvent)
+                                                          NotifyDonatorUserEvent notifyDonatorUserEvent)
         {
             foreach (var bloodNotification in bloodNotifications)
             {
-                var donatorUsersQuery = _donatorUserRepository.GetToBloodNotification(bloodNotification.BloodId);
-                foreach (var donatorUserQuery in donatorUsersQuery)
+                var usersToBloodNotification = _donatorUserRepository.GetToBloodNotification(bloodNotification.BloodId, bloodNotification.AmountBlood);
+                foreach (var userToNotification in usersToBloodNotification)
                 {
                     var donatorUserBloodNotification = new DonatorUserBloodNotification(Guid.NewGuid(),
-                                                                                        donatorUserQuery.DonatorUserId,
+                                                                                        userToNotification.DonatorUserId,
                                                                                         bloodNotification.Id);
 
-                    var donatorUserNotificationEvent = new DonatorUserNotificationEvent(donatorUserQuery.Name, 
-                                                                                        donatorUserQuery.Email, 
-                                                                                        donatorUserQuery.BloodType);
+                    var donatorUserNotificationEvent = new DonatorUserNotificationEvent(userToNotification.Name,
+                                                                                        userToNotification.Email,
+                                                                                        NotificationsTypeConfiguration.TYPE_BLOOD,
+                                                                                        userToNotification.Type);
 
-                    //notifyDonatorUserEvent.AddDonatorUserNotificationEvent();
+                    notifyDonatorUserEvent.AddDonatorUserNotificationEvent(donatorUserNotificationEvent);
+
+                    UpdateLastBloodNotificationDonatorUser(userToNotification.DonatorUserId);
 
                     _donatorUserBloodNotificationRepository.Add(donatorUserBloodNotification);
                 }
             }
         }
 
+        private void UpdateLastBloodNotificationDonatorUser(Guid donatorUserId)
+        {
+            var donatorUser = _donatorUserRepository.GetById(donatorUserId);
+            donatorUser.AddLastBloodNotification();
+            _donatorUserRepository.Update(donatorUser);
+        }
+        #endregion
+
+        #region Hair
         private void RegisterDonatorUserHairNotifications(ICollection<HairNotification> hairNotifications,
                                                           NotifyDonatorUserEvent notifyDonatorUserEvent)
         {
             foreach (var hairNotification in hairNotifications)
             {
-                //Get user list 
+                var usersToHairNotification = _donatorUserRepository.GetToHairNotification(hairNotification.HairId, hairNotification.AmountHair);
 
-                var donatorUserHairNotification = new DonatorUserHairNotification(Guid.NewGuid(),
-                                                                                  Guid.NewGuid(),
-                                                                                  hairNotification.Id);
+                foreach (var userToNotification in usersToHairNotification)
+                {
+                    var donatorUserHairNotification = new DonatorUserHairNotification(Guid.NewGuid(),
+                                                                                      userToNotification.DonatorUserId,
+                                                                                      hairNotification.Id);
 
-                _donatorUserHairNotificationRepository.Add(donatorUserHairNotification);
+                    var donatorUserNotificationEvent = new DonatorUserNotificationEvent(userToNotification.Name,
+                                                                                        userToNotification.Email,
+                                                                                        NotificationsTypeConfiguration.TYPE_HAIR,
+                                                                                        $"{userToNotification.Color} - {userToNotification.Type}");
+
+                    notifyDonatorUserEvent.AddDonatorUserNotificationEvent(donatorUserNotificationEvent);
+
+                    UpdateLastHairNotificationDonatorUser(userToNotification.DonatorUserId);
+
+                    _donatorUserHairNotificationRepository.Add(donatorUserHairNotification);
+                }
             }
         }
 
+        private void UpdateLastHairNotificationDonatorUser(Guid donatorUserId)
+        {
+            var donatorUser = _donatorUserRepository.GetById(donatorUserId);
+            donatorUser.AddLastHairNotification();
+            _donatorUserRepository.Update(donatorUser);
+        }
+
+        #endregion
+
+        #region BreastMilkNotification
         private void RegisterDonatorUserBreastMilkNotification(BreastMilkNotification breastMilkNotification,
-                                                               NotifyDonatorUserEvent notifyDonatorUserEvent)
+                                                              NotifyDonatorUserEvent notifyDonatorUserEvent)
         {
             var usersToBreastMilkNotification = _donatorUserRepository.GetToBreastMilkNotification(breastMilkNotification.AmountBreastMilk);
 
@@ -192,8 +229,8 @@ namespace SocialHeroes.Domain.Handlers
                                                                                               breastMilkNotification.Id);
 
                 notifyDonatorUserEvent.AddDonatorUserNotificationEvent(new DonatorUserNotificationEvent(userDonatorToNotify.Name,
-                                                                                                        userDonatorToNotify.Email, 
-                                                                                                        "Leite Materno"));
+                                                                                                        userDonatorToNotify.Email,
+                                                                                                        NotificationsTypeConfiguration.TYPE_BREASTMILK));
 
                 UpdateLastNotificationDonatorUser(userDonatorToNotify.DonatorUserId);
 
@@ -206,10 +243,13 @@ namespace SocialHeroes.Domain.Handlers
             var donatorUser = _donatorUserRepository.GetById(donatorUserId);
             donatorUser.AddLastBreastMilkNotification();
             _donatorUserRepository.Update(donatorUser);
-        }
+        } 
+        #endregion
+
         #endregion
 
         #region Register Request Notifications
+
         private void RegisterBreastMilkNotification(Notification notification,
                                                     BreastMilkNotificationCommand command)
         {
@@ -229,8 +269,6 @@ namespace SocialHeroes.Domain.Handlers
                                                             command.HairId,
                                                             command.Amount);
                 _hairNotificationRepository.Add(hairNotification);
-
-                notification.HairNotifications.Add(hairNotification);
             }
         }
 
@@ -243,9 +281,8 @@ namespace SocialHeroes.Domain.Handlers
                                                               notification.Id,
                                                               command.BloodId,
                                                               command.Amount);
-                _bloodNotificationRepository.Add(bloodNotification);
 
-                notification.BloodNotifications.Add(bloodNotification);
+                _bloodNotificationRepository.Add(bloodNotification);
             }
         }
 
