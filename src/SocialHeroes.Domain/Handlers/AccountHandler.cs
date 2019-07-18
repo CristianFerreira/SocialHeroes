@@ -108,9 +108,11 @@ namespace SocialHeroes.Domain.Handlers
 
                     RegisterAddress(command.Address, user);
 
-                    RegisterHospital(command, user, out InstitutionUser institutionUser);
+                    RegisterInstitutionUser(command, user, out InstitutionUser institutionUser);
 
                     RegisterPhones(command.Phones, institutionUser);
+
+                    RegisterUserNotificationTypes(command.UserNotificationTypes, user);
 
                     Commit(transaction);
                         //await _bus.RaiseEvent(new HospitalAccountRegisteredEvent());
@@ -178,15 +180,15 @@ namespace SocialHeroes.Domain.Handlers
             _addressRepository.Add(address);
         }
 
-        private void RegisterHospital(RegisterNewInstitutionUserCommand command,
-                                      User user,
-                                      out InstitutionUser institutionUser)
+        private void RegisterInstitutionUser(RegisterNewInstitutionUserCommand command,
+                                             User user,
+                                             out InstitutionUser institutionUser)
         {
             institutionUser = new InstitutionUser(Guid.NewGuid(),
-                                            user.Id,
-                                            command.SocialReason,
-                                            command.FantasyName,
-                                            command.CNPJ);
+                                                  user.Id,
+                                                  command.SocialReason,
+                                                  command.FantasyName,
+                                                  command.CNPJ);
 
             _institutionUserRepository.Add(institutionUser);
         }
