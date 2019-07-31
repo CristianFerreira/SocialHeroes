@@ -178,7 +178,10 @@ GO
 
 -- ADICIONANDO USUARIO
 
+
 INSERT [dbo].[Users] ([Id], [UserName], [NormalizedUserName], [Email], [NormalizedEmail], [EmailConfirmed], [PasswordHash], [SecurityStamp], [ConcurrencyStamp], [PhoneNumber], [PhoneNumberConfirmed], [TwoFactorEnabled], [LockoutEnd], [LockoutEnabled], [AccessFailedCount], [UserStatus], [UserType]) VALUES (N'0b0458f6-019a-47b9-90bd-0bee3f2f7146', N'MelissaSilvaCardoso@jourrapide.com', N'MELISSASILVACARDOSO@JOURRAPIDE.COM', N'MelissaSilvaCardoso@jourrapide.com', N'MELISSASILVACARDOSO@JOURRAPIDE.COM', 1, N'AQAAAAEAACcQAAAAENtxxEN7/FhO/I8wgG9fULgr2PaJXgRPkZs7R6WI2dSBR44j6/1ckWGdAeTHio5eeA==', N'EHER2U46QSJR2AI4ZWCXQ35L4DH63275', N'5c5c43f5-6c52-4dbe-8f22-724ef12173ce', NULL, 0, 0, NULL, 1, 0, 3, 1)
+GO
+INSERT [dbo].[Users] ([Id], [UserName], [NormalizedUserName], [Email], [NormalizedEmail], [EmailConfirmed], [PasswordHash], [SecurityStamp], [ConcurrencyStamp], [PhoneNumber], [PhoneNumberConfirmed], [TwoFactorEnabled], [LockoutEnd], [LockoutEnabled], [AccessFailedCount], [UserStatus], [UserType]) VALUES (N'8b36a6b4-5098-4cba-ba8d-1f4e351d8bda', N'hemocentroRS@hotmail.com', N'HEMOCENTRORS@HOTMAIL.COM', N'hemocentroRS@hotmail.com', N'HEMOCENTRORS@HOTMAIL.COM', 1, N'AQAAAAEAACcQAAAAEHgLBj5ScjCajh3g7jZC9yTX0B3G+2n7OYa9Afd0+h/CcXQsNG7/pO4yX0BPYXVgHw==', N'Q52H4KV5MIYKPSFKEQKOUFIXPBJT663W', N'8ede584e-b4b8-4b6b-9617-fe0bae4e11aa', NULL, 0, 0, NULL, 1, 0, 2, 2)
 GO
 INSERT [dbo].[Users] ([Id], [UserName], [NormalizedUserName], [Email], [NormalizedEmail], [EmailConfirmed], [PasswordHash], [SecurityStamp], [ConcurrencyStamp], [PhoneNumber], [PhoneNumberConfirmed], [TwoFactorEnabled], [LockoutEnd], [LockoutEnabled], [AccessFailedCount], [UserStatus], [UserType]) VALUES (N'c59265e0-bf44-4084-9d73-1f6859a8e4cc', N'thaistrindade25@hotmail.com', N'THAISTRINDADE25@HOTMAIL.COM', N'thaistrindade25@hotmail.com', N'THAISTRINDADE25@HOTMAIL.COM', 1, N'AQAAAAEAACcQAAAAEM3TLw0F2OK9LPyt24g8VgEkGpaEDTn0qhAadQtGlD8MArYMXtVROBk9vUu3pIbAQw==', N'WOBQO4ZKFLSHBBIDAEWQ6D5YCHDZWTV7', N'fa5a27f2-e1e2-4db1-b69d-edd3cde5be6b', NULL, 0, 0, NULL, 1, 0, 3, 1)
 GO
@@ -198,10 +201,16 @@ INSERT [dbo].[Users] ([Id], [UserName], [NormalizedUserName], [Email], [Normaliz
 GO
 INSERT [dbo].[Users] ([Id], [UserName], [NormalizedUserName], [Email], [NormalizedEmail], [EmailConfirmed], [PasswordHash], [SecurityStamp], [ConcurrencyStamp], [PhoneNumber], [PhoneNumberConfirmed], [TwoFactorEnabled], [LockoutEnd], [LockoutEnabled], [AccessFailedCount], [UserStatus], [UserType]) VALUES (N'2842e1b9-e136-4c69-9a10-e6126a5d692a', N'JuliaAlvesAraujo@jourrapide.com', N'JULIAALVESARAUJO@JOURRAPIDE.COM', N'JuliaAlvesAraujo@jourrapide.com', N'JULIAALVESARAUJO@JOURRAPIDE.COM', 1, N'AQAAAAEAACcQAAAAEO6MdGL2rbyeOJIgj7nX0Z6n4Nx+5KDyK5dggYeFxpS782ARPQvNtRGyIA3B2XT4VA==', N'GGBQSRBG5GDGJ3VP33MGWTESBK5NAYZ3', N'ba397726-576d-4ee5-adf4-89f5142bd6eb', NULL, 0, 0, NULL, 1, 0, 3, 1)
 GO
+INSERT [dbo].[Users] ([Id], [UserName], [NormalizedUserName], [Email], [NormalizedEmail], [EmailConfirmed], [PasswordHash], [SecurityStamp], [ConcurrencyStamp], [PhoneNumber], [PhoneNumberConfirmed], [TwoFactorEnabled], [LockoutEnd], [LockoutEnabled], [AccessFailedCount], [UserStatus], [UserType]) VALUES (N'6ff205bb-e935-4d64-92c7-e95f9136bbc9', N'rapunzelsolidaria@hotmail.com', N'RAPUNZELSOLIDARIA@HOTMAIL.COM', N'rapunzelsolidaria@hotmail.com', N'RAPUNZELSOLIDARIA@HOTMAIL.COM', 1, N'AQAAAAEAACcQAAAAEEbYlwK69VkGrhbgss2I5dYzsg6FFuKq3oa9iPOfuiQxCzfnHHzVl8ddSwJ5MAGkRQ==', N'EGWEY25DBH6WXM5QBX4WU7DGWSEL6JTF', N'3ce7954b-9a51-434b-a109-be3987c61ebd', NULL, 0, 0, NULL, 1, 0, 2, 2)
+GO
 INSERT [dbo].[Users] ([Id], [UserName], [NormalizedUserName], [Email], [NormalizedEmail], [EmailConfirmed], [PasswordHash], [SecurityStamp], [ConcurrencyStamp], [PhoneNumber], [PhoneNumberConfirmed], [TwoFactorEnabled], [LockoutEnd], [LockoutEnabled], [AccessFailedCount], [UserStatus], [UserType]) VALUES (N'98051049-2fbc-4c6e-9d18-eca97edc8271', N'LuanaAraujoFerreira@rhyta.com', N'LUANAARAUJOFERREIRA@RHYTA.COM', N'LuanaAraujoFerreira@rhyta.com', N'LUANAARAUJOFERREIRA@RHYTA.COM', 1, N'AQAAAAEAACcQAAAAEJ3Eg/dp21mrnElVp0R5fKfKCAyJl72vpvm9Irrr+gNeYnpxm7MNCUQGDs1Jvt3FLw==', N'FAS763XCIQP6BM4JRVANP7SXA46P7IRA', N'55d878e0-bc24-4656-ae2e-85a3c0099192', NULL, 0, 0, NULL, 1, 0, 3, 1)
 GO
 INSERT [dbo].[Users] ([Id], [UserName], [NormalizedUserName], [Email], [NormalizedEmail], [EmailConfirmed], [PasswordHash], [SecurityStamp], [ConcurrencyStamp], [PhoneNumber], [PhoneNumberConfirmed], [TwoFactorEnabled], [LockoutEnd], [LockoutEnabled], [AccessFailedCount], [UserStatus], [UserType]) VALUES (N'9adf3a3b-4bd9-4bd6-8765-ee9321edab59', N'LuanaAraujoSantos@rhyta.com', N'LUANAARAUJOSANTOS@RHYTA.COM', N'LuanaAraujoSantos@rhyta.com', N'LUANAARAUJOSANTOS@RHYTA.COM', 1, N'AQAAAAEAACcQAAAAEMkFD26af+Da+3nSRDUoYO2xnX38t+yyhhNmDphTGVkq4WNfZl1uCd0WCaZWs0IH8g==', N'LGN3MAU24ALTAZYDWMNTUTEMISDJE2DD', N'4c60c9b4-64f0-41d0-a67e-cd8215362153', NULL, 0, 0, NULL, 1, 0, 3, 1)
 GO
+INSERT [dbo].[Users] ([Id], [UserName], [NormalizedUserName], [Email], [NormalizedEmail], [EmailConfirmed], [PasswordHash], [SecurityStamp], [ConcurrencyStamp], [PhoneNumber], [PhoneNumberConfirmed], [TwoFactorEnabled], [LockoutEnd], [LockoutEnabled], [AccessFailedCount], [UserStatus], [UserType]) VALUES (N'68029763-e08c-4f37-bcc9-fa9af4a24a91', N'saolucas@hotmail.com', N'SAOLUCAS@HOTMAIL.COM', N'saolucas@hotmail.com', N'SAOLUCAS@HOTMAIL.COM', 1, N'AQAAAAEAACcQAAAAEHhvWcLUfal1LTm4Al/V1bAH08U0Vdc0hCyHFaoM3Tgu00xCM+p9lBAJ/MLutLVGTQ==', N'6NPVDJAS7ZVN7X5XHNNSUYI2KJT32SS5', N'92d9b9c0-4940-437c-bc44-bc35c7f2fde6', NULL, 0, 0, NULL, 1, 0, 2, 2)
+GO
+
+
 
 
 -- ADICIONANDO USUARIO DOADOR
@@ -322,3 +331,15 @@ INSERT [dbo].[UserNotificationTypes] ([Id], [NotificationTypeId], [UserId]) VALU
 GO
 INSERT [dbo].[UserNotificationTypes] ([Id], [NotificationTypeId], [UserId]) VALUES (N'1d202977-eeab-4078-a8d4-fd4b6a8e0e9d', N'00808e60-569e-4ffc-9087-266b44a9a851', N'8b36a6b4-5098-4cba-ba8d-1f4e351d8bda')
 GO
+
+
+
+--ADD Adresses
+
+INSERT [dbo].[Adresses] ([Id], [UserId], [Number], [Complement], [Street], [City], [State], [Country], [ZipCode], [Latitude], [Longitude]) VALUES (N'a6360650-78cb-4656-ae9e-7b023cfce331', N'8b36a6b4-5098-4cba-ba8d-1f4e351d8bda', N'3722', NULL, N'Av. Bento Gonçalves', N'Porto Alegre', N'RS', N'Brasil', N'90650-000', CAST(-30.062012400 AS Decimal(18, 9)), CAST(-51.179140820 AS Decimal(18, 9)))
+GO
+INSERT [dbo].[Adresses] ([Id], [UserId], [Number], [Complement], [Street], [City], [State], [Country], [ZipCode], [Latitude], [Longitude]) VALUES (N'31ad5ac4-4c5d-486f-a629-7f56c164f842', N'6ff205bb-e935-4d64-92c7-e95f9136bbc9', N'140', NULL, N'R. Amaro Cavalheiro', N'São Paulo', N'SP', N'Brasil', N'05425-011', CAST(-23.566584000 AS Decimal(18, 9)), CAST(-46.699332300 AS Decimal(18, 9)))
+GO
+INSERT [dbo].[Adresses] ([Id], [UserId], [Number], [Complement], [Street], [City], [State], [Country], [ZipCode], [Latitude], [Longitude]) VALUES (N'4f93dd0e-eb59-49ee-a805-9aa24cbf60a0', N'68029763-e08c-4f37-bcc9-fa9af4a24a91', N'6690', NULL, N'Av. Ipiranga', N'Porto Alegre', N'RS', N'Brasil', N'90619-900', CAST(-30.055169700 AS Decimal(18, 9)), CAST(-51.173509430 AS Decimal(18, 9)))
+GO
+
