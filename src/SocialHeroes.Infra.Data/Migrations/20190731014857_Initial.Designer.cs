@@ -10,7 +10,7 @@ using SocialHeroes.Infra.Data.Context;
 namespace SocialHeroes.Infra.Data.Migrations
 {
     [DbContext(typeof(SocialHeroesContext))]
-    [Migration("20190731005934_Initial")]
+    [Migration("20190731014857_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -189,6 +189,14 @@ namespace SocialHeroes.Infra.Data.Migrations
 
                     b.Property<Guid>("NotificationId");
 
+                    b.Property<bool>("ShareOnFacebook");
+
+                    b.Property<bool>("ShareOnInstagram");
+
+                    b.Property<bool>("ShareOnTwitter");
+
+                    b.Property<bool>("ShareOnWhatsapp");
+
                     b.HasKey("Id");
 
                     b.HasIndex("BloodId");
@@ -208,6 +216,14 @@ namespace SocialHeroes.Infra.Data.Migrations
                     b.Property<int>("AmountBreastMilk");
 
                     b.Property<Guid>("NotificationId");
+
+                    b.Property<bool>("ShareOnFacebook");
+
+                    b.Property<bool>("ShareOnInstagram");
+
+                    b.Property<bool>("ShareOnTwitter");
+
+                    b.Property<bool>("ShareOnWhatsapp");
 
                     b.HasKey("Id");
 
@@ -374,6 +390,14 @@ namespace SocialHeroes.Infra.Data.Migrations
                     b.Property<Guid>("HairId");
 
                     b.Property<Guid>("NotificationId");
+
+                    b.Property<bool>("ShareOnFacebook");
+
+                    b.Property<bool>("ShareOnInstagram");
+
+                    b.Property<bool>("ShareOnTwitter");
+
+                    b.Property<bool>("ShareOnWhatsapp");
 
                     b.HasKey("Id");
 

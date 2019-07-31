@@ -243,7 +243,7 @@ namespace SocialHeroes.Domain.Handlers
             var donatorUser = _donatorUserRepository.GetById(donatorUserId);
             donatorUser.AddLastBreastMilkNotification();
             _donatorUserRepository.Update(donatorUser);
-        } 
+        }
         #endregion
 
         #endregion
@@ -255,7 +255,11 @@ namespace SocialHeroes.Domain.Handlers
         {
             notification.SetBreastMilkNotification(new BreastMilkNotification(Guid.NewGuid(),
                                                                               notification.Id,
-                                                                              command.Amount));
+                                                                              command.Amount,
+                                                                              command.ShareOnFacebook,
+                                                                              command.ShareOnInstagram,
+                                                                              command.ShareOnTwitter,
+                                                                              command.ShareOnWhatsapp));
             _breastMilkNotificationRepository.Add(notification.BreastMilkNotification);
         }
 
@@ -267,7 +271,11 @@ namespace SocialHeroes.Domain.Handlers
                 var hairNotification = new HairNotification(Guid.NewGuid(),
                                                             notification.Id,
                                                             command.HairId,
-                                                            command.Amount);
+                                                            command.Amount,
+                                                            command.ShareOnFacebook,
+                                                            command.ShareOnInstagram,
+                                                            command.ShareOnTwitter,
+                                                            command.ShareOnWhatsapp);
                 _hairNotificationRepository.Add(hairNotification);
             }
         }
@@ -280,8 +288,11 @@ namespace SocialHeroes.Domain.Handlers
                 var bloodNotification = new BloodNotification(Guid.NewGuid(),
                                                               notification.Id,
                                                               command.BloodId,
-                                                              command.Amount);
-
+                                                              command.Amount,
+                                                              command.ShareOnFacebook,
+                                                              command.ShareOnInstagram,
+                                                              command.ShareOnTwitter,
+                                                              command.ShareOnWhatsapp);
                 _bloodNotificationRepository.Add(bloodNotification);
             }
         }

@@ -108,7 +108,11 @@ namespace SocialHeroes.Infra.Data.Migrations
                     NotificationId = table.Column<Guid>(nullable: false),
                     BloodId = table.Column<Guid>(nullable: false),
                     AmountBlood = table.Column<int>(nullable: false),
-                    Actived = table.Column<bool>(nullable: false)
+                    Actived = table.Column<bool>(nullable: false),
+                    ShareOnFacebook = table.Column<bool>(nullable: false),
+                    ShareOnInstagram = table.Column<bool>(nullable: false),
+                    ShareOnTwitter = table.Column<bool>(nullable: false),
+                    ShareOnWhatsapp = table.Column<bool>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -134,7 +138,11 @@ namespace SocialHeroes.Infra.Data.Migrations
                     Id = table.Column<Guid>(nullable: false),
                     NotificationId = table.Column<Guid>(nullable: false),
                     AmountBreastMilk = table.Column<int>(nullable: false),
-                    Actived = table.Column<bool>(nullable: false)
+                    Actived = table.Column<bool>(nullable: false),
+                    ShareOnFacebook = table.Column<bool>(nullable: false),
+                    ShareOnInstagram = table.Column<bool>(nullable: false),
+                    ShareOnTwitter = table.Column<bool>(nullable: false),
+                    ShareOnWhatsapp = table.Column<bool>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -155,7 +163,11 @@ namespace SocialHeroes.Infra.Data.Migrations
                     NotificationId = table.Column<Guid>(nullable: false),
                     HairId = table.Column<Guid>(nullable: false),
                     AmountHair = table.Column<int>(nullable: false),
-                    Actived = table.Column<bool>(nullable: false)
+                    Actived = table.Column<bool>(nullable: false),
+                    ShareOnFacebook = table.Column<bool>(nullable: false),
+                    ShareOnInstagram = table.Column<bool>(nullable: false),
+                    ShareOnTwitter = table.Column<bool>(nullable: false),
+                    ShareOnWhatsapp = table.Column<bool>(nullable: false)
                 },
                 constraints: table =>
                 {

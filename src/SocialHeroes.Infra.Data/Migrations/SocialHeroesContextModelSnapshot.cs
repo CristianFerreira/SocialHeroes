@@ -187,6 +187,14 @@ namespace SocialHeroes.Infra.Data.Migrations
 
                     b.Property<Guid>("NotificationId");
 
+                    b.Property<bool>("ShareOnFacebook");
+
+                    b.Property<bool>("ShareOnInstagram");
+
+                    b.Property<bool>("ShareOnTwitter");
+
+                    b.Property<bool>("ShareOnWhatsapp");
+
                     b.HasKey("Id");
 
                     b.HasIndex("BloodId");
@@ -206,6 +214,14 @@ namespace SocialHeroes.Infra.Data.Migrations
                     b.Property<int>("AmountBreastMilk");
 
                     b.Property<Guid>("NotificationId");
+
+                    b.Property<bool>("ShareOnFacebook");
+
+                    b.Property<bool>("ShareOnInstagram");
+
+                    b.Property<bool>("ShareOnTwitter");
+
+                    b.Property<bool>("ShareOnWhatsapp");
 
                     b.HasKey("Id");
 
@@ -372,6 +388,14 @@ namespace SocialHeroes.Infra.Data.Migrations
                     b.Property<Guid>("HairId");
 
                     b.Property<Guid>("NotificationId");
+
+                    b.Property<bool>("ShareOnFacebook");
+
+                    b.Property<bool>("ShareOnInstagram");
+
+                    b.Property<bool>("ShareOnTwitter");
+
+                    b.Property<bool>("ShareOnWhatsapp");
 
                     b.HasKey("Id");
 

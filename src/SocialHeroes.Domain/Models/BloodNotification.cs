@@ -1,20 +1,29 @@
-﻿using System;
+﻿using SocialHeroes.Domain.Core.Interfaces;
+using System;
 using System.Collections.Generic;
-using SocialHeroes.Domain.Core.Interfaces;
 
 namespace SocialHeroes.Domain.Models
 {
-    public class BloodNotification : IEntity
+    public class BloodNotification : IEntity, ISocialNetwork
     {
         public BloodNotification(Guid id, 
                                  Guid notificationId, 
                                  Guid bloodId, 
-                                 int amountBlood)
+                                 int amountBlood,
+                                 bool shareOnFacebook,
+                                 bool shareOnInstagram,
+                                 bool shareOnTwitter,
+                                 bool shareOnWhatsapp)
         {
             Id = id;
             NotificationId = notificationId;
             BloodId = bloodId;
             AmountBlood = amountBlood;
+            Actived = true;
+            ShareOnFacebook = shareOnFacebook;
+            ShareOnInstagram = shareOnInstagram;
+            ShareOnTwitter = shareOnTwitter;
+            ShareOnWhatsapp = shareOnWhatsapp;
         }
 
         public Guid Id { get; private set; }
@@ -22,7 +31,10 @@ namespace SocialHeroes.Domain.Models
         public Guid BloodId { get; private set; }
         public int AmountBlood { get; private set; }
         public bool Actived { get; private set; }
-
+        public bool ShareOnFacebook { get; private set; }
+        public bool ShareOnInstagram { get; private set; }
+        public bool ShareOnTwitter{ get; private set; }
+        public bool ShareOnWhatsapp { get; private set; }
 
         public Notification Notification { get; private set; }
         public Blood Blood { get; private set; }
