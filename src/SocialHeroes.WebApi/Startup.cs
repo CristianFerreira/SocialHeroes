@@ -97,8 +97,8 @@ namespace SocialHeroes.WebApi
             // Criação de estruturas, usuários e permissões
             // na base do ASP.NET Identity Core (caso ainda não
             // existam)
-            new IdentityInitializerConfiguration(context, userManager, roleManager)
-                .Initialize();
+            //new IdentityInitializerConfiguration(context, userManager, roleManager)
+            //    .Initialize();
 
             app.UseAuthentication();
             app.UseMvc();
