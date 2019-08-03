@@ -8,7 +8,9 @@ GO
 SET QUOTED_IDENTIFIER ON
 GO
 
-
+IF NOT EXISTS(SELECT name FROM sys.schemas WHERE name = N'vw')
+EXEC('CREATE SCHEMA [vw]')
+GO
 
 CREATE VIEW [vw].[BloodNotificationsRequested] AS
 SELECT 
