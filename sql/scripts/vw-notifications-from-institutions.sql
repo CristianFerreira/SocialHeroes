@@ -31,6 +31,7 @@ JOIN Hairs AS h ON h.Id = hn.HairId
 JOIN InstitutionUsers AS iu on iu.Id = ntf.InstitutionUserId
 JOIN Users AS u on u.Id = iu.UserId
 JOIN Adresses AS a on a.UserId = u.Id
+WHERE hn.Actived = 1
 ORDER BY ntf.DateNotification desc) AS HairNotifications
 
 UNION
@@ -53,6 +54,7 @@ JOIN Bloods AS b ON b.Id = bn.BloodId
 JOIN InstitutionUsers AS iu on iu.Id = ntf.InstitutionUserId
 JOIN Users AS u on u.Id = iu.UserId
 JOIN Adresses AS a on a.UserId = u.Id
+WHERE bn.Actived = 1
 ORDER BY ntf.DateNotification desc) AS BloodNotifications
 
 GO
