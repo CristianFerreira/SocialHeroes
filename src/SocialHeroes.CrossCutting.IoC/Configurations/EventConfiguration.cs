@@ -3,6 +3,7 @@ using Microsoft.Extensions.DependencyInjection;
 using SocialHeroes.Domain.Core.Notifications;
 using SocialHeroes.Domain.EventHandlers;
 using SocialHeroes.Domain.Events.AccountEvent;
+using SocialHeroes.Domain.Events.NotificationEvent;
 
 namespace SocialHeroes.CrossCutting.IoC.Configurations
 {
@@ -12,7 +13,7 @@ namespace SocialHeroes.CrossCutting.IoC.Configurations
         {
             services.AddScoped<INotificationHandler<DomainNotification>, DomainNotificationHandler>();
             services.AddScoped<INotificationHandler<InstitutionUserAccountRegisteredEvent>, AccountEventHandler>();
-
+            services.AddScoped<INotificationHandler<NotifyDonatorUserEvent>, NotificationEventHandler>();
         }
     }
 }
