@@ -1,5 +1,4 @@
-﻿
-using Microsoft.IdentityModel.Tokens;
+﻿using Microsoft.IdentityModel.Tokens;
 using SocialHeroes.Domain.Core.Interfaces;
 using System.Security.Cryptography;
 

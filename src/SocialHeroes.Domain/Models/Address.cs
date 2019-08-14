@@ -1,6 +1,6 @@
-﻿using System;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using SocialHeroes.Domain.Core.Interfaces;
+using System;
 
 namespace SocialHeroes.Domain.Models
 {
