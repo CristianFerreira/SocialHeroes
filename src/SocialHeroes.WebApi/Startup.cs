@@ -101,7 +101,6 @@ namespace SocialHeroes.WebApi
             //    .Initialize();
 
             app.UseAuthentication();
-            app.UseMvc();
             app.UseCors(c =>
             {
                 c.AllowAnyHeader();
@@ -109,6 +108,7 @@ namespace SocialHeroes.WebApi
                 c.AllowAnyOrigin();
             });
 
+            app.UseMvc();     
             app.UseStaticFiles();            
             app.UseResponseCompression();
             app.UseSwagger();
