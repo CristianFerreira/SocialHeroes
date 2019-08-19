@@ -32,6 +32,7 @@ namespace SocialHeroes.Domain.Handlers
         private readonly IPhoneRepository _phoneRepository;
         private readonly UserManager<User> _userManager;
         private readonly SignInManager<User> _signInManager;
+        private readonly INotificationTypeRepository _notificationTypeRepository;
 
         public AccountHandler(IUnitOfWork uow,
                               IMediatorHandler bus,
@@ -41,6 +42,7 @@ namespace SocialHeroes.Domain.Handlers
                               IInstitutionUserRepository institutionUserRepository,
                               IAddressRepository addressRepository,
                               IUserNotificationTypeRepository userNotificationTypeRepository,
+                              INotificationTypeRepository notificationTypeRepository,
                               IPhoneRepository phoneRepository,
                               UserManager<User> userManager,
                               SignInManager<User> signInManager)
@@ -55,6 +57,7 @@ namespace SocialHeroes.Domain.Handlers
             _phoneRepository = phoneRepository;
             _userManager = userManager;
             _signInManager = signInManager;
+            _notificationTypeRepository = notificationTypeRepository;
         }
 
         public async Task<ICommandResult> Handle(RegisterNewDonatorUserCommand command, 
@@ -74,7 +77,7 @@ namespace SocialHeroes.Domain.Handlers
                         return await CanceledTask(_bus.RaiseEvent(new DomainNotification(command.MessageType,
                                                                                          $"Ocorreu erro ao atribuir uma Role \n: {resultRole.Errors.ToList()[0].Description}")));
 
-                    RegisterUserNotificationTypes(command.UserNotificationTypes, user);
+                    RegisterUserDonatorNotificationTypes(command, user);
 
                     RegisterDonatorUser(command, user, out DonatorUser donatorUser);
 
@@ -88,6 +91,7 @@ namespace SocialHeroes.Domain.Handlers
                 }
             }
         }
+
 
         public async Task<ICommandResult> Handle(RegisterNewInstitutionUserCommand command, 
                                                  CancellationToken cancellationToken)
@@ -112,7 +116,7 @@ namespace SocialHeroes.Domain.Handlers
 
                     RegisterPhones(command.Phones, institutionUser);
 
-                    RegisterUserNotificationTypes(command.UserNotificationTypes, user);
+                    RegisterUserInstitutionNotificationTypes(command.UserNotificationTypes, user);
 
                     Commit(transaction);
                         //await _bus.RaiseEvent(new HospitalAccountRegisteredEvent());
@@ -212,24 +216,56 @@ namespace SocialHeroes.Domain.Handlers
             return resultRole.Succeeded;
         }
 
-        private void RegisterUserNotificationTypes(ICollection<UserNotificationTypeCommand> userNotificationTypes,
-                                                   User user)
+        private void RegisterUserDonatorNotificationTypes(RegisterNewDonatorUserCommand command,
+                                                          User user)
+        {
+            var notificationsTypes = new List<NotificationType>();
+            if (command.ActivedBloodNotification) notificationsTypes.Add(_notificationTypeRepository.GetByName(NotificationTypeConfiguration.Blood));
+            if(command.ActivedHairNotification) notificationsTypes.Add(_notificationTypeRepository.GetByName(NotificationTypeConfiguration.Hair));
+            if(command.ActivedBreastMilkNotification) notificationsTypes.Add(_notificationTypeRepository.GetByName(NotificationTypeConfiguration.BreastMilk));
+
+            foreach (var notificationType in notificationsTypes)
+                _userNotificationTypeRepository.Add(new UserNotificationType(Guid.NewGuid(),
+                                                                             notificationType.Id,
+                                                                             user.Id));
+        }
+
+        private void RegisterInstitutionNotificationTypes(RegisterNewDonatorUserCommand command,
+                                                          User user)
+        {
+            var notificationsTypes = new List<NotificationType>();
+            if (command.ActivedBloodNotification) notificationsTypes.Add(_notificationTypeRepository.GetByName(NotificationTypeConfiguration.Blood));
+            if (command.ActivedHairNotification) notificationsTypes.Add(_notificationTypeRepository.GetByName(NotificationTypeConfiguration.Hair));
+            if (command.ActivedBreastMilkNotification) notificationsTypes.Add(_notificationTypeRepository.GetByName(NotificationTypeConfiguration.BreastMilk));
+
+            foreach (var notificationType in notificationsTypes)
+                _userNotificationTypeRepository.Add(new UserNotificationType(Guid.NewGuid(),
+                                                                             notificationType.Id,
+                                                                             user.Id));
+        }
+
+        private void RegisterUserInstitutionNotificationTypes(ICollection<UserNotificationTypeCommand> userNotificationTypes,
+                                                               User user)
         {
             foreach (var userNotificationType in userNotificationTypes)
                 _userNotificationTypeRepository.Add(new UserNotificationType(Guid.NewGuid(),
                                                                              userNotificationType.NotificationTypeId,
                                                                              user.Id));
         }
+
         private void RegisterDonatorUser(RegisterNewDonatorUserCommand command, 
                                          User user, 
                                          out DonatorUser donatorUser)
         {
             donatorUser = new DonatorUser(Guid.NewGuid(),
-                                              user.Id,
-                                              command.Name,
-                                              command.Genre,
-                                              command.DateBirth,
-                                              command.LastDonation);
+                                          user.Id,
+                                          command.Name,
+                                          command.Genre,
+                                          command.ActivedBloodNotification,
+                                          command.ActivedHairNotification,
+                                          command.ActivedBreastMilkNotification,
+                                          command.HairId,
+                                          command.BloodId);
 
             _donatorUserRepository.Add(donatorUser);
         }

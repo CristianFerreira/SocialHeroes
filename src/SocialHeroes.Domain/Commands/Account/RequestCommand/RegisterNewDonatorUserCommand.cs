@@ -8,22 +8,29 @@ namespace SocialHeroes.Domain.Commands.Account.RequestCommand
     {
 
         public RegisterNewDonatorUserCommand(string name,
-                                                DateTime dateBirth,
-                                                EGenre genre,
-                                                DateTime? lastDonation,
-                                                string email,
-                                                string password,
-                                                string confirmPassword,
-                                                ICollection<UserNotificationTypeCommand> userNotificationTypes)
+                                              EGenre genre,
+                                              string email,
+                                              string password,
+                                              string confirmPassword,
+                                              bool activedBloodNotification,
+                                              bool activedHairNotification,
+                                              bool activedBreastMilkNotification,
+                                              Guid? hairId = null,
+                                              Guid? bloodId = null)
         {
             Name = name;
-            DateBirth = dateBirth;
             Genre = genre;
-            LastDonation = lastDonation;
             Email = email;
             Password = password;
             ConfirmPassword = confirmPassword;
-            UserNotificationTypes = userNotificationTypes;  
+            ActivedBloodNotification = activedBloodNotification;
+            ActivedHairNotification = activedHairNotification;
+            ActivedBreastMilkNotification = activedBreastMilkNotification;
+            HairId = hairId;
+            BloodId = bloodId;
+
+
+
         }
 
     }

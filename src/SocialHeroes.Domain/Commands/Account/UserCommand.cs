@@ -9,8 +9,8 @@ namespace SocialHeroes.Domain.Commands.Account
         public string Password { get; set; }
         public string ConfirmPassword { get; set; }
         public AddressCommand Address { get; set; }
-
         public ICollection<UserNotificationTypeCommand> UserNotificationTypes { get; set; }
+
         public ICollection<PhoneCommand> Phones { get; set; }
     }
 }

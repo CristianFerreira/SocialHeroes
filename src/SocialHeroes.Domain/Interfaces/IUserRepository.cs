@@ -6,5 +6,6 @@ namespace SocialHeroes.Domain.Interfaces
     public interface IUserRepository : IRepository<User>
     {
         User GetByUserType(EUserType userType);
+        User GetByEmail(string email);
     }
 }

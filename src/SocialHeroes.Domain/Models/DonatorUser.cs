@@ -13,26 +13,21 @@ namespace SocialHeroes.Domain.Models
                            Guid userId, 
                            string name, 
                            EGenre genre, 
-                           DateTime dateBirth,
-                           DateTime? lastDonatedBlood = null,
-                           DateTime? lastDonatedHair = null,
-                           DateTime? lastDonatedBreastMilk = null,
-                           string cpf = null, 
-                           string cellPhone = null)
+                           bool activedBloodNotification,
+                           bool activedHairNotification,
+                           bool activedBreastMilkNotification,
+                           Guid? hairId = null,
+                           Guid? bloodId = null)
         {
             Id = id;
             UserId = userId;
             Name = name;
             Genre = genre;
-            DateBirth = dateBirth;
-            LastDonatedBlood = lastDonatedBlood;
-            LastDonatedHair = lastDonatedHair;
-            LastDonatedBreastMilk = lastDonatedBreastMilk;
-            CPF = cpf;
-            CellPhone = cellPhone;
-            ActivedBloodNotification = true;
-            ActivedHairNotification = true;
-            ActivedBreastMilkNotification = true;
+            ActivedBloodNotification = activedBloodNotification;
+            ActivedHairNotification = activedHairNotification;
+            ActivedBreastMilkNotification = activedBreastMilkNotification;
+            HairId = hairId;
+            BloodId = bloodId;
         }
 
         public Guid Id { get; private set; }
