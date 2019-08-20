@@ -60,7 +60,7 @@ namespace SocialHeroes.Domain.Validations.AccountValidation
         protected void ValidateZipCode()
          => RuleFor(c => c.Address.ZipCode)
               .NotEmpty().WithMessage("Por favor insira um CEP")
-              .Length(9).WithMessage("O CEP deve ter 9 caracteres");
+              .Length(8).WithMessage("O CEP deve ter 8 caracteres");
 
         protected void ValidateState()
         => RuleFor(c => c.Address.State)

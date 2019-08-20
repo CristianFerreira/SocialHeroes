@@ -20,8 +20,8 @@ namespace SocialHeroes.Domain.Validations.AccountValidation
         protected void ValidateCNPJ()
         {
             RuleFor(c => c.CNPJ)
-                .NotEmpty().WithMessage("Por favor informe o CNPJ.")
-                .Must(IsValidCNPJ).WithMessage("Por favor informe um CNPJ válido.");
+                .NotEmpty().WithMessage("Por favor informe o CNPJ.");
+                //.Must(IsValidCNPJ).WithMessage("Por favor informe um CNPJ válido.");
         }
 
         protected void ValidateUserId()
