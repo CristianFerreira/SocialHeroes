@@ -176,6 +176,7 @@ namespace SocialHeroes.Domain.Handlers
                                       command.Complement,
                                       command.Street,
                                       command.City,
+                                      command.District,
                                       command.State,
                                       command.Country,
                                       command.ZipCode,

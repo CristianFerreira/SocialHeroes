@@ -12,6 +12,7 @@ namespace SocialHeroes.Domain.Models
                        string complement,
                        string street,
                        string city,
+                       string district,
                        string state,
                        string country,
                        string zipCode,
@@ -24,6 +25,7 @@ namespace SocialHeroes.Domain.Models
             Complement = complement;
             Street = street;
             City = city;
+            District = district;
             State = state;
             Country = country;
             ZipCode = zipCode;
@@ -37,6 +39,7 @@ namespace SocialHeroes.Domain.Models
         public string Complement { get; set; }
         public string Street { get; set; }
         public string City { get; set; }
+        public string District { get; set; }
         public string State { get; set; }
         public string Country { get; set; }
         public string ZipCode { get; set; }

@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace SocialHeroes.Infra.Data.Migrations
 {
-    public partial class Initial : Migration
+    public partial class InitialCreate : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -215,11 +215,12 @@ namespace SocialHeroes.Infra.Data.Migrations
                     UserId = table.Column<Guid>(nullable: false),
                     Number = table.Column<string>(type: "varchar(20)", maxLength: 20, nullable: false),
                     Complement = table.Column<string>(type: "varchar(100)", maxLength: 100, nullable: true),
-                    Street = table.Column<string>(type: "varchar(100)", maxLength: 100, nullable: false),
-                    City = table.Column<string>(type: "varchar(100)", maxLength: 100, nullable: false),
+                    Street = table.Column<string>(type: "varchar(100)", maxLength: 100, nullable: true),
+                    City = table.Column<string>(type: "varchar(100)", maxLength: 100, nullable: true),
+                    District = table.Column<string>(type: "varchar(100)", maxLength: 100, nullable: true),
                     State = table.Column<string>(type: "varchar(100)", maxLength: 100, nullable: false),
                     Country = table.Column<string>(type: "varchar(100)", maxLength: 100, nullable: false),
-                    ZipCode = table.Column<string>(type: "varchar(9)", maxLength: 9, nullable: false),
+                    ZipCode = table.Column<string>(type: "varchar(8)", maxLength: 8, nullable: false),
                     Latitude = table.Column<decimal>(type: "decimal(18, 9)", nullable: false),
                     Longitude = table.Column<decimal>(type: "decimal(18, 9)", nullable: false)
                 },
