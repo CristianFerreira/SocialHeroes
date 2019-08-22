@@ -7,6 +7,7 @@ using SocialHeroes.Domain.Core.Bus;
 using SocialHeroes.Domain.Core.Interfaces;
 using SocialHeroes.Domain.Core.Notifications;
 using SocialHeroes.Domain.Enums;
+using SocialHeroes.Domain.Events.AccountEvent;
 using SocialHeroes.Domain.Interfaces;
 using SocialHeroes.Domain.Models;
 using SocialHeroes.Domain.Services;
@@ -21,7 +22,8 @@ namespace SocialHeroes.Domain.Handlers
     public class AccountHandler : Handler,
                                   IRequestHandler<RegisterNewDonatorUserCommand, ICommandResult>,
                                   IRequestHandler<RegisterNewInstitutionUserCommand, ICommandResult>,
-                                  IRequestHandler<TokenUserCommand, ICommandResult>
+                                  IRequestHandler<TokenUserCommand, ICommandResult>,
+                                  IRequestHandler<ActiveUserCommand, ICommandResult>
     {
         private readonly IMediatorHandler _bus;
         private readonly ITokenService _tokenService;
@@ -33,6 +35,7 @@ namespace SocialHeroes.Domain.Handlers
         private readonly UserManager<User> _userManager;
         private readonly SignInManager<User> _signInManager;
         private readonly INotificationTypeRepository _notificationTypeRepository;
+        private readonly IUserRepository _userRepository;
 
         public AccountHandler(IUnitOfWork uow,
                               IMediatorHandler bus,
@@ -44,6 +47,7 @@ namespace SocialHeroes.Domain.Handlers
                               IUserNotificationTypeRepository userNotificationTypeRepository,
                               INotificationTypeRepository notificationTypeRepository,
                               IPhoneRepository phoneRepository,
+                              IUserRepository userRepository,
                               UserManager<User> userManager,
                               SignInManager<User> signInManager)
                               : base(uow, bus, notifications)
@@ -55,6 +59,7 @@ namespace SocialHeroes.Domain.Handlers
             _addressRepository = addressRepository;
             _userNotificationTypeRepository = userNotificationTypeRepository;
             _phoneRepository = phoneRepository;
+            _userRepository = userRepository;
             _userManager = userManager;
             _signInManager = signInManager;
             _notificationTypeRepository = notificationTypeRepository;
@@ -92,6 +97,8 @@ namespace SocialHeroes.Domain.Handlers
             }
         }
 
+ 
+
 
         public async Task<ICommandResult> Handle(RegisterNewInstitutionUserCommand command, 
                                                  CancellationToken cancellationToken)
@@ -119,7 +126,7 @@ namespace SocialHeroes.Domain.Handlers
                     RegisterUserInstitutionNotificationTypes(command.UserNotificationTypes, user);
 
                     Commit(transaction);
-                        //await _bus.RaiseEvent(new HospitalAccountRegisteredEvent());
+                        await _bus.RaiseEvent(new InactiveUserAccountEvent(user.Email));
 
                     return await CompletedTask(institutionUser);
                 }
@@ -131,15 +138,7 @@ namespace SocialHeroes.Domain.Handlers
             }
         }
 
-        private void RegisterPhones(ICollection<PhoneCommand> phones, InstitutionUser institutionUser)
-        {
-            if (phones == null)
-                return;
-
-            foreach (var phone in phones)
-              _phoneRepository.Add(new Phone(Guid.NewGuid(), institutionUser.Id, phone.Number));
-            
-        }
+       
 
         public Task<ICommandResult> Handle(TokenUserCommand command, 
                                            CancellationToken cancellationToken)
@@ -164,9 +163,32 @@ namespace SocialHeroes.Domain.Handlers
                                                             UserName(user))));
         }
 
+        public Task<ICommandResult> Handle(ActiveUserCommand request, CancellationToken cancellationToken)
+        {
+
+            var user = _userRepository.GetByEmail(request.Email);
+            user.ActivateUser();
+
+            _userRepository.Update(user);
+
+            if (Commit())
+                _bus.RaiseEvent(new ActiveUserAccountEvent(user.Email));
+
+            return CompletedTask();
+        }
+
 
 
         #region private methods
+        private void RegisterPhones(ICollection<PhoneCommand> phones, InstitutionUser institutionUser)
+        {
+            if (phones == null)
+                return;
+
+            foreach (var phone in phones)
+                _phoneRepository.Add(new Phone(Guid.NewGuid(), institutionUser.Id, phone.Number));
+
+        }
         private void RegisterAddress(AddressCommand command, 
                                      User user)
         {
@@ -290,6 +312,6 @@ namespace SocialHeroes.Domain.Handlers
             _donatorUserRepository.Dispose();
         }
 
-        
+      
     }
 }

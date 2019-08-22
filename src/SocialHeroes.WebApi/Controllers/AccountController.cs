@@ -39,6 +39,12 @@ namespace SocialHeroes.WebApi.Controllers
             => Response(bus.SendCommand(command).Result);
 
         [HttpPost]
+        [Route("account/active")]
+        [AllowAnonymous]
+        public IActionResult ActiveInstitution([FromBody]ActiveUserCommand command)
+            => Response(bus.SendCommand(command).Result);
+
+        [HttpPost]
         [Route("account/token")]
         [AllowAnonymous]
         public IActionResult Token([FromBody]TokenUserCommand command) 

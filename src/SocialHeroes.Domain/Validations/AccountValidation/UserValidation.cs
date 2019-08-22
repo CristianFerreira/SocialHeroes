@@ -34,7 +34,6 @@ namespace SocialHeroes.Domain.Validations.AccountValidation
 
         protected void ValidateCity()
         => RuleFor(c => c.Address.City)
-           .NotEmpty().WithMessage("Por favor insira uma cidade")
            .Length(1, 100).WithMessage("A cidade deve ter entre 1 e 100 caracteres");
 
 
@@ -49,7 +48,6 @@ namespace SocialHeroes.Domain.Validations.AccountValidation
 
         protected void ValidateStreet()
         => RuleFor(c => c.Address.Street)
-              .NotEmpty().WithMessage("Por favor insira um endereço")
              .Length(1, 100).WithMessage("O endereço deve ter entre 1 e 100 caracteres");
 
         protected void ValidateAddressNumber()
