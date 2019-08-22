@@ -125,7 +125,7 @@ namespace SocialHeroes.Domain.Handlers
 
                     RegisterUserInstitutionNotificationTypes(command.UserNotificationTypes, user);
 
-                    Commit(transaction);
+                    if(Commit(transaction))
                         await _bus.RaiseEvent(new InactiveUserAccountEvent(user.Email));
 
                     return await CompletedTask(institutionUser);

@@ -1,5 +1,6 @@
 ﻿using MediatR;
 using SocialHeroes.Domain.Events.AccountEvent;
+using SocialHeroes.Domain.Services;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -16,7 +17,10 @@ namespace SocialHeroes.Domain.EventHandlers
 
         public Task Handle(InactiveUserAccountEvent notification, CancellationToken cancellationToken)
         {
-            //send Email to admin
+            var from = "socialheroes_app@outlook.com";
+            new EmailService().SendEmail(from, "cristianferreira_gks@hotmail.com", "usuario inativo", notification.Email);
+
+
             return Task.CompletedTask;
         }
     }
