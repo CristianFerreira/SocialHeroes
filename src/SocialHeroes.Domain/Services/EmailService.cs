@@ -13,7 +13,7 @@ namespace SocialHeroes.Domain.Services
             var client = new SendGridClient(apiKey);
             var plainTextContent = "and easy to do anywhere, even with C#";
             var htmlContent = body;
-            var msg = MailHelper.CreateSingleEmail(new EmailAddress(from), new EmailAddress(to), subject, plainTextContent, htmlContent);
+            var msg = MailHelper.CreateSingleEmail(new EmailAddress(from, "Social Heroes"), new EmailAddress(to), subject, plainTextContent, htmlContent);
             client.SendEmailAsync(msg);
         }
     }
