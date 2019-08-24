@@ -12,7 +12,7 @@ namespace SocialHeroes.CrossCutting.IoC.Configurations
         public static void Register(IServiceCollection services)
         {
             services.AddScoped<INotificationHandler<DomainNotification>, DomainNotificationHandler>();
-            services.AddScoped<INotificationHandler<InactiveUserAccountEvent>, AccountEventHandler>();
+            services.AddScoped<INotificationHandler<PendingUserAccountEvent>, AccountEventHandler>();
             services.AddScoped<INotificationHandler<NotifyDonatorUserEvent>, NotificationEventHandler>();
             services.AddScoped<INotificationHandler<ActiveUserAccountEvent>, AccountEventHandler>();
         }

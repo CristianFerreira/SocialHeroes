@@ -126,7 +126,7 @@ namespace SocialHeroes.Domain.Handlers
                     RegisterUserInstitutionNotificationTypes(command.UserNotificationTypes, user);
 
                     if(Commit(transaction))
-                        await _bus.RaiseEvent(new InactiveUserAccountEvent(user.Email));
+                        await _bus.RaiseEvent(new PendingUserAccountEvent(user.Email));
 
                     return await CompletedTask(institutionUser);
                 }
@@ -148,6 +148,10 @@ namespace SocialHeroes.Domain.Handlers
             if (user == null)
                 return CanceledTask(_bus.RaiseEvent(new DomainNotification(command.MessageType,
                                                                            "O usuário informado não está cadastrado.")));
+
+            if(user.UserStatus.Equals(EUserStatus.Pending))
+                return CanceledTask(_bus.RaiseEvent(new DomainNotification(command.MessageType,
+                                                                           "A conta encontra-se pendente, aguarde a ativação da sua conta!")));
 
             var resultSignIn = _signInManager
                                 .CheckPasswordSignInAsync(user, command.Password, false)

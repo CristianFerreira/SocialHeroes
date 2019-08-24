@@ -2,9 +2,9 @@
 
 namespace SocialHeroes.Domain.Events.AccountEvent
 {
-    public class InactiveUserAccountEvent :Event
+    public class PendingUserAccountEvent : Event
     {
-        public InactiveUserAccountEvent(string email)
+        public PendingUserAccountEvent(string email)
         {
             Email = email;
         }
