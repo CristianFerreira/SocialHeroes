@@ -109,7 +109,7 @@ namespace SocialHeroes.Domain.Handlers
                 {
                     if (!RegisterUser(command.Email, 
                                       command.Password, 
-                                      EUserType.Hospital, out User user, out IdentityResult resultUser))
+                                      EUserType.Institution, out User user, out IdentityResult resultUser))
                         return await CanceledTask(_bus.RaiseEvent(new DomainNotification(command.MessageType,
                                                                                          "E-mail já está cadastrado!")));
 
@@ -303,7 +303,7 @@ namespace SocialHeroes.Domain.Handlers
             {
                 case EUserType.Donator:
                     return _donatorUserRepository.GetByUserId(user.Id).Name;
-                case EUserType.Hospital:
+                case EUserType.Institution:
                     return _institutionUserRepository.GetByUserId(user.Id).FantasyName;
                 default:
                     return user.UserName;
