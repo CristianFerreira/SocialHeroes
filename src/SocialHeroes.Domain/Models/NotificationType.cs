@@ -1,4 +1,5 @@
-﻿using SocialHeroes.Domain.Core.Interfaces;
+﻿using Newtonsoft.Json;
+using SocialHeroes.Domain.Core.Interfaces;
 using System;
 using System.Collections.Generic;
 
@@ -19,6 +20,7 @@ namespace SocialHeroes.Domain.Models
         public string Name { get; private set; }
         public string Description { get; private set; }
 
+        [JsonIgnore]
         public ICollection<UserNotificationType> UserNotificationTypes { get; private set; }
     }
 }

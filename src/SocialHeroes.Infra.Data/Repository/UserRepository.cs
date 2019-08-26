@@ -11,8 +11,11 @@ namespace SocialHeroes.Infra.Data.Repository
     {
         public UserRepository(SocialHeroesContext context) : base(context) {}
 
+        public User GetByEmail(string email)
+         => DbSet.AsNoTracking().FirstOrDefault(u => u.Email.ToUpper() == email.ToUpper());
+
         public User GetByUserType(EUserType userType) 
-            => DbSet.AsNoTracking().FirstOrDefault(u => u.UserType == userType);
+        => DbSet.AsNoTracking().FirstOrDefault(u => u.UserType == userType);
         
     }
 }

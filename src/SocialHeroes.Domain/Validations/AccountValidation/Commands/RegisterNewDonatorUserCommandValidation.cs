@@ -8,12 +8,9 @@ namespace SocialHeroes.Domain.Validations.AccountValidation.Commands
         {
             ValidateName();
             ValidateEmail();
-            ValidateDateBirth();
             ValidateGenre();
-            ValidateLastDonation();
             ValidatePassword();
             ValidatePasswordEqualsConfirmPassword();
-            ValidateUserNotificationType();
         }
     }
 }

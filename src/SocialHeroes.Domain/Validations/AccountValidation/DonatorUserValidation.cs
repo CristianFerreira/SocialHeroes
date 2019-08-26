@@ -26,12 +26,6 @@ namespace SocialHeroes.Domain.Validations.AccountValidation
                 .LessThan(DateTime.Now).WithMessage("A data de nascimento é maior do que a data atual.");
         }
 
-        protected void ValidateLastDonation()
-        {
-            var timeNow = DateTime.Now;
-            RuleFor(c => c.LastDonation)              
-                .LessThanOrEqualTo(timeNow).WithMessage("A data da ultima doação é maior do que a data atual.");
-        }
 
         private bool HaveMinimumAge(DateTime birthDate)
             => birthDate <= DateTime.Now.AddYears(-18);

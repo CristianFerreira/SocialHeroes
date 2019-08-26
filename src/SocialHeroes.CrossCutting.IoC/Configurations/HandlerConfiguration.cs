@@ -20,6 +20,7 @@ namespace SocialHeroes.CrossCutting.IoC.Configurations
             services.AddScoped<IRequestHandler<TokenUserCommand, ICommandResult>, AccountHandler>();
             services.AddScoped<IRequestHandler<RegisterNewDonatorUserCommand, ICommandResult>, AccountHandler>();
             services.AddScoped<IRequestHandler<RegisterNewInstitutionUserCommand, ICommandResult>, AccountHandler>();
+            services.AddScoped<IRequestHandler<ActiveUserCommand, ICommandResult>, AccountHandler>();
 
             //notification
             services.AddScoped<IRequestHandler<NotifyDonatorUserCommand, ICommandResult>, NotificationHandler>();

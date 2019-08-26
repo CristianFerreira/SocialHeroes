@@ -12,10 +12,13 @@ namespace SocialHeroes.Infra.Data.Mappings
 
             builder.Property(a => a.City)
                 .HasColumnType("varchar(100)")
-                .HasMaxLength(100)
-                .IsRequired();
+                .HasMaxLength(100);
 
             builder.Property(a => a.Complement)
+                .HasColumnType("varchar(100)")
+                .HasMaxLength(100);
+
+            builder.Property(a => a.District)
                 .HasColumnType("varchar(100)")
                 .HasMaxLength(100);
 
@@ -26,8 +29,7 @@ namespace SocialHeroes.Infra.Data.Mappings
 
             builder.Property(a => a.Street)
                 .HasColumnType("varchar(100)")
-                .HasMaxLength(100)
-                .IsRequired();
+                .HasMaxLength(100);
 
             builder.Property(a => a.Number)
                 .HasColumnType("varchar(20)")
@@ -35,8 +37,8 @@ namespace SocialHeroes.Infra.Data.Mappings
                 .IsRequired();
 
             builder.Property(a => a.ZipCode)
-                .HasColumnType("varchar(9)")
-                .HasMaxLength(9)
+                .HasColumnType("varchar(8)")
+                .HasMaxLength(8)
                 .IsRequired();
 
             builder.Property(a => a.State)
