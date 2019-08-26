@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using SocialHeroes.Domain.Core.Bus;
 using SocialHeroes.Domain.Core.Notifications;
 using SocialHeroes.Domain.Interfaces;
+using System;
 
 namespace SocialHeroes.WebApi.Controllers
 {
@@ -28,6 +29,10 @@ namespace SocialHeroes.WebApi.Controllers
         public IActionResult GetAll()
             => Response(_notificationTypeRepository.GetAll());
 
-
+        [HttpGet]
+        [Route("{userId}")]
+        [AllowAnonymous]
+        public IActionResult GetByUserId(Guid userId)
+           => Response(_notificationTypeRepository.GetByUserId(userId));
     }
 }

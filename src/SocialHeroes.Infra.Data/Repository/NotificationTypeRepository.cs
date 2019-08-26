@@ -2,6 +2,8 @@
 using SocialHeroes.Domain.Interfaces;
 using SocialHeroes.Domain.Models;
 using SocialHeroes.Infra.Data.Context;
+using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace SocialHeroes.Infra.Data.Repository
@@ -14,5 +16,12 @@ namespace SocialHeroes.Infra.Data.Repository
 
         public NotificationType GetByName(string name)
         => DbSet.AsNoTracking().FirstOrDefault(n => n.Name.ToUpper() == name.ToUpper());
+
+        public ICollection<NotificationType> GetByUserId(Guid userId)
+           => (from nt in Db.NotificationType
+               join untft in Db.UserNotificationType on nt.Id equals untft.NotificationTypeId
+               where untft.UserId == userId
+               select new NotificationType (nt.Id, nt.Name,nt.Description)
+               ).ToList();
     }
 }
