@@ -30,7 +30,7 @@ namespace SocialHeroes.WebApi.Controllers
             => Response(_notificationTypeRepository.GetAll());
 
         [HttpGet]
-        [Route("{userId}")]
+        [Route("user/{userId}")]
         [AllowAnonymous]
         public IActionResult GetByUserId(Guid userId)
            => Response(_notificationTypeRepository.GetByUserId(userId));
