@@ -10,14 +10,14 @@ using SocialHeroes.Infra.Data.Context;
 namespace SocialHeroes.Infra.Data.Migrations
 {
     [DbContext(typeof(SocialHeroesContext))]
-    [Migration("20190731204621_Initial")]
-    partial class Initial
+    [Migration("20190829022914_InitialCreate")]
+    partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "2.2.6-servicing-10079")
+                .HasAnnotation("ProductVersion", "2.2.4-servicing-10062")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -110,7 +110,6 @@ namespace SocialHeroes.Infra.Data.Migrations
                         .ValueGeneratedOnAdd();
 
                     b.Property<string>("City")
-                        .IsRequired()
                         .HasColumnType("varchar(100)")
                         .HasMaxLength(100);
 
@@ -120,6 +119,10 @@ namespace SocialHeroes.Infra.Data.Migrations
 
                     b.Property<string>("Country")
                         .IsRequired()
+                        .HasColumnType("varchar(100)")
+                        .HasMaxLength(100);
+
+                    b.Property<string>("District")
                         .HasColumnType("varchar(100)")
                         .HasMaxLength(100);
 
@@ -140,7 +143,6 @@ namespace SocialHeroes.Infra.Data.Migrations
                         .HasMaxLength(100);
 
                     b.Property<string>("Street")
-                        .IsRequired()
                         .HasColumnType("varchar(100)")
                         .HasMaxLength(100);
 
@@ -148,8 +150,8 @@ namespace SocialHeroes.Infra.Data.Migrations
 
                     b.Property<string>("ZipCode")
                         .IsRequired()
-                        .HasColumnType("varchar(9)")
-                        .HasMaxLength(9);
+                        .HasColumnType("varchar(8)")
+                        .HasMaxLength(8);
 
                     b.HasKey("Id");
 
@@ -465,7 +467,9 @@ namespace SocialHeroes.Infra.Data.Migrations
                         .IsRequired()
                         .HasMaxLength(50);
 
-                    b.Property<string>("Name");
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(50);
 
                     b.HasKey("Id");
 
@@ -512,6 +516,28 @@ namespace SocialHeroes.Infra.Data.Migrations
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
                     b.ToTable("Roles");
+                });
+
+            modelBuilder.Entity("SocialHeroes.Domain.Models.SocialNotificationType", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Code")
+                        .IsRequired()
+                        .HasMaxLength(50);
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasMaxLength(50);
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(50);
+
+                    b.HasKey("Id");
+
+                    b.ToTable("SocialNotificationTypes");
                 });
 
             modelBuilder.Entity("SocialHeroes.Domain.Models.User", b =>
@@ -587,6 +613,24 @@ namespace SocialHeroes.Infra.Data.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("UserNotificationTypes");
+                });
+
+            modelBuilder.Entity("SocialHeroes.Domain.Models.UserSocialNotificationType", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<Guid>("SocialNotificationTypeId");
+
+                    b.Property<Guid>("UserId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("SocialNotificationTypeId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("UserSocialNotificationTypes");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<System.Guid>", b =>
@@ -760,6 +804,19 @@ namespace SocialHeroes.Infra.Data.Migrations
 
                     b.HasOne("SocialHeroes.Domain.Models.User", "User")
                         .WithMany("UserNotificationTypes")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Restrict);
+                });
+
+            modelBuilder.Entity("SocialHeroes.Domain.Models.UserSocialNotificationType", b =>
+                {
+                    b.HasOne("SocialHeroes.Domain.Models.SocialNotificationType", "SocialNotificationType")
+                        .WithMany("UserSocialNotificationTypes")
+                        .HasForeignKey("SocialNotificationTypeId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("SocialHeroes.Domain.Models.User", "User")
+                        .WithMany("UserSocialNotificationTypes")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Restrict);
                 });

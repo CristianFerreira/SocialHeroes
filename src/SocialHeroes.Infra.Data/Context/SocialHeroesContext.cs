@@ -21,9 +21,13 @@ namespace SocialHeroes.Infra.Data.Context
         public DbSet<DonatorUserHairNotification> DonatorUserHairNotifications { get; set; }
         public DbSet<HairNotification> HairNotifications { get; set; }
         public DbSet<Notification> Notifications { get; set; }
-        public DbSet<Domain.Models.NotificationType> NotificationType { get; set; }
+        public DbSet<NotificationType> NotificationTypes { get; set; }
         public DbSet<Phone> Phones { get; set; }
-        public DbSet<UserNotificationType> UserNotificationType { get; set; }
+        public DbSet<UserNotificationType> UserNotificationTypes { get; set; }
+
+        public DbSet<UserSocialNotificationType> UserSocialNotificationTypes { get; set; }
+
+        public DbSet<SocialNotificationType> SocialNotificationTypes { get; set; }
 
         public SocialHeroesContext(DbContextOptions<SocialHeroesContext> options) : base(options) {}
 

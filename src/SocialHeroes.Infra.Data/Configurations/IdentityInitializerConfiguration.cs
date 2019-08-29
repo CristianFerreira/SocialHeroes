@@ -51,7 +51,7 @@ namespace SocialHeroes.Infra.Data.Configurations
 
             foreach (var notificationType in notificationTypes)
             {
-                _context.NotificationType.Add(notificationType);
+                _context.NotificationTypes.Add(notificationType);
             }
 
             _context.SaveChanges();

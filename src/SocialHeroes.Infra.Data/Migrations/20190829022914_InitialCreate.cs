@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace SocialHeroes.Infra.Data.Migrations
 {
-    public partial class Initial : Migration
+    public partial class InitialCreate : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -51,7 +51,7 @@ namespace SocialHeroes.Infra.Data.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(nullable: false),
-                    Name = table.Column<string>(nullable: true),
+                    Name = table.Column<string>(maxLength: 50, nullable: false),
                     Description = table.Column<string>(maxLength: 50, nullable: false)
                 },
                 constraints: table =>
@@ -71,6 +71,20 @@ namespace SocialHeroes.Infra.Data.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Roles", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "SocialNotificationTypes",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(nullable: false),
+                    Name = table.Column<string>(maxLength: 50, nullable: false),
+                    Code = table.Column<string>(maxLength: 50, nullable: false),
+                    Description = table.Column<string>(maxLength: 50, nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_SocialNotificationTypes", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -215,11 +229,12 @@ namespace SocialHeroes.Infra.Data.Migrations
                     UserId = table.Column<Guid>(nullable: false),
                     Number = table.Column<string>(type: "varchar(20)", maxLength: 20, nullable: false),
                     Complement = table.Column<string>(type: "varchar(100)", maxLength: 100, nullable: true),
-                    Street = table.Column<string>(type: "varchar(100)", maxLength: 100, nullable: false),
-                    City = table.Column<string>(type: "varchar(100)", maxLength: 100, nullable: false),
+                    Street = table.Column<string>(type: "varchar(100)", maxLength: 100, nullable: true),
+                    City = table.Column<string>(type: "varchar(100)", maxLength: 100, nullable: true),
+                    District = table.Column<string>(type: "varchar(100)", maxLength: 100, nullable: true),
                     State = table.Column<string>(type: "varchar(100)", maxLength: 100, nullable: false),
                     Country = table.Column<string>(type: "varchar(100)", maxLength: 100, nullable: false),
-                    ZipCode = table.Column<string>(type: "varchar(9)", maxLength: 9, nullable: false),
+                    ZipCode = table.Column<string>(type: "varchar(8)", maxLength: 8, nullable: false),
                     Latitude = table.Column<decimal>(type: "decimal(18, 9)", nullable: false),
                     Longitude = table.Column<decimal>(type: "decimal(18, 9)", nullable: false)
                 },
@@ -392,6 +407,31 @@ namespace SocialHeroes.Infra.Data.Migrations
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_UserRoles_Users_UserId",
+                        column: x => x.UserId,
+                        principalTable: "Users",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "UserSocialNotificationTypes",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(nullable: false),
+                    SocialNotificationTypeId = table.Column<Guid>(nullable: false),
+                    UserId = table.Column<Guid>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_UserSocialNotificationTypes", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_UserSocialNotificationTypes_SocialNotificationTypes_SocialNotificationTypeId",
+                        column: x => x.SocialNotificationTypeId,
+                        principalTable: "SocialNotificationTypes",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_UserSocialNotificationTypes_Users_UserId",
                         column: x => x.UserId,
                         principalTable: "Users",
                         principalColumn: "Id",
@@ -672,6 +712,16 @@ namespace SocialHeroes.Infra.Data.Migrations
                 column: "NormalizedUserName",
                 unique: true,
                 filter: "[NormalizedUserName] IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_UserSocialNotificationTypes_SocialNotificationTypeId",
+                table: "UserSocialNotificationTypes",
+                column: "SocialNotificationTypeId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_UserSocialNotificationTypes_UserId",
+                table: "UserSocialNotificationTypes",
+                column: "UserId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -707,6 +757,9 @@ namespace SocialHeroes.Infra.Data.Migrations
                 name: "UserRoles");
 
             migrationBuilder.DropTable(
+                name: "UserSocialNotificationTypes");
+
+            migrationBuilder.DropTable(
                 name: "UserTokens");
 
             migrationBuilder.DropTable(
@@ -729,6 +782,9 @@ namespace SocialHeroes.Infra.Data.Migrations
 
             migrationBuilder.DropTable(
                 name: "Roles");
+
+            migrationBuilder.DropTable(
+                name: "SocialNotificationTypes");
 
             migrationBuilder.DropTable(
                 name: "Bloods");

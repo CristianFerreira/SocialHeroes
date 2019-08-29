@@ -33,6 +33,7 @@ namespace SocialHeroes.Domain.Models
         public InstitutionUser InstitutionUser { get; private set; }
 
         public ICollection<UserNotificationType> UserNotificationTypes { get; private set; }
+        public ICollection<UserSocialNotificationType> UserSocialNotificationTypes { get; private set; }
 
         private EUserStatus GetUserStatus()
             => UserType == EUserType.Donator ? EUserStatus.Active : EUserStatus.Pending;
