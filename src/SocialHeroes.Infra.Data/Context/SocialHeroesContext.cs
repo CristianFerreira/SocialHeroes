@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using SocialHeroes.Domain.Models;
+using SocialHeroes.Domain.Queries.Views;
 using SocialHeroes.Infra.Data.Configurations;
 using System;
 
@@ -28,6 +29,10 @@ namespace SocialHeroes.Infra.Data.Context
         public DbSet<UserSocialNotificationType> UserSocialNotificationTypes { get; set; }
 
         public DbSet<SocialNotificationType> SocialNotificationTypes { get; set; }
+
+
+        //views
+        public DbQuery<VwBloodNotificationsRequestedEnableOnPage> VwBloodNotificationsRequestedEnableOnPage { get; set; }
 
         public SocialHeroesContext(DbContextOptions<SocialHeroesContext> options) : base(options) {}
 

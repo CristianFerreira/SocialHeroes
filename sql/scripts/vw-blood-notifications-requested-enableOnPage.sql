@@ -2,7 +2,11 @@ USE [socialheroes]
 GO
 
 
-CREATE VIEW [vwBloodNotificationsRequestedEnableOnPage] AS
+IF NOT EXISTS(SELECT name FROM sys.schemas WHERE name = N'vw')
+EXEC('CREATE SCHEMA [vw]')
+GO
+
+CREATE VIEW [vwNotificationsRequestedEnableOnPage] AS
 select distinct ntf.Id as NotificationId, ntf.DateNotification, bntf.ShareOnFacebook, bntf.ShareOnLinkedin, bntf.ShareOnTwitter, i.FantasyName as InstitutionName
  ,SUBSTRING(
         (

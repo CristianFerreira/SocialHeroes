@@ -1,18 +1,8 @@
 USE [socialheroes]
 GO
 
-/****** Object:  View [vw].[NotificationsFromInstitutions]    Script Date: 03/08/2019 00:23:07 ******/
-SET ANSI_NULLS ON
-GO
 
-SET QUOTED_IDENTIFIER ON
-GO
-
-IF NOT EXISTS(SELECT name FROM sys.schemas WHERE name = N'vw')
-EXEC('CREATE SCHEMA [vw]')
-GO
-
-CREATE VIEW [vw].[NotificationsFromInstitutions] AS
+CREATE VIEW [vwNotificationsFromInstitutions] AS
 SELECT * FROM (SELECT TOP 5
 ntf.InstitutionUserId,
 ntf.DateNotification,

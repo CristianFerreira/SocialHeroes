@@ -52,7 +52,7 @@ namespace SocialHeroes.Infra.Data.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(nullable: false),
-                    Name = table.Column<string>(nullable: true),
+                    Name = table.Column<string>(maxLength: 50, nullable: false),
                     Description = table.Column<string>(maxLength: 50, nullable: false)
                 },
                 constraints: table =>
@@ -72,6 +72,20 @@ namespace SocialHeroes.Infra.Data.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Roles", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "SocialNotificationTypes",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(nullable: false),
+                    Name = table.Column<string>(maxLength: 50, nullable: false),
+                    Code = table.Column<string>(maxLength: 50, nullable: false),
+                    Description = table.Column<string>(maxLength: 50, nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_SocialNotificationTypes", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -398,6 +412,31 @@ namespace SocialHeroes.Infra.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "UserSocialNotificationTypes",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(nullable: false),
+                    SocialNotificationTypeId = table.Column<Guid>(nullable: false),
+                    UserId = table.Column<Guid>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_UserSocialNotificationTypes", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_UserSocialNotificationTypes_SocialNotificationTypes_SocialNotificationTypeId",
+                        column: x => x.SocialNotificationTypeId,
+                        principalTable: "SocialNotificationTypes",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_UserSocialNotificationTypes_Users_UserId",
+                        column: x => x.UserId,
+                        principalTable: "Users",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "UserTokens",
                 columns: table => new
                 {
@@ -671,6 +710,16 @@ namespace SocialHeroes.Infra.Data.Migrations
                 column: "NormalizedUserName",
                 unique: true,
                 filter: "[NormalizedUserName] IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_UserSocialNotificationTypes_SocialNotificationTypeId",
+                table: "UserSocialNotificationTypes",
+                column: "SocialNotificationTypeId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_UserSocialNotificationTypes_UserId",
+                table: "UserSocialNotificationTypes",
+                column: "UserId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -706,6 +755,9 @@ namespace SocialHeroes.Infra.Data.Migrations
                 name: "UserRoles");
 
             migrationBuilder.DropTable(
+                name: "UserSocialNotificationTypes");
+
+            migrationBuilder.DropTable(
                 name: "UserTokens");
 
             migrationBuilder.DropTable(
@@ -728,6 +780,9 @@ namespace SocialHeroes.Infra.Data.Migrations
 
             migrationBuilder.DropTable(
                 name: "Roles");
+
+            migrationBuilder.DropTable(
+                name: "SocialNotificationTypes");
 
             migrationBuilder.DropTable(
                 name: "Bloods");

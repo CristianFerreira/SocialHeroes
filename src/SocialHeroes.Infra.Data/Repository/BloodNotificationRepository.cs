@@ -1,6 +1,10 @@
-﻿using SocialHeroes.Domain.Interfaces;
+﻿using Microsoft.EntityFrameworkCore;
+using SocialHeroes.Domain.Interfaces;
 using SocialHeroes.Domain.Models;
+using SocialHeroes.Domain.Queries.Views;
 using SocialHeroes.Infra.Data.Context;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace SocialHeroes.Infra.Data.Repository
 {
@@ -9,5 +13,9 @@ namespace SocialHeroes.Infra.Data.Repository
         public BloodNotificationRepository(SocialHeroesContext context) : base(context)
         {
         }
+
+        public ICollection<VwBloodNotificationsRequestedEnableOnPage> GetAllEnableOnPage()
+        => Db.VwBloodNotificationsRequestedEnableOnPage.AsNoTracking().ToList();
+        
     }
 }
