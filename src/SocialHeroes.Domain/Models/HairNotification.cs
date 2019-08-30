@@ -11,9 +11,8 @@ namespace SocialHeroes.Domain.Models
                                 Guid hairId, 
                                 int amountHair,
                                 bool shareOnFacebook,
-                                bool shareOnInstagram,
-                                bool shareOnTwitter,
-                                bool shareOnWhatsapp)
+                                bool shareOnLinkedin,
+                                bool shareOnTwitter)
         {
             Id = id;
             NotificationId = notificationId;
@@ -21,9 +20,8 @@ namespace SocialHeroes.Domain.Models
             AmountHair = amountHair;
             Actived = true;
             ShareOnFacebook = shareOnFacebook;
-            ShareOnInstagram = shareOnInstagram;
+            ShareOnLinkedin = shareOnLinkedin;
             ShareOnTwitter = shareOnTwitter;
-            ShareOnWhatsapp = shareOnWhatsapp;
         }
 
         public Guid Id { get; private set; }
@@ -32,9 +30,8 @@ namespace SocialHeroes.Domain.Models
         public int AmountHair { get; private set; }
         public bool Actived { get; private set; }
         public bool ShareOnFacebook { get; private set; }
-        public bool ShareOnInstagram { get; private set; }
+        public bool ShareOnLinkedin { get; private set; }
         public bool ShareOnTwitter { get; private set; }
-        public bool ShareOnWhatsapp { get; private set; }
 
         public Notification Notification { get; private set; }
         public Hair Hair { get; private set; }

@@ -40,7 +40,7 @@ namespace SocialHeroes.Domain.Services
             return claimsIdentity;
         }
 
-        public TokenResponse CreateToken(User user, IList<string> roles, string userName)
+        public TokenResponse CreateToken(Guid genericUserId, User user, IList<string> roles, string userName)
         {
 
             var handlerToken = new JwtSecurityTokenHandler();
@@ -54,7 +54,8 @@ namespace SocialHeroes.Domain.Services
                 Expires = ExpirationDate
             });
 
-            return new TokenResponse(new UserResponse(user.Id,
+            return new TokenResponse(genericUserId,
+                                     new UserResponse(user.Id,
                                                       userName,
                                                       user.UserType),
                                      handlerToken.WriteToken(securityToken),

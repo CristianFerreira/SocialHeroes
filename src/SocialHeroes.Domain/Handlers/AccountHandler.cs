@@ -162,7 +162,8 @@ namespace SocialHeroes.Domain.Handlers
                                                                            "Senha inválida.")));
 
             var roles = _userManager.GetRolesAsync(user).Result;
-            return CompletedTask((_tokenService.CreateToken(user, 
+            return CompletedTask((_tokenService.CreateToken(GenericUserId(user),
+                                                            user, 
                                                             roles, 
                                                             UserName(user))));
         }
@@ -307,6 +308,18 @@ namespace SocialHeroes.Domain.Handlers
                     return _institutionUserRepository.GetByUserId(user.Id).FantasyName;
                 default:
                     return user.UserName;
+            }
+        }
+
+        private Guid GenericUserId(User user)
+        {
+            switch (user.UserType)
+            {
+                case EUserType.Donator:
+                    return _donatorUserRepository.GetByUserId(user.Id).Id;
+                case EUserType.Institution:
+                    return _institutionUserRepository.GetByUserId(user.Id).Id;
+                default: throw new ArgumentException("Nenhum identificador generico foi encontrado. Por favor, Contate o suporte!");
             }
         }
         #endregion

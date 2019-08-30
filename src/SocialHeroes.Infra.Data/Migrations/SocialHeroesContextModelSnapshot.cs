@@ -15,7 +15,7 @@ namespace SocialHeroes.Infra.Data.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "2.2.6-servicing-10079")
+                .HasAnnotation("ProductVersion", "2.2.4-servicing-10062")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -191,11 +191,9 @@ namespace SocialHeroes.Infra.Data.Migrations
 
                     b.Property<bool>("ShareOnFacebook");
 
-                    b.Property<bool>("ShareOnInstagram");
+                    b.Property<bool>("ShareOnLinkedin");
 
                     b.Property<bool>("ShareOnTwitter");
-
-                    b.Property<bool>("ShareOnWhatsapp");
 
                     b.HasKey("Id");
 
@@ -219,11 +217,9 @@ namespace SocialHeroes.Infra.Data.Migrations
 
                     b.Property<bool>("ShareOnFacebook");
 
-                    b.Property<bool>("ShareOnInstagram");
+                    b.Property<bool>("ShareOnLinkedin");
 
                     b.Property<bool>("ShareOnTwitter");
-
-                    b.Property<bool>("ShareOnWhatsapp");
 
                     b.HasKey("Id");
 
@@ -393,11 +389,9 @@ namespace SocialHeroes.Infra.Data.Migrations
 
                     b.Property<bool>("ShareOnFacebook");
 
-                    b.Property<bool>("ShareOnInstagram");
+                    b.Property<bool>("ShareOnLinkedin");
 
                     b.Property<bool>("ShareOnTwitter");
-
-                    b.Property<bool>("ShareOnWhatsapp");
 
                     b.HasKey("Id");
 
@@ -448,6 +442,8 @@ namespace SocialHeroes.Infra.Data.Migrations
                         .ValueGeneratedOnAdd();
 
                     b.Property<DateTime>("DateNotification");
+
+                    b.Property<bool>("EnableRequestOnPage");
 
                     b.Property<Guid>("InstitutionUserId");
 

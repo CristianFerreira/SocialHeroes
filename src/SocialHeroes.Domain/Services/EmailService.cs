@@ -11,9 +11,8 @@ namespace SocialHeroes.Domain.Services
         {
             var apiKey = Environment.GetEnvironmentVariable("sendGridKey", EnvironmentVariableTarget.User);
             var client = new SendGridClient(apiKey);
-            var plainTextContent = "and easy to do anywhere, even with C#";
             var htmlContent = body;
-            var msg = MailHelper.CreateSingleEmail(new EmailAddress(from, "Social Heroes"), new EmailAddress(to), subject, plainTextContent, htmlContent);
+            var msg = MailHelper.CreateSingleEmail(new EmailAddress(from, "Social Heroes"), new EmailAddress(to), subject, "", htmlContent);
             client.SendEmailAsync(msg);
         }
     }

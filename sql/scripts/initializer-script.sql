@@ -336,10 +336,10 @@ GO
 
 --ADD Adresses
 
-INSERT [dbo].[Adresses] ([Id], [UserId], [Number], [Complement], [Street], [City], [State], [Country], [ZipCode], [Latitude], [Longitude]) VALUES (N'a6360650-78cb-4656-ae9e-7b023cfce331', N'8b36a6b4-5098-4cba-ba8d-1f4e351d8bda', N'3722', NULL, N'Av. Bento Gonçalves', N'Porto Alegre', N'RS', N'Brasil', N'90650-000', CAST(-30.062012400 AS Decimal(18, 9)), CAST(-51.179140820 AS Decimal(18, 9)))
+INSERT [dbo].[Adresses] ([Id], [UserId], [Number], [Complement], [Street], [City], [District], [State], [Country], [ZipCode], [Latitude], [Longitude]) VALUES ('a6360650-78cb-4656-ae9e-7b023cfce331', '8b36a6b4-5098-4cba-ba8d-1f4e351d8bda', N'3722', NULL, N'Av. Bento Gonçalves', N'Porto Alegre', 'Partenon ', N'RS', N'Brasil', N'90650000', CAST(-30.062012400 AS Decimal(18, 9)), CAST(-51.179140820 AS Decimal(18, 9)))
 GO
-INSERT [dbo].[Adresses] ([Id], [UserId], [Number], [Complement], [Street], [City], [State], [Country], [ZipCode], [Latitude], [Longitude]) VALUES (N'31ad5ac4-4c5d-486f-a629-7f56c164f842', N'6ff205bb-e935-4d64-92c7-e95f9136bbc9', N'140', NULL, N'R. Amaro Cavalheiro', N'São Paulo', N'SP', N'Brasil', N'05425-011', CAST(-23.566584000 AS Decimal(18, 9)), CAST(-46.699332300 AS Decimal(18, 9)))
+INSERT [dbo].[Adresses] ([Id], [UserId], [Number], [Complement], [Street], [City], [District], [State], [Country], [ZipCode], [Latitude], [Longitude]) VALUES (N'31ad5ac4-4c5d-486f-a629-7f56c164f842', N'6ff205bb-e935-4d64-92c7-e95f9136bbc9', N'140', NULL, N'R. Amaro Cavalheiro', N'São Paulo','Pinheiros ', N'SP', N'Brasil', N'05425011', CAST(-23.566584000 AS Decimal(18, 9)), CAST(-46.699332300 AS Decimal(18, 9)))
 GO
-INSERT [dbo].[Adresses] ([Id], [UserId], [Number], [Complement], [Street], [City], [State], [Country], [ZipCode], [Latitude], [Longitude]) VALUES (N'4f93dd0e-eb59-49ee-a805-9aa24cbf60a0', N'68029763-e08c-4f37-bcc9-fa9af4a24a91', N'6690', NULL, N'Av. Ipiranga', N'Porto Alegre', N'RS', N'Brasil', N'90619-900', CAST(-30.055169700 AS Decimal(18, 9)), CAST(-51.173509430 AS Decimal(18, 9)))
+INSERT [dbo].[Adresses] ([Id], [UserId], [Number], [Complement], [Street], [City], [District], [State], [Country], [ZipCode], [Latitude], [Longitude]) VALUES (N'4f93dd0e-eb59-49ee-a805-9aa24cbf60a0', N'68029763-e08c-4f37-bcc9-fa9af4a24a91', N'6690', NULL, N'Av. Ipiranga', N'Porto Alegre','Partenon', N'RS', N'Brasil', N'90619900', CAST(-30.055169700 AS Decimal(18, 9)), CAST(-51.173509430 AS Decimal(18, 9)))
 GO
 

@@ -6,8 +6,7 @@ namespace SocialHeroes.Domain.Commands.Notification
     {
         public int Amount { get; set; }
         public bool ShareOnFacebook { get; set; }
-        public bool ShareOnInstagram { get; set; }
+        public bool ShareOnLinkedin { get; set; }
         public bool ShareOnTwitter { get; set; }
-        public bool ShareOnWhatsapp { get; set; }
     }
 }

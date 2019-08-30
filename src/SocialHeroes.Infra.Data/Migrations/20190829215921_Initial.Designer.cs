@@ -10,14 +10,14 @@ using SocialHeroes.Infra.Data.Context;
 namespace SocialHeroes.Infra.Data.Migrations
 {
     [DbContext(typeof(SocialHeroesContext))]
-    [Migration("20190731204621_Initial")]
+    [Migration("20190829215921_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "2.2.6-servicing-10079")
+                .HasAnnotation("ProductVersion", "2.2.4-servicing-10062")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -110,7 +110,6 @@ namespace SocialHeroes.Infra.Data.Migrations
                         .ValueGeneratedOnAdd();
 
                     b.Property<string>("City")
-                        .IsRequired()
                         .HasColumnType("varchar(100)")
                         .HasMaxLength(100);
 
@@ -120,6 +119,10 @@ namespace SocialHeroes.Infra.Data.Migrations
 
                     b.Property<string>("Country")
                         .IsRequired()
+                        .HasColumnType("varchar(100)")
+                        .HasMaxLength(100);
+
+                    b.Property<string>("District")
                         .HasColumnType("varchar(100)")
                         .HasMaxLength(100);
 
@@ -140,7 +143,6 @@ namespace SocialHeroes.Infra.Data.Migrations
                         .HasMaxLength(100);
 
                     b.Property<string>("Street")
-                        .IsRequired()
                         .HasColumnType("varchar(100)")
                         .HasMaxLength(100);
 
@@ -148,8 +150,8 @@ namespace SocialHeroes.Infra.Data.Migrations
 
                     b.Property<string>("ZipCode")
                         .IsRequired()
-                        .HasColumnType("varchar(9)")
-                        .HasMaxLength(9);
+                        .HasColumnType("varchar(8)")
+                        .HasMaxLength(8);
 
                     b.HasKey("Id");
 
@@ -191,11 +193,9 @@ namespace SocialHeroes.Infra.Data.Migrations
 
                     b.Property<bool>("ShareOnFacebook");
 
-                    b.Property<bool>("ShareOnInstagram");
+                    b.Property<bool>("ShareOnLinkedin");
 
                     b.Property<bool>("ShareOnTwitter");
-
-                    b.Property<bool>("ShareOnWhatsapp");
 
                     b.HasKey("Id");
 
@@ -219,11 +219,9 @@ namespace SocialHeroes.Infra.Data.Migrations
 
                     b.Property<bool>("ShareOnFacebook");
 
-                    b.Property<bool>("ShareOnInstagram");
+                    b.Property<bool>("ShareOnLinkedin");
 
                     b.Property<bool>("ShareOnTwitter");
-
-                    b.Property<bool>("ShareOnWhatsapp");
 
                     b.HasKey("Id");
 
@@ -393,11 +391,9 @@ namespace SocialHeroes.Infra.Data.Migrations
 
                     b.Property<bool>("ShareOnFacebook");
 
-                    b.Property<bool>("ShareOnInstagram");
+                    b.Property<bool>("ShareOnLinkedin");
 
                     b.Property<bool>("ShareOnTwitter");
-
-                    b.Property<bool>("ShareOnWhatsapp");
 
                     b.HasKey("Id");
 
@@ -448,6 +444,8 @@ namespace SocialHeroes.Infra.Data.Migrations
                         .ValueGeneratedOnAdd();
 
                     b.Property<DateTime>("DateNotification");
+
+                    b.Property<bool>("EnableRequestOnPage");
 
                     b.Property<Guid>("InstitutionUserId");
 

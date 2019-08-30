@@ -5,6 +5,12 @@ namespace SocialHeroes.Domain.Events.NotificationEvent
 {
     public class NotifyDonatorUserEvent : Event
     {
+        public NotifyDonatorUserEvent(string hospital)
+        {
+            Hospital = hospital;
+            DonatorUserNotificationsEvent = new List<DonatorUserNotificationEvent>();
+        }
+
         public NotifyDonatorUserEvent(string hospital, 
                                       string street, 
                                       string number, 

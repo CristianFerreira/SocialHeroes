@@ -60,6 +60,7 @@ namespace SocialHeroes.Domain.Handlers
         {
 
             RegisterNotification(command.InstitutionUserId,
+                                 command.EnableRequestOnPage,
                                  out Notification notification);
 
             CreateInstanceToNotifyDonatorUserEvent(command,
@@ -89,12 +90,18 @@ namespace SocialHeroes.Domain.Handlers
             var institutionUser = _institutionUserRepository.Get(command.InstitutionUserId);
             var institutionUserAddress = institutionUser.User.Address;
 
-            notifyDonatorUserEvent = new NotifyDonatorUserEvent(institutionUser.FantasyName,
-                                                                institutionUserAddress.Street,
-                                                                institutionUserAddress.Number,
-                                                                institutionUserAddress.City,
-                                                                institutionUserAddress.State,
-                                                                institutionUserAddress.Country);
+            if(institutionUserAddress != null)
+            {
+                notifyDonatorUserEvent = new NotifyDonatorUserEvent(institutionUser.FantasyName,
+                                                               institutionUserAddress.Street,
+                                                               institutionUserAddress.Number,
+                                                               institutionUserAddress.City,
+                                                               institutionUserAddress.State,
+                                                               institutionUserAddress.Country);
+            }
+            else notifyDonatorUserEvent = new NotifyDonatorUserEvent(institutionUser.FantasyName);
+            
+           
             return notifyDonatorUserEvent;
         }
 
@@ -257,9 +264,8 @@ namespace SocialHeroes.Domain.Handlers
                                                                               notification.Id,
                                                                               command.Amount,
                                                                               command.ShareOnFacebook,
-                                                                              command.ShareOnInstagram,
-                                                                              command.ShareOnTwitter,
-                                                                              command.ShareOnWhatsapp));
+                                                                              command.ShareOnLinkedin,
+                                                                              command.ShareOnTwitter));
             _breastMilkNotificationRepository.Add(notification.BreastMilkNotification);
         }
 
@@ -273,9 +279,8 @@ namespace SocialHeroes.Domain.Handlers
                                                             command.HairId,
                                                             command.Amount,
                                                             command.ShareOnFacebook,
-                                                            command.ShareOnInstagram,
-                                                            command.ShareOnTwitter,
-                                                            command.ShareOnWhatsapp);
+                                                            command.ShareOnLinkedin,
+                                                            command.ShareOnTwitter);
                 _hairNotificationRepository.Add(hairNotification);
             }
         }
@@ -290,16 +295,15 @@ namespace SocialHeroes.Domain.Handlers
                                                               command.BloodId,
                                                               command.Amount,
                                                               command.ShareOnFacebook,
-                                                              command.ShareOnInstagram,
-                                                              command.ShareOnTwitter,
-                                                              command.ShareOnWhatsapp);
+                                                              command.ShareOnLinkedin,
+                                                              command.ShareOnTwitter);
                 _bloodNotificationRepository.Add(bloodNotification);
             }
         }
 
-        private void RegisterNotification(Guid institutionUserId, out Notification notification)
+        private void RegisterNotification(Guid institutionUserId, bool enableRequestOnPage, out Notification notification)
         {
-            notification = new Notification(Guid.NewGuid(), institutionUserId);
+            notification = new Notification(Guid.NewGuid(), institutionUserId, enableRequestOnPage);
             _notificationRepository.Add(notification);
         }
         #endregion

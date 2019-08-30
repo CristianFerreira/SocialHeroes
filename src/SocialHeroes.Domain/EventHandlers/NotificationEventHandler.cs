@@ -4,6 +4,8 @@ using System.Threading.Tasks;
 using MediatR;
 using SocialHeroes.Domain.Configurations;
 using SocialHeroes.Domain.Events.NotificationEvent;
+using SocialHeroes.Domain.Services;
+using SocialHeroes.Domain.Services.Extensions;
 using Twilio;
 using Twilio.Rest.Api.V2010.Account;
 
@@ -13,52 +15,42 @@ namespace SocialHeroes.Domain.EventHandlers
     {
         public Task Handle(NotifyDonatorUserEvent notification, CancellationToken cancellationToken)
         {
+            var index = 0;
+
             foreach (var donatorUserNotification in notification.DonatorUserNotificationsEvent)
             {
                 if (donatorUserNotification.NotificationType.Equals(NotificationsTypeConfiguration.TYPE_BLOOD))
-                    NotifyBloodDonatorUser(donatorUserNotification, notification);
+                    NotifyBloodDonatorUser(donatorUserNotification, notification, index);
 
                 if (donatorUserNotification.NotificationType.Equals(NotificationsTypeConfiguration.TYPE_HAIR))
-                    NotifyHairDonatorUser(donatorUserNotification, notification);
+                    NotifyHairDonatorUser(donatorUserNotification, notification, index);
             }
 
             return Task.CompletedTask;
         }
 
-        private void NotifyHairDonatorUser(DonatorUserNotificationEvent donatorUserNotification, NotifyDonatorUserEvent notification)
+        private void NotifyHairDonatorUser(DonatorUserNotificationEvent donatorUserNotification, NotifyDonatorUserEvent notification, int index)
         {
-            try
-            {
-                const string accountSid = "AC36cd014add4fc202353fd1d272026aa4";
-                const string authToken = "161cdde2b4d1f29888e3841eab5637f5";
+            if (index == 0)
+                new WhatsappService().SendWhatsappDonator(notification.Hospital, donatorUserNotification.Name, "cabelo", "");
 
-                TwilioClient.Init(accountSid, authToken);
-
-                var message = MessageResource.Create(body: $@"Ola {donatorUserNotification.Name}, 
-                                                            você recebeu uma solicitação de cabelo da instituição {notification.Hospital}. 
-                                                            Para saber maiores informações: {new Uri("http://www.google.com.br")}",
-                                                     from: new Twilio.Types.PhoneNumber("whatsapp:+14155238886"),
-                                                     to: new Twilio.Types.PhoneNumber("whatsapp:+555198585486"));
-            }
-            catch (Exception ex) { throw ex; };
+            new EmailService().SendEmail("socialheroes_comunicacao@outlook.com",
+                                          donatorUserNotification.Email,
+                                          $"Solicitação de cabelo",
+                                          EmailTemplate.EmailDonatorNotification("cabelo", notification.Hospital));
         }
 
-        private void NotifyBloodDonatorUser(DonatorUserNotificationEvent donatorUserNotification, NotifyDonatorUserEvent notification)
+        private void NotifyBloodDonatorUser(DonatorUserNotificationEvent donatorUserNotification, NotifyDonatorUserEvent notification, int index)
         {
-            try
-            {
-                const string accountSid = "AC36cd014add4fc202353fd1d272026aa4";
-                const string authToken = "161cdde2b4d1f29888e3841eab5637f5";
+            if (index == 0)
+                new WhatsappService().SendWhatsappDonator(notification.Hospital, donatorUserNotification.Name, "sangue", "");
 
-                TwilioClient.Init(accountSid, authToken);
-
-                var message = MessageResource.Create(body: $@"Ola {donatorUserNotification.Name}, 
-                                                            você recebeu uma solicitação de sangue da instituição {notification.Hospital}. 
-                                                            Para saber maiores informações: {new Uri("http://www.google.com.br")}",
-                                                     from: new Twilio.Types.PhoneNumber("whatsapp:+14155238886"),
-                                                     to: new Twilio.Types.PhoneNumber("whatsapp:+555198585486")); 
-            }
-            catch (Exception ex) { throw ex; };
+            new EmailService().SendEmail("socialheroes_comunicacao@outlook.com", 
+                                          donatorUserNotification.Email, 
+                                          $"Solicitação de sangue", 
+                                          EmailTemplate.EmailDonatorNotification("sangue", notification.Hospital));
         }
+
+
     }
 }

@@ -39,7 +39,8 @@ namespace SocialHeroes.Infra.Data.Migrations
                 {
                     Id = table.Column<Guid>(nullable: false),
                     InstitutionUserId = table.Column<Guid>(nullable: false),
-                    DateNotification = table.Column<DateTime>(nullable: false)
+                    DateNotification = table.Column<DateTime>(nullable: false),
+                    EnableRequestOnPage = table.Column<bool>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -110,9 +111,8 @@ namespace SocialHeroes.Infra.Data.Migrations
                     AmountBlood = table.Column<int>(nullable: false),
                     Actived = table.Column<bool>(nullable: false),
                     ShareOnFacebook = table.Column<bool>(nullable: false),
-                    ShareOnInstagram = table.Column<bool>(nullable: false),
-                    ShareOnTwitter = table.Column<bool>(nullable: false),
-                    ShareOnWhatsapp = table.Column<bool>(nullable: false)
+                    ShareOnLinkedin = table.Column<bool>(nullable: false),
+                    ShareOnTwitter = table.Column<bool>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -140,9 +140,8 @@ namespace SocialHeroes.Infra.Data.Migrations
                     AmountBreastMilk = table.Column<int>(nullable: false),
                     Actived = table.Column<bool>(nullable: false),
                     ShareOnFacebook = table.Column<bool>(nullable: false),
-                    ShareOnInstagram = table.Column<bool>(nullable: false),
-                    ShareOnTwitter = table.Column<bool>(nullable: false),
-                    ShareOnWhatsapp = table.Column<bool>(nullable: false)
+                    ShareOnLinkedin = table.Column<bool>(nullable: false),
+                    ShareOnTwitter = table.Column<bool>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -165,9 +164,8 @@ namespace SocialHeroes.Infra.Data.Migrations
                     AmountHair = table.Column<int>(nullable: false),
                     Actived = table.Column<bool>(nullable: false),
                     ShareOnFacebook = table.Column<bool>(nullable: false),
-                    ShareOnInstagram = table.Column<bool>(nullable: false),
-                    ShareOnTwitter = table.Column<bool>(nullable: false),
-                    ShareOnWhatsapp = table.Column<bool>(nullable: false)
+                    ShareOnLinkedin = table.Column<bool>(nullable: false),
+                    ShareOnTwitter = table.Column<bool>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -215,11 +213,12 @@ namespace SocialHeroes.Infra.Data.Migrations
                     UserId = table.Column<Guid>(nullable: false),
                     Number = table.Column<string>(type: "varchar(20)", maxLength: 20, nullable: false),
                     Complement = table.Column<string>(type: "varchar(100)", maxLength: 100, nullable: true),
-                    Street = table.Column<string>(type: "varchar(100)", maxLength: 100, nullable: false),
-                    City = table.Column<string>(type: "varchar(100)", maxLength: 100, nullable: false),
+                    Street = table.Column<string>(type: "varchar(100)", maxLength: 100, nullable: true),
+                    City = table.Column<string>(type: "varchar(100)", maxLength: 100, nullable: true),
+                    District = table.Column<string>(type: "varchar(100)", maxLength: 100, nullable: true),
                     State = table.Column<string>(type: "varchar(100)", maxLength: 100, nullable: false),
                     Country = table.Column<string>(type: "varchar(100)", maxLength: 100, nullable: false),
-                    ZipCode = table.Column<string>(type: "varchar(9)", maxLength: 9, nullable: false),
+                    ZipCode = table.Column<string>(type: "varchar(8)", maxLength: 8, nullable: false),
                     Latitude = table.Column<decimal>(type: "decimal(18, 9)", nullable: false),
                     Longitude = table.Column<decimal>(type: "decimal(18, 9)", nullable: false)
                 },

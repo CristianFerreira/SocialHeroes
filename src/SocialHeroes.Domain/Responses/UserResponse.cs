@@ -7,12 +7,12 @@ namespace SocialHeroes.Domain.Responses
     {
         public UserResponse(Guid userId, string name, EUserType userType)
         {
-            UserId = userId;
+            Id = userId;
             Name = name;
             UserType = userType.ToString();
         }
 
-        public Guid UserId { get; }
+        public Guid Id { get; }
         public string Name { get; }
         public string UserType { get; }
     }

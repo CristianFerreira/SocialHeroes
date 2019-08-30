@@ -11,6 +11,6 @@ namespace SocialHeroes.Domain.Services
         DateTime InitialDate { get; }
         DateTime ExpirationDate { get; }
 
-        TokenResponse CreateToken(User user, IList<string> roles, string userName);
+        TokenResponse CreateToken(Guid genericUserId, User user, IList<string> roles, string userName);
     }
 }
