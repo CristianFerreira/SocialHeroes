@@ -1,16 +1,23 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using SocialHeroes.Domain.Models;
+using System;
+using System.Collections.Generic;
+using System.Text;
 
 namespace SocialHeroes.Infra.Data.Mappings
 {
-    public class NotificationTypeMap : IEntityTypeConfiguration<NotificationType>
+    public class SocialNotificationTypeMap : IEntityTypeConfiguration<SocialNotificationType>
     {
-        public void Configure(EntityTypeBuilder<NotificationType> builder)
+        public void Configure(EntityTypeBuilder<SocialNotificationType> builder)
         {
             builder.HasKey(x => x.Id);
 
             builder.Property(x => x.Name)
+               .HasMaxLength(50)
+               .IsRequired();
+
+            builder.Property(x => x.Code)
                 .HasMaxLength(50)
                 .IsRequired();
 
@@ -18,7 +25,7 @@ namespace SocialHeroes.Infra.Data.Mappings
                 .HasMaxLength(50)
                 .IsRequired();
 
-            builder.ToTable("NotificationTypes");
+            builder.ToTable("SocialNotificationTypes");
         }
     }
 }

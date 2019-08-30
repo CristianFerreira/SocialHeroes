@@ -343,3 +343,9 @@ GO
 INSERT [dbo].[Adresses] ([Id], [UserId], [Number], [Complement], [Street], [City], [District], [State], [Country], [ZipCode], [Latitude], [Longitude]) VALUES (N'4f93dd0e-eb59-49ee-a805-9aa24cbf60a0', N'68029763-e08c-4f37-bcc9-fa9af4a24a91', N'6690', NULL, N'Av. Ipiranga', N'Porto Alegre','Partenon', N'RS', N'Brasil', N'90619900', CAST(-30.055169700 AS Decimal(18, 9)), CAST(-51.173509430 AS Decimal(18, 9)))
 GO
 
+
+-- ADD SocialNotificationTypes
+INSERT [dbo].[SocialNotificationTypes] ([Id],[Name], [Code], [Description]) VALUES (N'f3803c52-8dc6-4f97-9015-96ed2f581511', N'E-mail', N'EMAIL', 'E-mail para receber notificação');
+GO
+INSERT [dbo].[SocialNotificationTypes] ([Id], [Name], [Code], [Description]) VALUES (N'd767ab3b-fc24-467b-b2d5-be0264007fb2', N'Whatsapp', N'WHATSAPP', 'Whatsapp para receber notificação');
+GO

@@ -461,7 +461,9 @@ namespace SocialHeroes.Infra.Data.Migrations
                         .IsRequired()
                         .HasMaxLength(50);
 
-                    b.Property<string>("Name");
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(50);
 
                     b.HasKey("Id");
 
@@ -508,6 +510,28 @@ namespace SocialHeroes.Infra.Data.Migrations
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
                     b.ToTable("Roles");
+                });
+
+            modelBuilder.Entity("SocialHeroes.Domain.Models.SocialNotificationType", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Code")
+                        .IsRequired()
+                        .HasMaxLength(50);
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasMaxLength(50);
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(50);
+
+                    b.HasKey("Id");
+
+                    b.ToTable("SocialNotificationTypes");
                 });
 
             modelBuilder.Entity("SocialHeroes.Domain.Models.User", b =>
@@ -583,6 +607,24 @@ namespace SocialHeroes.Infra.Data.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("UserNotificationTypes");
+                });
+
+            modelBuilder.Entity("SocialHeroes.Domain.Models.UserSocialNotificationType", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<Guid>("SocialNotificationTypeId");
+
+                    b.Property<Guid>("UserId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("SocialNotificationTypeId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("UserSocialNotificationTypes");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<System.Guid>", b =>
@@ -756,6 +798,19 @@ namespace SocialHeroes.Infra.Data.Migrations
 
                     b.HasOne("SocialHeroes.Domain.Models.User", "User")
                         .WithMany("UserNotificationTypes")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Restrict);
+                });
+
+            modelBuilder.Entity("SocialHeroes.Domain.Models.UserSocialNotificationType", b =>
+                {
+                    b.HasOne("SocialHeroes.Domain.Models.SocialNotificationType", "SocialNotificationType")
+                        .WithMany("UserSocialNotificationTypes")
+                        .HasForeignKey("SocialNotificationTypeId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("SocialHeroes.Domain.Models.User", "User")
+                        .WithMany("UserSocialNotificationTypes")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Restrict);
                 });

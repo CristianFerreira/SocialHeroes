@@ -18,8 +18,8 @@ namespace SocialHeroes.Infra.Data.Repository
         => DbSet.AsNoTracking().FirstOrDefault(n => n.Name.ToUpper() == name.ToUpper());
 
         public ICollection<NotificationType> GetByUserId(Guid userId)
-           => (from nt in Db.NotificationType
-               join untft in Db.UserNotificationType on nt.Id equals untft.NotificationTypeId
+           => (from nt in Db.NotificationTypes
+               join untft in Db.UserNotificationTypes on nt.Id equals untft.NotificationTypeId
                where untft.UserId == userId
                select new NotificationType (nt.Id, nt.Name,nt.Description)
                ).ToList();

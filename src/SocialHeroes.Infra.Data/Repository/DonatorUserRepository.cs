@@ -22,8 +22,8 @@ namespace SocialHeroes.Infra.Data.Repository
              => (from d in Db.DonatorUsers
                  join b in Db.Bloods on d.BloodId equals b.Id
                  join u in Db.Users on d.UserId equals u.Id
-                 join un in Db.UserNotificationType on u.Id equals un.UserId
-                 join n in Db.NotificationType on un.NotificationTypeId equals n.Id
+                 join un in Db.UserNotificationTypes on u.Id equals un.UserId
+                 join n in Db.NotificationTypes on un.NotificationTypeId equals n.Id
                  where d.ActivedBloodNotification == true
                        && (d.LastBloodNotification < DateTime.Now.AddDays(-7) || d.LastBloodNotification == null)
                        && d.BloodId == bloodId
@@ -43,8 +43,8 @@ namespace SocialHeroes.Infra.Data.Repository
         public ICollection<DonatorUserToNotifyQuery> GetToBreastMilkNotification(int amount)
         => (from d in Db.DonatorUsers
             join u in Db.Users on d.UserId equals u.Id
-            join un in Db.UserNotificationType on u.Id equals un.UserId
-            join n in Db.NotificationType on un.NotificationTypeId equals n.Id
+            join un in Db.UserNotificationTypes on u.Id equals un.UserId
+            join n in Db.NotificationTypes on un.NotificationTypeId equals n.Id
             where d.ActivedBreastMilkNotification == true
                   && (d.LastBreastMilkNotification < DateTime.Now.AddDays(-7) || d.LastBreastMilkNotification == null)
             group d.Id by new { d, u } into mygroup
@@ -62,8 +62,8 @@ namespace SocialHeroes.Infra.Data.Repository
         => (from d in Db.DonatorUsers
             join h in Db.Hairs on d.HairId equals h.Id
             join u in Db.Users on d.UserId equals u.Id
-            join un in Db.UserNotificationType on u.Id equals un.UserId
-            join n in Db.NotificationType on un.NotificationTypeId equals n.Id
+            join un in Db.UserNotificationTypes on u.Id equals un.UserId
+            join n in Db.NotificationTypes on un.NotificationTypeId equals n.Id
             where d.ActivedHairNotification == true
                   && (d.LastHairNotification < DateTime.Now.AddDays(-7) || d.LastHairNotification == null)
                   && d.HairId == hairId

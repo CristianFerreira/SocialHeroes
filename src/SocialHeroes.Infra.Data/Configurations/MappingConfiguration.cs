@@ -24,7 +24,9 @@ namespace SocialHeroes.Infra.Data.Configurations
             modelBuilder.ApplyConfiguration(new NotificationTypeMap());
             
             modelBuilder.ApplyConfiguration(new PhoneMap());
-            
+            modelBuilder.ApplyConfiguration(new UserSocialNotificationTypeMap());
+            modelBuilder.ApplyConfiguration(new SocialNotificationTypeMap());
+
         }
     }
 }
