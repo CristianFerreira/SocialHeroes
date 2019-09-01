@@ -6,6 +6,6 @@ namespace SocialHeroes.Domain.Interfaces
 {
     public interface IBloodNotificationRepository : IRepository<BloodNotification>
     {
-        ICollection<VwBloodNotificationsRequestedEnableOnPage> GetAllEnableOnPage();
+        ICollection<VwInfoBloodNotificationsRequestedEnableOnPage> GetAllInfoEnableOnPage();
     }
 }

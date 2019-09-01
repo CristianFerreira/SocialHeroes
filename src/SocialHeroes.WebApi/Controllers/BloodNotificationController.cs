@@ -25,9 +25,9 @@ namespace SocialHeroes.WebApi.Controllers
             bus = mediator;
         }
 
-        [HttpGet("enableOnPage")]
+        [HttpGet("info/enableOnPage")]
         public IActionResult GetAllEnableOnPage()
-          => Response(_bloodNotificationRepository.GetAllEnableOnPage());
+          => Response(_bloodNotificationRepository.GetAllInfoEnableOnPage());
 
     }
 

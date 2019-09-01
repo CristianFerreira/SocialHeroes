@@ -10,14 +10,14 @@ using SocialHeroes.Infra.Data.Context;
 namespace SocialHeroes.Infra.Data.Migrations
 {
     [DbContext(typeof(SocialHeroesContext))]
-    [Migration("20190830143208_Initial")]
-    partial class Initial
+    [Migration("20190831171525_initial")]
+    partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "2.2.6-servicing-10079")
+                .HasAnnotation("ProductVersion", "2.2.4-servicing-10062")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 

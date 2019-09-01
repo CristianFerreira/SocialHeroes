@@ -24,6 +24,8 @@ namespace SocialHeroes.Domain.EventHandlers
 
                 if (donatorUserNotification.NotificationType.Equals(NotificationsTypeConfiguration.TYPE_HAIR))
                     NotifyHairDonatorUser(donatorUserNotification, notification, index);
+
+                index++;
             }
 
             return Task.CompletedTask;
@@ -38,6 +40,8 @@ namespace SocialHeroes.Domain.EventHandlers
                                           donatorUserNotification.Email,
                                           $"Solicitação de cabelo",
                                           EmailTemplate.EmailDonatorNotification("cabelo", notification.Hospital));
+
+            
         }
 
         private void NotifyBloodDonatorUser(DonatorUserNotificationEvent donatorUserNotification, NotifyDonatorUserEvent notification, int index)

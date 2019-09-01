@@ -32,7 +32,7 @@ namespace SocialHeroes.Infra.Data.Context
 
 
         //views
-        public DbQuery<VwBloodNotificationsRequestedEnableOnPage> VwBloodNotificationsRequestedEnableOnPage { get; set; }
+        public DbQuery<VwInfoBloodNotificationsRequestedEnableOnPage> VwInfoBloodNotificationsRequestedEnableOnPage { get; set; }
 
         public SocialHeroesContext(DbContextOptions<SocialHeroesContext> options) : base(options) {}
 
