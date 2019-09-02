@@ -4,35 +4,31 @@ using SocialHeroes.Domain.Core.Bus;
 using SocialHeroes.Domain.Core.Notifications;
 using SocialHeroes.Domain.Interfaces;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace SocialHeroes.WebApi.Controllers
 {
-    [Route("bloodnotification")]
-    public class BloodNotificationController : ApiController
+    [Route("hairnotification")]
+    public class HairNotificationController : ApiController
     {
-        private readonly IBloodNotificationRepository _bloodNotificationRepository;
+        private readonly IHairNotificationRepository _hairNotificationRepository;
         private readonly IMediatorHandler bus;
 
-        public BloodNotificationController(IBloodNotificationRepository bloodNotificationRepository,
+        public HairNotificationController(IHairNotificationRepository hairNotificationRepository,
                                            IMediatorHandler mediator,
                                            INotificationHandler<DomainNotification> notifications)
                                              : base(notifications)
         {
-            _bloodNotificationRepository = bloodNotificationRepository;
+            _hairNotificationRepository = hairNotificationRepository;
             bus = mediator;
         }
 
         [HttpGet("info/enableOnPage")]
         public IActionResult GetAllInfoEnableOnPage()
-          => Response(_bloodNotificationRepository.GetAllInfoEnableOnPage());
+          => Response(_hairNotificationRepository.GetAllInfoEnableOnPage());
 
         [HttpGet("enableOnPage/{notificationId}")]
         public IActionResult GetEnableOnPageByNotificationId(Guid notificationId)
-          => Response(_bloodNotificationRepository.GetEnableOnPageByNotificationId(notificationId));
+          => Response(_hairNotificationRepository.GetEnableOnPageByNotificationId(notificationId));
 
     }
-
 }

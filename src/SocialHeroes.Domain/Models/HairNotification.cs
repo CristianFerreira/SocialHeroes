@@ -16,7 +16,7 @@ namespace SocialHeroes.Domain.Models
         {
             Id = id;
             NotificationId = notificationId;
-            HairId = hairId;
+            HairId = hairId; 
             AmountHair = amountHair;
             Actived = true;
             ShareOnFacebook = shareOnFacebook;

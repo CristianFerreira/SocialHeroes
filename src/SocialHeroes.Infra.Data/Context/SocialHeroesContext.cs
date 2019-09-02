@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using SocialHeroes.Domain.Models;
+using SocialHeroes.Domain.Queries.views;
 using SocialHeroes.Domain.Queries.Views;
 using SocialHeroes.Infra.Data.Configurations;
 using System;
@@ -33,6 +34,10 @@ namespace SocialHeroes.Infra.Data.Context
 
         //views
         public DbQuery<VwInfoBloodNotificationsRequestedEnableOnPage> VwInfoBloodNotificationsRequestedEnableOnPage { get; set; }
+        public DbQuery<VwBloodNotificationsRequestedEnableOnPage> VwBloodNotificationsRequestedEnableOnPage { get; set; }
+        public DbQuery<VwInfoHairNotificationsRequestedEnableOnPage> VwInfoHairNotificationsRequestedEnableOnPage { get; set; }
+        public DbQuery<VwHairNotificationsRequestedEnableOnPage> VwHairNotificationsRequestedEnableOnPage { get; set; }
+
 
         public SocialHeroesContext(DbContextOptions<SocialHeroesContext> options) : base(options) {}
 

@@ -29,6 +29,7 @@ namespace SocialHeroes.Domain.Handlers
         private readonly IDonatorUserBreastMilkNotificationRepository _donatorUserBreastMilkNotificationRepository;
         private readonly IDonatorUserRepository _donatorUserRepository;
         private readonly IInstitutionUserRepository _institutionUserRepository;
+        private readonly IHairRepository _hairRepository;
 
         public NotificationHandler(IUnitOfWork uow,
                                   IMediatorHandler bus,
@@ -41,7 +42,8 @@ namespace SocialHeroes.Domain.Handlers
                                   IDonatorUserHairNotificationRepository donatorUserHairNotificationRepository,
                                   IDonatorUserBreastMilkNotificationRepository donatorUserBreastMilkNotificationRepository,
                                   IDonatorUserRepository donatorUserRepository,
-                                  IInstitutionUserRepository institutionUserRepository) : base(uow, bus, notifications)
+                                  IInstitutionUserRepository institutionUserRepository,
+                                  IHairRepository hairRepository) : base(uow, bus, notifications)
         {
             _bus = bus;
             _notificationRepository = notificationRepository;
@@ -53,6 +55,7 @@ namespace SocialHeroes.Domain.Handlers
             _donatorUserBreastMilkNotificationRepository = donatorUserBreastMilkNotificationRepository;
             _donatorUserRepository = donatorUserRepository;
             _institutionUserRepository = institutionUserRepository;
+            _hairRepository = hairRepository;
         }
 
         public Task<ICommandResult> Handle(NotifyDonatorUserCommand command,
@@ -126,8 +129,16 @@ namespace SocialHeroes.Domain.Handlers
         {
             if (HasHairNotifications(command.HairNotifications))
             {
+                Guid? hairId = null;
+                if (command.HairNotifications.Any(x=>x.HairId == null))
+                    hairId = _hairRepository.GetAll().FirstOrDefault().Id;
+
+                foreach (var hairNotification in command.HairNotifications)
+                    if(hairNotification.HairId == null)
+                         hairNotification.HairId = hairId;
+
                 RegisterHairNotifications(notification,
-                                      command.HairNotifications);
+                                          command.HairNotifications);
 
                 RegisterDonatorUserHairNotifications(notification.HairNotifications,
                                                      notifyDonatorUserEvent);
@@ -276,7 +287,7 @@ namespace SocialHeroes.Domain.Handlers
             {
                 var hairNotification = new HairNotification(Guid.NewGuid(),
                                                             notification.Id,
-                                                            command.HairId,
+                                                            command.HairId ?? Guid.NewGuid(),
                                                             command.Amount,
                                                             command.ShareOnFacebook,
                                                             command.ShareOnLinkedin,

@@ -5,7 +5,7 @@ namespace SocialHeroes.Domain.Commands.Notification
 {
     public class HairNotificationCommand : ISocialNetworkCommand
     {
-        public Guid HairId { get; set; }
+        public Guid? HairId { get; set; }
         public int Amount { get; set; }
         public bool ShareOnFacebook { get; set; }
         public bool ShareOnLinkedin { get; set; }
