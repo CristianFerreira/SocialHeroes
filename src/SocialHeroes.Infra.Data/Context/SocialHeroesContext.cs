@@ -37,7 +37,10 @@ namespace SocialHeroes.Infra.Data.Context
         public DbQuery<VwBloodNotificationsRequestedEnableOnPage> VwBloodNotificationsRequestedEnableOnPage { get; set; }
         public DbQuery<VwInfoHairNotificationsRequestedEnableOnPage> VwInfoHairNotificationsRequestedEnableOnPage { get; set; }
         public DbQuery<VwHairNotificationsRequestedEnableOnPage> VwHairNotificationsRequestedEnableOnPage { get; set; }
+        public DbQuery<VwDonatorUserHairNotificationRequested> VwDonatorUserHairNotificationRequested { get; set; }
+        public DbQuery<VwDonatorUserBloodNotificationRequested> VwDonatorUserBloodNotificationRequested { get; set; }
 
+        
 
         public SocialHeroesContext(DbContextOptions<SocialHeroesContext> options) : base(options) {}
 
