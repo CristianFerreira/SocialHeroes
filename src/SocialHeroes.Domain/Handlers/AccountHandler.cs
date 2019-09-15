@@ -319,6 +319,8 @@ namespace SocialHeroes.Domain.Handlers
                     return _donatorUserRepository.GetByUserId(user.Id).Id;
                 case EUserType.Institution:
                     return _institutionUserRepository.GetByUserId(user.Id).Id;
+                case EUserType.Admin:
+                    return Guid.NewGuid();
                 default: throw new ArgumentException("Nenhum identificador generico foi encontrado. Por favor, Contate o suporte!");
             }
         }
