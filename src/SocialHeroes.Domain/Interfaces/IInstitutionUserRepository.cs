@@ -1,5 +1,7 @@
 ﻿using SocialHeroes.Domain.Models;
+using SocialHeroes.Domain.Queries.views;
 using System;
+using System.Collections.Generic;
 
 namespace SocialHeroes.Domain.Interfaces
 {
@@ -7,5 +9,6 @@ namespace SocialHeroes.Domain.Interfaces
     {
         InstitutionUser GetByUserId(Guid id);
         InstitutionUser Get(Guid userId);
+        ICollection<VwNotificationsFromInstitutions> GetAllNotificationsByInstitutionUserId(Guid id);
     }
 }

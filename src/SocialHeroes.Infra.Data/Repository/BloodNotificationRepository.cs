@@ -21,7 +21,7 @@ namespace SocialHeroes.Infra.Data.Repository
         
 
         public ICollection<VwInfoBloodNotificationsRequestedEnableOnPage> GetAllInfoEnableOnPage()
-        => Db.VwInfoBloodNotificationsRequestedEnableOnPage.AsNoTracking().OrderBy(x=>x.DateNotification).ToList();
+        => Db.VwInfoBloodNotificationsRequestedEnableOnPage.AsNoTracking().OrderByDescending(x=>x.DateNotification).ToList();
         
     }
 }

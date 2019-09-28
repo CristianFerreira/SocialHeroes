@@ -20,6 +20,6 @@ namespace SocialHeroes.Infra.Data.Repository
 
 
         public ICollection<VwInfoHairNotificationsRequestedEnableOnPage> GetAllInfoEnableOnPage()
-        => Db.VwInfoHairNotificationsRequestedEnableOnPage.AsNoTracking().OrderBy(x => x.DateNotification).ToList();
+        => Db.VwInfoHairNotificationsRequestedEnableOnPage.AsNoTracking().OrderByDescending(x => x.DateNotification).ToList();
     }
 }

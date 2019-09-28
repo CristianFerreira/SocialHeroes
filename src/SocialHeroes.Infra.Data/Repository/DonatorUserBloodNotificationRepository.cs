@@ -16,6 +16,6 @@ namespace SocialHeroes.Infra.Data.Repository
         }
 
         public ICollection<VwDonatorUserBloodNotificationRequested> GetRequestsByDonatorUserId(Guid donatorUserId)
-        => Db.VwDonatorUserBloodNotificationRequested.AsNoTracking().Where(x=>x.DonatorUserId.Equals(donatorUserId)).OrderBy(x => x.DateNotification).ToList();
+        => Db.VwDonatorUserBloodNotificationRequested.AsNoTracking().Where(x=>x.DonatorUserId.Equals(donatorUserId)).OrderByDescending(x => x.DateNotification).ToList();
     }
 }
