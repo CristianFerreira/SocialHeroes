@@ -36,6 +36,8 @@ namespace SocialHeroes.Domain.Handlers
         private readonly SignInManager<User> _signInManager;
         private readonly INotificationTypeRepository _notificationTypeRepository;
         private readonly IUserRepository _userRepository;
+        private readonly IUserSocialNotificationTypeRepository _userSocialNotificationTypeRepository;
+        private readonly ISocialNotificationTypeRepository _socialNotificationTypeRepository;
 
         public AccountHandler(IUnitOfWork uow,
                               IMediatorHandler bus,
@@ -45,6 +47,8 @@ namespace SocialHeroes.Domain.Handlers
                               IInstitutionUserRepository institutionUserRepository,
                               IAddressRepository addressRepository,
                               IUserNotificationTypeRepository userNotificationTypeRepository,
+                              IUserSocialNotificationTypeRepository userSocialNotificationTypeRepository,
+                              ISocialNotificationTypeRepository socialNotificationTypeRepository,
                               INotificationTypeRepository notificationTypeRepository,
                               IPhoneRepository phoneRepository,
                               IUserRepository userRepository,
@@ -58,6 +62,8 @@ namespace SocialHeroes.Domain.Handlers
             _institutionUserRepository = institutionUserRepository;
             _addressRepository = addressRepository;
             _userNotificationTypeRepository = userNotificationTypeRepository;
+            _userSocialNotificationTypeRepository = userSocialNotificationTypeRepository;
+            _socialNotificationTypeRepository = socialNotificationTypeRepository;
             _phoneRepository = phoneRepository;
             _userRepository = userRepository;
             _userManager = userManager;
@@ -84,6 +90,8 @@ namespace SocialHeroes.Domain.Handlers
 
                     RegisterUserDonatorNotificationTypes(command, user);
 
+                    RegisterUserSocialNotificationTypes(user);
+
                     RegisterDonatorUser(command, user, out DonatorUser donatorUser);
 
                     Commit(transaction);
@@ -96,9 +104,6 @@ namespace SocialHeroes.Domain.Handlers
                 }
             }
         }
-
- 
-
 
         public async Task<ICommandResult> Handle(RegisterNewInstitutionUserCommand command, 
                                                  CancellationToken cancellationToken)
@@ -256,6 +261,12 @@ namespace SocialHeroes.Domain.Handlers
                 _userNotificationTypeRepository.Add(new UserNotificationType(Guid.NewGuid(),
                                                                              notificationType.Id,
                                                                              user.Id));
+        }
+
+        private void RegisterUserSocialNotificationTypes(User user)
+        {
+            var socialNotificationType =_socialNotificationTypeRepository.GetAll().FirstOrDefault(x => x.Code.Equals(SocialNotificationTypeConfiguration.Email));
+            _userSocialNotificationTypeRepository.Add(new UserSocialNotificationType(Guid.NewGuid(), socialNotificationType.Id, user.Id));
         }
 
         private void RegisterInstitutionNotificationTypes(RegisterNewDonatorUserCommand command,

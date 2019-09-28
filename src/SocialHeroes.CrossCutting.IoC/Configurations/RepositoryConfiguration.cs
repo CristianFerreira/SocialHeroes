@@ -25,6 +25,8 @@ namespace SocialHeroes.CrossCutting.IoC.Configurations
             services.AddScoped<INotificationRepository, NotificationRepository>();
             services.AddScoped<INotificationTypeRepository, NotificationTypeRepository>();
             services.AddScoped<IBloodRepository, BloodRepository>();
+            services.AddScoped<IUserSocialNotificationTypeRepository, UserSocialNotificationTypeRepository>();
+            services.AddScoped<ISocialNotificationTypeRepository, SocialNotificationTypeRepository>();
         }
     }
 }
