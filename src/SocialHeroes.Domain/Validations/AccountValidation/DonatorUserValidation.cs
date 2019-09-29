@@ -6,6 +6,14 @@ namespace SocialHeroes.Domain.Validations.AccountValidation
 {
     public class DonatorUserValidation<T> : UserValidation<T> where T : DonatorUserCommand
     {
+        protected void ValidateId()
+        {
+            RuleFor(c => c.Id)
+                .Must(IsGuid).WithMessage("Por favor informe um identificador para o usuario doador");
+        }
+
+        
+
         protected void ValidateName()
         {
             RuleFor(c => c.Name)
@@ -27,6 +35,9 @@ namespace SocialHeroes.Domain.Validations.AccountValidation
         }
 
 
+        private bool IsGuid(Guid id)
+        => Guid.TryParse(id.ToString(), out Guid Result);
+        
         private bool HaveMinimumAge(DateTime birthDate)
             => birthDate <= DateTime.Now.AddYears(-18);
         

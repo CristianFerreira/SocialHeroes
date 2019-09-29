@@ -75,5 +75,8 @@ namespace SocialHeroes.Domain.Models
 
         public void AddLastHairNotification()
         => LastHairNotification = DateTime.Now;
+
+        public void AddCellPhone(string cellPhone)
+        => CellPhone = cellPhone;
     }
 }

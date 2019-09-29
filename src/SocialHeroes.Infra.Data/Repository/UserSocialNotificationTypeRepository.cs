@@ -14,12 +14,16 @@ namespace SocialHeroes.Infra.Data.Repository
         {
         }
 
+        public ICollection<UserSocialNotificationType> GetUserSocialNotificationTypeByUserId(Guid userId)
+        => (from usnt in Db.UserSocialNotificationTypes
+            where usnt.UserId == userId
+            select usnt).ToList();
+
         public ICollection<string> GetUserSocialNotificationTypeCode(Guid userId)
          => (from usnt in Db.UserSocialNotificationTypes
             join snt in Db.SocialNotificationTypes on usnt.SocialNotificationTypeId equals snt.Id
             where usnt.UserId == userId
             select snt.Code).ToList();
-
 
 
 

@@ -32,6 +32,12 @@ namespace SocialHeroes.WebApi.Controllers
         public IActionResult Register([FromBody]RegisterNewDonatorUserCommand command) 
             => Response(bus.SendCommand(command).Result);
 
+        [HttpPut]
+        [Route("account/donator")]
+        [AllowAnonymous]
+        public IActionResult Update([FromBody]UpdateDonatorUserCommand command)
+            => Response(bus.SendCommand(command).Result);
+
         [HttpPost]
         [Route("account/institution")]
         [AllowAnonymous]

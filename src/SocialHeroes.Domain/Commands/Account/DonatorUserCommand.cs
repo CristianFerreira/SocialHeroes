@@ -15,14 +15,14 @@ namespace SocialHeroes.Domain.Commands.Account
         public Guid? HairId { get; set; }
         public Guid? BloodId { get; set; }
 
-        public string CPF { get; private set; }
-        public string CellPhone { get; private set; }
+        public string CPF { get; set; }
+        public string CellPhone { get; set; }
 
-        public DateTime? LastDonatedBlood { get; private set; }
-        public DateTime? LastDonatedHair { get; private set; }
-        public DateTime? LastDonatedBreastMilk { get; private set; }
+        public DateTime? LastDonatedBlood { get; set; }
+        public DateTime? LastDonatedHair { get; set; }
+        public DateTime? LastDonatedBreastMilk { get; set; }
 
-        public DateTime DateBirth { get; private set; }
+        public DateTime DateBirth { get; set; }
 
     }
 }

@@ -22,6 +22,7 @@ namespace SocialHeroes.Domain.Handlers
     public class AccountHandler : Handler,
                                   IRequestHandler<RegisterNewDonatorUserCommand, ICommandResult>,
                                   IRequestHandler<RegisterNewInstitutionUserCommand, ICommandResult>,
+                                  IRequestHandler<UpdateDonatorUserCommand, ICommandResult>,
                                   IRequestHandler<TokenUserCommand, ICommandResult>,
                                   IRequestHandler<ActiveUserCommand, ICommandResult>
     {
@@ -143,7 +144,38 @@ namespace SocialHeroes.Domain.Handlers
             }
         }
 
-       
+
+        public async Task<ICommandResult> Handle(UpdateDonatorUserCommand command, CancellationToken cancellationToken)
+        {
+            var donatorUser = _donatorUserRepository.GetById(command.Id);
+            donatorUser.AddCellPhone(command.CellPhone);
+
+            _donatorUserRepository.Update(donatorUser);
+
+            DeleteUserSocialNotificationTypes(donatorUser.UserId);
+            AddUserSocialNotificationTypes(donatorUser.UserId, command.SocialNotificationTypesId);
+
+            Commit();
+
+            return await CompletedTask(donatorUser);
+        }
+
+        private void AddUserSocialNotificationTypes(Guid userId, IList<Guid> socialNotificationTypesId)
+        {
+            foreach (var socialNotificationTypeId in socialNotificationTypesId)
+            {
+                _userSocialNotificationTypeRepository.Add(new UserSocialNotificationType(Guid.NewGuid(), socialNotificationTypeId, userId));
+            }
+        }
+
+        private void DeleteUserSocialNotificationTypes(Guid userId)
+        {
+            var userSocialNotificationTypes = _userSocialNotificationTypeRepository.GetUserSocialNotificationTypeByUserId(userId);
+            foreach (var userSocialNotificationType in userSocialNotificationTypes)
+            {
+                _userSocialNotificationTypeRepository.Remove(userSocialNotificationType.Id);
+            }
+        }
 
         public Task<ICommandResult> Handle(TokenUserCommand command, 
                                            CancellationToken cancellationToken)
@@ -342,6 +374,6 @@ namespace SocialHeroes.Domain.Handlers
             _donatorUserRepository.Dispose();
         }
 
-      
+        
     }
 }
